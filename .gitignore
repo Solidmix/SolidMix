@@ -7,3 +7,6 @@ dist/
 out/
 .DS_Store
 __pycache__/
+.serena/
+docs/reference/original-site/screenshots/
+.local-tools/

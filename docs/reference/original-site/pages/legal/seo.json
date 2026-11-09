@@ -1,0 +1,42 @@
+{
+  "url": "https://solidmixrmc.com/legal/",
+  "title": "Legal Information | RMC Plant Raipur Policies",
+  "metaDescription": "Read legal policies, terms & conditions of our RMC plant in Raipur. Transparent and trusted ready mix concrete service provider.",
+  "canonical": "https://solidmixrmc.com/legal/",
+  "robotsMeta": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+  "h1": [],
+  "og": {
+    "og:locale": "en_US",
+    "og:type": "article",
+    "og:title": "Legal Information | RMC Plant Raipur Policies",
+    "og:description": "Read legal policies, terms & conditions of our RMC plant in Raipur. Transparent and trusted ready mix concrete service provider.",
+    "og:url": "https://solidmixrmc.com/legal/",
+    "og:site_name": "Solidmixrmc",
+    "og:updated_time": "2026-06-16T16:01:29+05:30",
+    "og:image": "https://solidmixrmc.com/wp-content/uploads/2026/02/solidmixrmc-11.webp",
+    "og:image:secure_url": "https://solidmixrmc.com/wp-content/uploads/2026/02/solidmixrmc-11.webp",
+    "og:image:width": "635",
+    "og:image:height": "380",
+    "og:image:alt": "Legal",
+    "og:image:type": "image/webp"
+  },
+  "jsonLdTypes": [
+    "Organization",
+    "WebSite",
+    "ImageObject",
+    "WebPage",
+    "Person",
+    "Article"
+  ],
+  "wordCount": 970,
+  "imageCount": 12,
+  "imagesMissingAlt": [
+    "https://solidmixrmc.com/wp-content/uploads/2026/06/WhatsApp_Image_2026-06-16_at_3.43.53_PM-removebg-preview.png",
+    "https://solidmixrmc.com/wp-content/uploads/2025/08/1-3.webp",
+    "https://solidmixrmc.com/wp-content/uploads/2025/08/3-3.webp",
+    "https://solidmixrmc.com/wp-content/uploads/2025/08/2-4.webp",
+    "https://solidmixrmc.com/wp-content/uploads/2025/08/Untitled-design-23.webp",
+    "https://solidmixrmc.com/wp-content/uploads/2025/08/Screenshot_6.webp",
+    "https://solidmixrmc.com/wp-content/uploads/2025/08/Solidmix-Logo-e1773131751527-1024x548.webp"
+  ]
+}
