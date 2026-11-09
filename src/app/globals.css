@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors (from design-tokens.md) */
+  --color-primary: #9f1481;
+  --color-secondary: #167484;
+  --color-ink: #292929;
+  --color-accent: #ff00c8;
+
+  /* Section tints */
+  --color-tint-pink: #ffd7f6;
+  --color-tint-cyan: #dff9fd;
+  --color-tint-cyan-2: #f1fcff;
+
+  /* Greys / darks */
+  --color-grey: #616161;
+  --color-grey-2: #a5a5a5;
+  --color-grey-line: #dad8d8;
+  --color-dark: #0e0e0e;
+
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+
+  /* Content container */
+  --container-content: 1140px;
+
+  /* Breakpoints (Elementor set: mobile <=767, tablet 768-1024, desktop >=1025) */
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1025px;
+  --breakpoint-xl: 1280px;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Prevent any child from forcing horizontal scroll */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Reusable content container */
+.container-content {
+  width: 100%;
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* Entrance: slide in from the right (clipped by parent so no h-scroll) */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.reveal.is-visible.reveal-slide-right {
+  animation: slide-in-right 0.8s ease-out forwards;
+}
+
+.reveal.is-visible.reveal-fade {
+  animation: fade-in-up 0.7s ease-out forwards;
+}
+
+/* Hover bob (matches elementor-animation-bob) */
+.hover-bob {
+  transition: transform 0.3s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hover-bob:hover {
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  .hover-bob {
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+}
