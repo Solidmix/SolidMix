@@ -1,9 +1,38 @@
+import type { Metadata } from "next";
 import { site } from "@/content/site";
+import type { PageContent } from "@/lib/content";
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://solidmixrmc.com").replace(/\/$/, "");
 
 export function absUrl(path: string) {
   return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+// Falls back to the first paragraph (trimmed to 155 chars) when a page has no
+// extracted meta description — never invents facts, only truncates real copy.
+export function metaDescriptionFrom(content: PageContent): string {
+  if (content.description && content.description.trim()) return content.description.trim();
+  const firstPara = content.blocks.find((b) => b.type === "p") as { text: string } | undefined;
+  if (!firstPara) return content.title;
+  const text = firstPara.text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+  return text.length > 155 ? `${text.slice(0, 152).trimEnd()}...` : text;
+}
+
+export function pageMetadata(content: PageContent, pagePath: string, ogImage?: string): Metadata {
+  const description = metaDescriptionFrom(content);
+  const url = absUrl(pagePath);
+  return {
+    title: content.title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: content.title,
+      description,
+      url,
+      type: "website",
+      ...(ogImage ? { images: [{ url: absUrl(ogImage) }] } : {}),
+    },
+  };
 }
 
 // Service areas (from docs/reference/service-areas.md) for LocalBusiness areaServed.
@@ -97,5 +126,38 @@ export function faqPageLd(items: { q: string; a: string }[]) {
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
+  };
+}
+
+export function breadcrumbLd(items: { name: string; url?: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      ...(item.url ? { item: absUrl(item.url) } : {}),
+    })),
+  };
+}
+
+export function productLd({
+  name,
+  description,
+  image,
+}: {
+  name: string;
+  description: string;
+  image: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name,
+    description,
+    image: absUrl(image),
+    brand: { "@type": "Brand", name: "SolidMix" },
+    manufacturer: { "@type": "Organization", name: "SolidMix RMC" },
   };
 }

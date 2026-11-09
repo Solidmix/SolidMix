@@ -1,0 +1,157 @@
+{
+  "slug": "ready-mix-concrete-contact-in-raipur",
+  "path": "/ready-mix-concrete-contact-in-raipur/",
+  "kind": "page",
+  "title": "Ready Mix Concrete Contact in Raipur | SolidMix RMC",
+  "description": "Contact SolidMix RMC for ready mix concrete in Raipur. Get quick support for concrete orders, pricing, delivery schedules and project requirements across Raipur and nearby areas.",
+  "canonicalOriginal": "https://solidmixrmc.com/ready-mix-concrete-contact-in-raipur/",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Contact Us"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "[Home / Contact Us](/)"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/whatsapp-image-2026-06-16-at-3-43-53-pm-removebg-preview.webp",
+      "source": "WhatsApp_Image_2026-06-16_at_3.43.53_PM-removebg-preview.png",
+      "alt": ""
+    },
+    {
+      "type": "embed",
+      "src": "https://maps.google.com/maps?q=%20Serikhedi%20Chhattisgarh&t=m&z=12&output=embed&iwloc=near"
+    },
+    {
+      "type": "embed",
+      "src": "https://maps.google.com/maps?q=Lalganga%20Business%20Park%20Raipur%20-%20Abhanpur%20Rd%2C%20Navjeevan%20Society%2C%20Pachpedi%20Naka%2C%20Tikrapara%2C%20Mathpurena%2C%20Chhattisgarh%20492001&t=m&z=10&output=embed&iwloc=near"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Phone Number"
+    },
+    {
+      "type": "p",
+      "text": "+91 9893111201+91 9111109642"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Working Hour"
+    },
+    {
+      "type": "p",
+      "text": "We Are Open 24*7 ‎"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Office Email"
+    },
+    {
+      "type": "p",
+      "text": "info@solidmixrmc.comsupport@solidmixrmc.com"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "[Plant Address](https://maps.app.goo.gl/fKV4jRPBj6jGieLb6)"
+    },
+    {
+      "type": "p",
+      "text": "PH. NO. 77,KH. NO. 365/5Serikhedi, Raipur, Chhattisgarh, 492101"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "[Office Address](https://maps.app.goo.gl/yo8k21fiZhfwBQpt7)"
+    },
+    {
+      "type": "p",
+      "text": "PH. NO. 77,KH. NO. 365/5Serikhedi, Raipur, Chhattisgarh, 492101"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ready Mix Concrete Contact in Raipur"
+    },
+    {
+      "type": "p",
+      "text": "Looking for reliable ready mix concrete contact in Raipur for your upcoming construction project? SolidMix RMC is here to support you with quality concrete solutions, quick communication and dependable service. Whether you are planning residential construction, commercial development or infrastructure work, our team is ready to assist with the right concrete products and timely delivery."
+    },
+    {
+      "type": "form",
+      "fields": [],
+      "labels": []
+    },
+    {
+      "type": "form",
+      "fields": [
+        {
+          "tag": "input",
+          "name": "form_fields[name]",
+          "type": "text",
+          "required": false,
+          "placeholder": "Name",
+          "options": []
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "form",
+      "fields": [
+        {
+          "tag": "input",
+          "name": "form_fields[email]",
+          "type": "email",
+          "required": true,
+          "placeholder": "Email",
+          "options": []
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "form",
+      "fields": [
+        {
+          "tag": "input",
+          "name": "form_fields[field_3083ce8]",
+          "type": "tel",
+          "required": true,
+          "placeholder": "Contact No.",
+          "options": []
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "form",
+      "fields": [
+        {
+          "tag": "textarea",
+          "name": "form_fields[message]",
+          "type": "textarea",
+          "required": false,
+          "placeholder": "Message",
+          "options": []
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "button",
+      "text": "Send"
+    }
+  ],
+  "h1": "Contact Us",
+  "videos": [
+    "CEO-VINIT-SOLIDMIX-1.mp4"
+  ]
+}

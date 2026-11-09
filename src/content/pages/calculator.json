@@ -1,0 +1,63 @@
+{
+  "slug": "calculator",
+  "path": "/calculator/",
+  "kind": "page",
+  "title": "RMC Calculator | Ready Mix Concrete Cost Estimator",
+  "description": "Use our RMC calculator to estimate ready mix concrete cost in Raipur. Quick, accurate & easy tool for your construction planning. Try now!",
+  "canonicalOriginal": "https://solidmixrmc.com/calculator/",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Calculator"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "[Home / Calculator](/)"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/whatsapp-image-2026-06-16-at-3-43-53-pm-removebg-preview.webp",
+      "source": "WhatsApp_Image_2026-06-16_at_3.43.53_PM-removebg-preview.png",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Concrete Volume Calculator"
+    },
+    {
+      "type": "p",
+      "text": "Enter the required parameters to accurately calculate the Ready-Mix Concrete (RMC) volume for your construction project. Select the appropriate measurement units and input the dimensions for precise."
+    },
+    {
+      "type": "label",
+      "text": "Select Unit:"
+    },
+    {
+      "type": "label",
+      "text": "Length:"
+    },
+    {
+      "type": "label",
+      "text": "Width:"
+    },
+    {
+      "type": "label",
+      "text": "Height:"
+    },
+    {
+      "type": "button",
+      "text": "Calculate Volume"
+    },
+    {
+      "type": "p",
+      "text": "Volume: 0"
+    }
+  ],
+  "h1": "Calculator",
+  "videos": [
+    "Cuboid-1.mp4"
+  ]
+}

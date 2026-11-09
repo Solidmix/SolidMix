@@ -11,12 +11,11 @@ import {
   coreSkills,
   contactBlock,
 } from "@/content/home";
+import { HeroSlider } from "@/components/home/HeroSlider";
 import { AboutTabs } from "@/components/home/AboutTabs";
 import { ServicesCarousel } from "@/components/home/ServicesCarousel";
 import { HomeContactForm } from "@/components/home/HomeContactForm";
 import { FaqAccordion } from "@/components/FaqAccordion";
-import { Reveal } from "@/components/Reveal";
-import { Tilt } from "@/components/Tilt";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL, organizationLd, localBusinessLd, faqPageLd } from "@/lib/seo";
 
@@ -39,27 +38,16 @@ export default function HomePage() {
     <>
       <JsonLd data={[organizationLd(), localBusinessLd(), faqPageLd(faq.items)]} />
 
-      {/* Hero */}
-      <section className="overflow-hidden bg-gradient-to-b from-tint-cyan-2 to-white">
-        <div className="container-content grid items-center gap-8 py-10 md:py-14 lg:grid-cols-2">
-          <div className="order-2 text-center lg:order-1 lg:text-left">
-            <h1 className="text-3xl font-extrabold leading-tight text-primary md:text-4xl lg:text-[2.75rem]">
-              {hero.h1}
-            </h1>
-            <p className="mx-auto mt-5 max-w-xl text-lg text-ink lg:mx-0">{hero.subtitle}</p>
-          </div>
-          <Reveal variant="slide-right" className="order-1 lg:order-2">
-            <Tilt>
-              <Image
-                src="/images/mixer-truck.webp"
-                alt="SolidMix RMC transit mixer truck delivering ready mix concrete in Raipur"
-                width={648}
-                height={385}
-                priority
-                className="mx-auto h-auto w-full max-w-xl"
-              />
-            </Tilt>
-          </Reveal>
+      {/* Hero slider — 3 original promotional slides */}
+      <HeroSlider />
+
+      {/* Hero heading */}
+      <section className="bg-gradient-to-b from-tint-cyan-2 to-white">
+        <div className="container-content py-10 text-center md:py-14">
+          <h1 className="text-3xl font-extrabold leading-tight text-primary md:text-4xl lg:text-[2.75rem]">
+            {hero.h1}
+          </h1>
+          <p className="mx-auto mt-5 max-w-xl text-lg text-ink">{hero.subtitle}</p>
         </div>
       </section>
 

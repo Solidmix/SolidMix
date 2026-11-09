@@ -1,0 +1,31 @@
+{
+  "slug": "our-team-samrat-gupta",
+  "path": "/our-team/samrat-gupta/",
+  "kind": "team-member",
+  "title": "Samrat Gupta - Solidmixrmc",
+  "description": "A seasoned industry leader with over 22 years of experience in the Indian cement sector, Samrat has held key roles across major companies including Ultratech,",
+  "canonicalOriginal": "https://solidmixrmc.com/our-team/samrat-gupta/",
+  "blocks": [
+    {
+      "type": "image",
+      "src": "/images/content/samratgupta.webp",
+      "source": "Samratgupta.webp",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Samrat Gupta"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Founder & Director"
+    },
+    {
+      "type": "p",
+      "text": "A seasoned industry leader with over 22 years of experience in the Indian cement sector, Samrat has held key roles across major companies including Ultratech, Dalmia, Nuvoco, Emami Cement, and Star Cement. As a founding member of Double Bull Cement, he played a pivotal role in shaping its market presence. Samrat specializes in data mining and business strategy, leveraging deep analytical insights to drive growth and innovation. An electronic telecom engineer with a MBA in marketing he further enhanced his expertise by earning a no-coding AI certification from the Massachusetts Institute of Technology, integrating advanced technology solutions into business frameworks."
+    }
+  ],
+  "h1": "Samrat Gupta"
+}

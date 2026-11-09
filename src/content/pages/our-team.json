@@ -1,0 +1,116 @@
+{
+  "slug": "our-team",
+  "path": "/our-team/",
+  "kind": "page",
+  "title": "Our Team | Experts in RMC Plant Raipur",
+  "description": "Meet our expert team behind the trusted RMC plant in Raipur delivering quality ready mix concrete solutions across Chhattisgarh.",
+  "canonicalOriginal": "https://solidmixrmc.com/our-team/",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Our Team"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "[Home / Our Team](/)"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/whatsapp-image-2026-06-16-at-3-43-53-pm-removebg-preview.webp",
+      "source": "WhatsApp_Image_2026-06-16_at_3.43.53_PM-removebg-preview.png",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Meet Our Expert Team"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Solidmix Concrete Team"
+    },
+    {
+      "type": "p",
+      "text": "At SolidMix RMC, our strength lies in our people. The SolidMix RMC team is a dynamic group of engineers, supervisors, and on-site specialists committed to delivering high-quality ready mix concrete in Raipur. With precision, safety, and innovation at the core of everything we do, our team ensures every project stands strong, reliable, and built to last."
+    },
+    {
+      "type": "image",
+      "src": "/images/content/1-3.webp",
+      "source": "1-3.webp",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "[Vinit Tiwari](/our-team/vinit-tiwari/)"
+    },
+    {
+      "type": "p",
+      "text": "Founder & Director"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/3-3.webp",
+      "source": "3-3.webp",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "[Pratham Bafna](/our-team/pratham-bafna/)"
+    },
+    {
+      "type": "p",
+      "text": "Founder & Director"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/samratgupta.webp",
+      "source": "Samratgupta.webp",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "[Samrat Gupta](/our-team/samrat-gupta/)"
+    },
+    {
+      "type": "p",
+      "text": "AVP Strategy and Marketing"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/whatsapp-image-2025-12-11-at-5-44-58-pm.webp",
+      "source": "WhatsApp-Image-2025-12-11-at-5.44.58-PM.webp",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "[Purnendu Poddar](/our-team/purnendu-poddar/)"
+    },
+    {
+      "type": "p",
+      "text": "Head - Business Development"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/whatsapp-image-2025-12-13-at-2-37-23-pm.webp",
+      "source": "WhatsApp-Image-2025-12-13-at-2.37.23-PM.webp",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Pitabas Sahoo"
+    },
+    {
+      "type": "p",
+      "text": "Quality Head"
+    }
+  ],
+  "h1": "Our Team"
+}
