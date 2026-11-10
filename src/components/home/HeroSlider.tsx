@@ -56,7 +56,7 @@ export function HeroSlider() {
       aria-roledescription="carousel"
       aria-label="SolidMix RMC highlights"
     >
-      <div className="relative aspect-[16/9] w-full sm:aspect-[21/9] lg:aspect-[3/1]">
+      <div className="relative aspect-[1600/749] w-full">
         {SLIDES.map((slide, i) => (
           <Image
             key={slide.src}
