@@ -40,3 +40,16 @@ IMPORTANT: the replica does NOT replace the original site. It is deployed on its
 - SEO: unique titles, meta descriptions, one H1, alt text, canonical, sitemap.xml, robots.txt, structured data (LocalBusiness, Product, FAQPage, BreadcrumbList).
 - AEO: clear Q&A content, FAQ structured data, llms.txt.
 - While on the Vercel review URL the site must be `noindex`, so it does not compete with the original in Google; indexing is switched on only when the domain migration is approved.
+
+## Agent and token rules
+- Main agent: delegate each task to the agent named in the prompt (defined in .claude/agents/). If that agent is not available, STOP and tell Saidul; never substitute a general-purpose agent. Relay the subagent's full report and full diff unedited.
+- Subagents never spawn other agents, subagents or teammates.
+- Long-running work (Playwright, screenshot runs and comparisons, crawls, big downloads, anything over about 2 minutes) is NOT written or run by Claude Code agents. Saidul receives those scripts separately, keeps them in .local-tools/ (git-ignored), runs them in his Ubuntu terminal, and pastes the summary back. Agents never edit .local-tools/ and never poll, sleep or wait in loops.
+- After every task the subagent sends git status --short and the full git diff to the main agent.
+
+## No WordPress code
+- The original site is WordPress/Elementor and is considered unsafe. Nothing from its code (HTML, CSS, JS, PHP, plugins, tracking scripts) is copied into this project. Only its content is reused: text, images, videos and PDFs. docs/reference/original-site/ is reference material only and is never served or imported by the website.
+- Images are re-encoded (WebP) before use.
+
+## Stack
+- See memory-bank/techContext.md (PROPOSED until the design doc is approved).

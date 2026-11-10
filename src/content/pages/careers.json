@@ -1,0 +1,225 @@
+{
+  "slug": "careers",
+  "path": "/careers/",
+  "kind": "page",
+  "title": "Careers at RMC Plant | Jobs in Raipur Concrete Industry",
+  "description": "Join our RMC plant in Raipur and build your career in the concrete industry. Explore job opportunities with growth & stability. Apply now!",
+  "canonicalOriginal": "https://solidmixrmc.com/careers/",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Careers"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Home / Careers"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/whatsapp-image-2026-06-16-at-3-43-53-pm-removebg-preview.webp",
+      "source": "WhatsApp_Image_2026-06-16_at_3.43.53_PM-removebg-preview.png",
+      "alt": ""
+    },
+    {
+      "type": "image",
+      "src": "/images/content/whatsapp-image-2025-03-25-at-22-25-34-e1745574522767.webp",
+      "source": "WhatsApp-Image-2025-03-25-at-22.25.34-e1745574522767.webp",
+      "alt": "SolidMix RMC concrete plant in Serikhedi — batching and quality control"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Career options at Solidmixrmc"
+    },
+    {
+      "type": "p",
+      "text": "At SolidMix RMC, we are redefining construction with quality, commitment, and innovation. Our team of engineers, operators, quality experts, and logistics professionals work together every day to deliver high-performance ready-mix concrete across Raipur and beyond."
+    },
+    {
+      "type": "p",
+      "text": "We are always looking for driven, hardworking individuals who want to grow in the construction and infrastructure industry. Whether you are a fresh graduate or an experienced professional, there is a place for you at SolidMix RMC."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Career Growth Opportunities",
+        "On-the-Job Training",
+        "Timely Salary & Incentives",
+        "Provident Fund & ESI Benefits",
+        "Work with India’s Best Materials"
+      ]
+    },
+    {
+      "type": "link",
+      "text": "Our Services",
+      "href": "/rmc-services-in-raipur/"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build with Strength, Trust & Speed!"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "We deliver high-performance RMC for residential, commercial & infrastructure projects with precision & care."
+    },
+    {
+      "type": "link",
+      "text": "Contact Us",
+      "href": "/ready-mix-concrete-contact-in-raipur/"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Inside Elevate"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Company Benefits"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Friendly Environment"
+    },
+    {
+      "type": "p",
+      "text": "Portitor aptent sociosqu per etiam inceptos posuere lobortis"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Planning"
+    },
+    {
+      "type": "p",
+      "text": "Planning"
+    },
+    {
+      "type": "p",
+      "text": "Portitor aptent sociosqu per etiam inceptos posuere lobortis"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Execute"
+    },
+    {
+      "type": "p",
+      "text": "Portitor aptent sociosqu per etiam inceptos posuere lobortis"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Deliver"
+    },
+    {
+      "type": "p",
+      "text": "Portitor aptent sociosqu per etiam inceptos posuere lobortis"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/whatsapp-image-2025-03-20-at-10-41-11.webp",
+      "source": "WhatsApp-Image-2025-03-20-at-10.41.11.webp",
+      "alt": "Ready mix concrete M25 column casting at construction site in Raipur"
+    },
+    {
+      "type": "form",
+      "fields": [],
+      "labels": []
+    },
+    {
+      "type": "form",
+      "fields": [
+        {
+          "tag": "input",
+          "name": "form_fields[name]",
+          "type": "text",
+          "required": false,
+          "placeholder": "First Name",
+          "options": []
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "form",
+      "fields": [
+        {
+          "tag": "input",
+          "name": "form_fields[field_22d8b3f]",
+          "type": "text",
+          "required": false,
+          "placeholder": "Last Name",
+          "options": []
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "form",
+      "fields": [
+        {
+          "tag": "input",
+          "name": "form_fields[email]",
+          "type": "email",
+          "required": true,
+          "placeholder": "Email",
+          "options": []
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "form",
+      "fields": [
+        {
+          "tag": "input",
+          "name": "form_fields[message]",
+          "type": "text",
+          "required": false,
+          "placeholder": "Subject",
+          "options": []
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "form",
+      "fields": [
+        {
+          "tag": "input",
+          "name": "form_fields[field_46fcdbf]",
+          "type": "file",
+          "required": false,
+          "placeholder": "",
+          "options": []
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "form",
+      "fields": [
+        {
+          "tag": "textarea",
+          "name": "form_fields[field_adf2ca8]",
+          "type": "textarea",
+          "required": false,
+          "placeholder": "Comments",
+          "options": []
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "button",
+      "text": "Send"
+    }
+  ],
+  "h1": "Careers"
+}

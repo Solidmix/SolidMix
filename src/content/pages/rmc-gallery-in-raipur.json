@@ -1,0 +1,36 @@
+{
+  "slug": "rmc-gallery-in-raipur",
+  "path": "/rmc-gallery-in-raipur/",
+  "kind": "page",
+  "title": "RMC Gallery in Raipur | SolidMix RMC",
+  "description": "Explore the RMC gallery in Raipur by SolidMix RMC featuring ready mix concrete projects, site work and quality concrete solutions delivered across residential and commercial projects in Raipur.",
+  "canonicalOriginal": "https://solidmixrmc.com/rmc-gallery-in-raipur/",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Gallery"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "[Home / Gallery](/)"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/whatsapp-image-2026-06-16-at-3-43-53-pm-removebg-preview.webp",
+      "source": "WhatsApp_Image_2026-06-16_at_3.43.53_PM-removebg-preview.png",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "RMC Gallery in Raipur – SolidMix RMC Projects"
+    },
+    {
+      "type": "p",
+      "text": "Real photos from real projects — transit mixer deliveries, batching plant operations, slab pours, column casting, and road construction across Raipur, Naya Raipur, and Chhattisgarh. Every image is a project we delivered on time, to specification, with [IS 456:2000 certified concrete](/safety/)"
+    }
+  ],
+  "h1": "Gallery"
+}

@@ -1,0 +1,778 @@
+[
+  {
+    "slug": "author-admin-2",
+    "path": "/author/admin-2/",
+    "kind": "author",
+    "title": "admin - Solidmixrmc",
+    "h1": "Author: admin",
+    "blocks": 31
+  },
+  {
+    "slug": "author-admin-2-page-2",
+    "path": "/author/admin-2/page/2/",
+    "kind": "author",
+    "title": "admin - Solidmixrmc - Page 2 of 4",
+    "h1": "Author: admin",
+    "blocks": 32
+  },
+  {
+    "slug": "author-admin-2-page-3",
+    "path": "/author/admin-2/page/3/",
+    "kind": "author",
+    "title": "admin - Solidmixrmc - Page 3 of 4",
+    "h1": "Author: admin",
+    "blocks": 32
+  },
+  {
+    "slug": "author-admin-2-page-4",
+    "path": "/author/admin-2/page/4/",
+    "kind": "author",
+    "title": "admin - Solidmixrmc - Page 4 of 4",
+    "h1": "Author: admin",
+    "blocks": 19
+  },
+  {
+    "slug": "category-concrete-101",
+    "path": "/category/concrete-101/",
+    "kind": "category",
+    "title": "Concrete 101 - Solidmixrmc",
+    "h1": "Category: Concrete 101",
+    "blocks": 19
+  },
+  {
+    "slug": "category-construction",
+    "path": "/category/construction/",
+    "kind": "category",
+    "title": "Construction - Solidmixrmc",
+    "h1": "Category: Construction",
+    "blocks": 31
+  },
+  {
+    "slug": "category-construction-page-2",
+    "path": "/category/construction/page/2/",
+    "kind": "category",
+    "title": "Construction - Solidmixrmc",
+    "h1": "Category: Construction",
+    "blocks": 32
+  },
+  {
+    "slug": "category-construction-page-3",
+    "path": "/category/construction/page/3/",
+    "kind": "category",
+    "title": "Construction - Solidmixrmc",
+    "h1": "Category: Construction",
+    "blocks": 32
+  },
+  {
+    "slug": "category-construction-page-4",
+    "path": "/category/construction/page/4/",
+    "kind": "category",
+    "title": "Construction - Solidmixrmc",
+    "h1": "Category: Construction",
+    "blocks": 4
+  },
+  {
+    "slug": "category-rmc-plant",
+    "path": "/category/rmc-plant/",
+    "kind": "category",
+    "title": "Rmc Plant - Solidmixrmc",
+    "h1": "Category: Rmc Plant",
+    "blocks": 16
+  },
+  {
+    "slug": "home",
+    "path": "/",
+    "kind": "home",
+    "title": "RMC Plant in Raipur | Ready Mix Concrete Supplier — SolidMix",
+    "h1": "RMC Plant in Raipur | Ready Mix Concrete Supplier — SolidMix",
+    "blocks": 75
+  },
+  {
+    "slug": "appointments",
+    "path": "/appointments/",
+    "kind": "page",
+    "title": "Book RMC Appointment | Ready Mix Concrete Raipur",
+    "h1": "Appointments",
+    "blocks": 21
+  },
+  {
+    "slug": "calculator",
+    "path": "/calculator/",
+    "kind": "page",
+    "title": "RMC Calculator | Ready Mix Concrete Cost Estimator",
+    "h1": "Calculator",
+    "blocks": 11
+  },
+  {
+    "slug": "careers",
+    "path": "/careers/",
+    "kind": "page",
+    "title": "Careers at RMC Plant | Jobs in Raipur Concrete Industry",
+    "h1": "Careers",
+    "blocks": 32
+  },
+  {
+    "slug": "concrete-blog-in-raipur",
+    "path": "/concrete-blog-in-raipur/",
+    "kind": "page",
+    "title": "Concrete Blog in Raipur | SolidMix RMC",
+    "h1": "Concrete Blog in Raipur – SolidMix RMC Updates & Tips",
+    "blocks": 24
+  },
+  {
+    "slug": "legal",
+    "path": "/legal/",
+    "kind": "page",
+    "title": "Legal Information | RMC Plant Raipur Policies",
+    "h1": "",
+    "blocks": 64
+  },
+  {
+    "slug": "our-team",
+    "path": "/our-team/",
+    "kind": "page",
+    "title": "Our Team | Experts in RMC Plant Raipur",
+    "h1": "Our Team",
+    "blocks": 21
+  },
+  {
+    "slug": "our-work",
+    "path": "/our-work/",
+    "kind": "page",
+    "title": "RMC Projects in Raipur | Our Concrete Work Portfolio",
+    "h1": "Our Work",
+    "blocks": 31
+  },
+  {
+    "slug": "privacy-policy",
+    "path": "/privacy-policy/",
+    "kind": "page",
+    "title": "Privacy Policy - Solidmixrmc",
+    "h1": "Privacy Policy",
+    "blocks": 18
+  },
+  {
+    "slug": "ready-mix-concrete-contact-in-raipur",
+    "path": "/ready-mix-concrete-contact-in-raipur/",
+    "kind": "page",
+    "title": "Ready Mix Concrete Contact in Raipur | SolidMix RMC",
+    "h1": "Contact Us",
+    "blocks": 23
+  },
+  {
+    "slug": "ready-mix-concrete-in-raipur",
+    "path": "/ready-mix-concrete-in-raipur/",
+    "kind": "page",
+    "title": "Ready Mix Concrete in Raipur | SolidMix RMC",
+    "h1": "Products",
+    "blocks": 62
+  },
+  {
+    "slug": "rmc-gallery-in-raipur",
+    "path": "/rmc-gallery-in-raipur/",
+    "kind": "page",
+    "title": "RMC Gallery in Raipur | SolidMix RMC",
+    "h1": "Gallery",
+    "blocks": 5
+  },
+  {
+    "slug": "rmc-services-in-raipur",
+    "path": "/rmc-services-in-raipur/",
+    "kind": "page",
+    "title": "RMC Services in Raipur | SolidMix RMC",
+    "h1": "Our Services",
+    "blocks": 62
+  },
+  {
+    "slug": "safety",
+    "path": "/safety/",
+    "kind": "page",
+    "title": "Safety - Solidmixrmc",
+    "h1": "Safety",
+    "blocks": 45
+  },
+  {
+    "slug": "trusted-concrete-supplier-in-raipur",
+    "path": "/trusted-concrete-supplier-in-raipur/",
+    "kind": "page",
+    "title": "Trusted Concrete Supplier in Raipur | SolidMix RMC",
+    "h1": "About Us",
+    "blocks": 63
+  },
+  {
+    "slug": "10mm-rod-weight-guide",
+    "path": "/10mm-rod-weight-guide/",
+    "kind": "post",
+    "title": "10mm Rod Weight: Everything You Should Know",
+    "h1": "10mm Rod Weight: The Ultimate Guide for Construction and Estimation",
+    "date": "2025-09-25",
+    "category": "construction",
+    "excerpt": "In the world of construction, precision is everything. Whether you are building a small residential home or a massive industrial complex, knowing the exact specifications of your raw materials is crucial. One of the most",
+    "featuredImage": "/images/content/10mm-rod-weight.webp",
+    "blocks": 58
+  },
+  {
+    "slug": "12mm-rod-weight",
+    "path": "/12mm-rod-weight/",
+    "kind": "post",
+    "title": "12mm Rod Weight Guide for Construction and Steel Calculation",
+    "h1": "12mm Rod Weight: Complete Guide for Accurate Construction Calculations",
+    "date": "2025-08-22",
+    "category": "construction",
+    "excerpt": "Understanding 12mm rod weight is important for anyone working in construction. Builders, contractors, and engineers use this value daily to estimate steel requirements and manage costs properly.",
+    "featuredImage": "/images/content/12mm-rod-weight.webp",
+    "blocks": 87
+  },
+  {
+    "slug": "best-concrete-supplier-raipur",
+    "path": "/best-concrete-supplier-raipur/",
+    "kind": "post",
+    "title": "Best Concrete Supplier Raipur for Construction",
+    "h1": "Best Concrete Supplier Raipur for Quality Construction Solutions",
+    "date": "2025-08-15",
+    "category": "construction",
+    "excerpt": "Finding the best concrete supplier Raipur is important if you want strong, long-lasting construction. Whether you are building a home, a commercial project, or infrastructure, the quality of concrete directly affects dur",
+    "featuredImage": "/images/content/best-concrete-supplier-raipur.webp",
+    "blocks": 73
+  },
+  {
+    "slug": "best-ready-mix-concrete-supplier-in-raipur-what-to-look-for",
+    "path": "/best-ready-mix-concrete-supplier-in-raipur-what-to-look-for/",
+    "kind": "post",
+    "title": "Best Ready Mix Concrete Supplier in Raipur",
+    "h1": "Best Ready Mix Concrete Supplier in Raipur: What to Look For",
+    "date": "2026-05-16",
+    "category": "rmc-plant",
+    "excerpt": "When it comes to ultramodern construction, choosing the right concrete supplier can determine the strength, continuity, and long- term success of your design. Whether you’re erecting a domestic home, marketable complex, ",
+    "featuredImage": "/images/content/bf57a7bcc7c60cdb7ff755861f47b33e.webp",
+    "blocks": 107
+  },
+  {
+    "slug": "best-rmc-plant-solutions",
+    "path": "/best-rmc-plant-solutions/",
+    "kind": "post",
+    "title": "Best RMC Plant Solutions for Quality Concrete Supply",
+    "h1": "Building a Stronger Raipur with the Best RMC Plant Solutions",
+    "date": "2026-01-31",
+    "category": "concrete-101",
+    "excerpt": "The Best RMC Plant Solutions play a crucial role in modern construction by ensuring consistent quality, efficiency, and durability in every batch of concrete. With advanced technology, automated processes, and strict qua",
+    "featuredImage": "/images/content/rmc-plant-in-raipur.webp",
+    "blocks": 67
+  },
+  {
+    "slug": "binding-wire",
+    "path": "/binding-wire/",
+    "kind": "post",
+    "title": "Binding Wire Uses, Types, Price & Importance in Construction",
+    "h1": "Binding Wire: Key Construction Trends and Its Role in Modern Building Projects (2026)",
+    "date": "2025-08-22",
+    "category": "construction",
+    "excerpt": "The construction industry is rapidly evolving with new technologies, materials, and smarter building practices shaping the future. From sustainable infrastructure to faster project execution, every aspect of construction",
+    "featuredImage": "/images/content/binding-wire.webp",
+    "blocks": 75
+  },
+  {
+    "slug": "boom-pump-service-in-raipur",
+    "path": "/boom-pump-service-in-raipur/",
+    "kind": "post",
+    "title": "Boom Pump Service in Raipur | Solidmix RMC",
+    "h1": "Why Boom Pump Service in Raipur is Essential for Modern Construction",
+    "date": "2026-05-05",
+    "category": "construction",
+    "excerpt": "Modern construction projects demand speed, precision, and efficiency. Whether it’s a residential tower, commercial building, bridge, or industrial project, delivering concrete quickly and accurately has become essential.",
+    "featuredImage": "/images/content/boom-pump-1.webp",
+    "blocks": 60
+  },
+  {
+    "slug": "bulking-of-sand",
+    "path": "/bulking-of-sand/",
+    "kind": "post",
+    "title": "Bulking of Sand - Meaning, Causes, Effects & Calculation Guide",
+    "h1": "Bulking of Sand & Soil Testing: Guide for Accurate Concrete Mix",
+    "date": "2026-05-02",
+    "category": "construction",
+    "excerpt": "If you’re involved in construction, even at a basic level, understanding bulking of sand and proper soil testing methods can save you thousands of rupees and prevent serious structural failures. Many site engineers, cont",
+    "featuredImage": "/images/content/chatgpt-image-may-2-2026-06-00-04-pm.webp",
+    "blocks": 96
+  },
+  {
+    "slug": "cement-roller-machine",
+    "path": "/cement-roller-machine/",
+    "kind": "post",
+    "title": "Cement Roller Machine: Uses, Benefits & Types Explained",
+    "h1": "Cement Roller Machine for Concrete Compaction in Modern Construction",
+    "date": "2025-08-22",
+    "category": "construction",
+    "excerpt": "The cement roller machine plays a vital role in modern construction by ensuring proper compaction, strength, and durability of concrete surfaces. From road construction to large infrastructure projects, this powerful equ",
+    "featuredImage": "/images/content/cement-roller-machine.webp",
+    "blocks": 104
+  },
+  {
+    "slug": "concrete-boom-pump-in-raipur",
+    "path": "/concrete-boom-pump-in-raipur/",
+    "kind": "post",
+    "title": "Concrete Boom Pump in Raipur | Modern Construction Guide",
+    "h1": "Concrete Boom Pump in Raipur: The Smart Solution for High-Rise & Large-Scale Construction Projects",
+    "date": "2026-06-20",
+    "category": "construction",
+    "excerpt": "Concrete Boom Pump in Raipur is transforming the way modern construction projects handle concrete placement with greater speed, precision, and efficiency. Whether it’s commercial towers, residential complexes, industrial",
+    "featuredImage": "/images/content/boom-pump.webp",
+    "blocks": 76
+  },
+  {
+    "slug": "concrete-lift-machine",
+    "path": "/concrete-lift-machine/",
+    "kind": "post",
+    "title": "Concrete Lift Machine | Types, Uses & Benefits for Construction",
+    "h1": "Concrete Lift Machine for Faster and Efficient Material Handling in Construction",
+    "date": "2025-08-22",
+    "category": "construction",
+    "excerpt": "A concrete lift machine plays an important role in modern construction by making material handling faster and easier. Moving concrete manually to higher floors takes time, effort, and manpower. With the right lifting equ",
+    "featuredImage": "/images/content/concrete-lift-machine.webp",
+    "blocks": 91
+  },
+  {
+    "slug": "concrete-mixer-machine-guide",
+    "path": "/concrete-mixer-machine-guide/",
+    "kind": "post",
+    "title": "Concrete Mixer Machine: How to Choose the Right One",
+    "h1": "Concrete Mixer Machine: How to Choose the Right One for Your Project",
+    "date": "2026-04-20",
+    "category": "construction",
+    "excerpt": "If you’re planning any kind of construction work, one of the first decisions you’ll face is how to manage concrete mixing efficiently. A concrete mixer machine is not just a tool—it directly impacts your workflow, speed,",
+    "featuredImage": "/images/content/concreate-machine-mixer.webp",
+    "blocks": 75
+  },
+  {
+    "slug": "concrete-supplier-in-raipur",
+    "path": "/concrete-supplier-in-raipur/",
+    "kind": "post",
+    "title": "Concrete Supplier in Raipur | Quality RMC Services",
+    "h1": "Concrete Supplier in Raipur: 7 Proven Ways Quality Ready Mix Concrete Is Ensured",
+    "date": "2025-08-22",
+    "category": "construction",
+    "excerpt": "The success of any construction project depends on one critical factor—quality concrete. Whether you are building a home, a commercial complex, or large infrastructure, choosing the right concrete supplier in Raipur play",
+    "featuredImage": "/images/content/concrete-supplier-in-raipur.webp",
+    "blocks": 73
+  },
+  {
+    "slug": "drying-shrinkage-cracks-in-raipur",
+    "path": "/drying-shrinkage-cracks-in-raipur/",
+    "kind": "post",
+    "title": "Drying Shrinkage Cracks in Raipur | SolidMix RMC",
+    "h1": "Drying Shrinkage Cracks in Raipur: Causes, Prevention & Concrete Solutions",
+    "date": "2026-05-30",
+    "category": "construction",
+    "excerpt": "Concrete structures are known for their strength and long-term durability, but cracking is one of the most common concerns faced during and after construction. Among different types of cracks, drying shrinkage in cracks ",
+    "featuredImage": "/images/content/21.webp",
+    "blocks": 77
+  },
+  {
+    "slug": "eco-friendly-ready-mix-concrete",
+    "path": "/eco-friendly-ready-mix-concrete/",
+    "kind": "post",
+    "title": "Eco-Friendly Ready Mix Concrete: Key Benefits Explained",
+    "h1": "Eco-Friendly Ready Mix Concrete: A Better Way to Build in 2026",
+    "date": "2025-09-15",
+    "category": "concrete-101",
+    "excerpt": "The construction industry is changing fast—and not just in terms of speed or scale. Today, the focus has shifted towards building responsibly. With growing environmental concerns, builders are now looking for materials t",
+    "featuredImage": "/images/content/eco-friendly-ready-mix-concrete.webp",
+    "blocks": 63
+  },
+  {
+    "slug": "industrial-flooring-in-raipur",
+    "path": "/industrial-flooring-in-raipur/",
+    "kind": "post",
+    "title": "Industrial Flooring in Raipur | SolidMix RMC",
+    "h1": "Industrial Flooring in Raipur: Complete Guide to Durable Concrete Floors",
+    "date": "2026-06-08",
+    "category": "construction",
+    "excerpt": "When it comes to warehouses, factories, logistics hubs, and manufacturing facilities, Industrial Flooring in Raipur plays a critical role in ensuring safety, durability, and operational efficiency. Businesses today requi",
+    "featuredImage": "/images/content/blog-images-3.webp",
+    "blocks": 89
+  },
+  {
+    "slug": "m20-vs-m25-concrete-in-raipur",
+    "path": "/m20-vs-m25-concrete-in-raipur/",
+    "kind": "post",
+    "title": "M20 vs M25 Concrete in Raipur by Solidmix RMC",
+    "h1": "M20 vs M25 Concrete in Raipur: Which Grade is Better for Construction?",
+    "date": "2026-05-20",
+    "category": "construction",
+    "excerpt": "Construction projects require the right concrete grade to ensure strength, durability, and long-term safety. Whether you are building a residential home, commercial property, road, or industrial structure, selecting the ",
+    "featuredImage": "/images/content/m20-vs-m25-1200x628-1.webp",
+    "blocks": 161
+  },
+  {
+    "slug": "micro-concrete-uses-benefits-applications",
+    "path": "/micro-concrete-uses-benefits-applications/",
+    "kind": "post",
+    "title": "Micro Concrete: Uses, Benefits & Applications in Construction | Solidmix RMC",
+    "h1": "Micro Concrete: Uses, Benefits & Applications in Construction",
+    "date": "2026-06-11",
+    "category": "construction",
+    "excerpt": "Construction projects require durable and reliable materials to ensure long-term structural performance. One such innovative material gaining popularity in the construction industry is Micro Concrete. Known for its high ",
+    "featuredImage": "/images/content/solidmix-97.webp",
+    "blocks": 106
+  },
+  {
+    "slug": "pqc-concrete-construction-guide",
+    "path": "/pqc-concrete-construction-guide/",
+    "kind": "post",
+    "title": "PQC Concrete Complete Guide For You By Solidmix RMC",
+    "h1": "Understanding PQC Concrete: Mix Design, Specifications, and Applications",
+    "date": "2025-11-15",
+    "category": "construction",
+    "excerpt": "Modern transportation demands roads that can withstand heavy axle loads, extreme weather conditions, and high traffic volumes. This is where PQC Concrete comes into play. As a specialized high-quality material used in th",
+    "featuredImage": "/images/content/understanding-pqc-concrete.webp",
+    "blocks": 46
+  },
+  {
+    "slug": "pqc-full-form-road-construction",
+    "path": "/pqc-full-form-road-construction/",
+    "kind": "post",
+    "title": "PQC Full Form Explained: Meaning, Uses & Construction Guide",
+    "h1": "PQC Full Form: Meaning, Uses, Process, and Its Importance in Road Construction",
+    "date": "2026-04-10",
+    "category": "construction",
+    "excerpt": "If you’ve ever been involved in construction or civil engineering work, you’ve probably come across the term “pqc full form.” At first, it might sound like just another technical abbreviation, but in reality, it plays a ",
+    "featuredImage": "/images/content/gemini-generated-image-r06z38r06z38r06z.webp",
+    "blocks": 75
+  },
+  {
+    "slug": "quality-concrete-supply-in-raipur",
+    "path": "/quality-concrete-supply-in-raipur/",
+    "kind": "post",
+    "title": "Quality Concrete Supply in Raipur | Solidmix RMC",
+    "h1": "Quality Concrete Supply in Raipur: The Foundation of Strong and Durable Construction",
+    "date": "2026-06-13",
+    "category": "construction",
+    "excerpt": "The success of any construction project depends heavily on the quality of materials used during development. Among all building materials, concrete remains the backbone of modern construction due to its strength, durabil",
+    "featuredImage": "/images/content/feature-image-15-june-blog.webp",
+    "blocks": 139
+  },
+  {
+    "slug": "ready-mix-concrete-in-bhilai-benefits",
+    "path": "/ready-mix-concrete-in-bhilai-benefits/",
+    "kind": "post",
+    "title": "Ready Mix Concrete in Bhilai | Solidmix RMC",
+    "h1": "Ready Mix Concrete in Bhilai: 7 Smart Benefits for Stronger Construction",
+    "date": "2026-02-18",
+    "category": "concrete-101",
+    "excerpt": "If you’re planning to build a home or small commercial space, choosing the right materials is critical. Ready mix concrete in bhilai has become a popular solution for beginners and experienced builders alike. It offers s",
+    "featuredImage": "/images/content/7-smart-benefits-for-stronger-construction.webp",
+    "blocks": 59
+  },
+  {
+    "slug": "ready-mix-concrete-plant",
+    "path": "/ready-mix-concrete-plant/",
+    "kind": "post",
+    "title": "ready mix concrete plant cost setup and benefits guide",
+    "h1": "Ready Mix Concrete Plant: Everything You Need to Know for Modern Construction",
+    "date": "2025-11-25",
+    "category": "construction",
+    "excerpt": "The construction industry is evolving rapidly, and one of the most important innovations driving this change is the ready mix concrete plant. It has transformed how concrete is produced and delivered, making construction",
+    "featuredImage": "/images/content/contruction-plant.webp",
+    "blocks": 109
+  },
+  {
+    "slug": "ready-mix-concrete-product",
+    "path": "/ready-mix-concrete-product/",
+    "kind": "post",
+    "title": "Ready Mix Concrete Product | Product is Code Compliant?",
+    "h1": "How Do I Verify if a Ready Mix Concrete Product is Code Compliant?",
+    "date": "2026-05-25",
+    "category": "rmc-plant",
+    "excerpt": "Construction quality depends heavily on the quality of concrete used in the project. Whether you are building a residential home, commercial structure, industrial plant, or infrastructure project, choosing code-compliant",
+    "featuredImage": "/images/content/solidmix-92.webp",
+    "blocks": 124
+  },
+  {
+    "slug": "ready-mix-concrete-rmc-in-raipur",
+    "path": "/ready-mix-concrete-rmc-in-raipur/",
+    "kind": "post",
+    "title": "Ready-Mix Concrete (RMC) in Raipur for Strong Construction",
+    "h1": "Ready-Mix Concrete (RMC) in Raipur for Strong and Reliable Construction",
+    "date": "2026-01-15",
+    "category": "construction",
+    "excerpt": "When you start any construction work, one thing becomes clear very quickly — the quality of concrete affects everything. That’s one reason why many builders now prefer ready-mix concrete (RMC) in Raipur instead of mixing",
+    "featuredImage": "/images/content/rmc.webp",
+    "blocks": 89
+  },
+  {
+    "slug": "ready-mix-concrete",
+    "path": "/ready-mix-concrete/",
+    "kind": "post",
+    "title": "Best Ready Mix Concrete Supplier in Raipur",
+    "h1": "How SolidMix RMC Ready Mix Concrete Improves Construction Speed and Quality",
+    "date": "2026-05-10",
+    "category": "rmc-plant",
+    "excerpt": "The construction industry is evolving rapidly, and builders today demand faster project completion without compromising structural quality. One of the biggest innovations helping the industry achieve this balance is Ultr",
+    "featuredImage": "/images/content/solidmix-image.webp",
+    "blocks": 106
+  },
+  {
+    "slug": "rimix-flooring",
+    "path": "/rimix-flooring/",
+    "kind": "post",
+    "title": "Rimix Flooring: Process, Benefits, Cost & Complete Guide",
+    "h1": "Rimix Flooring: A Complete Guide to Durable and Cost-Effective Industrial Flooring",
+    "date": "2026-04-15",
+    "category": "construction",
+    "excerpt": "When it comes to strong, long-lasting, and economical flooring solutions, rimix flooring is gaining rapid popularity across construction and industrial sectors. Whether you’re building a warehouse, factory, or even a lar",
+    "featuredImage": "/images/content/rimix.webp",
+    "blocks": 57
+  },
+  {
+    "slug": "rmc-plant-raipur",
+    "path": "/rmc-plant-raipur/",
+    "kind": "post",
+    "title": "RMC Plant Raipur Explained: Working & Construction Uses",
+    "h1": "RMC Plant Raipur Guide 2026: Working, Advantages, and Applications",
+    "date": "2025-08-24",
+    "category": "construction",
+    "excerpt": "An RMC plant Raipur (Ready Mix Concrete plant) is one of the most important components in modern construction. With the increasing demand for high-quality, durable, and cost-effective construction materials, RMC plants h",
+    "featuredImage": "/images/content/rmc-plant-raipur-guide-2026.webp",
+    "blocks": 89
+  },
+  {
+    "slug": "rmc-ready-mix-concrete",
+    "path": "/rmc-ready-mix-concrete/",
+    "kind": "post",
+    "title": "RMC Ready Mix Concrete | Uses, Price & Benefits",
+    "h1": "RMC Ready Mix Concrete: Complete Guide to Modern Construction Solutions",
+    "date": "2025-08-22",
+    "category": "construction",
+    "excerpt": "The construction industry is evolving rapidly, and one material that has revolutionized the way buildings are constructed is rmc ready mix concrete. Known for its consistency, strength, and time-saving advantages, ready ",
+    "featuredImage": "/images/content/rmc-ready-mix-concrete.webp",
+    "blocks": 88
+  },
+  {
+    "slug": "rmc-supplier-in-raipur-concrete-types",
+    "path": "/rmc-supplier-in-raipur-concrete-types/",
+    "kind": "post",
+    "title": "RMC Supplier in Raipur: Types of Concrete Explained",
+    "h1": "RMC Supplier in Raipur: Complete Guide to All Concrete Types & Uses",
+    "date": "2026-03-21",
+    "category": "rmc-plant",
+    "excerpt": "Choosing the right concrete can make or break your construction project. But with so many options available, how do you decide?",
+    "featuredImage": "/images/content/types-of-concrete.webp",
+    "blocks": 89
+  },
+  {
+    "slug": "site-mix-concrete",
+    "path": "/site-mix-concrete/",
+    "kind": "post",
+    "title": "Site Mix Concrete for On-Site Construction",
+    "h1": "Ready Mix Concrete vs Site Mix Concrete:Which is Better for Your Project?",
+    "date": "2025-08-22",
+    "category": "construction",
+    "excerpt": "One of the biggest choices you’ll face? Deciding between ready mix and site mix concrete.",
+    "featuredImage": "/images/content/ready-mix-concrete-vs-site-mix-concrete.webp",
+    "blocks": 51
+  },
+  {
+    "slug": "solidmix-readymix-concrete",
+    "path": "/solidmix-readymix-concrete/",
+    "kind": "post",
+    "title": "SolidMix ReadyMix Concrete | Quality Concrete Supply",
+    "h1": "SolidMix ReadyMix Concrete for Consistent and High-Quality Construction Solutions",
+    "date": "2025-08-22",
+    "category": "construction",
+    "excerpt": "Finding a reliable ready-mix concrete supplier in Raipur can feel like searching for a needle in a haystack. Builders constantly struggle with late deliveries, inconsistent quality, and hidden wastage that ruins their bu",
+    "featuredImage": "/images/content/solidmix-readymix-concrete.webp",
+    "blocks": 34
+  },
+  {
+    "slug": "solidmix-rmc-supplier",
+    "path": "/solidmix-rmc-supplier/",
+    "kind": "post",
+    "title": "Solidmix RMC Supplier | Reliable Concrete in Raipur",
+    "h1": "Solidmix RMC Supplier for Strong and Reliable Concrete Solutions",
+    "date": "2025-12-15",
+    "category": "construction",
+    "excerpt": "When it comes to construction — whether it’s laying a foundation for your dream home or building robust commercial infrastructure — the strength and quality of concrete make all the difference. That’s where Solidmix RMC ",
+    "featuredImage": "/images/content/solidmix-rmc-supplier.webp",
+    "blocks": 33
+  },
+  {
+    "slug": "trusted-rmc-plant-in-raipur-solidmix",
+    "path": "/trusted-rmc-plant-in-raipur-solidmix/",
+    "kind": "post",
+    "title": "Trusted RMC Plant in Raipur | Solidmix Ready Mix Concrete",
+    "h1": "Trusted RMC Plant in Raipur – Solidmix",
+    "date": "2026-03-03",
+    "category": "construction",
+    "excerpt": "When it comes to durable and high-strength construction, choosing a trusted RMC plant in Raipur is essential. Solidmix is known for delivering premium Ready Mix Concrete (RMC) manufactured using advanced batching technol",
+    "featuredImage": "/images/content/trusted-rmc-plant.webp",
+    "blocks": 41
+  },
+  {
+    "slug": "waterproof-concrete-in-raipur",
+    "path": "/waterproof-concrete-in-raipur/",
+    "kind": "post",
+    "title": "Best Waterproof Concrete in Raipur for Construction",
+    "h1": "Waterproof Concrete in Raipur: The Smart Choice for Durable and Leak-Resistant Construction",
+    "date": "2026-06-25",
+    "category": "construction",
+    "excerpt": "Waterproof Concrete in Raipur is becoming an increasingly preferred choice for modern construction projects that require durability, strength, and protection against moisture-related damage. Water is one of the most comm",
+    "featuredImage": "/images/content/blog-images-4.webp",
+    "blocks": 115
+  },
+  {
+    "slug": "weather-impact-on-ready-mix-concrete",
+    "path": "/weather-impact-on-ready-mix-concrete/",
+    "kind": "post",
+    "title": "Weather Impact on Ready Mix Concrete Quality",
+    "h1": "Weather Impact on Ready Mix Concrete Quality",
+    "date": "2026-03-30",
+    "category": "construction",
+    "excerpt": "Have you ever noticed cracks or weak concrete structures after construction? Weather could be the hidden reason. Ready mix Concrete is highly sensitive to environmental conditions, especially temperature and moisture.",
+    "featuredImage": "/images/content/gemini-generated-image-d5s8tld5s8tld5s8.webp",
+    "blocks": 55
+  },
+  {
+    "slug": "ready-mix-concrete-in-raipur-bagged-concrete-in-farfaud-raipur",
+    "path": "/ready-mix-concrete-in-raipur/bagged-concrete-in-farfaud-raipur/",
+    "kind": "product",
+    "title": "Bagged Concrete in Farfaud Raipur | Solidmix RMC",
+    "h1": "Bagged Concrete in Farfaud Raipur",
+    "blocks": 24
+  },
+  {
+    "slug": "ready-mix-concrete-in-raipur-eco-friendly-concrete-in-saddu-raipur",
+    "path": "/ready-mix-concrete-in-raipur/eco-friendly-concrete-in-saddu-raipur/",
+    "kind": "product",
+    "title": "Eco Friendly Concrete in Saddu Raipur | Solidmix RMC",
+    "h1": "Eco Friendly Concrete in Saddu Raipur",
+    "blocks": 24
+  },
+  {
+    "slug": "ready-mix-concrete-in-raipur-heat-resistant-concrete-2",
+    "path": "/ready-mix-concrete-in-raipur/heat-resistant-concrete-2/",
+    "kind": "product",
+    "title": "Heat Resistant Concrete - Solidmixrmc",
+    "h1": "Heat Resistant Concrete",
+    "blocks": 68
+  },
+  {
+    "slug": "ready-mix-concrete-in-raipur-high-strength-concrete-in-sarona-raipur",
+    "path": "/ready-mix-concrete-in-raipur/high-strength-concrete-in-sarona-raipur/",
+    "kind": "product",
+    "title": "High Strength Concrete in Sarona Raipur | Solidmix RMC",
+    "h1": "High Strength Concrete",
+    "blocks": 24
+  },
+  {
+    "slug": "ready-mix-concrete-in-raipur-lightweight-concrete-in-sejbahar-raipur",
+    "path": "/ready-mix-concrete-in-raipur/lightweight-concrete-in-sejbahar-raipur/",
+    "kind": "product",
+    "title": "Lightweight Concrete in Sejbahar Raipur | Solidmix RMC",
+    "h1": "Lightweight Concrete in Sejbahar, Raipur",
+    "blocks": 24
+  },
+  {
+    "slug": "ready-mix-concrete-in-raipur-permeable-concrete-in-kotni-raipur",
+    "path": "/ready-mix-concrete-in-raipur/permeable-concrete-in-kotni-raipur/",
+    "kind": "product",
+    "title": "Permeable Concrete in Kotni Raipur | Solidmix RMC",
+    "h1": "Permeable-concrete-in-kotni-raipur",
+    "blocks": 23
+  },
+  {
+    "slug": "ready-mix-concrete-in-raipur-pp-fiber-concrete-in-kumhari-raipur",
+    "path": "/ready-mix-concrete-in-raipur/pp-fiber-concrete-in-kumhari-raipur/",
+    "kind": "product",
+    "title": "PP Fiber Concrete in Kumhari Raipur | Solidmix RMC",
+    "h1": "PP Fiber Concrete",
+    "blocks": 77
+  },
+  {
+    "slug": "ready-mix-concrete-in-raipur-self-compacting-concrete-in-bhanpuri-raipur",
+    "path": "/ready-mix-concrete-in-raipur/self-compacting-concrete-in-bhanpuri-raipur/",
+    "kind": "product",
+    "title": "Self Compacting Concrete in Bhanpuri Raipur | Solidmix RMC",
+    "h1": "Self Compacting Concrete in Bhanpuri, Raipur",
+    "blocks": 24
+  },
+  {
+    "slug": "ready-mix-concrete-in-raipur-stamped-concrete-in-atal-nagar-raipur",
+    "path": "/ready-mix-concrete-in-raipur/stamped-concrete-in-atal-nagar-raipur/",
+    "kind": "product",
+    "title": "Stamped Concrete in Atal Nagar Raipur | Solidmix RMC",
+    "h1": "Stamped Concrete",
+    "blocks": 81
+  },
+  {
+    "slug": "ready-mix-concrete-in-raipur-standard-concrete",
+    "path": "/ready-mix-concrete-in-raipur/standard-concrete/",
+    "kind": "product",
+    "title": "Standard Concrete - Solidmixrmc",
+    "h1": "Standard Concrete",
+    "blocks": 80
+  },
+  {
+    "slug": "ready-mix-concrete-in-raipur-steel-fiber-concrete",
+    "path": "/ready-mix-concrete-in-raipur/steel-fiber-concrete/",
+    "kind": "product",
+    "title": "Steel Fiber Concrete - Solidmixrmc",
+    "h1": "Steel Fiber Concrete",
+    "blocks": 79
+  },
+  {
+    "slug": "ready-mix-concrete-in-raipur-waterproof-concrete-in-mandir-hasaud-raipur",
+    "path": "/ready-mix-concrete-in-raipur/waterproof-concrete-in-mandir-hasaud-raipur/",
+    "kind": "product",
+    "title": "Waterproof Concrete in Mandir Hasaud Raipur | Solidmix RMC",
+    "h1": "Waterproof Concrete",
+    "blocks": 77
+  },
+  {
+    "slug": "our-team-anand-sharma",
+    "path": "/our-team/anand-sharma/",
+    "kind": "team-member",
+    "title": "Anand Sharma - Solidmixrmc",
+    "h1": "Anand Sharma​",
+    "blocks": 4
+  },
+  {
+    "slug": "our-team-pitabas-sahoo",
+    "path": "/our-team/pitabas-sahoo/",
+    "kind": "team-member",
+    "title": "Pitabas Sahoo - Solidmixrmc",
+    "h1": "Pitabas Sahoo",
+    "blocks": 1
+  },
+  {
+    "slug": "our-team-pratham-bafna",
+    "path": "/our-team/pratham-bafna/",
+    "kind": "team-member",
+    "title": "Pratham Bafna - Solidmixrmc",
+    "h1": "Pratham Bafna",
+    "blocks": 4
+  },
+  {
+    "slug": "our-team-purnendu-poddar",
+    "path": "/our-team/purnendu-poddar/",
+    "kind": "team-member",
+    "title": "Purnendu Poddar - Solidmixrmc",
+    "h1": "Purnendu Poddar",
+    "blocks": 4
+  },
+  {
+    "slug": "our-team-samrat-gupta",
+    "path": "/our-team/samrat-gupta/",
+    "kind": "team-member",
+    "title": "Samrat Gupta - Solidmixrmc",
+    "h1": "Samrat Gupta",
+    "blocks": 4
+  },
+  {
+    "slug": "our-team-vinit-tiwari",
+    "path": "/our-team/vinit-tiwari/",
+    "kind": "team-member",
+    "title": "Vinit Tiwari - Solidmixrmc",
+    "h1": "Vinit Tiwari",
+    "blocks": 4
+  }
+]
