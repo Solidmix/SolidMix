@@ -53,6 +53,13 @@ export type PageContent = {
   canonicalOriginal?: string;
   blocks: Block[];
   h1: string;
+  // Present on "post" kind JSON only.
+  category?: string;
+  date?: string;
+  excerpt?: string;
+  featuredImage?: ImageBlock;
+  // Present on pages that embed a self-hosted video (contact, calculator).
+  videos?: string[];
 };
 
 const CONTENT_DIR = path.join(process.cwd(), "src/content/pages");
@@ -71,7 +78,7 @@ export function resolvePageH1(content: PageContent): string {
   return first?.text ?? content.title;
 }
 
-const BREADCRUMB_HEADING_RE = /^\[Home\b/i;
+const BREADCRUMB_HEADING_RE = /^\[?Home\s*\//i;
 const TRUCK_IMAGE_MARK = "whatsapp-image-2026-06-16-at-3-43-53-pm-removebg-preview";
 
 export function isBreadcrumbHeading(b: Block): boolean {

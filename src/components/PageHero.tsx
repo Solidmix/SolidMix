@@ -9,11 +9,14 @@ export type Crumb = { label: string; href?: string };
 // the truck moves below the title at a smaller size (default DOM order).
 export function PageHero({ title, crumbs }: { title: string; crumbs: Crumb[] }) {
   return (
-    <section className="overflow-x-clip bg-dark">
-      <div className="container-content grid items-center gap-6 py-12 md:py-16 lg:grid-cols-[1fr_auto]">
+    <section
+      className="overflow-x-clip bg-[#2a2a2a] bg-cover bg-center"
+      style={{ backgroundImage: "linear-gradient(0deg, rgba(20,20,20,0.55), rgba(20,20,20,0.55)), url(/images/page-hero-bg.webp)" }}
+    >
+      <div className="container-content grid items-center gap-6 py-14 md:py-20 lg:grid-cols-[1fr_auto]">
         <div>
-          <h1 className="text-3xl font-extrabold text-primary md:text-4xl lg:text-5xl">{title}</h1>
-          <nav aria-label="Breadcrumb" className="mt-3 text-sm font-medium text-white">
+          <h1 className="text-4xl font-extrabold text-primary md:text-5xl lg:text-6xl">{title}</h1>
+          <nav aria-label="Breadcrumb" className="mt-4 text-base font-semibold text-white md:text-lg">
             {crumbs.map((c, i) => (
               <span key={i}>
                 {i > 0 && <span className="mx-2 text-white/60">/</span>}

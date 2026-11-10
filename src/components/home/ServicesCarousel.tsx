@@ -36,7 +36,7 @@ export function ServicesCarousel() {
           <article
             key={card.title}
             data-card
-            className="hover-bob flex w-[280px] flex-shrink-0 snap-start flex-col rounded-xl border border-grey-line p-7 sm:w-[320px]"
+            className="hover-bob flex w-full flex-shrink-0 snap-start flex-col rounded-xl border border-grey-line p-7 shadow-sm sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
           >
             <Image
               src={card.image}

@@ -96,6 +96,9 @@ const images = [
   ["Screenshot_18-removebg-preview.webp", "service-icon-3.webp"],
   ["Screenshot_17-removebg-preview.webp", "service-icon-4.webp"],
   ["Screenshot_22-removebg-preview.webp", "service-icon-5.webp"],
+  // B3 visual fix: the dark concrete-texture background used behind every
+  // inner-page title banner on the original (page-title section).
+  ["Frame-283-2-1-e1755338174321.webp", "page-hero-bg.webp"],
 ];
 
 const videos = [["LOGO-ORTHO-Linked-Comp-01-1.mp4", "logo-ortho.mp4"]];

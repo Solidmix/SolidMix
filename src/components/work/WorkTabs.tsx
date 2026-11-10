@@ -2,6 +2,15 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import {
+  BagIcon,
+  ClockIcon,
+  UsersIcon,
+  DollarIcon,
+  ShieldIcon,
+  TruckIcon,
+  GaugeIcon,
+} from "@/components/icons";
 
 export type WorkPanel = {
   key: string;
@@ -12,13 +21,17 @@ export type WorkPanel = {
   stats: { title: string; body: string }[];
 };
 
-function CheckIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-      <path d="m5 13 4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
+// Maps a stat title to a representative icon; falls back to a generic badge.
+const STAT_ICONS: Record<string, typeof BagIcon> = {
+  "Instant Business Growth": BagIcon,
+  "24/7 Quality Service": ClockIcon,
+  "Easy Customer Service": UsersIcon,
+  "Cost Effective Mixes": DollarIcon,
+  "High Durability": ShieldIcon,
+  "Smooth Supply Chain": TruckIcon,
+  "Experienced Workforce": UsersIcon,
+  "Long-Term Reliability": GaugeIcon,
+};
 
 // Mirrors the AboutTabs pattern (magenta active / teal inactive buttons)
 // for the Residential / Roads & Infrastructure switcher on Our Work.
@@ -28,7 +41,7 @@ export function WorkTabs({ panels }: { panels: WorkPanel[] }) {
 
   return (
     <div>
-      <div className="flex flex-wrap justify-center gap-3">
+      <div className="flex flex-wrap gap-3">
         {panels.map((p) => {
           const isActive = p.key === active;
           return (
@@ -37,7 +50,7 @@ export function WorkTabs({ panels }: { panels: WorkPanel[] }) {
               type="button"
               onClick={() => setActive(p.key)}
               aria-pressed={isActive}
-              className={`rounded-md px-6 py-3 text-sm font-semibold transition-colors ${
+              className={`rounded-md px-8 py-4 text-base font-semibold transition-colors ${
                 isActive ? "bg-primary text-white" : "bg-secondary text-white hover:bg-secondary/90"
               }`}
             >
@@ -48,7 +61,7 @@ export function WorkTabs({ panels }: { panels: WorkPanel[] }) {
       </div>
 
       {panel && (
-        <div className="mt-10 rounded-lg bg-tint-cyan-2/50 p-5 md:p-8">
+        <div className="mt-8 rounded-lg bg-tint-cyan-2/50 p-5 md:p-8">
           <div className="overflow-hidden rounded-lg">
             <Image
               src={panel.image.src}
@@ -61,15 +74,18 @@ export function WorkTabs({ panels }: { panels: WorkPanel[] }) {
           <h2 className="mt-8 text-2xl font-extrabold text-secondary md:text-3xl">{panel.heading}</h2>
           <p className="mt-4 leading-relaxed text-grey">{panel.intro}</p>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
-            {panel.stats.map((s) => (
-              <div key={s.title} className="rounded-lg border border-grey-line bg-white p-5">
-                <div className="flex items-center gap-2 text-secondary">
-                  <CheckIcon />
-                  <h3 className="text-base font-semibold text-secondary">{s.title}</h3>
+            {panel.stats.map((s) => {
+              const Icon = STAT_ICONS[s.title] ?? ShieldIcon;
+              return (
+                <div key={s.title} className="rounded-lg border border-grey-line bg-white p-6">
+                  <div className="flex items-center gap-3 text-secondary">
+                    <Icon className="h-9 w-9 flex-shrink-0" />
+                    <h3 className="text-xl font-bold text-secondary">{s.title}</h3>
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-grey">{s.body}</p>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-grey">{s.body}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}

@@ -142,6 +142,33 @@ export function breadcrumbLd(items: { name: string; url?: string }[]) {
   };
 }
 
+export function articleLd({
+  headline,
+  datePublished,
+  image,
+  url,
+}: {
+  headline: string;
+  datePublished: string;
+  image: string;
+  url: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline,
+    datePublished,
+    image: absUrl(image),
+    url: absUrl(url),
+    author: { "@type": "Organization", name: site.name },
+    publisher: {
+      "@type": "Organization",
+      name: site.name,
+      logo: { "@type": "ImageObject", url: absUrl("/images/solidmix-logo.webp") },
+    },
+  };
+}
+
 export function productLd({
   name,
   description,

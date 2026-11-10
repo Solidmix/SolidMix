@@ -73,16 +73,21 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
   return (
     <>
       <div
-        className={`fixed inset-0 z-40 bg-black/50 transition-opacity lg:hidden ${
+        className={`fixed inset-0 z-40 bg-black/50 lg:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
+        style={{ transition: "opacity 300ms ease, visibility 300ms ease", visibility: open ? "visible" : "hidden" }}
         onClick={onClose}
         aria-hidden="true"
       />
       <div
-        className={`fixed right-0 top-0 z-50 h-full w-[85%] max-w-sm overflow-y-auto bg-white shadow-xl transition-transform duration-300 lg:hidden ${
-          open ? "translate-x-0" : "translate-x-full"
+        className={`fixed right-0 top-0 z-50 h-full w-[85%] max-w-sm overflow-y-auto bg-white shadow-xl lg:hidden ${
+          open ? "translate-x-0" : "pointer-events-none translate-x-full"
         }`}
+        style={{
+          transition: "transform 300ms ease, visibility 300ms ease",
+          visibility: open ? "visible" : "hidden",
+        }}
         role="dialog"
         aria-modal="true"
         aria-label="Menu"

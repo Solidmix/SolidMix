@@ -3,10 +3,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
+// Order matches the original site: Boom Pump Service slide shows first.
 const SLIDES = [
-  { src: "/images/hero/slide-1.webp", alt: "SolidMix RMC — Raipur's 1st Boom Pump Service for faster concrete placement" },
+  { src: "/images/hero/slide-3.webp", alt: "SolidMix RMC — Raipur's 1st Boom Pump Service for faster concrete placement" },
+  { src: "/images/hero/slide-1.webp", alt: "SolidMix RMC — Raipur's complete concrete solution: RMC, transit mixers and boom pump services" },
   { src: "/images/hero/slide-2.webp", alt: "SolidMix RMC ready mix concrete transit mixer fleet, on-time every time" },
-  { src: "/images/hero/slide-3.webp", alt: "SolidMix RMC premium ready mix concrete for residential and commercial projects" },
 ];
 
 const AUTOPLAY_MS = 5000;

@@ -20,8 +20,9 @@
 
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 
-  /* Content container */
-  --container-content: 1140px;
+  /* Content container (measured from original desktop screenshots: ~1380px
+     content width at a 1440px viewport, ~20-30px side gutters) */
+  --container-content: 1360px;
 
   /* Breakpoints (Elementor set: mobile <=767, tablet 768-1024, desktop >=1025) */
   --breakpoint-sm: 480px;
@@ -36,13 +37,18 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+  /* The original's type scale runs larger than our previous default; this
+     nudges every rem-based font-size and spacing utility up uniformly
+     (measured against the desktop-orig crops of home/contact/our-work/blog). */
+  font-size: 106.25%;
 }
 
 body {
   background: #ffffff;
   color: var(--color-ink);
   font-family: var(--font-sans);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Prevent any child from forcing horizontal scroll */

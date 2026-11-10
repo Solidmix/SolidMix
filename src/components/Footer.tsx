@@ -9,7 +9,7 @@ export function Footer() {
       <div className="bg-primary text-white">
         <div className="container-content grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1">
-            <span className="inline-block rounded-md bg-white p-4">
+            <span className="inline-flex w-full max-w-[260px] items-center justify-center rounded-md bg-white p-8">
               <Image
                 src="/images/solidmix-logo-footer.webp"
                 alt="SolidMix RMC logo"
@@ -29,10 +29,12 @@ export function Footer() {
             <h2 className="mb-4 text-lg font-semibold">Useful Links</h2>
             <ul className="space-y-2.5 text-sm">
               {footerUsefulLinks.map((link) => (
-                <li key={link.label} className="flex items-center gap-2">
-                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true" className="flex-shrink-0">
-                    <path d="m9 6 6 6-6 6" />
-                  </svg>
+                <li key={link.label} className="flex items-center gap-2.5">
+                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-secondary">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="white" strokeWidth="3" aria-hidden="true">
+                      <path d="m9 6 6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
                   {link.href.startsWith("/brochure/") ? (
                     <a href={link.href} target="_blank" rel="noopener noreferrer" className="hover:underline">
                       {link.label}

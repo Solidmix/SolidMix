@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
 import { PRODUCTS_BASE } from "@/content/site";
+import { getAllPosts } from "@/lib/posts";
+import { getCategoryDefs } from "@/lib/categories";
 
 const PRODUCT_SLUGS = [
   "standard-concrete",
@@ -41,14 +43,31 @@ const routes = [
   "/rmc-gallery-in-raipur/",
   "/legal/",
   "/privacy-policy/",
+  "/concrete-blog-in-raipur/",
+  "/ready-mix-concrete-contact-in-raipur/",
+  "/appointments/",
+  "/careers/",
+  "/calculator/",
+  ...getCategoryDefs().flatMap((def) =>
+    Array.from({ length: def.pages }, (_, i) =>
+      i === 0 ? `/category/${def.slug}/` : `/category/${def.slug}/page/${i + 1}/`,
+    ),
+  ),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  return routes.map((route) => ({
+  const staticEntries: MetadataRoute.Sitemap = routes.map((route) => ({
     url: `${SITE_URL}${route}`,
     lastModified,
     changeFrequency: "weekly",
     priority: route === "/" ? 1 : 0.7,
   }));
+  const postEntries: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+    url: `${SITE_URL}/${post.slug}/`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+  return [...staticEntries, ...postEntries];
 }
