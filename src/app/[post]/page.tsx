@@ -91,10 +91,11 @@ export default async function PostPage({ params }: { params: Promise<{ post: str
             {content.date && <> · {formatPostDate(content.date)}</>}
             {content.time && <> · {content.time}</>}
           </p>
-          {/* Post body only: headings read ink (not primary/teal) and inline
-              links read the original's #cc3366 — scoped here via CSS, not a
-              BlockRenderer default, since other pages keep their own colours. */}
-          <div className="mt-6 [&_a]:text-[#cc3366] [&_h2]:text-[#292929] [&_h3]:text-[#292929]">
+          {/* Post body only: headings read ink (not primary/teal), inline
+              links read the original's #cc3366, and body copy (paragraphs/
+              list items) is 20px — scoped here via CSS, not a BlockRenderer
+              default, since other pages keep their own colours/sizes. */}
+          <div className="mt-6 [&_a]:text-[#cc3366] [&_h2]:text-[#292929] [&_h3]:text-[#292929] [&_li]:text-[20px] [&_p]:text-[20px]">
             <BlockRenderer blocks={bodyBlocks} faqMode="plain" />
           </div>
         </div>

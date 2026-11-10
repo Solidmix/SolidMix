@@ -30,7 +30,7 @@ export function ConsultancyTabs({ items }: { items: ConsultancyItem[] }) {
       </div>
       {current && (
         <div className="mt-6">
-          <h3 className="text-[28px] font-semibold text-primary">{current.heading}</h3>
+          <h3 className="text-[24px] font-semibold text-primary md:text-[32px]">{current.heading}</h3>
           <p className="mt-3 leading-relaxed text-grey">{current.body}</p>
         </div>
       )}

@@ -17,10 +17,15 @@ export function FaqAccordion({
   items,
   defaultOpen = 0,
   questionColor = "ink",
+  firstAnswerColor,
 }: {
   items: FaqItem[];
   defaultOpen?: number;
   questionColor?: keyof typeof QUESTION_COLOR;
+  // Home's first answer ("Our plant is located...") measures teal on the
+  // original, unlike every other answer on the page — a one-off override
+  // rather than a new shared default.
+  firstAnswerColor?: keyof typeof QUESTION_COLOR;
 }) {
   const [open, setOpen] = useState<number | null>(defaultOpen);
 
@@ -46,7 +51,9 @@ export function FaqAccordion({
               </button>
             </h3>
             {isOpen && (
-              <div className="px-4 pb-5 pl-11 text-grey">
+              <div
+                className={`px-4 pb-5 pl-11 ${i === 0 && firstAnswerColor ? QUESTION_COLOR[firstAnswerColor] : "text-grey"}`}
+              >
                 <p>
                   <InlineText text={item.a} />
                 </p>

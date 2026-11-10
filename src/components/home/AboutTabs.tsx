@@ -42,7 +42,7 @@ export function AboutTabs() {
           )}
           {panel.bodyHtml ? (
             <p
-              className="leading-relaxed text-ink [&_a]:text-primary [&_a]:underline"
+              className="leading-relaxed text-ink [&_a]:text-[#cc3366] [&_a]:underline"
               dangerouslySetInnerHTML={{ __html: panel.bodyHtml }}
             />
           ) : (
@@ -52,7 +52,7 @@ export function AboutTabs() {
             <div className="mt-6 text-center">
               <a
                 href={intro.cta.href}
-                className="inline-block rounded-md bg-secondary px-6 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
+                className="inline-block rounded-md bg-secondary px-6 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-secondary/90"
               >
                 {intro.cta.label}
               </a>

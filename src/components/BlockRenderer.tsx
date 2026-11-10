@@ -120,6 +120,11 @@ function BlockItem({ block }: { block: Block }) {
       );
     case "table": {
       const [headerRow, ...bodyRows] = block.rows;
+      // "Mix Ratio" is right-aligned on the original (the blog post mix-ratio
+      // table); every other column stays left-aligned — matched by header
+      // text rather than a fixed index, since it's the only column this
+      // applies to anywhere on the site.
+      const mixRatioCol = headerRow?.indexOf("Mix Ratio") ?? -1;
       return (
         <div className="mt-6 overflow-x-auto rounded-lg border border-grey-line">
           <table className="w-full min-w-[480px] border-collapse text-left text-[18px]">
@@ -127,7 +132,10 @@ function BlockItem({ block }: { block: Block }) {
               <thead>
                 <tr>
                   {headerRow.map((cell, j) => (
-                    <th key={j} className="border-b border-grey-line bg-[#808080] px-4 py-2.5 font-semibold text-white">
+                    <th
+                      key={j}
+                      className={`border-b border-grey-line bg-[#808080] px-4 py-2.5 font-semibold text-white ${j === mixRatioCol ? "text-right" : ""}`}
+                    >
                       {cell}
                     </th>
                   ))}
@@ -138,7 +146,10 @@ function BlockItem({ block }: { block: Block }) {
               {bodyRows.map((row, i) => (
                 <tr key={i} className="odd:bg-tint-cyan-2/50">
                   {row.map((cell, j) => (
-                    <td key={j} className="border-b border-grey-line px-4 py-2.5 text-grey">
+                    <td
+                      key={j}
+                      className={`border-b border-grey-line px-4 py-2.5 text-grey ${j === mixRatioCol ? "text-right" : ""}`}
+                    >
                       {cell}
                     </td>
                   ))}

@@ -4,7 +4,10 @@ import Link from "next/link";
 // into next/link (internal) or <a> (external/mailto/tel), and [[b]]...[[/b]]
 // markers (added by scripts/enrich-bold.py) into <strong>. Plain text passes
 // through untouched — content wording is never altered. Links work both
-// outside and inside bold spans.
+// outside and inside bold spans. Link colour #cc3366 matches the theme's
+// global default link colour (confirmed in the captured reset.css: `a{color:
+// #c36}`), measured consistently across every page's parity rows — not
+// text-primary, which round 1 had used as the catch-all link colour.
 const LINK_RE = /\[([^\]]+)\]\(([^)]+)\)/g;
 const BOLD_RE = /\[\[b\]\]([\s\S]*?)\[\[\/b\]\]/g;
 
@@ -19,13 +22,13 @@ function renderLinks(text: string, keyRef: { current: number }): React.ReactNode
     const key = keyRef.current++;
     if (href.startsWith("/")) {
       nodes.push(
-        <Link key={key} href={href} className="text-primary underline underline-offset-2">
+        <Link key={key} href={href} className="text-[#cc3366] underline underline-offset-2">
           {label}
         </Link>,
       );
     } else if (href.startsWith("mailto:") || href.startsWith("tel:")) {
       nodes.push(
-        <a key={key} href={href} className="text-primary underline underline-offset-2">
+        <a key={key} href={href} className="text-[#cc3366] underline underline-offset-2">
           {label}
         </a>,
       );
@@ -36,7 +39,7 @@ function renderLinks(text: string, keyRef: { current: number }): React.ReactNode
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary underline underline-offset-2"
+          className="text-[#cc3366] underline underline-offset-2"
         >
           {label}
         </a>,

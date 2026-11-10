@@ -96,7 +96,7 @@ export default function AboutPage() {
               <InlineText text={introHeading.text} />
             </h2>
             {introParas.map((p, i) => (
-              <p key={i} className="mt-4 leading-relaxed text-white/90">
+              <p key={i} className="mt-4 text-justify leading-relaxed text-white/90">
                 <InlineText text={p.text} />
               </p>
             ))}
@@ -110,7 +110,7 @@ export default function AboutPage() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/20 pt-6">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 border-t border-white/20 pt-6">
               <div>
                 <p className="text-[30px] font-semibold">
                   <InlineText text={foundersHeading.text} />
@@ -119,7 +119,7 @@ export default function AboutPage() {
               </div>
               <Link
                 href={foundersCta.href}
-                className="rounded-md bg-white px-6 py-3 text-xl font-medium text-secondary transition-colors hover:bg-white/90"
+                className="rounded-md bg-white px-6 py-3 text-center text-xl font-medium text-secondary transition-colors hover:bg-white/90"
               >
                 {foundersCta.text}
               </Link>
@@ -169,8 +169,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Tail CTA */}
-      <BlocksCta blocks={tailCta} bgImage="/images/bg/cta-blog.webp" bgOpacity={0.73} />
+      {/* Tail CTA — "Contact Us" is a white button on the original, not primary. */}
+      <BlocksCta blocks={tailCta} bgImage="/images/bg/cta-blog.webp" bgOpacity={0.73} ctaVariant="white" />
 
       {/* FAQ */}
       <section className="py-14">
@@ -186,10 +186,12 @@ function BlocksCta({
   blocks,
   bgImage,
   bgOpacity,
+  ctaVariant,
 }: {
   blocks: ReturnType<typeof stripChrome>;
   bgImage?: string;
   bgOpacity?: number;
+  ctaVariant?: "primary" | "white";
 }) {
   const heading = blocks.find((b): b is HeadingBlock => b.type === "heading");
   const para = blocks.find((b): b is ParaBlock => b.type === "p");
@@ -198,7 +200,7 @@ function BlocksCta({
   return (
     <CtaBanner
       heading={heading.text}
-      ctas={link ? [{ label: link.text, href: link.href }] : undefined}
+      ctas={link ? [{ label: link.text, href: link.href, variant: ctaVariant }] : undefined}
       bgImage={bgImage}
       bgOpacity={bgOpacity}
     >

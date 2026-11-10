@@ -60,7 +60,7 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      <BgSection image="/images/bg/build-together.webp" overlayOpacity={0.88} className="py-16 text-center">
+      <BgSection image="/images/bg/build-together.webp" overlayOpacity={0.88} className="py-16 text-center text-white">
         <div className="container-content max-w-2xl">
           <h2 className="text-[28px] font-semibold md:text-[40px]">{ctaHeading1.text}</h2>
           <p className="mt-4 leading-relaxed text-white/90">{ctaHeading2.text}</p>

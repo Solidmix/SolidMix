@@ -41,7 +41,7 @@ export function ProgressBars({ items }: { items: ProgressItem[] }) {
     <div ref={ref} className="grid grid-cols-1 gap-x-10 gap-y-6 md:grid-cols-2">
       {items.map((item) => (
         <div key={item.label}>
-          <p className="font-semibold text-primary">
+          <p className="text-[24px] font-normal text-primary">
             <span aria-hidden="true">{item.emoji}</span> {item.label}
           </p>
           <div className="mt-2 h-7 w-full overflow-hidden rounded-full bg-grey-line">

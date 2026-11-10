@@ -59,7 +59,7 @@ export default function ContactPage() {
         <div className="container-content grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <div className="rounded-xl border border-grey-line p-8 text-center shadow-sm">
             <PhoneIcon className="mx-auto h-9 w-9 text-primary" />
-            <h3 className="mt-4 text-xl font-semibold text-primary">Phone Number</h3>
+            <h3 className="mt-4 text-[28px] font-semibold text-primary">Phone Number</h3>
             <p className="mt-3 space-x-1">
               <a href={site.phoneHref} className="text-ink hover:text-primary">
                 {site.phoneDisplay}
@@ -72,12 +72,12 @@ export default function ContactPage() {
           </div>
           <div className="rounded-xl border border-grey-line p-8 text-center shadow-sm">
             <ClockIcon className="mx-auto h-9 w-9 text-primary" />
-            <h3 className="mt-4 text-xl font-semibold text-primary">Working Hour</h3>
+            <h3 className="mt-4 text-[28px] font-semibold text-primary">Working Hour</h3>
             <p className="mt-3 text-ink">We Are Open 24*7</p>
           </div>
           <div className="rounded-xl border border-grey-line p-8 text-center shadow-sm">
             <MailIcon className="mx-auto h-9 w-9 text-primary" />
-            <h3 className="mt-4 text-xl font-semibold text-primary">Office Email</h3>
+            <h3 className="mt-4 text-[28px] font-semibold text-primary">Office Email</h3>
             <p className="mt-3 space-x-1">
               {site.emails.map((email, i) => (
                 <span key={email.href}>
@@ -91,7 +91,7 @@ export default function ContactPage() {
           </div>
           <div className="rounded-xl border border-grey-line p-8 text-center shadow-sm">
             <MapPinIcon className="mx-auto h-9 w-9 text-primary" />
-            <h3 className="mt-4 text-xl font-semibold text-primary">
+            <h3 className="mt-4 text-[28px] font-semibold text-primary">
               <a href={PLANT_MAP_LINK} target="_blank" rel="noopener noreferrer" className="hover:underline">
                 Plant Address
               </a>
@@ -100,7 +100,7 @@ export default function ContactPage() {
           </div>
           <div className="rounded-xl border border-grey-line p-8 text-center shadow-sm">
             <MapIcon className="mx-auto h-9 w-9 text-primary" />
-            <h3 className="mt-4 text-xl font-semibold text-primary">
+            <h3 className="mt-4 text-[28px] font-semibold text-primary">
               <a href={OFFICE_MAP_LINK} target="_blank" rel="noopener noreferrer" className="hover:underline">
                 Office Address
               </a>
@@ -110,14 +110,17 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <BgSection image="/images/bg/contact-details.webp" overlayOpacity={0.7} className="py-12 md:py-16">
+      {/* No overlay on the original here either (same contact-details photo
+          as Home, --background-overlay:'' in the captured CSS) — dark text
+          directly on the photo, not a white-on-dark banner. */}
+      <BgSection image="/images/bg/contact-details.webp" overlayOpacity={0} className="py-12 md:py-16">
         <div className="container-content grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 className="text-[28px] font-semibold md:text-[40px]">
+            <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">
               {introHeading ? <InlineText text={introHeading.text} /> : "Ready Mix Concrete Contact in Raipur"}
             </h2>
             {introPara && (
-              <p className="mt-4 leading-relaxed text-white/90">
+              <p className="mt-4 leading-relaxed text-[#292929]">
                 <InlineText text={introPara.text} />
               </p>
             )}

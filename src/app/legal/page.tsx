@@ -152,7 +152,7 @@ export default function LegalPage() {
             }
           >
             {coreFeaturesHeading && (
-              <p className="font-semibold text-secondary">{coreFeaturesHeading.text}</p>
+              <p className="font-semibold text-primary">{coreFeaturesHeading.text}</p>
             )}
             {whyRmcHeading && (
               <h2 className="mt-2 text-[28px] font-semibold text-ink md:text-[40px]">
@@ -162,7 +162,7 @@ export default function LegalPage() {
             {whyRmcList && (
               <ul className="mt-6 space-y-3">
                 {whyRmcList.items.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 font-medium text-secondary">
+                  <li key={i} className="flex items-center gap-3 font-normal text-[#333333]">
                     <svg
                       viewBox="0 0 24 24"
                       width="20"
@@ -217,12 +217,12 @@ export default function LegalPage() {
           >
             <h2 className="text-center text-[28px] font-semibold md:text-[40px]">About Us</h2>
             {aboutPara1 && (
-              <p className="mt-4 leading-relaxed text-white/90">
+              <p className="mt-4 text-[24px] leading-relaxed text-white/90">
                 <InlineText text={aboutPara1.text} />
               </p>
             )}
             {aboutPara2 && (
-              <p className="mt-4 leading-relaxed text-white/90">
+              <p className="mt-4 text-[24px] leading-relaxed text-white/90">
                 <InlineText text={aboutPara2.text} />
               </p>
             )}
@@ -238,7 +238,7 @@ export default function LegalPage() {
                 ))}
               </ul>
             )}
-            <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/20 pt-6">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 border-t border-white/20 pt-6">
               <div>
                 <p className="text-[30px] font-semibold">
                   <InlineText text={foundersHeading.text} />
@@ -248,7 +248,7 @@ export default function LegalPage() {
               {foundersCta && (
                 <Link
                   href={foundersCta.href}
-                  className="rounded-md bg-white px-6 py-3 text-xl font-medium text-secondary transition-colors hover:bg-white/90"
+                  className="rounded-md bg-white px-6 py-3 text-center text-xl font-medium text-secondary transition-colors hover:bg-white/90"
                 >
                   {foundersCta.text}
                 </Link>

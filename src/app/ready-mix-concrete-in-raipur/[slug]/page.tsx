@@ -10,7 +10,10 @@ import {
   findFirstImage,
   type LinkBlock,
   type ImageBlock,
+  type HeadingBlock,
+  type ParaBlock,
 } from "@/lib/content";
+import { InlineText } from "@/components/InlineText";
 import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { JsonLd } from "@/components/JsonLd";
@@ -72,10 +75,27 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   // BlockRenderer flow so it can get that treatment.
   const mainPhotoIndex = withoutCtas.findIndex((b) => b.type === "image");
   const mainPhoto = mainPhotoIndex === -1 ? undefined : (withoutCtas[mainPhotoIndex] as ImageBlock);
-  const bodyBlocks =
+  const withoutPhoto =
     mainPhotoIndex === -1
       ? withoutCtas
       : [...withoutCtas.slice(0, mainPhotoIndex), ...withoutCtas.slice(mainPhotoIndex + 1)];
+
+  // The "Frequently asked question" heading + intro paragraph are centered
+  // on the original (unlike the rest of the body) — pulled out so they can
+  // get that treatment, with the main body and the FAQ accordion rendered
+  // separately around them instead of one flat BlockRenderer flow.
+  const faqHeadingIndex = withoutPhoto.findIndex(
+    (b) => b.type === "heading" && b.text === "Frequently asked question",
+  );
+  const faqHeading = faqHeadingIndex === -1 ? undefined : (withoutPhoto[faqHeadingIndex] as HeadingBlock);
+  const faqIntroIndex = faqHeadingIndex === -1 ? -1 : faqHeadingIndex + 1;
+  const faqIntro =
+    faqIntroIndex !== -1 && withoutPhoto[faqIntroIndex]?.type === "p"
+      ? (withoutPhoto[faqIntroIndex] as ParaBlock)
+      : undefined;
+  const bodyBlocks = faqHeadingIndex === -1 ? withoutPhoto : withoutPhoto.slice(0, faqHeadingIndex);
+  const faqQaBlocks =
+    faqHeadingIndex === -1 ? [] : withoutPhoto.slice(faqIntro ? faqIntroIndex + 1 : faqHeadingIndex + 1);
 
   return (
     <>
@@ -115,7 +135,24 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               />
             </div>
           )}
-          <BlockRenderer blocks={bodyBlocks} />
+          {/* Body H2/H3 sizes measured from standard-concrete.md: 32px H2,
+              28px H3, weight 500 (not BlockRenderer's generic 28/22 at
+              weight 600) — scoped here, not a BlockRenderer default, since
+              other pages keep their own sizes. */}
+          <div className="[&_h2]:text-[32px] [&_h2]:font-medium [&_h3]:text-[28px] [&_h3]:font-medium">
+            <BlockRenderer blocks={bodyBlocks} />
+          </div>
+          {faqHeading && (
+            <div className="mt-10 text-center">
+              <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">{faqHeading.text}</h2>
+              {faqIntro && (
+                <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-grey">
+                  <InlineText text={faqIntro.text} />
+                </p>
+              )}
+            </div>
+          )}
+          {faqQaBlocks.length > 0 && <BlockRenderer blocks={faqQaBlocks} />}
           {bottomCtas.length > 0 && (
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               {bottomCtas.map((cta, i) => (
