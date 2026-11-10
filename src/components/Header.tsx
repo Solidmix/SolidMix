@@ -31,7 +31,7 @@ function DesktopNav() {
           <li key={item.label} className="group relative">
             <Link
               href={item.href}
-              className="flex items-center gap-1 rounded px-3 py-2 text-[15px] font-medium text-ink transition-colors hover:text-primary"
+              className="flex items-center gap-1 rounded px-3 py-2 text-[16px] font-semibold text-primary transition-colors hover:text-secondary"
             >
               {item.label}
               {item.children && <Chevron />}
@@ -163,7 +163,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-grey-line bg-white">
-      <div className="container-content flex h-[72px] items-center justify-between gap-4">
+      <div className="container-content flex h-[72px] items-center justify-between gap-4 lg:h-[92px] lg:justify-start lg:gap-[64px]">
         <Link href="/" aria-label="SolidMix RMC home" className="flex-shrink-0">
           <Image
             src="/images/solidmix-logo.webp"
@@ -171,7 +171,7 @@ export function Header() {
             width={180}
             height={72}
             priority
-            className="h-[52px] w-auto"
+            className="h-[52px] w-auto lg:h-[64px]"
           />
         </Link>
 
