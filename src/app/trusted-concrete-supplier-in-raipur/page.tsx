@@ -15,10 +15,14 @@ import {
 } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
-import { CardGrid } from "@/components/CardGrid";
 import { InlineText } from "@/components/InlineText";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, breadcrumbLd, faqPageLd } from "@/lib/seo";
+import { TeamGrid, type TeamMember } from "@/components/sections/TeamGrid";
+import { ServiceIconCards } from "@/components/sections/ServiceIconCards";
+import { ProgressBars } from "@/components/sections/ProgressBars";
+import { CtaBanner } from "@/components/sections/CtaBanner";
+import { whyChooseStats } from "@/content/stats";
 
 const content = getPageContent("trusted-concrete-supplier-in-raipur");
 const h1 = resolvePageH1(content);
@@ -33,10 +37,19 @@ const foundersRole = blocks[8] as ParaBlock;
 const foundersCta = blocks[9] as LinkBlock;
 
 const strongSection = blocks.slice(10, 13);
-const whyChooseSection = blocks.slice(13, 15);
+// Rendered directly below (not via BlockRenderer): the heading ends with "?"
+// which BlockRenderer's FAQ segmentation would otherwise turn into a
+// single-item accordion instead of a plain heading + paragraph.
+const whyChooseHeading = blocks[13] as HeadingBlock;
+const whyChoosePara = blocks[14] as ParaBlock;
 
 const teamIntro = blocks.slice(15, 20);
 const teamCards = extractCards(blocks.slice(20, 35));
+const teamMembers: TeamMember[] = teamCards.map((c) => ({
+  image: { src: c.image?.src ?? "", alt: c.image?.alt || c.title },
+  name: c.title,
+  role: c.body ?? "",
+}));
 
 const servicesHeading = blocks[35] as HeadingBlock;
 const servicesIntro = blocks[36] as ParaBlock;
@@ -114,12 +127,18 @@ export default function AboutPage() {
       </section>
 
       {/* Strong Concrete. Strong Foundations. Stronger Trust. */}
-      <DarkCta blocks={strongSection} />
+      <BlocksCta blocks={strongSection} />
 
       {/* Why Choose SolidMix RMC? */}
       <section className="py-14">
-        <div className="container-content max-w-3xl">
-          <BlockRenderer blocks={whyChooseSection} />
+        <div className="container-content max-w-3xl text-center">
+          <h2 className="text-2xl font-extrabold text-primary md:text-3xl">{whyChooseHeading.text}</h2>
+          <p className="mt-4 leading-relaxed text-grey">
+            <InlineText text={whyChoosePara.text} />
+          </p>
+        </div>
+        <div className="container-content mt-10 max-w-3xl">
+          <ProgressBars items={whyChooseStats} />
         </div>
       </section>
 
@@ -129,30 +148,23 @@ export default function AboutPage() {
           <BlockRenderer blocks={teamIntro} />
         </div>
         <div className="container-content mt-10">
-          <CardGrid cards={teamCards} columns={3} imageAspect="portrait" />
+          <TeamGrid members={teamMembers} />
         </div>
       </section>
 
-      {/* Services (icon chips) */}
+      {/* Services */}
       <section className="py-14 text-center">
         <div className="container-content max-w-3xl">
           <h2 className="text-2xl font-extrabold text-primary md:text-3xl">{servicesHeading.text}</h2>
           <p className="mt-4 leading-relaxed text-grey">{servicesIntro.text}</p>
         </div>
-        <div className="container-content mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-          {serviceChips.map((chip) => (
-            <div
-              key={chip.title}
-              className="hover-bob rounded-lg border border-grey-line bg-white px-3 py-5 text-sm font-semibold text-secondary"
-            >
-              {chip.title}
-            </div>
-          ))}
+        <div className="container-content mt-8 text-left">
+          <ServiceIconCards items={serviceChips.map((c) => ({ title: c.title }))} />
         </div>
       </section>
 
       {/* Tail CTA */}
-      <DarkCta blocks={tailCta} />
+      <BlocksCta blocks={tailCta} />
 
       {/* FAQ */}
       <section className="py-14">
@@ -164,29 +176,14 @@ export default function AboutPage() {
   );
 }
 
-function DarkCta({ blocks }: { blocks: ReturnType<typeof stripChrome> }) {
+function BlocksCta({ blocks }: { blocks: ReturnType<typeof stripChrome> }) {
   const heading = blocks.find((b): b is HeadingBlock => b.type === "heading");
   const para = blocks.find((b): b is ParaBlock => b.type === "p");
   const link = blocks.find((b): b is LinkBlock => b.type === "link");
   if (!heading) return null;
   return (
-    <section className="bg-dark py-16 text-center text-white">
-      <div className="container-content max-w-2xl">
-        <h2 className="text-2xl font-extrabold text-primary md:text-3xl">{heading.text}</h2>
-        {para && (
-          <p className="mt-4 leading-relaxed text-white/90">
-            <InlineText text={para.text} />
-          </p>
-        )}
-        {link && (
-          <Link
-            href={link.href}
-            className="mt-7 inline-block rounded-md bg-primary px-8 py-3.5 font-semibold text-white transition-colors hover:bg-primary/90"
-          >
-            {link.text}
-          </Link>
-        )}
-      </div>
-    </section>
+    <CtaBanner heading={heading.text} ctas={link ? [{ label: link.text, href: link.href }] : undefined}>
+      {para && <InlineText text={para.text} />}
+    </CtaBanner>
   );
 }
