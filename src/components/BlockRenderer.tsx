@@ -10,15 +10,35 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 export function BlockRenderer({
   blocks,
   faqQuestionColor,
+  faqMode = "accordion",
 }: {
   blocks: Block[];
   faqQuestionColor?: "ink" | "primary" | "secondary";
+  // Blog posts show their "Q: ... / A: ..." pairs as plain always-open text,
+  // not a collapsible widget — every other page keeps the accordion.
+  faqMode?: "accordion" | "plain";
 }) {
   const segments = segmentBlocks(blocks);
   return (
     <>
       {segments.map((seg, i) => {
         if (seg.kind === "faq") {
+          if (faqMode === "plain") {
+            return (
+              <div key={`faq-${i}`} className="my-8">
+                {seg.items.map((item) => (
+                  <div key={item.q} className="mt-7">
+                    <h3 className="text-[22px] font-semibold text-ink">
+                      <InlineText text={item.q} />
+                    </h3>
+                    <p className="mt-2 leading-relaxed text-grey">
+                      <InlineText text={item.a} />
+                    </p>
+                  </div>
+                ))}
+              </div>
+            );
+          }
           return (
             <div key={`faq-${i}`} className="my-8">
               <FaqAccordion items={seg.items} questionColor={faqQuestionColor} />
@@ -98,12 +118,24 @@ function BlockItem({ block }: { block: Block }) {
           </Link>
         </div>
       );
-    case "table":
+    case "table": {
+      const [headerRow, ...bodyRows] = block.rows;
       return (
         <div className="mt-6 overflow-x-auto rounded-lg border border-grey-line">
-          <table className="w-full min-w-[480px] border-collapse text-left text-sm">
+          <table className="w-full min-w-[480px] border-collapse text-left text-[18px]">
+            {headerRow && (
+              <thead>
+                <tr>
+                  {headerRow.map((cell, j) => (
+                    <th key={j} className="border-b border-grey-line bg-[#808080] px-4 py-2.5 font-semibold text-white">
+                      {cell}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+            )}
             <tbody>
-              {block.rows.map((row, i) => (
+              {bodyRows.map((row, i) => (
                 <tr key={i} className="odd:bg-tint-cyan-2/50">
                   {row.map((cell, j) => (
                     <td key={j} className="border-b border-grey-line px-4 py-2.5 text-grey">
@@ -116,6 +148,7 @@ function BlockItem({ block }: { block: Block }) {
           </table>
         </div>
       );
+    }
     case "button":
       return (
         <span className="mt-4 mr-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-sm font-semibold text-white">

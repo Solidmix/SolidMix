@@ -79,7 +79,7 @@ export default function AboutPage() {
       {/* Intro: image collage + teal text column */}
       <section className="py-14">
         <div className="container-content grid gap-0 overflow-hidden rounded-lg lg:grid-cols-2">
-          <div className="grid grid-cols-2 gap-2 bg-tint-pink p-4">
+          <div className="mx-auto grid w-full max-w-[460px] grid-cols-2 gap-2 bg-tint-pink p-4">
             {collageImages.map((img, i) => (
               <Image
                 key={i}

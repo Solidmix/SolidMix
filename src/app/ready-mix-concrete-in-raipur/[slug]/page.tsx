@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import NextImage from "next/image";
 import {
   getPageContent,
   stripChrome,
@@ -8,6 +9,7 @@ import {
   getFaqItems,
   findFirstImage,
   type LinkBlock,
+  type ImageBlock,
 } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
@@ -62,8 +64,18 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const lastTwo = blocks.slice(-2);
   const hasBottomCtas =
     lastTwo.length === 2 && lastTwo.every((b): b is LinkBlock => b.type === "link");
-  const bodyBlocks = hasBottomCtas ? blocks.slice(0, -2) : blocks;
+  const withoutCtas = hasBottomCtas ? blocks.slice(0, -2) : blocks;
   const bottomCtas = hasBottomCtas ? (lastTwo as LinkBlock[]) : [];
+
+  // The main product photo is shown at its natural size (not full-bleed,
+  // not cropped) on the original — pull the first image out of the plain
+  // BlockRenderer flow so it can get that treatment.
+  const mainPhotoIndex = withoutCtas.findIndex((b) => b.type === "image");
+  const mainPhoto = mainPhotoIndex === -1 ? undefined : (withoutCtas[mainPhotoIndex] as ImageBlock);
+  const bodyBlocks =
+    mainPhotoIndex === -1
+      ? withoutCtas
+      : [...withoutCtas.slice(0, mainPhotoIndex), ...withoutCtas.slice(mainPhotoIndex + 1)];
 
   return (
     <>
@@ -92,6 +104,17 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       />
       <section className="py-12 md:py-16">
         <div className="container-content max-w-3xl">
+          {mainPhoto && (
+            <div className="mx-auto mb-6 w-full max-w-[715px]">
+              <NextImage
+                src={mainPhoto.src}
+                alt={mainPhoto.alt || h1}
+                width={715}
+                height={500}
+                className="h-auto w-full rounded-lg object-contain"
+              />
+            </div>
+          )}
           <BlockRenderer blocks={bodyBlocks} />
           {bottomCtas.length > 0 && (
             <div className="mt-6 flex flex-wrap justify-center gap-4">

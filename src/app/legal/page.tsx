@@ -191,7 +191,7 @@ export default function LegalPage() {
             gap="gap-0"
             className="overflow-hidden rounded-lg"
             media={
-              <div className="grid grid-cols-1 gap-2 bg-primary p-4">
+              <div className="mx-auto grid w-full max-w-[460px] grid-cols-1 gap-2 bg-primary p-4">
                 {aboutImages.map((img, i) => {
                   const image = (
                     <Image

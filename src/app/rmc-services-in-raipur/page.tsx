@@ -20,6 +20,7 @@ import { IconFeatureGrid } from "@/components/sections/IconFeatureGrid";
 import { MediaSplit } from "@/components/sections/MediaSplit";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { InlineText } from "@/components/InlineText";
+import { Tilt } from "@/components/Tilt";
 
 const content = getPageContent("rmc-services-in-raipur");
 const h1 = resolvePageH1(content);
@@ -95,13 +96,15 @@ export default function ServicesPage() {
           <MediaSplit
             media={
               faqImage && (
-                <Image
-                  src={faqImage.src}
-                  alt={faqImage.alt || "Frequently asked questions"}
-                  width={600}
-                  height={500}
-                  className="h-auto w-full rounded-lg object-cover"
-                />
+                <Tilt className="mx-auto w-full max-w-sm">
+                  <Image
+                    src={faqImage.src}
+                    alt={faqImage.alt || "Frequently asked questions"}
+                    width={622}
+                    height={622}
+                    className="h-auto w-full rounded-lg object-contain shadow-lg"
+                  />
+                </Tilt>
               )
             }
           >

@@ -56,6 +56,7 @@ export type PageContent = {
   // Present on "post" kind JSON only.
   category?: string;
   date?: string;
+  time?: string;
   excerpt?: string;
   featuredImage?: ImageBlock;
   // Present on pages that embed a self-hosted video (contact, calculator).
