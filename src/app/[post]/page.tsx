@@ -93,7 +93,10 @@ export default async function PostPage({ params }: { params: Promise<{ post: str
               <span className="capitalize">{content.category.replace(/-/g, " ")}</span>
             )}
           </p>
-          <div className="mt-6">
+          {/* Post body only: headings read ink (not primary/teal) and inline
+              links read the original's #cc3366 — scoped here via CSS, not a
+              BlockRenderer default, since other pages keep their own colours. */}
+          <div className="mt-6 [&_a]:text-[#cc3366] [&_h2]:text-[#292929] [&_h3]:text-[#292929]">
             <BlockRenderer blocks={bodyBlocks} />
           </div>
         </div>

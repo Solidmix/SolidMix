@@ -5,7 +5,23 @@ import { InlineText } from "@/components/InlineText";
 
 type FaqItem = { q: string; a: string };
 
-export function FaqAccordion({ items, defaultOpen = 0 }: { items: FaqItem[]; defaultOpen?: number }) {
+const QUESTION_COLOR = {
+  ink: "text-ink",
+  primary: "text-primary",
+  secondary: "text-secondary",
+} as const;
+
+// Question colour varies per page on the original (measured per-page in
+// .local-tools/parity); default "ink" matches blog posts and product pages.
+export function FaqAccordion({
+  items,
+  defaultOpen = 0,
+  questionColor = "ink",
+}: {
+  items: FaqItem[];
+  defaultOpen?: number;
+  questionColor?: keyof typeof QUESTION_COLOR;
+}) {
   const [open, setOpen] = useState<number | null>(defaultOpen);
 
   return (
@@ -24,7 +40,7 @@ export function FaqAccordion({ items, defaultOpen = 0 }: { items: FaqItem[]; def
                 <span aria-hidden="true" className="text-xl leading-none text-primary">
                   {isOpen ? "−" : "+"}
                 </span>
-                <span className="text-[22px] font-semibold text-ink">
+                <span className={`text-[22px] font-semibold ${QUESTION_COLOR[questionColor]}`}>
                   <InlineText text={item.q} />
                 </span>
               </button>

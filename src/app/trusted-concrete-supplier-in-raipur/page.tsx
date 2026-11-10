@@ -92,7 +92,7 @@ export default function AboutPage() {
             ))}
           </div>
           <div className="bg-secondary p-6 text-white md:p-10">
-            <h2 className="text-[28px] font-semibold md:text-[40px]">
+            <h2 className="text-center text-[28px] font-semibold md:text-[40px]">
               <InlineText text={introHeading.text} />
             </h2>
             {introParas.map((p, i) => (
@@ -129,7 +129,7 @@ export default function AboutPage() {
       </section>
 
       {/* Strong Concrete. Strong Foundations. Stronger Trust. */}
-      <BlocksCta blocks={strongSection} />
+      <BlocksCta blocks={strongSection} bgImage="/images/bg/strong-concrete.webp" bgOpacity={0.61} />
 
       {/* Why Choose SolidMix RMC? */}
       <section className="py-14">
@@ -170,25 +170,38 @@ export default function AboutPage() {
       </section>
 
       {/* Tail CTA */}
-      <BlocksCta blocks={tailCta} />
+      <BlocksCta blocks={tailCta} bgImage="/images/bg/cta-blog.webp" bgOpacity={0.73} />
 
       {/* FAQ */}
       <section className="py-14">
         <div className="container-content max-w-3xl">
-          <BlockRenderer blocks={faqSection} />
+          <BlockRenderer blocks={faqSection} faqQuestionColor="primary" />
         </div>
       </section>
     </>
   );
 }
 
-function BlocksCta({ blocks }: { blocks: ReturnType<typeof stripChrome> }) {
+function BlocksCta({
+  blocks,
+  bgImage,
+  bgOpacity,
+}: {
+  blocks: ReturnType<typeof stripChrome>;
+  bgImage?: string;
+  bgOpacity?: number;
+}) {
   const heading = blocks.find((b): b is HeadingBlock => b.type === "heading");
   const para = blocks.find((b): b is ParaBlock => b.type === "p");
   const link = blocks.find((b): b is LinkBlock => b.type === "link");
   if (!heading) return null;
   return (
-    <CtaBanner heading={heading.text} ctas={link ? [{ label: link.text, href: link.href }] : undefined}>
+    <CtaBanner
+      heading={heading.text}
+      ctas={link ? [{ label: link.text, href: link.href }] : undefined}
+      bgImage={bgImage}
+      bgOpacity={bgOpacity}
+    >
       {para && <InlineText text={para.text} />}
     </CtaBanner>
   );

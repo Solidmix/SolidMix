@@ -27,7 +27,7 @@ export function AboutTabs() {
                 onClick={() => setActive(tab.key as typeof active)}
                 aria-pressed={isActive}
                 className={`rounded-md px-6 py-3 text-sm font-normal transition-colors ${
-                  isActive ? "bg-primary text-white" : "bg-secondary text-white hover:bg-secondary/90"
+                  isActive ? "bg-secondary text-white" : "bg-primary text-white hover:bg-primary/90"
                 }`}
               >
                 {tab.label}
@@ -49,12 +49,14 @@ export function AboutTabs() {
             <p className="leading-relaxed text-ink">{panel.body}</p>
           )}
           {active === "about" && (
-            <a
-              href={intro.cta.href}
-              className="mt-6 inline-block rounded-md bg-secondary px-6 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
-            >
-              {intro.cta.label}
-            </a>
+            <div className="mt-6 text-center">
+              <a
+                href={intro.cta.href}
+                className="inline-block rounded-md bg-secondary px-6 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
+              >
+                {intro.cta.label}
+              </a>
+            </div>
           )}
         </div>
       </div>

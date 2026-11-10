@@ -7,7 +7,13 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 // Renders a flat run of JSON content blocks (already stripped of PageHero
 // chrome) as the plain long-form sections used by product, safety, legal and
 // privacy pages: headings, paragraphs, lists, images, CTA links and FAQs.
-export function BlockRenderer({ blocks }: { blocks: Block[] }) {
+export function BlockRenderer({
+  blocks,
+  faqQuestionColor,
+}: {
+  blocks: Block[];
+  faqQuestionColor?: "ink" | "primary" | "secondary";
+}) {
   const segments = segmentBlocks(blocks);
   return (
     <>
@@ -15,7 +21,7 @@ export function BlockRenderer({ blocks }: { blocks: Block[] }) {
         if (seg.kind === "faq") {
           return (
             <div key={`faq-${i}`} className="my-8">
-              <FaqAccordion items={seg.items} />
+              <FaqAccordion items={seg.items} questionColor={faqQuestionColor} />
             </div>
           );
         }
@@ -83,10 +89,10 @@ function BlockItem({ block }: { block: Block }) {
     }
     case "link":
       return (
-        <div className="mt-6">
+        <div className="mt-6 text-center">
           <Link
             href={block.href}
-            className="inline-block rounded-md bg-primary px-6 py-3.5 text-xl font-medium text-white transition-colors hover:bg-primary/90"
+            className="inline-block rounded-md bg-secondary px-6 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
           >
             {block.text}
           </Link>

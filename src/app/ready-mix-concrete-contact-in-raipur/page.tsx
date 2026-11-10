@@ -7,6 +7,7 @@ import { site } from "@/content/site";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { InlineText } from "@/components/InlineText";
 import { PhoneIcon, ClockIcon, MailIcon, MapPinIcon, MapIcon } from "@/components/icons";
+import { BgSection } from "@/components/sections/BgSection";
 
 const content = getPageContent("ready-mix-concrete-contact-in-raipur");
 const h1 = resolvePageH1(content);
@@ -109,14 +110,14 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="bg-tint-cyan-2/40 py-12 md:py-16">
+      <BgSection image="/images/bg/contact-details.webp" overlayOpacity={0.7} className="py-12 md:py-16">
         <div className="container-content grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">
+            <h2 className="text-[28px] font-semibold md:text-[40px]">
               {introHeading ? <InlineText text={introHeading.text} /> : "Ready Mix Concrete Contact in Raipur"}
             </h2>
             {introPara && (
-              <p className="mt-4 leading-relaxed text-grey">
+              <p className="mt-4 leading-relaxed text-white/90">
                 <InlineText text={introPara.text} />
               </p>
             )}
@@ -133,7 +134,7 @@ export default function ContactPage() {
             <source src="/videos/ceo-vinit.mp4" type="video/mp4" />
           </video>
         </div>
-      </section>
+      </BgSection>
     </>
   );
 }

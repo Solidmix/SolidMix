@@ -11,6 +11,7 @@ import {
   coreSkills,
   contactBlock,
 } from "@/content/home";
+import { BgSection } from "@/components/sections/BgSection";
 import { HeroSlider } from "@/components/home/HeroSlider";
 import { AboutTabs } from "@/components/home/AboutTabs";
 import { ServicesCarousel } from "@/components/home/ServicesCarousel";
@@ -60,7 +61,7 @@ export default function HomePage() {
       </section>
 
       {/* Quality Works */}
-      <section className="bg-dark py-16 text-white">
+      <BgSection image="/images/bg/quality-works.webp" overlayOpacity={0.8} className="py-16">
         <div className="container-content text-center">
           <p className="font-semibold text-primary">{qualityWorks.eyebrow}</p>
           <h2 className="mt-2 text-[28px] font-semibold text-primary md:text-4xl">
@@ -68,7 +69,7 @@ export default function HomePage() {
           </h2>
           <p className="mx-auto mt-5 max-w-3xl leading-relaxed text-white/90">{qualityWorks.body}</p>
         </div>
-      </section>
+      </BgSection>
 
       {/* Services carousel */}
       <section className="py-16">
@@ -85,7 +86,7 @@ export default function HomePage() {
       <section className="bg-tint-cyan-2/50 py-16">
         <div className="container-content grid gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="text-[28px] font-semibold text-primary md:text-4xl">{whyChoose.heading}</h2>
+            <h2 className="text-center text-[28px] font-semibold text-primary md:text-4xl">{whyChoose.heading}</h2>
             <div className="mt-8 space-y-7">
               {whyChoose.items.map((item) => (
                 <div key={item.title}>
@@ -123,7 +124,7 @@ export default function HomePage() {
       </section>
 
       {/* Let's Build Stronger Together */}
-      <section className="bg-dark py-16 text-center text-white">
+      <BgSection image="/images/bg/build-together.webp" overlayOpacity={0.88} className="py-16 text-center">
         <div className="container-content">
           <h2 className="text-[35px] font-semibold lg:text-[60px]">{buildTogether.heading}</h2>
           <p className="mx-auto mt-4 max-w-2xl text-white/90">
@@ -136,7 +137,7 @@ export default function HomePage() {
             {buildTogether.cta.label}
           </a>
         </div>
-      </section>
+      </BgSection>
 
       {/* FAQ */}
       <section className="py-16">
@@ -149,8 +150,8 @@ export default function HomePage() {
             className="mx-auto h-auto w-full max-w-md rounded-lg"
           />
           <div>
-            <h2 className="mb-8 text-[28px] font-semibold text-primary md:text-4xl">{faq.heading}</h2>
-            <FaqAccordion items={faq.items} />
+            <h2 className="mb-8 text-center text-[28px] font-semibold text-primary md:text-4xl">{faq.heading}</h2>
+            <FaqAccordion items={faq.items} questionColor="primary" />
           </div>
         </div>
       </section>
@@ -163,12 +164,14 @@ export default function HomePage() {
             <p className="mt-5 leading-relaxed text-ink">
               <InlineText text={coreSkills.body} />
             </p>
-            <a
-              href={coreSkills.cta.href}
-              className="mt-7 inline-block rounded-md bg-secondary px-6 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
-            >
-              {coreSkills.cta.label}
-            </a>
+            <div className="mt-7 text-center">
+              <a
+                href={coreSkills.cta.href}
+                className="inline-block rounded-md bg-secondary px-6 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
+              >
+                {coreSkills.cta.label}
+              </a>
+            </div>
           </div>
           <video
             controls
@@ -182,27 +185,27 @@ export default function HomePage() {
       </section>
 
       {/* Contact details + form */}
-      <section className="bg-tint-cyan-2/40 py-16">
+      <BgSection image="/images/bg/contact-details.webp" overlayOpacity={0.7} className="py-16">
         <div className="container-content grid gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="flex items-center gap-2 text-xl font-semibold text-secondary">
+            <h2 className="flex items-center gap-2 text-xl font-semibold text-white">
               {contactBlock.detailsHeading}
             </h2>
-            <div className="mt-6 space-y-5 border-l-2 border-primary/40 pl-5">
-              <p className="font-semibold text-ink">{contactBlock.address}</p>
-              <p className="font-semibold text-ink">{contactBlock.number}</p>
-              <p className="font-semibold text-ink">{contactBlock.emailLine}</p>
+            <div className="mt-6 space-y-5 border-l-2 border-white/40 pl-5">
+              <p className="font-semibold text-white/90">{contactBlock.address}</p>
+              <p className="font-semibold text-white/90">{contactBlock.number}</p>
+              <p className="font-semibold text-white/90">{contactBlock.emailLine}</p>
             </div>
-            <h2 className="mt-8 flex items-center gap-2 text-xl font-semibold text-secondary">
+            <h2 className="mt-8 flex items-center gap-2 text-xl font-semibold text-white">
               {contactBlock.hoursHeading}
             </h2>
-            <p className="mt-4 border-l-2 border-primary/40 pl-5 font-semibold text-ink">
+            <p className="mt-4 border-l-2 border-white/40 pl-5 font-semibold text-white/90">
               {contactBlock.hours}
             </p>
           </div>
           <HomeContactForm />
         </div>
-      </section>
+      </BgSection>
     </>
   );
 }

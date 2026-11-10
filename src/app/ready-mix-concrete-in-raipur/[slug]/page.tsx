@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import {
   getPageContent,
   stripChrome,
   resolvePageH1,
   getFaqItems,
   findFirstImage,
+  type LinkBlock,
 } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
@@ -54,6 +56,15 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const faqs = getFaqItems(blocks);
   const image = findFirstImage(content.blocks);
 
+  // The trailing "Book Now" + "Contact us" pair sits side by side on the
+  // original (not stacked, generic CTA links) — pull them out of the plain
+  // BlockRenderer flow so they can get that treatment.
+  const lastTwo = blocks.slice(-2);
+  const hasBottomCtas =
+    lastTwo.length === 2 && lastTwo.every((b): b is LinkBlock => b.type === "link");
+  const bodyBlocks = hasBottomCtas ? blocks.slice(0, -2) : blocks;
+  const bottomCtas = hasBottomCtas ? (lastTwo as LinkBlock[]) : [];
+
   return (
     <>
       <JsonLd
@@ -81,7 +92,24 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       />
       <section className="py-12 md:py-16">
         <div className="container-content max-w-3xl">
-          <BlockRenderer blocks={blocks} />
+          <BlockRenderer blocks={bodyBlocks} />
+          {bottomCtas.length > 0 && (
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              {bottomCtas.map((cta, i) => (
+                <Link
+                  key={cta.href + cta.text}
+                  href={cta.href}
+                  className={
+                    i === 0
+                      ? "inline-block rounded-md bg-primary px-8 py-4 text-xl font-medium text-white transition-colors hover:bg-primary/90"
+                      : "inline-block rounded-md bg-secondary px-8 py-4 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
+                  }
+                >
+                  {cta.text}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>

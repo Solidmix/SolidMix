@@ -215,7 +215,7 @@ export default function LegalPage() {
             }
             contentClassName="bg-secondary p-6 text-white md:p-10"
           >
-            <h2 className="text-[28px] font-semibold md:text-[40px]">About Us</h2>
+            <h2 className="text-center text-[28px] font-semibold md:text-[40px]">About Us</h2>
             {aboutPara1 && (
               <p className="mt-4 leading-relaxed text-white/90">
                 <InlineText text={aboutPara1.text} />
@@ -262,6 +262,8 @@ export default function LegalPage() {
       <CtaBanner
         heading={cta1Heading.text}
         ctas={cta1Link ? [{ label: cta1Link.text, href: cta1Link.href }] : undefined}
+        bgImage="/images/bg/strong-concrete.webp"
+        bgOpacity={0.61}
       >
         {cta1Para && <InlineText text={cta1Para.text} />}
       </CtaBanner>
@@ -306,7 +308,9 @@ export default function LegalPage() {
       {/* CTA 2 */}
       <CtaBanner
         heading={cta2Heading.text}
-        ctas={cta2Link ? [{ label: cta2Link.text, href: cta2Link.href }] : undefined}
+        ctas={cta2Link ? [{ label: cta2Link.text, href: cta2Link.href, variant: "white" }] : undefined}
+        bgImage="/images/bg/build-together.webp"
+        bgOpacity={0.88}
       >
         {cta2Para && <InlineText text={cta2Para.text} />}
       </CtaBanner>
