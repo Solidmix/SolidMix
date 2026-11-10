@@ -20,15 +20,15 @@
     {
       "type": "heading",
       "level": 1,
-      "text": "Introduction to Soil Testing Methods and Bulking of Sand"
+      "text": "[[b]]Introduction to Soil Testing Methods and Bulking of Sand[[/b]]"
     },
     {
       "type": "p",
-      "text": "If you’re involved in construction, even at a basic level, understanding [bulking of sand](/) and proper soil testing methods can save you thousands of rupees and prevent serious structural failures. Many site engineers, contractors, and even experienced builders sometimes overlook these fundamentals, leading to weak concrete, cracks, and unnecessary material wastage."
+      "text": "If you’re involved in construction, even at a basic level, understanding [bulking of sand](/) and proper [[b]]soil testing methods[[/b]] can save you thousands of rupees and prevent serious structural failures. Many site engineers, contractors, and even experienced builders sometimes overlook these fundamentals, leading to weak concrete, cracks, and unnecessary material wastage."
     },
     {
       "type": "p",
-      "text": "In Indian construction conditions—especially during monsoon—ignoring bulking of sand in concrete calculations can completely disturb the mix ratio. Similarly, skipping soil testing methods before concrete work can result in foundation failure."
+      "text": "In Indian construction conditions—especially during monsoon—ignoring [[b]]bulking of sand in concrete[[/b]] [[b]]calculation[[/b]]s can completely disturb the mix ratio. Similarly, skipping [[b]]soil testing methods before concrete work[[/b]] can result in foundation failure."
     },
     {
       "type": "p",
@@ -37,8 +37,8 @@
     {
       "type": "list",
       "items": [
-        "What is bulking of sand",
-        "Why soil testing methods are critical",
+        "What is [[b]]bulking of sand[[/b]]",
+        "Why [[b]]soil testing methods[[/b]] are critical",
         "How to calculate sand quantity with bulking",
         "Practical Indian site examples and tips"
       ]
@@ -46,24 +46,24 @@
     {
       "type": "heading",
       "level": 2,
-      "text": "What is Bulking of Sand in Construction?"
+      "text": "[[b]]What is Bulking of Sand in Construction?[[/b]]"
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "Definition of Bulking of Sand"
+      "text": "[[b]]Definition of Bulking of Sand[[/b]]"
     },
     {
       "type": "p",
-      "text": "Bulking of sand refers to the increase in volume of sand due to the presence of moisture. When water forms a thin film around sand particles, it pushes them apart, increasing the overall volume without increasing actual weight."
+      "text": "[[b]]Bulking of sand[[/b]] refers to the increase in volume of sand due to the presence of moisture. When water forms a thin film around sand particles, it pushes them apart, increasing the overall volume without increasing actual weight."
     },
     {
       "type": "p",
-      "text": "This directly affects concrete mix ratio by volume, making your mix inaccurate if not adjusted."
+      "text": "This directly affects [[b]]concrete mix ratio by volume[[/b]], making your mix inaccurate if not adjusted."
     },
     {
       "type": "p",
-      "text": "Causes of Bulking of Sand"
+      "text": "[[b]]Causes of Bulking of Sand[[/b]]"
     },
     {
       "type": "p",
@@ -80,16 +80,16 @@
     },
     {
       "type": "p",
-      "text": "In India, bulking of sand can range between 20% to 40%, especially during the rainy season."
+      "text": "In India, [[b]]bulking of sand can range between 20% to 40%[[/b]], especially during the rainy season."
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "Effects of Bulking on Concrete"
+      "text": "[[b]]Effects of Bulking on Concrete[[/b]]"
     },
     {
       "type": "p",
-      "text": "Ignoring bulking of sand in construction leads to:"
+      "text": "Ignoring [[b]]bulking of sand in construction[[/b]] leads to:"
     },
     {
       "type": "list",
@@ -103,12 +103,12 @@
     {
       "type": "heading",
       "level": 2,
-      "text": "Why Soil Testing Methods Matter Before Concrete Work"
+      "text": "[[b]]Why Soil Testing Methods Matter Before Concrete Work[[/b]]"
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "Importance of Soil Testing Methods"
+      "text": "[[b]]Importance of Soil Testing Methods[[/b]]"
     },
     {
       "type": "p",
@@ -129,7 +129,7 @@
     },
     {
       "type": "p",
-      "text": "Common Soil Testing Methods in India"
+      "text": "[[b]]Common Soil Testing Methods in India[[/b]]"
     },
     {
       "type": "image",
@@ -139,12 +139,12 @@
     },
     {
       "type": "p",
-      "text": "Here are widely used soil testing methods for construction:"
+      "text": "Here are widely used [[b]]soil testing methods for construction[[/b]]:"
     },
     {
       "type": "heading",
       "level": 4,
-      "text": "1. Field Density Test"
+      "text": "[[b]]1. Field Density Test[[/b]]"
     },
     {
       "type": "p",
@@ -153,7 +153,7 @@
     {
       "type": "heading",
       "level": 4,
-      "text": "2. Plate Load Test"
+      "text": "[[b]]2. Plate Load Test[[/b]]"
     },
     {
       "type": "p",
@@ -162,7 +162,7 @@
     {
       "type": "heading",
       "level": 4,
-      "text": "3. Moisture Content Test"
+      "text": "[[b]]3. Moisture Content Test[[/b]]"
     },
     {
       "type": "p",
@@ -171,7 +171,7 @@
     {
       "type": "heading",
       "level": 4,
-      "text": "4. Standard Penetration Test (SPT)"
+      "text": "[[b]]4. Standard Penetration Test (SPT)[[/b]]"
     },
     {
       "type": "p",
@@ -188,16 +188,16 @@
     {
       "type": "heading",
       "level": 2,
-      "text": "Concrete Mix Ratio by Volume Explained"
+      "text": "[[b]]Concrete Mix Ratio by Volume Explained[[/b]]"
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "Understanding Concrete Mix Ratio"
+      "text": "[[b]]Understanding Concrete Mix Ratio[[/b]]"
     },
     {
       "type": "p",
-      "text": "The concrete mix ratio by volume defines the proportion of materials:"
+      "text": "The [[b]]concrete mix ratio by volume[[/b]] defines the proportion of materials:"
     },
     {
       "type": "list",
@@ -213,16 +213,16 @@
     },
     {
       "type": "p",
-      "text": "👉 1 : 2 : 4 (Cement : Sand : Aggregate)"
+      "text": "👉 [[b]]1 : 2 : 4 (Cement : Sand : Aggregate)[[/b]]"
     },
     {
       "type": "p",
-      "text": "However, this ratio becomes inaccurate if bulking of sand is not considered."
+      "text": "However, this ratio becomes inaccurate if [[b]]bulking of sand[[/b]] is not considered."
     },
     {
       "type": "heading",
       "level": 2,
-      "text": "Concrete Mix Ratio Table for Indian Sites"
+      "text": "[[b]]Concrete Mix Ratio Table for Indian Sites[[/b]]"
     },
     {
       "type": "table",
@@ -256,25 +256,25 @@
     },
     {
       "type": "p",
-      "text": "Grade"
+      "text": "[[b]]Grade[[/b]]"
     },
     {
       "type": "p",
-      "text": "Always adjust sand quantity based on bulking of sand percentage."
+      "text": "Always adjust sand quantity based on [[b]]bulking of sand percentage[[/b]]."
     },
     {
       "type": "heading",
       "level": 2,
-      "text": "How to Calculate Sand Quantity Considering Bulking of Sand"
+      "text": "[[b]]How to Calculate Sand Quantity Considering Bulking of Sand[[/b]]"
     },
     {
       "type": "p",
-      "text": "Accurate [calculation](/calculator/) is critical in maintaining the correct concrete mix ratio by volume."
+      "text": "Accurate [calculation](/calculator/) is critical in maintaining the correct [[b]]concrete mix ratio by volume[[/b]]."
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "Step-by-Step Calculation"
+      "text": "[[b]]Step-by-Step Calculation[[/b]]"
     },
     {
       "type": "list",
@@ -288,7 +288,7 @@
     {
       "type": "heading",
       "level": 3,
-      "text": "Formula"
+      "text": "[[b]]Formula[[/b]]"
     },
     {
       "type": "p",
@@ -297,19 +297,19 @@
     {
       "type": "heading",
       "level": 3,
-      "text": "Example Calculation"
+      "text": "[[b]]Example Calculation[[/b]]"
     },
     {
       "type": "p",
-      "text": "If required sand = 1 cubic metre"
+      "text": "If required sand = [[b]]1 cubic metre[[/b]]"
     },
     {
       "type": "p",
-      "text": "Bulking = 25%"
+      "text": "Bulking = [[b]]25%[[/b]]"
     },
     {
       "type": "p",
-      "text": "Adjusted Sand = 1 × (1 + 0.25) = 1.25 cubic metre"
+      "text": "Adjusted Sand = 1 × (1 + 0.25) = [[b]]1.25 cubic metre[[/b]]"
     },
     {
       "type": "p",
@@ -318,7 +318,7 @@
     {
       "type": "heading",
       "level": 3,
-      "text": "Field Method to Check Bulking"
+      "text": "[[b]]Field Method to Check Bulking[[/b]]"
     },
     {
       "type": "p",
@@ -334,21 +334,21 @@
     },
     {
       "type": "p",
-      "text": "This gives an approximate bulking percentage of sand."
+      "text": "This gives an approximate [[b]]bulking percentage of sand[[/b]]."
     },
     {
       "type": "heading",
       "level": 2,
-      "text": "Common Mistakes to Avoid on Indian Construction Sites"
+      "text": "[[b]]Common Mistakes to Avoid on Indian Construction Sites[[/b]]"
     },
     {
       "type": "p",
-      "text": "Ignoring bulking of sand and soil testing methods leads to serious issues."
+      "text": "Ignoring [[b]]bulking of sand and soil testing methods[[/b]] leads to serious issues."
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "Major Site Errors"
+      "text": "[[b]]Major Site Errors[[/b]]"
     },
     {
       "type": "list",
@@ -363,12 +363,12 @@
     {
       "type": "heading",
       "level": 2,
-      "text": "Practical Tips for Accurate Concrete Calculation"
+      "text": "[[b]]Practical Tips for Accurate Concrete Calculation[[/b]]"
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "Pro Tips for Builders & Contractors"
+      "text": "[[b]]Pro Tips for Builders & Contractors[[/b]]"
     },
     {
       "type": "list",
@@ -376,7 +376,7 @@
         "Always test sand moisture before mixing",
         "Use gauge boxes instead of manual estimation",
         "Avoid using excessively wet sand",
-        "Follow proper soil testing methods before construction",
+        "Follow proper [[b]]soil testing methods before construction[[/b]]",
         "Work with reliable RMC suppliers",
         "Store sand in covered areas during rain"
       ]
@@ -384,11 +384,11 @@
     {
       "type": "heading",
       "level": 2,
-      "text": "Benefits of Considering Bulking of Sand"
+      "text": "[[b]]Benefits of Considering Bulking of Sand[[/b]]"
     },
     {
       "type": "p",
-      "text": "When you properly account for bulking of sand in concrete:"
+      "text": "When you properly account for [[b]]bulking of sand in concrete[[/b]]:"
     },
     {
       "type": "p",
@@ -413,11 +413,11 @@
     {
       "type": "heading",
       "level": 2,
-      "text": "Conclusion"
+      "text": "[[b]]Conclusion[[/b]]"
     },
     {
       "type": "p",
-      "text": "Understanding bulking of sand and using proper soil testing methods is not optional—it’s essential for quality construction. These small technical steps ensure:"
+      "text": "Understanding [[b]]bulking of sand[[/b]] and using proper [[b]]soil testing methods[[/b]] is not optional—it’s essential for quality construction. These small technical steps ensure:"
     },
     {
       "type": "list",
@@ -429,17 +429,17 @@
     },
     {
       "type": "p",
-      "text": "If you want to avoid site errors and ensure perfect concrete quality, always follow proper calculation methods and consider professional RMC services for precision and reliability."
+      "text": "If you want to avoid site errors and ensure perfect concrete quality, always follow proper [[b]]calculation[[/b]] methods and consider professional RMC services for precision and reliability."
     },
     {
       "type": "heading",
       "level": 2,
-      "text": "FAQs"
+      "text": "[[b]]FAQs[[/b]]"
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "Q: What is bulking of sand in simple terms?"
+      "text": "[[b]]Q: What is bulking of sand in simple terms?[[/b]]"
     },
     {
       "type": "p",
@@ -448,7 +448,7 @@
     {
       "type": "heading",
       "level": 3,
-      "text": "Q: Why are soil testing methods important?"
+      "text": "[[b]]Q: Why are soil testing methods important?[[/b]]"
     },
     {
       "type": "p",
@@ -457,16 +457,16 @@
     {
       "type": "heading",
       "level": 3,
-      "text": "Q: How much bulking occurs in sand?"
+      "text": "[[b]]Q: How much bulking occurs in sand?[[/b]]"
     },
     {
       "type": "p",
-      "text": "A: Typically between 20% to 40% in Indian conditions."
+      "text": "A: Typically between [[b]]20% to 40%[[/b]] in Indian conditions."
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "Q: Can bulking of sand be ignored in small projects?"
+      "text": "[[b]]Q: Can bulking of sand be ignored in small projects?[[/b]]"
     },
     {
       "type": "p",
@@ -475,20 +475,20 @@
     {
       "type": "heading",
       "level": 3,
-      "text": "Q: What is the standard concrete mix ratio?"
+      "text": "[[b]]Q: What is the standard concrete mix ratio?[[/b]]"
     },
     {
       "type": "p",
-      "text": "A: Commonly 1:2:4, but it must be adjusted based on bulking and site conditions."
+      "text": "A: Commonly [[b]]1:2:4[[/b]], but it must be adjusted based on bulking and site conditions."
     },
     {
       "type": "heading",
       "level": 2,
-      "text": "Read More Blogs"
+      "text": "[[b]]Read More Blogs[[/b]]"
     },
     {
       "type": "p",
-      "text": "Want to learn more about [bulking of sand](/concrete-blog-in-raipur/), soil testing methods, and concrete mix ratio by volume?"
+      "text": "Want to learn more about [bulking of sand](/concrete-blog-in-raipur/), [[b]]soil testing methods[[/b]], and [[b]]concrete mix ratio by volume[[/b]]?"
     },
     {
       "type": "p",
@@ -498,7 +498,7 @@
       "type": "list",
       "items": [
         "Sand moisture effects",
-        "Concrete calculation methods",
+        "Concrete [[b]]calculation[[/b]] methods",
         "Site execution tips"
       ]
     },

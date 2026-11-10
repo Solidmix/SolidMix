@@ -26,7 +26,7 @@ export function AboutTabs() {
                 type="button"
                 onClick={() => setActive(tab.key as typeof active)}
                 aria-pressed={isActive}
-                className={`rounded-md px-6 py-3 text-sm font-semibold transition-colors ${
+                className={`rounded-md px-6 py-3 text-sm font-normal transition-colors ${
                   isActive ? "bg-primary text-white" : "bg-secondary text-white hover:bg-secondary/90"
                 }`}
               >
@@ -38,7 +38,7 @@ export function AboutTabs() {
 
         <div className="mt-8">
           {panel.heading && (
-            <h2 className="mb-4 text-2xl font-bold text-secondary md:text-3xl">{panel.heading}</h2>
+            <h2 className="mb-4 text-[28px] font-semibold text-secondary md:text-[40px]">{panel.heading}</h2>
           )}
           {panel.bodyHtml ? (
             <p
@@ -51,7 +51,7 @@ export function AboutTabs() {
           {active === "about" && (
             <a
               href={intro.cta.href}
-              className="mt-6 inline-block rounded-md bg-secondary px-6 py-3.5 font-semibold text-white transition-colors hover:bg-secondary/90"
+              className="mt-6 inline-block rounded-md bg-secondary px-6 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
             >
               {intro.cta.label}
             </a>

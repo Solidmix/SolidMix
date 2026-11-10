@@ -24,7 +24,7 @@ export function TeamGrid({ members }: { members: TeamMember[] }) {
               className="h-full w-full object-cover"
             />
           </div>
-          <h3 className="mt-4 text-xl font-bold text-primary md:text-[22px]">
+          <h3 className="mt-4 text-[32px] font-semibold text-primary">
             {m.href ? (
               <Link href={m.href} className="hover:underline">
                 {m.name}

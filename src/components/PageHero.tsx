@@ -15,7 +15,7 @@ export function PageHero({ title, crumbs }: { title: string; crumbs: Crumb[] }) 
     >
       <div className="container-content grid items-center gap-6 py-14 md:py-20 lg:grid-cols-[1fr_auto]">
         <div>
-          <h1 className="text-4xl font-extrabold text-primary md:text-5xl lg:text-6xl">{title}</h1>
+          <h1 className="text-4xl font-semibold text-primary md:text-5xl lg:text-6xl">{title}</h1>
           <nav aria-label="Breadcrumb" className="mt-4 text-base font-semibold text-white md:text-lg">
             {crumbs.map((c, i) => (
               <span key={i}>

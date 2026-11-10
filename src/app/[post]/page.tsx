@@ -85,7 +85,7 @@ export default async function PostPage({ params }: { params: Promise<{ post: str
               />
             </div>
           )}
-          <h1 className="mt-6 text-3xl font-extrabold text-primary md:text-4xl">{h1}</h1>
+          <h1 className="mt-6 text-3xl font-semibold text-primary md:text-4xl">{h1}</h1>
           <p className="mt-3 text-sm font-medium text-grey-2">
             {content.date && formatPostDate(content.date)}
             {content.date && content.category && " · "}

@@ -16,6 +16,7 @@ import { AboutTabs } from "@/components/home/AboutTabs";
 import { ServicesCarousel } from "@/components/home/ServicesCarousel";
 import { HomeContactForm } from "@/components/home/HomeContactForm";
 import { FaqAccordion } from "@/components/FaqAccordion";
+import { InlineText } from "@/components/InlineText";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL, organizationLd, localBusinessLd, faqPageLd } from "@/lib/seo";
 
@@ -44,7 +45,7 @@ export default function HomePage() {
       {/* Hero heading */}
       <section className="bg-gradient-to-b from-tint-cyan-2 to-white">
         <div className="container-content py-10 text-center md:py-14">
-          <h1 className="text-3xl font-extrabold leading-tight text-primary md:text-4xl lg:text-[2.75rem]">
+          <h1 className="text-[25px] font-semibold leading-tight text-primary lg:text-[2.5rem]">
             {hero.h1}
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg text-ink">{hero.subtitle}</p>
@@ -62,7 +63,7 @@ export default function HomePage() {
       <section className="bg-dark py-16 text-white">
         <div className="container-content text-center">
           <p className="font-semibold text-primary">{qualityWorks.eyebrow}</p>
-          <h2 className="mt-2 text-3xl font-extrabold text-primary md:text-4xl">
+          <h2 className="mt-2 text-[28px] font-semibold text-primary md:text-4xl">
             {qualityWorks.heading}
           </h2>
           <p className="mx-auto mt-5 max-w-3xl leading-relaxed text-white/90">{qualityWorks.body}</p>
@@ -72,7 +73,7 @@ export default function HomePage() {
       {/* Services carousel */}
       <section className="py-16">
         <div className="container-content text-center">
-          <h2 className="text-3xl font-extrabold text-primary md:text-4xl">{servicesCarousel.heading}</h2>
+          <h2 className="text-[28px] font-semibold text-primary md:text-4xl">{servicesCarousel.heading}</h2>
           <p className="mx-auto mt-4 max-w-2xl text-grey">{servicesCarousel.intro}</p>
         </div>
         <div className="container-content mt-12">
@@ -84,7 +85,7 @@ export default function HomePage() {
       <section className="bg-tint-cyan-2/50 py-16">
         <div className="container-content grid gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="text-3xl font-extrabold text-primary md:text-4xl">{whyChoose.heading}</h2>
+            <h2 className="text-[28px] font-semibold text-primary md:text-4xl">{whyChoose.heading}</h2>
             <div className="mt-8 space-y-7">
               {whyChoose.items.map((item) => (
                 <div key={item.title}>
@@ -95,7 +96,7 @@ export default function HomePage() {
             </div>
           </div>
           <div>
-            <h2 className="text-center text-3xl font-extrabold text-primary md:text-4xl">
+            <h2 className="text-center text-[28px] font-semibold text-primary md:text-4xl">
               {workingHours.heading}
             </h2>
             <table className="mt-8 w-full border-collapse overflow-hidden rounded-lg border border-grey-line bg-white text-left">
@@ -111,8 +112,8 @@ export default function HomePage() {
               <tbody>
                 {workingHours.rows.map(([day, hours]) => (
                   <tr key={day}>
-                    <td className="border-b border-grey-line px-6 py-4 text-grey">{day}</td>
-                    <td className="border-b border-grey-line px-6 py-4 text-grey">{hours}</td>
+                    <td className="border-b border-grey-line px-6 py-4 text-[14.4px] text-grey">{day}</td>
+                    <td className="border-b border-grey-line px-6 py-4 text-[14.4px] text-grey">{hours}</td>
                   </tr>
                 ))}
               </tbody>
@@ -124,11 +125,13 @@ export default function HomePage() {
       {/* Let's Build Stronger Together */}
       <section className="bg-dark py-16 text-center text-white">
         <div className="container-content">
-          <h2 className="text-3xl font-extrabold md:text-4xl">{buildTogether.heading}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-white/90">{buildTogether.body}</p>
+          <h2 className="text-[35px] font-semibold lg:text-[60px]">{buildTogether.heading}</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-white/90">
+            <InlineText text={buildTogether.body} />
+          </p>
           <a
             href={buildTogether.cta.href}
-            className="mt-8 inline-block rounded-md bg-primary px-8 py-4 font-semibold text-white transition-colors hover:bg-primary/90"
+            className="mt-8 inline-block rounded-md bg-primary px-8 py-4 text-xl font-medium text-white transition-colors hover:bg-primary/90"
           >
             {buildTogether.cta.label}
           </a>
@@ -146,7 +149,7 @@ export default function HomePage() {
             className="mx-auto h-auto w-full max-w-md rounded-lg"
           />
           <div>
-            <h2 className="mb-8 text-3xl font-extrabold text-primary md:text-4xl">{faq.heading}</h2>
+            <h2 className="mb-8 text-[28px] font-semibold text-primary md:text-4xl">{faq.heading}</h2>
             <FaqAccordion items={faq.items} />
           </div>
         </div>
@@ -156,11 +159,13 @@ export default function HomePage() {
       <section className="py-16">
         <div className="container-content grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="text-3xl font-extrabold text-primary md:text-4xl">{coreSkills.heading}</h2>
-            <p className="mt-5 leading-relaxed text-ink">{coreSkills.body}</p>
+            <h2 className="text-[28px] font-semibold text-primary md:text-4xl">{coreSkills.heading}</h2>
+            <p className="mt-5 leading-relaxed text-ink">
+              <InlineText text={coreSkills.body} />
+            </p>
             <a
               href={coreSkills.cta.href}
-              className="mt-7 inline-block rounded-md bg-secondary px-6 py-3.5 font-semibold text-white transition-colors hover:bg-secondary/90"
+              className="mt-7 inline-block rounded-md bg-secondary px-6 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
             >
               {coreSkills.cta.label}
             </a>

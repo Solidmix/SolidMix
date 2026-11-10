@@ -155,7 +155,9 @@ export default function LegalPage() {
               <p className="font-semibold text-secondary">{coreFeaturesHeading.text}</p>
             )}
             {whyRmcHeading && (
-              <h2 className="mt-2 text-2xl font-extrabold text-ink md:text-3xl">{whyRmcHeading.text}</h2>
+              <h2 className="mt-2 text-[28px] font-semibold text-ink md:text-[40px]">
+                <InlineText text={whyRmcHeading.text} />
+              </h2>
             )}
             {whyRmcList && (
               <ul className="mt-6 space-y-3">
@@ -213,7 +215,7 @@ export default function LegalPage() {
             }
             contentClassName="bg-secondary p-6 text-white md:p-10"
           >
-            <h2 className="text-2xl font-extrabold md:text-3xl">About Us</h2>
+            <h2 className="text-[28px] font-semibold md:text-[40px]">About Us</h2>
             {aboutPara1 && (
               <p className="mt-4 leading-relaxed text-white/90">
                 <InlineText text={aboutPara1.text} />
@@ -238,7 +240,7 @@ export default function LegalPage() {
             )}
             <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/20 pt-6">
               <div>
-                <p className="font-bold">
+                <p className="text-[30px] font-semibold">
                   <InlineText text={foundersHeading.text} />
                 </p>
                 {foundersRole && <p className="text-sm text-white/80">{foundersRole.text}</p>}
@@ -246,7 +248,7 @@ export default function LegalPage() {
               {foundersCta && (
                 <Link
                   href={foundersCta.href}
-                  className="rounded-md bg-white px-6 py-3 font-semibold text-secondary transition-colors hover:bg-white/90"
+                  className="rounded-md bg-white px-6 py-3 text-xl font-medium text-secondary transition-colors hover:bg-white/90"
                 >
                   {foundersCta.text}
                 </Link>
@@ -267,7 +269,7 @@ export default function LegalPage() {
       {/* Why Choose Us? */}
       <section className="py-14 text-center">
         <div className="container-content max-w-3xl">
-          <h2 className="text-2xl font-extrabold text-primary md:text-3xl">{whyChooseHeading.text}</h2>
+          <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">{whyChooseHeading.text}</h2>
           {whyChoosePara && (
             <p className="mt-4 leading-relaxed text-grey">
               <InlineText text={whyChoosePara.text} />
@@ -283,7 +285,7 @@ export default function LegalPage() {
       <section className="bg-tint-cyan-2/40 py-14 text-center">
         <div className="container-content max-w-3xl">
           {galleryHeading && <p className="font-semibold text-secondary">{galleryHeading.text}</p>}
-          <h2 className="mt-2 text-2xl font-extrabold text-primary md:text-3xl">{teamHeading.text}</h2>
+          <h2 className="mt-2 text-[28px] font-semibold text-primary md:text-[40px]">{teamHeading.text}</h2>
           {teamIntroPara && <p className="mt-4 leading-relaxed text-grey">{teamIntroPara.text}</p>}
         </div>
         <div className="container-content mt-10 text-left">
@@ -294,7 +296,7 @@ export default function LegalPage() {
       {/* Services */}
       <section className="py-14 text-center">
         <div className="container-content max-w-3xl">
-          <h2 className="text-2xl font-extrabold text-primary md:text-3xl">{servicesHeading.text}</h2>
+          <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">{servicesHeading.text}</h2>
         </div>
         <div className="container-content mt-8 text-left">
           <ServiceIconCards items={serviceItems.map((h) => ({ title: h.text }))} />
@@ -327,7 +329,7 @@ export default function LegalPage() {
           >
             <p className="font-semibold text-secondary">Just a Consultancy</p>
             {consultHeading && (
-              <h2 className="mt-2 text-2xl font-extrabold text-ink md:text-3xl">{consultHeading.text}</h2>
+              <h2 className="mt-2 text-[28px] font-semibold text-ink md:text-[40px]">{consultHeading.text}</h2>
             )}
             <div className="mt-6">
               <ConsultancyTabs items={consultItems} />

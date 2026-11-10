@@ -75,7 +75,7 @@ export function getPageContent(slug: string): PageContent {
 export function resolvePageH1(content: PageContent): string {
   if (content.h1 && content.h1.trim()) return content.h1.trim();
   const first = content.blocks.find((b) => b.type === "heading") as HeadingBlock | undefined;
-  return first?.text ?? content.title;
+  return first ? stripBoldMarkers(first.text) : content.title;
 }
 
 const BREADCRUMB_HEADING_RE = /^\[?Home\s*[/-]/i;
@@ -98,7 +98,7 @@ export function stripChrome(blocks: Block[], pageH1: string): Block[] {
   const out: Block[] = [];
   let h1Consumed = false;
   for (const b of blocks) {
-    if (!h1Consumed && b.type === "heading" && b.text === pageH1) {
+    if (!h1Consumed && b.type === "heading" && stripBoldMarkers(b.text) === pageH1) {
       h1Consumed = true;
       continue;
     }
@@ -113,7 +113,11 @@ export type FaqItem = { q: string; a: string };
 export type Segment = { kind: "blocks"; blocks: Block[] } | { kind: "faq"; items: FaqItem[] };
 
 function isQuestionHeading(b: Block): b is HeadingBlock {
-  return b.type === "heading" && (/\?\s*$/.test(b.text) || /^Q:/i.test(b.text));
+  if (b.type !== "heading") return false;
+  // Strip [[b]] markers before testing: a bold-enriched question heading
+  // (e.g. "[[b]]Q: ...?[[/b]]") must still be recognised as a question.
+  const text = stripBoldMarkers(b.text);
+  return /\?\s*$/.test(text) || /^Q:/i.test(text);
 }
 
 /**
@@ -219,4 +223,11 @@ export function findFirstImage(blocks: Block[]): ImageBlock | undefined {
 export function parseMdLink(text: string): { label: string; href?: string } {
   const m = MD_LINK_RE.exec(text);
   return m ? { label: m[1], href: m[2] } : { label: text };
+}
+
+// Removes the [[b]]/[[/b]] bold markers added by scripts/enrich-bold.py
+// (rendered as <strong> by InlineText) — for plain-text contexts such as
+// meta descriptions and JSON-LD where no markup should ever appear.
+export function stripBoldMarkers(text: string): string {
+  return text.replace(/\[\[b\]\]|\[\[\/b\]\]/g, "");
 }

@@ -105,7 +105,7 @@ export default function ServicesPage() {
               )
             }
           >
-            <h2 className="text-2xl font-extrabold text-primary md:text-3xl">{faqHeading.text}</h2>
+            <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">{faqHeading.text}</h2>
             {faqSubtitle && <p className="mt-3 leading-relaxed text-grey">{faqSubtitle.text}</p>}
             <div className="mt-6">
               <FaqAccordion items={faqs} />

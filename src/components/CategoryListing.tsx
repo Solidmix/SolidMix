@@ -27,7 +27,7 @@ export function CategoryListing({ cat, page }: { cat: string; page: number }) {
       />
       <section className="py-10 md:py-14">
         <div className="container-content">
-          <PostGrid posts={posts} />
+          <PostGrid posts={posts} titleSize="32px" />
           {totalPages > 1 && (
             <nav aria-label="Category pagination" className="mt-10 flex items-center justify-center gap-6">
               {page > 1 && (

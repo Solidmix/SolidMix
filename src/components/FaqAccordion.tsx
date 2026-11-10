@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { InlineText } from "@/components/InlineText";
 
 type FaqItem = { q: string; a: string };
 
@@ -23,12 +24,16 @@ export function FaqAccordion({ items, defaultOpen = 0 }: { items: FaqItem[]; def
                 <span aria-hidden="true" className="text-xl leading-none text-primary">
                   {isOpen ? "−" : "+"}
                 </span>
-                <span className="text-ink">{item.q}</span>
+                <span className="text-[22px] font-semibold text-ink">
+                  <InlineText text={item.q} />
+                </span>
               </button>
             </h3>
             {isOpen && (
               <div className="px-4 pb-5 pl-11 text-grey">
-                <p>{item.a}</p>
+                <p>
+                  <InlineText text={item.a} />
+                </p>
               </div>
             )}
           </div>

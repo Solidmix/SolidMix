@@ -109,7 +109,7 @@ export function Calculator() {
       </div>
       <button
         type="submit"
-        className="w-full rounded-md bg-primary px-6 py-3.5 font-semibold text-white transition-colors hover:bg-primary/90 sm:w-auto"
+        className="w-full rounded-md bg-primary px-6 py-3.5 text-xl font-medium text-white transition-colors hover:bg-primary/90 sm:w-auto"
       >
         Calculate Volume
       </button>

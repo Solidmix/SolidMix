@@ -20,7 +20,7 @@ export function ConsultancyTabs({ items }: { items: ConsultancyItem[] }) {
             onClick={() => setActive(i)}
             aria-pressed={i === active}
             aria-label={`Show item ${i + 1}`}
-            className={`flex h-11 w-11 items-center justify-center rounded-full text-base font-bold transition-colors ${
+            className={`flex h-11 w-11 items-center justify-center rounded-full text-base font-semibold transition-colors ${
               i === active ? "bg-primary text-white" : "bg-secondary text-white hover:bg-secondary/90"
             }`}
           >
@@ -30,7 +30,7 @@ export function ConsultancyTabs({ items }: { items: ConsultancyItem[] }) {
       </div>
       {current && (
         <div className="mt-6">
-          <h3 className="text-xl font-bold text-primary md:text-2xl">{current.heading}</h3>
+          <h3 className="text-[28px] font-semibold text-primary">{current.heading}</h3>
           <p className="mt-3 leading-relaxed text-grey">{current.body}</p>
         </div>
       )}

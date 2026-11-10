@@ -36,12 +36,12 @@ function BlockItem({ block }: { block: Block }) {
     case "heading": {
       const text = <InlineText text={block.text} />;
       if (block.level <= 2) {
-        return <h2 className="mt-10 text-2xl font-extrabold text-primary md:text-3xl">{text}</h2>;
+        return <h2 className="mt-10 text-[28px] font-semibold text-primary">{text}</h2>;
       }
       if (block.level === 3) {
-        return <h3 className="mt-7 text-lg font-semibold text-secondary md:text-xl">{text}</h3>;
+        return <h3 className="mt-7 text-[22px] font-semibold text-ink">{text}</h3>;
       }
-      return <h4 className="mt-5 text-base font-semibold text-ink">{text}</h4>;
+      return <h4 className="mt-5 text-[20px] font-semibold text-ink">{text}</h4>;
     }
     case "p":
       return (
@@ -86,7 +86,7 @@ function BlockItem({ block }: { block: Block }) {
         <div className="mt-6">
           <Link
             href={block.href}
-            className="inline-block rounded-md bg-primary px-6 py-3.5 font-semibold text-white transition-colors hover:bg-primary/90"
+            className="inline-block rounded-md bg-primary px-6 py-3.5 text-xl font-medium text-white transition-colors hover:bg-primary/90"
           >
             {block.text}
           </Link>

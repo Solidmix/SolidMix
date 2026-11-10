@@ -16,7 +16,7 @@ export function CtaBanner({
   return (
     <section className="bg-[#5f5f5f] py-16 text-center text-white">
       <div className="container-content max-w-2xl">
-        <h2 className="text-2xl font-extrabold md:text-3xl">{heading}</h2>
+        <h2 className="text-[28px] font-semibold md:text-[40px]">{heading}</h2>
         {children && <div className="mt-4 leading-relaxed text-white/90">{children}</div>}
         {ctas && ctas.length > 0 && (
           <div className="mt-7 flex flex-wrap items-center justify-center gap-4">
@@ -24,7 +24,7 @@ export function CtaBanner({
               <Link
                 key={cta.href + cta.label}
                 href={cta.href}
-                className="inline-block rounded-md bg-primary px-8 py-3.5 font-semibold text-white transition-colors hover:bg-primary/90"
+                className="inline-block rounded-md bg-primary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-primary/90"
               >
                 {cta.label}
               </Link>
