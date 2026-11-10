@@ -137,6 +137,23 @@ export function ShieldIcon({ className = "h-10 w-10" }: IconProps) {
   );
 }
 
+export function DropletIcon({ className = "h-10 w-10" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className} aria-hidden="true">
+      <path d="M12 3c3.5 4 7 8.2 7 12a7 7 0 1 1-14 0c0-3.8 3.5-8 7-12Z" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function MixerIcon({ className = "h-10 w-10" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 12 7 8M12 12l5-4M12 12v7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function PdfIcon({ className = "h-10 w-10" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className} aria-hidden="true">

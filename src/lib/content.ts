@@ -78,7 +78,7 @@ export function resolvePageH1(content: PageContent): string {
   return first?.text ?? content.title;
 }
 
-const BREADCRUMB_HEADING_RE = /^\[?Home\s*\//i;
+const BREADCRUMB_HEADING_RE = /^\[?Home\s*[/-]/i;
 const TRUCK_IMAGE_MARK = "whatsapp-image-2026-06-16-at-3-43-53-pm-removebg-preview";
 
 export function isBreadcrumbHeading(b: Block): boolean {
