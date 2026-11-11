@@ -75,6 +75,9 @@ const foundersRole = nextOfType<ParaBlock>(foundersHeadingIdx, "p");
 const foundersCta = blocks.find(
   (b): b is LinkBlock => b.type === "link" && b.text === "Get In Touch",
 );
+const elevateProfileCta = blocks.find(
+  (b): b is LinkBlock => b.type === "link" && b.text === "Elevate Profile",
+);
 
 // CTA 1
 const cta1HeadingIdx = indexOfHeading("Trusted Concrete Solutions, Timely Delivery, Strong Foundation!");
@@ -104,9 +107,7 @@ const teamMembers: TeamMember[] = teamCards.map((c) => ({
 // Services
 const cta2HeadingIdx = indexOfHeading("Build with Strength, Trust & Speed!");
 const servicesHeading = blocks[servicesHeadingIdx] as HeadingBlock;
-const serviceItems = blocks
-  .slice(servicesHeadingIdx + 1, cta2HeadingIdx)
-  .filter((b): b is HeadingBlock => b.type === "heading" && b.level === 3);
+const serviceItems = extractCards(blocks.slice(servicesHeadingIdx + 1, cta2HeadingIdx));
 
 // CTA 2
 const cta2Heading = blocks[cta2HeadingIdx] as HeadingBlock;
@@ -216,6 +217,14 @@ export default function LegalPage() {
                     image
                   );
                 })}
+                {elevateProfileCta && (
+                  <Link
+                    href={elevateProfileCta.href}
+                    className="mt-2 inline-block rounded-md bg-white px-6 py-3 text-center text-xl font-medium text-primary transition-colors hover:bg-white/90"
+                  >
+                    {elevateProfileCta.text}
+                  </Link>
+                )}
               </div>
             }
             contentClassName="bg-secondary p-6 text-white md:p-10"
@@ -310,7 +319,7 @@ export default function LegalPage() {
           <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">{servicesHeading.text}</h2>
         </div>
         <div className="container-content mt-8 text-left">
-          <ServiceIconCards items={serviceItems.map((h) => ({ title: h.text }))} />
+          <ServiceIconCards items={serviceItems.map((c) => ({ title: c.title, body: c.body }))} />
         </div>
       </section>
 

@@ -77,11 +77,8 @@ export function WorkTabs({ panels }: { panels: WorkPanel[] }) {
             {panel.stats.map((s) => {
               const Icon = STAT_ICONS[s.title] ?? ShieldIcon;
               return (
-                <div
-                  key={s.title}
-                  className="rounded-lg border border-grey-line bg-[#add8e6] p-6 text-center sm:text-left"
-                >
-                  <div className="flex flex-col items-center gap-3 text-secondary sm:flex-row">
+                <div key={s.title} className="rounded-lg border border-grey-line bg-white p-6">
+                  <div className="flex items-center gap-3 text-secondary">
                     <Icon className="h-9 w-9 flex-shrink-0" />
                     <h3 className="text-[18px] font-semibold text-secondary sm:text-[28px]">{s.title}</h3>
                   </div>

@@ -67,6 +67,11 @@
       "href": "/our-work/"
     },
     {
+      "type": "link",
+      "text": "Elevate Profile",
+      "href": "/our-work/"
+    },
+    {
       "type": "heading",
       "level": 2,
       "text": "About Us"
@@ -225,9 +230,17 @@
       "text": "Waterproof Concrete"
     },
     {
+      "type": "p",
+      "text": "Prevents water leakage. Ideal for roofs and basements."
+    },
+    {
       "type": "heading",
       "level": 3,
       "text": "Material Handling"
+    },
+    {
+      "type": "p",
+      "text": "Efficient loading of cement, gravel, and fly ash."
     },
     {
       "type": "heading",
@@ -235,9 +248,17 @@
       "text": "Concrete Mixing"
     },
     {
+      "type": "p",
+      "text": "Uniform mixing for high-quality concrete production."
+    },
+    {
       "type": "heading",
       "level": 3,
       "text": "Concrete Placement"
+    },
+    {
+      "type": "p",
+      "text": "Accurate placement for smooth and strong finish."
     },
     {
       "type": "heading",
@@ -245,9 +266,17 @@
       "text": "Site Operations"
     },
     {
+      "type": "p",
+      "text": "Full control over pouring and pumping process."
+    },
+    {
       "type": "heading",
       "level": 3,
       "text": "Quality Supervision"
+    },
+    {
+      "type": "p",
+      "text": "Strict testing to ensure concrete strength."
     },
     {
       "type": "heading",

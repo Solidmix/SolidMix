@@ -32,7 +32,7 @@ export function CtaBanner({
       <div className="container-content relative max-w-2xl">
         <h2 className="text-[28px] font-semibold md:text-[40px]">{heading}</h2>
         {children && (
-          <div className="mt-4 text-justify text-[16px] leading-relaxed text-white/90 md:text-[20px]">
+          <div className="mt-4 text-center text-[16px] leading-relaxed text-white/90 md:text-[20px]">
             {children}
           </div>
         )}
