@@ -110,7 +110,7 @@ export function HomeContactForm() {
       />
       <button
         type="submit"
-        className="w-full rounded-md bg-secondary px-6 py-3.5 font-semibold text-white transition-colors hover:bg-secondary/90"
+        className="w-full rounded-md bg-secondary px-6 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-secondary/90"
       >
         {contactBlock.form.submit}
       </button>

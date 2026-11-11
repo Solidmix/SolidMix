@@ -20,6 +20,7 @@ const OUT_VID = path.join(ROOT, "public/videos");
 const OUT_CONTENT = path.join(OUT_IMG, "content");
 const OUT_GALLERY = path.join(OUT_IMG, "gallery");
 const OUT_HERO = path.join(OUT_IMG, "hero");
+const OUT_BG = path.join(OUT_IMG, "bg");
 const OUT_FILES = path.join(ROOT, "public/files");
 const APP_DIR = path.join(ROOT, "src/app");
 
@@ -79,6 +80,16 @@ const heroSlides = [
   "WhatsApp-Image-2026-06-16-at-6.49.29-PM.jpeg",
 ];
 
+// B3/parity-r2: section background images (dark/teal section banners with a
+// photo background on the original — source file -> clean output name).
+const backgroundImages = [
+  ["E02__DSC_7076.webp", "quality-works.webp"],
+  ["Screenshot_3.webp", "build-together.webp"],
+  ["Screenshot_2.webp", "cta-blog.webp"],
+  ["WhatsApp-Image-2025-04-05-at-15.08.02.webp", "strong-concrete.webp"],
+  ["sustanibilityBgImg.webp", "contact-details.webp"],
+];
+
 // B2: product/CEO videos with real extracted poster frames.
 const contentVideos = [
   { from: "Cuboid-1.mp4", to: "cuboid.mp4", poster: "cuboid-poster.webp" },
@@ -109,6 +120,7 @@ async function run() {
   await mkdir(OUT_CONTENT, { recursive: true });
   await mkdir(OUT_GALLERY, { recursive: true });
   await mkdir(OUT_HERO, { recursive: true });
+  await mkdir(OUT_BG, { recursive: true });
   await mkdir(OUT_FILES, { recursive: true });
 
   for (const [from, to] of images) {
@@ -219,6 +231,22 @@ async function run() {
       .toBuffer();
     await writeFile(path.join(OUT_HERO, `slide-${i + 1}.webp`), out);
     console.log(`hero: ${source} -> images/hero/slide-${i + 1}.webp`);
+  }
+
+  // parity-r2: section background images.
+  for (const [from, to] of backgroundImages) {
+    const srcPath = path.join(SRC, from);
+    if (!existsSync(srcPath)) {
+      console.warn(`SKIP (missing bg source): ${from}`);
+      continue;
+    }
+    const buf = await readFile(srcPath);
+    const out = await sharp(buf)
+      .resize({ width: 1920, withoutEnlargement: true })
+      .webp({ quality: 78, effort: 4 })
+      .toBuffer();
+    await writeFile(path.join(OUT_BG, to), out);
+    console.log(`bg: ${from} -> images/bg/${to}`);
   }
 
   // B2: product/CEO videos with real extracted poster frames (via ffmpeg).

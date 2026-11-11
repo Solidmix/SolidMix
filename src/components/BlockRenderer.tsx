@@ -7,15 +7,41 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 // Renders a flat run of JSON content blocks (already stripped of PageHero
 // chrome) as the plain long-form sections used by product, safety, legal and
 // privacy pages: headings, paragraphs, lists, images, CTA links and FAQs.
-export function BlockRenderer({ blocks }: { blocks: Block[] }) {
+export function BlockRenderer({
+  blocks,
+  faqQuestionColor,
+  faqMode = "accordion",
+}: {
+  blocks: Block[];
+  faqQuestionColor?: "ink" | "primary" | "secondary";
+  // Blog posts show their "Q: ... / A: ..." pairs as plain always-open text,
+  // not a collapsible widget — every other page keeps the accordion.
+  faqMode?: "accordion" | "plain";
+}) {
   const segments = segmentBlocks(blocks);
   return (
     <>
       {segments.map((seg, i) => {
         if (seg.kind === "faq") {
+          if (faqMode === "plain") {
+            return (
+              <div key={`faq-${i}`} className="my-8">
+                {seg.items.map((item) => (
+                  <div key={item.q} className="mt-7">
+                    <h3 className="text-[22px] font-semibold text-ink">
+                      <InlineText text={item.q} />
+                    </h3>
+                    <p className="mt-2 leading-relaxed text-grey">
+                      <InlineText text={item.a} />
+                    </p>
+                  </div>
+                ))}
+              </div>
+            );
+          }
           return (
             <div key={`faq-${i}`} className="my-8">
-              <FaqAccordion items={seg.items} />
+              <FaqAccordion items={seg.items} questionColor={faqQuestionColor} />
             </div>
           );
         }
@@ -36,12 +62,12 @@ function BlockItem({ block }: { block: Block }) {
     case "heading": {
       const text = <InlineText text={block.text} />;
       if (block.level <= 2) {
-        return <h2 className="mt-10 text-2xl font-extrabold text-primary md:text-3xl">{text}</h2>;
+        return <h2 className="mt-10 text-[28px] font-semibold text-primary">{text}</h2>;
       }
       if (block.level === 3) {
-        return <h3 className="mt-7 text-lg font-semibold text-secondary md:text-xl">{text}</h3>;
+        return <h3 className="mt-7 text-[22px] font-semibold text-ink">{text}</h3>;
       }
-      return <h4 className="mt-5 text-base font-semibold text-ink">{text}</h4>;
+      return <h4 className="mt-5 text-[20px] font-semibold text-ink">{text}</h4>;
     }
     case "p":
       return (
@@ -83,24 +109,47 @@ function BlockItem({ block }: { block: Block }) {
     }
     case "link":
       return (
-        <div className="mt-6">
+        <div className="mt-6 text-center">
           <Link
             href={block.href}
-            className="inline-block rounded-md bg-primary px-6 py-3.5 font-semibold text-white transition-colors hover:bg-primary/90"
+            className="inline-block rounded-md bg-secondary px-6 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
           >
             {block.text}
           </Link>
         </div>
       );
-    case "table":
+    case "table": {
+      const [headerRow, ...bodyRows] = block.rows;
+      // "Mix Ratio" is right-aligned on the original (the blog post mix-ratio
+      // table); every other column stays left-aligned — matched by header
+      // text rather than a fixed index, since it's the only column this
+      // applies to anywhere on the site.
+      const mixRatioCol = headerRow?.indexOf("Mix Ratio") ?? -1;
       return (
         <div className="mt-6 overflow-x-auto rounded-lg border border-grey-line">
-          <table className="w-full min-w-[480px] border-collapse text-left text-sm">
+          <table className="w-full min-w-[480px] border-collapse text-left text-[18px]">
+            {headerRow && (
+              <thead>
+                <tr>
+                  {headerRow.map((cell, j) => (
+                    <th
+                      key={j}
+                      className={`border-b border-grey-line bg-[#808080] px-4 py-2.5 font-semibold text-white ${j === mixRatioCol ? "text-right" : ""}`}
+                    >
+                      {cell}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+            )}
             <tbody>
-              {block.rows.map((row, i) => (
+              {bodyRows.map((row, i) => (
                 <tr key={i} className="odd:bg-tint-cyan-2/50">
                   {row.map((cell, j) => (
-                    <td key={j} className="border-b border-grey-line px-4 py-2.5 text-grey">
+                    <td
+                      key={j}
+                      className={`border-b border-grey-line px-4 py-2.5 text-grey ${j === mixRatioCol ? "text-right" : ""}`}
+                    >
                       {cell}
                     </td>
                   ))}
@@ -110,6 +159,7 @@ function BlockItem({ block }: { block: Block }) {
           </table>
         </div>
       );
+    }
     case "button":
       return (
         <span className="mt-4 mr-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-sm font-semibold text-white">

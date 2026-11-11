@@ -124,7 +124,7 @@ export const workingHours = {
 export const buildTogether = {
   heading: "Let’s Build Stronger Together",
   body:
-    "Partner with SolidMix RMC, the trusted ready mix concrete supplier in Raipur, for durable and on-time solutions.",
+    "Partner with [[b]]SolidMix RMC[[/b]], the trusted [[b]]ready mix concrete supplier in Raipur[[/b]], for durable and on-time solutions.",
   cta: { label: "Schedule Your Appointment", href: CONTACT_URL },
 };
 
@@ -161,7 +161,7 @@ export const faq = {
 export const coreSkills = {
   heading: "Our Core Skills in Concrete Solutions",
   body:
-    "At SolidMix RMC, we specialize in delivering ready mix concrete in Raipur that ensures superior strength, durability, and environmental sustainability. With our advanced RMC plants and efficient concrete batching systems, we guarantee smooth project execution — on time, every time.",
+    "At [[b]]SolidMix RMC[[/b]], we specialize in delivering [[b]]ready mix concrete in Raipur[[/b]] that ensures superior strength, durability, and environmental sustainability. With our advanced [[b]]RMC plants[[/b]] and efficient [[b]]concrete batching systems[[/b]], we guarantee smooth project execution — [[b]]on time, every time[[/b]].",
   cta: { label: "Schedule Appointment", href: CONTACT_URL },
   video: {
     src: "/videos/logo-ortho.mp4",

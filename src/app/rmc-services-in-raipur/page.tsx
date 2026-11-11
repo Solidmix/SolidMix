@@ -20,6 +20,7 @@ import { IconFeatureGrid } from "@/components/sections/IconFeatureGrid";
 import { MediaSplit } from "@/components/sections/MediaSplit";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { InlineText } from "@/components/InlineText";
+import { Tilt } from "@/components/Tilt";
 
 const content = getPageContent("rmc-services-in-raipur");
 const h1 = resolvePageH1(content);
@@ -95,20 +96,22 @@ export default function ServicesPage() {
           <MediaSplit
             media={
               faqImage && (
-                <Image
-                  src={faqImage.src}
-                  alt={faqImage.alt || "Frequently asked questions"}
-                  width={600}
-                  height={500}
-                  className="h-auto w-full rounded-lg object-cover"
-                />
+                <Tilt className="mx-auto w-full max-w-sm">
+                  <Image
+                    src={faqImage.src}
+                    alt={faqImage.alt || "Frequently asked questions"}
+                    width={622}
+                    height={622}
+                    className="h-auto w-full rounded-lg object-contain shadow-lg"
+                  />
+                </Tilt>
               )
             }
           >
-            <h2 className="text-2xl font-extrabold text-primary md:text-3xl">{faqHeading.text}</h2>
+            <h2 className="text-[28px] font-semibold text-secondary md:text-[40px]">{faqHeading.text}</h2>
             {faqSubtitle && <p className="mt-3 leading-relaxed text-grey">{faqSubtitle.text}</p>}
             <div className="mt-6">
-              <FaqAccordion items={faqs} />
+              <FaqAccordion items={faqs} questionColor="secondary" />
             </div>
           </MediaSplit>
         </div>
@@ -118,6 +121,8 @@ export default function ServicesPage() {
       <CtaBanner
         heading={ctaHeading.text}
         ctas={ctaLinks.map((l) => ({ label: l.text, href: l.href }))}
+        bgImage="/images/bg/quality-works.webp"
+        bgOpacity={0.8}
       >
         {ctaBody.map((p, i) => (
           <p key={i} className={i > 0 ? "mt-3" : ""}>

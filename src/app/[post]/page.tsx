@@ -85,16 +85,18 @@ export default async function PostPage({ params }: { params: Promise<{ post: str
               />
             </div>
           )}
-          <h1 className="mt-6 text-3xl font-extrabold text-primary md:text-4xl">{h1}</h1>
+          <h1 className="mt-6 text-[28px] font-semibold text-primary md:text-[40px]">{h1}</h1>
           <p className="mt-3 text-sm font-medium text-grey-2">
-            {content.date && formatPostDate(content.date)}
-            {content.date && content.category && " · "}
-            {content.category && (
-              <span className="capitalize">{content.category.replace(/-/g, " ")}</span>
-            )}
+            admin
+            {content.date && <> · {formatPostDate(content.date)}</>}
+            {content.time && <> · {content.time}</>}
           </p>
-          <div className="mt-6">
-            <BlockRenderer blocks={bodyBlocks} />
+          {/* Post body only: headings read ink (not primary/teal), inline
+              links read the original's #cc3366, and body copy (paragraphs/
+              list items) is 20px — scoped here via CSS, not a BlockRenderer
+              default, since other pages keep their own colours/sizes. */}
+          <div className="mt-6 [&_a]:text-[#cc3366] [&_h2]:text-[#292929] [&_h3]:text-[#292929] [&_li]:text-[20px] [&_p]:text-[20px]">
+            <BlockRenderer blocks={bodyBlocks} faqMode="plain" />
           </div>
         </div>
       </section>

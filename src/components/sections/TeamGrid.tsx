@@ -8,14 +8,16 @@ export type TeamMember = {
   href?: string;
 };
 
-// 3 columns desktop / 2 tablet / 1 mobile, fixed 4:5 photo, no card
-// border/shadow — matches the original team sections (no oversized images).
+// Single column on mobile (~255px photo, centered), 2 on tablet, 3 on
+// desktop, fixed 4:5 photo, no card border/shadow — matches the original
+// team sections (no oversized images). Hover-bob on the photo matches the
+// original's elementor-animation-bob.
 export function TeamGrid({ members }: { members: TeamMember[] }) {
   return (
-    <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-3">
       {members.map((m) => (
-        <div key={m.name}>
-          <div className="aspect-[4/5] overflow-hidden rounded-md bg-grey-line">
+        <div key={m.name} className="text-center sm:text-left">
+          <div className="hover-bob mx-auto aspect-[4/5] w-[255px] max-w-full overflow-hidden rounded-md bg-grey-line sm:mx-0 sm:w-auto">
             <Image
               src={m.image.src}
               alt={m.image.alt || m.name}
@@ -24,7 +26,7 @@ export function TeamGrid({ members }: { members: TeamMember[] }) {
               className="h-full w-full object-cover"
             />
           </div>
-          <h3 className="mt-4 text-xl font-bold text-primary md:text-[22px]">
+          <h3 className="mt-4 text-[32px] font-semibold text-primary">
             {m.href ? (
               <Link href={m.href} className="hover:underline">
                 {m.name}

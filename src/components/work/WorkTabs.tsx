@@ -71,7 +71,7 @@ export function WorkTabs({ panels }: { panels: WorkPanel[] }) {
               className="h-auto w-full max-w-2xl mx-auto object-cover"
             />
           </div>
-          <h2 className="mt-8 text-2xl font-extrabold text-secondary md:text-3xl">{panel.heading}</h2>
+          <h2 className="mt-8 text-[28px] font-semibold text-secondary">{panel.heading}</h2>
           <p className="mt-4 leading-relaxed text-grey">{panel.intro}</p>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             {panel.stats.map((s) => {
@@ -80,7 +80,7 @@ export function WorkTabs({ panels }: { panels: WorkPanel[] }) {
                 <div key={s.title} className="rounded-lg border border-grey-line bg-white p-6">
                   <div className="flex items-center gap-3 text-secondary">
                     <Icon className="h-9 w-9 flex-shrink-0" />
-                    <h3 className="text-xl font-bold text-secondary">{s.title}</h3>
+                    <h3 className="text-[28px] font-semibold text-secondary">{s.title}</h3>
                   </div>
                   <p className="mt-2 text-sm leading-relaxed text-grey">{s.body}</p>
                 </div>

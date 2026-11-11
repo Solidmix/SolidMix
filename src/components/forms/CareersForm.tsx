@@ -108,7 +108,7 @@ export function CareersForm() {
       </p>
       <button
         type="submit"
-        className="w-full rounded-md bg-secondary px-6 py-3.5 font-semibold text-white transition-colors hover:bg-secondary/90"
+        className="w-full rounded-md bg-primary px-6 py-3.5 text-xl font-medium text-white transition-colors hover:bg-primary/90"
       >
         Send
       </button>

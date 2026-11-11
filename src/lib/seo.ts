@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
 import type { PageContent } from "@/lib/content";
+import { stripBoldMarkers } from "@/lib/content";
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://solidmixrmc.com").replace(/\/$/, "");
 
@@ -14,7 +15,7 @@ export function metaDescriptionFrom(content: PageContent): string {
   if (content.description && content.description.trim()) return content.description.trim();
   const firstPara = content.blocks.find((b) => b.type === "p") as { text: string } | undefined;
   if (!firstPara) return content.title;
-  const text = firstPara.text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+  const text = stripBoldMarkers(firstPara.text).replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
   return text.length > 155 ? `${text.slice(0, 152).trimEnd()}...` : text;
 }
 
@@ -123,8 +124,8 @@ export function faqPageLd(items: { q: string; a: string }[]) {
     "@type": "FAQPage",
     mainEntity: items.map((item) => ({
       "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
+      name: stripBoldMarkers(item.q),
+      acceptedAnswer: { "@type": "Answer", text: stripBoldMarkers(item.a) },
     })),
   };
 }

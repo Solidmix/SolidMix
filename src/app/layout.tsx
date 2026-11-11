@@ -45,14 +45,14 @@ export default function RootLayout({
       <body>
         <SmoothScroll />
         <a
-          href="#content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:text-[#cc3366]"
         >
           Skip to content
         </a>
         <TopBar />
         <Header />
-        <main id="content">{children}</main>
+        <main id="main">{children}</main>
         <Footer />
         <WhatsAppButton />
         <CallButton />

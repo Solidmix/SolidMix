@@ -70,11 +70,11 @@ export default function OurWorkPage() {
             <div className="flex flex-col items-center gap-5 rounded-lg border border-grey-line p-6 sm:flex-row sm:justify-between">
               <div className="flex items-center gap-4">
                 <PdfIcon className="h-10 w-10 flex-shrink-0 text-primary" />
-                <h2 className="text-xl font-bold text-ink md:text-2xl">{brochureHeading.text}</h2>
+                <h2 className="text-xl font-semibold text-ink md:text-2xl">{brochureHeading.text}</h2>
               </div>
               <a
                 href={brochureLink.href}
-                className="w-full flex-shrink-0 rounded-md bg-secondary px-6 py-3.5 text-center font-semibold text-white transition-colors hover:bg-secondary/90 sm:w-auto"
+                className="w-full flex-shrink-0 rounded-md bg-secondary px-6 py-3.5 text-center text-xl font-medium text-white transition-colors hover:bg-secondary/90 sm:w-auto"
               >
                 {brochureLink.text}
               </a>

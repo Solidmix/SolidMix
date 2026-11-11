@@ -13,7 +13,10 @@
   --color-tint-cyan-2: #f1fcff;
 
   /* Greys / darks */
-  --color-grey: #616161;
+  /* "grey" body text measures #292929 on the original (parity round 1) —
+     keep the token name, just correct its value; grey-2/grey-line are
+     separate tokens and unaffected. */
+  --color-grey: #292929;
   --color-grey-2: #a5a5a5;
   --color-grey-line: #dad8d8;
   --color-dark: #0e0e0e;
@@ -38,10 +41,10 @@
 html {
   -webkit-text-size-adjust: 100%;
   overflow-x: clip;
-  /* The original's type scale runs larger than our previous default; this
-     nudges every rem-based font-size and spacing utility up uniformly
-     (measured against the desktop-orig crops of home/contact/our-work/blog). */
-  font-size: 106.25%;
+  /* Parity round 1: pixel-measured against the original (base 16px) showed
+     the prior 106.25% nudge overshot almost every size; individual elements
+     now carry their own measured px sizes instead of a global multiplier. */
+  font-size: 100%;
 }
 
 body {

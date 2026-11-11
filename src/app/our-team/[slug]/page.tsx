@@ -79,7 +79,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
             </div>
           )}
           <div>
-            <h1 className="text-3xl font-extrabold text-primary md:text-4xl">{h1}</h1>
+            <h1 className="text-3xl font-semibold text-primary md:text-4xl">{h1}</h1>
             {role && <h2 className="mt-2 text-lg font-semibold text-secondary">{role.text}</h2>}
             {bio && (
               <p className="mt-6 leading-relaxed text-grey">

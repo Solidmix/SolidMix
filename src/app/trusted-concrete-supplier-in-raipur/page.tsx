@@ -79,7 +79,7 @@ export default function AboutPage() {
       {/* Intro: image collage + teal text column */}
       <section className="py-14">
         <div className="container-content grid gap-0 overflow-hidden rounded-lg lg:grid-cols-2">
-          <div className="grid grid-cols-2 gap-2 bg-tint-pink p-4">
+          <div className="mx-auto grid w-full max-w-[460px] grid-cols-2 gap-2 bg-tint-pink p-4">
             {collageImages.map((img, i) => (
               <Image
                 key={i}
@@ -92,9 +92,11 @@ export default function AboutPage() {
             ))}
           </div>
           <div className="bg-secondary p-6 text-white md:p-10">
-            <h2 className="text-2xl font-extrabold md:text-3xl">{introHeading.text}</h2>
+            <h2 className="text-center text-[28px] font-semibold md:text-[40px]">
+              <InlineText text={introHeading.text} />
+            </h2>
             {introParas.map((p, i) => (
-              <p key={i} className="mt-4 leading-relaxed text-white/90">
+              <p key={i} className="mt-4 text-justify leading-relaxed text-white/90">
                 <InlineText text={p.text} />
               </p>
             ))}
@@ -108,16 +110,16 @@ export default function AboutPage() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/20 pt-6">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 border-t border-white/20 pt-6">
               <div>
-                <p className="font-bold">
+                <p className="text-[30px] font-semibold">
                   <InlineText text={foundersHeading.text} />
                 </p>
                 <p className="text-sm text-white/80">{foundersRole.text}</p>
               </div>
               <Link
                 href={foundersCta.href}
-                className="rounded-md bg-white px-6 py-3 font-semibold text-secondary transition-colors hover:bg-white/90"
+                className="rounded-md bg-white px-6 py-3 text-center text-xl font-medium text-secondary transition-colors hover:bg-white/90"
               >
                 {foundersCta.text}
               </Link>
@@ -127,12 +129,14 @@ export default function AboutPage() {
       </section>
 
       {/* Strong Concrete. Strong Foundations. Stronger Trust. */}
-      <BlocksCta blocks={strongSection} />
+      <BlocksCta blocks={strongSection} bgImage="/images/bg/strong-concrete.webp" bgOpacity={0.61} />
 
       {/* Why Choose SolidMix RMC? */}
       <section className="py-14">
         <div className="container-content max-w-3xl text-center">
-          <h2 className="text-2xl font-extrabold text-primary md:text-3xl">{whyChooseHeading.text}</h2>
+          <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">
+            <InlineText text={whyChooseHeading.text} />
+          </h2>
           <p className="mt-4 leading-relaxed text-grey">
             <InlineText text={whyChoosePara.text} />
           </p>
@@ -155,34 +159,51 @@ export default function AboutPage() {
       {/* Services */}
       <section className="py-14 text-center">
         <div className="container-content max-w-3xl">
-          <h2 className="text-2xl font-extrabold text-primary md:text-3xl">{servicesHeading.text}</h2>
-          <p className="mt-4 leading-relaxed text-grey">{servicesIntro.text}</p>
+          <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">{servicesHeading.text}</h2>
+          <p className="mt-4 leading-relaxed text-grey">
+            <InlineText text={servicesIntro.text} />
+          </p>
         </div>
         <div className="container-content mt-8 text-left">
           <ServiceIconCards items={serviceChips.map((c) => ({ title: c.title }))} />
         </div>
       </section>
 
-      {/* Tail CTA */}
-      <BlocksCta blocks={tailCta} />
+      {/* Tail CTA — "Contact Us" is a white button on the original, not primary. */}
+      <BlocksCta blocks={tailCta} bgImage="/images/bg/cta-blog.webp" bgOpacity={0.73} ctaVariant="white" />
 
       {/* FAQ */}
       <section className="py-14">
         <div className="container-content max-w-3xl">
-          <BlockRenderer blocks={faqSection} />
+          <BlockRenderer blocks={faqSection} faqQuestionColor="primary" />
         </div>
       </section>
     </>
   );
 }
 
-function BlocksCta({ blocks }: { blocks: ReturnType<typeof stripChrome> }) {
+function BlocksCta({
+  blocks,
+  bgImage,
+  bgOpacity,
+  ctaVariant,
+}: {
+  blocks: ReturnType<typeof stripChrome>;
+  bgImage?: string;
+  bgOpacity?: number;
+  ctaVariant?: "primary" | "white";
+}) {
   const heading = blocks.find((b): b is HeadingBlock => b.type === "heading");
   const para = blocks.find((b): b is ParaBlock => b.type === "p");
   const link = blocks.find((b): b is LinkBlock => b.type === "link");
   if (!heading) return null;
   return (
-    <CtaBanner heading={heading.text} ctas={link ? [{ label: link.text, href: link.href }] : undefined}>
+    <CtaBanner
+      heading={heading.text}
+      ctas={link ? [{ label: link.text, href: link.href, variant: ctaVariant }] : undefined}
+      bgImage={bgImage}
+      bgOpacity={bgOpacity}
+    >
       {para && <InlineText text={para.text} />}
     </CtaBanner>
   );

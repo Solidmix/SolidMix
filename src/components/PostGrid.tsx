@@ -2,7 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import type { PostSummary } from "@/lib/posts";
 
-export function PostGrid({ posts }: { posts: PostSummary[] }) {
+// 24px on the blog index / Appointments teaser, 32px on category pages
+// (measured from the original: card titles are bigger there). Category pages
+// also measure a distinct #333333 excerpt colour (vs the usual body ink).
+export function PostGrid({
+  posts,
+  titleSize = "24px",
+  excerptColor,
+}: {
+  posts: PostSummary[];
+  titleSize?: "24px" | "32px";
+  excerptColor?: string;
+}) {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {posts.map((post) => (
@@ -20,15 +31,23 @@ export function PostGrid({ posts }: { posts: PostSummary[] }) {
             />
           </Link>
           <div className="p-5">
-            <h3 className="text-base font-medium text-ink">
+            <h3
+              className="font-medium text-ink"
+              style={{ fontSize: titleSize }}
+            >
               <Link href={`/${post.slug}/`} className="hover:text-primary hover:underline">
                 {post.h1}
               </Link>
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-grey">{post.excerpt}</p>
+            <p
+              className={`mt-2 text-sm leading-relaxed ${excerptColor ? "" : "text-grey"}`}
+              style={excerptColor ? { color: excerptColor } : undefined}
+            >
+              {post.excerpt}
+            </p>
             <Link
               href={`/${post.slug}/`}
-              className="mt-3 inline-block text-sm font-semibold text-secondary hover:underline"
+              className="mt-3 inline-block text-sm font-medium text-secondary hover:underline"
             >
               Read More »
             </Link>
