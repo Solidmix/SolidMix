@@ -10,3 +10,4 @@
 | 2026-11-10 | Merge | build/b3-blog-forms (Setup, Audit, B1, B2, B3) merged into main with --no-ff; Vercel production deploy (noindex review URL) | cbc6fac |
 | 2026-11-10 | Fix | Home hero slides no longer cropped (aspect 1600/749); desktop header matches original (92px bar, 64px logo, primary semibold nav after logo); merged into main | fa5cdc3 / 9186dd0 |
 | 2026-11-10 | Fix | Legal, About, Services, Our Team rebuilt with section components (MediaSplit, TeamGrid, ServiceIconCards, ProgressBars 85/91/94/97, CtaBanner, IconFeatureGrid); stray breadcrumb text removed; CTA kept out of FAQ JSON-LD; merged into main | f206f8d / e940e8f |
+| 2026-11-11 | Parity | fix/parity-30 rounds 1-4 merged: body text #292929, heading weight 600, button/heading sizes, bold restored ([[b]] markers), 5 section background images, button/link colours (#cc3366), product/team/poster images and motion, blog meta/tables/open Q&A, skip link; regress ALL PASS | d8eaa01 |
