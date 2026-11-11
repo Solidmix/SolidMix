@@ -38,7 +38,7 @@ export function AboutTabs() {
 
         <div className="mt-8">
           {panel.heading && (
-            <h2 className="mb-4 text-[28px] font-semibold text-secondary md:text-[40px]">{panel.heading}</h2>
+            <h2 className="mb-4 text-[28px] font-semibold text-secondary md:text-[34px]">{panel.heading}</h2>
           )}
           {panel.bodyHtml ? (
             <p

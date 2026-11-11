@@ -43,7 +43,13 @@ const strongSection = blocks.slice(10, 13);
 const whyChooseHeading = blocks[13] as HeadingBlock;
 const whyChoosePara = blocks[14] as ParaBlock;
 
-const teamIntro = blocks.slice(15, 20);
+const teamIntroAll = blocks.slice(15, 20);
+// "Meet the SolidMix Team" (teal eyebrow) and "Solidmix Concrete Team" (the
+// real H2, measured at 40px) have page-specific styling that differs from
+// BlockRenderer's generic h3/h2 defaults, so pulled out and rendered directly.
+const teamEyebrow = teamIntroAll.find((b): b is HeadingBlock => b.type === "heading" && b.level === 3);
+const teamH2 = teamIntroAll.find((b): b is HeadingBlock => b.type === "heading" && b.level === 2);
+const teamIntro = teamIntroAll.filter((b) => b !== teamEyebrow && b !== teamH2);
 const teamCards = extractCards(blocks.slice(20, 35));
 const teamMembers: TeamMember[] = teamCards.map((c) => ({
   image: { src: c.image?.src ?? "", alt: c.image?.alt || c.title },
@@ -56,8 +62,13 @@ const servicesIntro = blocks[36] as ParaBlock;
 const serviceChips = extractCards(blocks.slice(37, 43));
 
 const tailCta = blocks.slice(43, 46);
-const faqSection = blocks.slice(46, 59);
-const faqs = getFaqItems(faqSection);
+const faqSectionAll = blocks.slice(46, 59);
+const faqs = getFaqItems(faqSectionAll);
+// "Frequently Asked Questions" is centered and 40px on the original, unlike
+// BlockRenderer's generic (left, 28px) heading default — pulled out so it
+// can get that treatment.
+const faqHeading = faqSectionAll.find((b): b is HeadingBlock => b.type === "heading");
+const faqSection = faqHeading ? faqSectionAll.filter((b) => b !== faqHeading) : faqSectionAll;
 
 export const metadata: Metadata = pageMetadata(
   content,
@@ -102,7 +113,7 @@ export default function AboutPage() {
             ))}
             <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
               {introList.items.map((item) => (
-                <li key={item} className="flex items-center gap-2 font-medium">
+                <li key={item} className="flex items-center gap-2 font-normal text-[#333333]">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
                     <path d="m5 13 4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -149,6 +160,10 @@ export default function AboutPage() {
       {/* Team */}
       <section className="bg-tint-cyan-2/40 py-14">
         <div className="container-content max-w-3xl text-center">
+          {teamEyebrow && <p className="font-semibold text-secondary">{teamEyebrow.text}</p>}
+          {teamH2 && (
+            <h2 className="mt-2 text-[28px] font-semibold text-primary md:text-[40px]">{teamH2.text}</h2>
+          )}
           <BlockRenderer blocks={teamIntro} />
         </div>
         <div className="container-content mt-10">
@@ -175,6 +190,11 @@ export default function AboutPage() {
       {/* FAQ */}
       <section className="py-14">
         <div className="container-content max-w-3xl">
+          {faqHeading && (
+            <h2 className="mb-6 text-center text-[28px] font-semibold text-primary md:text-[40px]">
+              {faqHeading.text}
+            </h2>
+          )}
           <BlockRenderer blocks={faqSection} faqQuestionColor="primary" />
         </div>
       </section>

@@ -31,7 +31,7 @@ export function ConsultancyTabs({ items }: { items: ConsultancyItem[] }) {
       {current && (
         <div className="mt-6">
           <h3 className="text-[24px] font-semibold text-primary md:text-[32px]">{current.heading}</h3>
-          <p className="mt-3 leading-relaxed text-grey">{current.body}</p>
+          <p className="mt-3 leading-relaxed text-grey md:text-[24px]">{current.body}</p>
         </div>
       )}
     </div>

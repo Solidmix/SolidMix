@@ -72,8 +72,8 @@ export default function ProductsPage() {
                   href={cta.href}
                   className={
                     i === 0
-                      ? "inline-block rounded-md bg-primary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-primary/90"
-                      : "inline-block rounded-md bg-secondary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
+                      ? "inline-block rounded-md bg-secondary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
+                      : "inline-block rounded-md bg-primary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-primary/90"
                   }
                 >
                   {cta.text}

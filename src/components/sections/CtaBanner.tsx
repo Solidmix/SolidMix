@@ -31,18 +31,22 @@ export function CtaBanner({
       )}
       <div className="container-content relative max-w-2xl">
         <h2 className="text-[28px] font-semibold md:text-[40px]">{heading}</h2>
-        {children && <div className="mt-4 leading-relaxed text-white/90">{children}</div>}
+        {children && (
+          <div className="mt-4 text-justify text-[16px] leading-relaxed text-white/90 md:text-[20px]">
+            {children}
+          </div>
+        )}
         {ctas && ctas.length > 0 && (
           <div className="mt-7 flex flex-wrap items-center justify-center gap-4">
             {ctas.map((cta) => (
               <Link
                 key={cta.href + cta.label}
                 href={cta.href}
-                className={
+                className={`inline-block rounded-md px-8 py-3.5 text-xl transition-colors ${
                   cta.variant === "white"
-                    ? "inline-block rounded-md bg-white px-8 py-3.5 text-xl font-medium text-primary transition-colors hover:bg-white/90"
-                    : "inline-block rounded-md bg-primary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-primary/90"
-                }
+                    ? "bg-white text-primary hover:bg-white/90"
+                    : "bg-primary text-white hover:bg-primary/90"
+                } ${cta.label === "Contact Us" ? "font-semibold" : "font-medium"}`}
               >
                 {cta.label}
               </Link>
