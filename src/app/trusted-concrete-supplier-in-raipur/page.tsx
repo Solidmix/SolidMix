@@ -90,7 +90,7 @@ export default function AboutPage() {
       {/* Intro: image collage + teal text column */}
       <section className="py-14">
         <div className="container-content grid gap-0 overflow-hidden rounded-lg lg:grid-cols-2">
-          <div className="mx-auto grid w-full max-w-[460px] grid-cols-2 gap-2 bg-tint-pink p-4">
+          <div className="mx-auto grid w-full max-w-[460px] grid-cols-2 gap-2 bg-primary p-4">
             {collageImages.map((img, i) => (
               <Image
                 key={i}
@@ -113,7 +113,7 @@ export default function AboutPage() {
             ))}
             <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
               {introList.items.map((item) => (
-                <li key={item} className="flex items-center gap-2 font-normal text-[#333333]">
+                <li key={item} className="flex items-center gap-2 font-medium text-white">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
                     <path d="m5 13 4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>

@@ -7,7 +7,6 @@ import { site } from "@/content/site";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { InlineText } from "@/components/InlineText";
 import { PhoneIcon, ClockIcon, MailIcon, MapPinIcon, MapIcon } from "@/components/icons";
-import { BgSection } from "@/components/sections/BgSection";
 
 const content = getPageContent("ready-mix-concrete-contact-in-raipur");
 const h1 = resolvePageH1(content);
@@ -57,8 +56,8 @@ export default function ContactPage() {
 
       <section className="pb-10 md:pb-14">
         <div className="container-content grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="rounded-xl border border-grey-line p-8 text-center shadow-sm">
-            <PhoneIcon className="mx-auto h-9 w-9 text-primary" />
+          <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
+            <PhoneIcon className="mx-auto h-9 w-9 text-secondary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">Phone Number</h3>
             <p className="mt-3 space-x-1">
               <a href={site.phoneHref} className="text-ink hover:text-primary">
@@ -70,13 +69,13 @@ export default function ContactPage() {
               </a>
             </p>
           </div>
-          <div className="rounded-xl border border-grey-line p-8 text-center shadow-sm">
-            <ClockIcon className="mx-auto h-9 w-9 text-primary" />
+          <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
+            <ClockIcon className="mx-auto h-9 w-9 text-secondary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">Working Hour</h3>
             <p className="mt-3 text-ink">We Are Open 24*7</p>
           </div>
-          <div className="rounded-xl border border-grey-line p-8 text-center shadow-sm">
-            <MailIcon className="mx-auto h-9 w-9 text-primary" />
+          <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
+            <MailIcon className="mx-auto h-9 w-9 text-secondary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">Office Email</h3>
             <p className="mt-3 space-x-1">
               {site.emails.map((email, i) => (
@@ -89,8 +88,8 @@ export default function ContactPage() {
               ))}
             </p>
           </div>
-          <div className="rounded-xl border border-grey-line p-8 text-center shadow-sm">
-            <MapPinIcon className="mx-auto h-9 w-9 text-primary" />
+          <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
+            <MapPinIcon className="mx-auto h-9 w-9 text-secondary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">
               <a href={PLANT_MAP_LINK} target="_blank" rel="noopener noreferrer" className="hover:underline">
                 Plant Address
@@ -98,8 +97,8 @@ export default function ContactPage() {
             </h3>
             <p className="mt-3 text-ink">{site.plantAddress.lines.join(", ")}</p>
           </div>
-          <div className="rounded-xl border border-grey-line p-8 text-center shadow-sm">
-            <MapIcon className="mx-auto h-9 w-9 text-primary" />
+          <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
+            <MapIcon className="mx-auto h-9 w-9 text-secondary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">
               <a href={OFFICE_MAP_LINK} target="_blank" rel="noopener noreferrer" className="hover:underline">
                 Office Address
@@ -110,10 +109,10 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* No overlay on the original here either (same contact-details photo
-          as Home, --background-overlay:'' in the captured CSS) — dark text
-          directly on the photo, not a white-on-dark banner. */}
-      <BgSection image="/images/bg/contact-details.webp" overlayOpacity={0} className="py-12 md:py-16">
+      {/* Plain light-grey section on the original — no photo background at
+          all here (confirmed against the screenshot), unlike Home's
+          contact-details block. */}
+      <section className="bg-[#f5f5f5] py-12 md:py-16">
         <div className="container-content grid gap-10 lg:grid-cols-2">
           <div>
             <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">
@@ -137,7 +136,7 @@ export default function ContactPage() {
             <source src="/videos/ceo-vinit.mp4" type="video/mp4" />
           </video>
         </div>
-      </BgSection>
+      </section>
     </>
   );
 }

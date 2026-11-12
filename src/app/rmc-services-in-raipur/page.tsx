@@ -108,8 +108,12 @@ export default function ServicesPage() {
               )
             }
           >
-            <h2 className="text-[28px] font-semibold text-secondary md:text-[40px]">{faqHeading.text}</h2>
-            {faqSubtitle && <p className="mt-3 leading-relaxed text-grey">{faqSubtitle.text}</p>}
+            <p className="font-semibold text-secondary">{faqHeading.text}</p>
+            {faqSubtitle && (
+              <h2 className="mt-2 text-[28px] font-bold leading-snug text-primary md:text-[32px]">
+                {faqSubtitle.text}
+              </h2>
+            )}
             <div className="mt-6">
               <FaqAccordion items={faqs} questionColor="secondary" />
             </div>
@@ -124,11 +128,15 @@ export default function ServicesPage() {
         bgImage="/images/bg/quality-works.webp"
         bgOpacity={0.8}
       >
-        {ctaBody.map((p, i) => (
-          <p key={i} className={i > 0 ? "mt-3" : ""}>
-            <InlineText text={p.text} />
-          </p>
-        ))}
+        {/* This page's CTA inline links measure teal on the original,
+            unlike the site-wide #cc3366 default — confirmed via screenshot. */}
+        <div className="[&_a]:text-secondary">
+          {ctaBody.map((p, i) => (
+            <p key={i} className={i > 0 ? "mt-3" : ""}>
+              <InlineText text={p.text} />
+            </p>
+          ))}
+        </div>
       </CtaBanner>
     </>
   );
