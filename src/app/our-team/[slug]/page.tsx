@@ -66,9 +66,9 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
         ]}
       />
       <section className="py-12 md:py-16">
-        <div className="container-content grid items-start gap-10 md:grid-cols-[320px_1fr]">
+        <div className="container-content grid items-start gap-10 md:grid-cols-[520px_1fr]">
           {image && (
-            <div className="overflow-hidden rounded-lg bg-tint-cyan-2">
+            <div className="mx-auto w-[68%] overflow-hidden rounded-lg bg-tint-cyan-2 md:w-full">
               <Image
                 src={image.src}
                 alt={image.alt || h1}
@@ -79,8 +79,8 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
             </div>
           )}
           <div>
-            <h1 className="text-3xl font-semibold text-primary md:text-4xl">{h1}</h1>
-            {role && <h2 className="mt-2 text-lg font-semibold text-secondary">{role.text}</h2>}
+            <h1 className="text-[50px] font-semibold text-primary">{h1}</h1>
+            {role && <h2 className="mt-2 text-[32px] font-semibold text-secondary">{role.text}</h2>}
             {bio && (
               <p className="mt-6 leading-relaxed text-grey">
                 <InlineText text={bio.text} />

@@ -25,7 +25,7 @@ export function CardGrid({
       {cards.map((card, i) => (
         <article
           key={i}
-          className="hover-bob overflow-hidden rounded-lg border border-grey-line bg-white shadow-sm"
+          className="hover-bob overflow-hidden rounded-[16px] border border-grey-line bg-white shadow-sm"
         >
           {card.image && imageAspect !== "none" && (
             <div className={imageAspect === "portrait" ? "aspect-[4/5]" : "aspect-square"}>

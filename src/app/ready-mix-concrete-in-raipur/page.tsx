@@ -81,7 +81,7 @@ export default function ProductsPage() {
                 <Link
                   key={cta.href + cta.text}
                   href={cta.href}
-                  className="inline-block rounded-md bg-secondary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
+                  className="inline-block rounded-lg bg-secondary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
                 >
                   {cta.text}
                 </Link>

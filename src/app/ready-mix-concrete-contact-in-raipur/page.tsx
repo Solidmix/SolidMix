@@ -7,6 +7,7 @@ import { site } from "@/content/site";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { InlineText } from "@/components/InlineText";
 import { PhoneIcon, ClockIcon, MailIcon, MapPinIcon, MapIcon } from "@/components/icons";
+import { BgSection } from "@/components/sections/BgSection";
 
 const content = getPageContent("ready-mix-concrete-contact-in-raipur");
 const h1 = resolvePageH1(content);
@@ -59,7 +60,7 @@ export default function ContactPage() {
           <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
             <PhoneIcon className="mx-auto h-9 w-9 text-secondary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">Phone Number</h3>
-            <p className="mt-3 space-x-1">
+            <p className="mt-3 space-x-1 text-[20px]">
               <a href={site.phoneHref} className="text-ink hover:text-primary">
                 {site.phoneDisplay}
               </a>
@@ -72,12 +73,12 @@ export default function ContactPage() {
           <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
             <ClockIcon className="mx-auto h-9 w-9 text-secondary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">Working Hour</h3>
-            <p className="mt-3 text-ink">We Are Open 24*7</p>
+            <p className="mt-3 text-[20px] text-ink">We Are Open 24*7</p>
           </div>
           <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
             <MailIcon className="mx-auto h-9 w-9 text-secondary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">Office Email</h3>
-            <p className="mt-3 space-x-1">
+            <p className="mt-3 space-x-1 text-[20px]">
               {site.emails.map((email, i) => (
                 <span key={email.href}>
                   {i > 0 && <span className="text-grey-2">· </span>}
@@ -112,7 +113,7 @@ export default function ContactPage() {
       {/* Plain light-grey section on the original — no photo background at
           all here (confirmed against the screenshot), unlike Home's
           contact-details block. */}
-      <section className="bg-[#f5f5f5] py-12 md:py-16">
+      <BgSection image="/images/bg/contact-details.webp" overlayOpacity={0} className="py-12 md:py-16">
         <div className="container-content grid gap-10 lg:grid-cols-2">
           <div>
             <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">
@@ -136,7 +137,7 @@ export default function ContactPage() {
             <source src="/videos/ceo-vinit.mp4" type="video/mp4" />
           </video>
         </div>
-      </section>
+      </BgSection>
     </>
   );
 }

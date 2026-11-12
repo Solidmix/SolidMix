@@ -45,7 +45,7 @@ export function ServicesCarousel() {
               height={72}
               className="h-16 w-16 object-contain"
             />
-            <h3 className="mt-5 text-[18.72px] font-semibold text-primary">{card.title}</h3>
+            <h3 className="mt-5 text-[28px] font-semibold text-primary">{card.title}</h3>
             <p className="mt-3 text-sm leading-relaxed text-grey">{card.body}</p>
           </article>
         ))}

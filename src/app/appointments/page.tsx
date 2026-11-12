@@ -31,9 +31,9 @@ export default function AppointmentsPage() {
           <h2 className="text-center text-[28px] font-semibold text-primary md:text-[40px]">
             Our Blogs &amp; News
           </h2>
-          <p className="mt-2 text-center text-grey">Insights, Updates, and Industry Stories</p>
+          <p className="mt-2 text-center text-[20px] text-primary">Insights, Updates, and Industry Stories</p>
           <div className="mt-8">
-            <PostGrid posts={latestPosts} />
+            <PostGrid posts={latestPosts} excerptColor="#777777" />
           </div>
         </div>
       </section>

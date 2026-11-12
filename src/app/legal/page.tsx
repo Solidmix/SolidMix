@@ -298,7 +298,7 @@ export default function LegalPage() {
       </section>
 
       {/* Team */}
-      <section className="bg-tint-cyan-2/40 py-14 text-center">
+      <section className="bg-tint-cyan-2/40 pb-14 pt-20 text-center">
         <div className="container-content max-w-3xl">
           {galleryHeading && (
             <p className="text-[20px] font-semibold text-secondary">{galleryHeading.text}</p>
