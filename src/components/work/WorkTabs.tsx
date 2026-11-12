@@ -72,7 +72,7 @@ export function WorkTabs({ panels }: { panels: WorkPanel[] }) {
             />
           </div>
           <h2 className="mt-8 text-[28px] font-semibold text-secondary">{panel.heading}</h2>
-          <p className="mt-4 leading-relaxed text-grey">{panel.intro}</p>
+          <p className="mt-4 text-[20px] leading-relaxed text-grey">{panel.intro}</p>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             {panel.stats.map((s) => {
               const Icon = STAT_ICONS[s.title] ?? ShieldIcon;

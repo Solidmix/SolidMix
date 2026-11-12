@@ -59,7 +59,7 @@ export default function ContactPage() {
           <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
             <PhoneIcon className="mx-auto h-9 w-9 text-secondary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">Phone Number</h3>
-            <p className="mt-3 space-x-1">
+            <p className="mt-3 space-x-1 text-[20px]">
               <a href={site.phoneHref} className="text-ink hover:text-primary">
                 {site.phoneDisplay}
               </a>
@@ -72,12 +72,12 @@ export default function ContactPage() {
           <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
             <ClockIcon className="mx-auto h-9 w-9 text-secondary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">Working Hour</h3>
-            <p className="mt-3 text-ink">We Are Open 24*7</p>
+            <p className="mt-3 text-[20px] text-ink">We Are Open 24*7</p>
           </div>
           <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
             <MailIcon className="mx-auto h-9 w-9 text-secondary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">Office Email</h3>
-            <p className="mt-3 space-x-1">
+            <p className="mt-3 space-x-1 text-[20px]">
               {site.emails.map((email, i) => (
                 <span key={email.href}>
                   {i > 0 && <span className="text-grey-2">· </span>}

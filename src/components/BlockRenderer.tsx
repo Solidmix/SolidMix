@@ -11,14 +11,20 @@ export function BlockRenderer({
   blocks,
   faqQuestionColor,
   faqMode = "accordion",
+  noFaq = false,
 }: {
   blocks: Block[];
   faqQuestionColor?: "ink" | "primary" | "secondary";
   // Blog posts show their "Q: ... / A: ..." pairs as plain always-open text,
   // not a collapsible widget — every other page keeps the accordion.
   faqMode?: "accordion" | "plain";
+  // Some headings end in "?" without being real Q&A content (e.g. privacy
+  // policy's "What Are Cookies?", "Need Help?") — segmentBlocks would still
+  // sweep them into a one-item FAQ accordion. noFaq bypasses that sweep
+  // entirely and renders every block as plain content.
+  noFaq?: boolean;
 }) {
-  const segments = segmentBlocks(blocks);
+  const segments = noFaq ? [{ kind: "blocks" as const, blocks }] : segmentBlocks(blocks);
   return (
     <>
       {segments.map((seg, i) => {

@@ -59,7 +59,7 @@ export default function OurWorkPage() {
       <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Our Work" }])]} />
       <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Our Work" }]} />
       <section className="py-12 md:py-16">
-        <div className="container-content max-w-2xl text-center">
+        <div className="container-content max-w-2xl text-center [&_p]:text-[20px]">
           <BlockRenderer blocks={intro} />
         </div>
         <div className="container-content mt-10">
