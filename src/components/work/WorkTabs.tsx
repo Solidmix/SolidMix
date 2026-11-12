@@ -50,7 +50,7 @@ export function WorkTabs({ panels }: { panels: WorkPanel[] }) {
               type="button"
               onClick={() => setActive(p.key)}
               aria-pressed={isActive}
-              className={`rounded-md px-8 py-4 text-base font-semibold transition-colors ${
+              className={`rounded-md px-8 py-4 text-base font-normal transition-colors ${
                 isActive ? "bg-primary text-white" : "bg-secondary text-white hover:bg-secondary/90"
               }`}
             >
@@ -80,9 +80,9 @@ export function WorkTabs({ panels }: { panels: WorkPanel[] }) {
                 <div key={s.title} className="rounded-lg border border-grey-line bg-white p-6">
                   <div className="flex items-center gap-3 text-secondary">
                     <Icon className="h-9 w-9 flex-shrink-0" />
-                    <h3 className="text-[28px] font-semibold text-secondary">{s.title}</h3>
+                    <h3 className="text-[18px] font-semibold text-secondary sm:text-[28px]">{s.title}</h3>
                   </div>
-                  <p className="mt-2 text-sm leading-relaxed text-grey">{s.body}</p>
+                  <p className="mt-2 text-[20px] leading-relaxed text-grey">{s.body}</p>
                 </div>
               );
             })}

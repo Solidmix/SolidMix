@@ -39,7 +39,7 @@ export function CardGrid({
             </div>
           )}
           <div className="p-5">
-            <h3 className="text-[28px] font-semibold text-primary">
+            <h3 className="text-[20px] font-semibold text-primary sm:text-[28px]">
               {card.titleHref ? (
                 <Link href={card.titleHref} className="hover:underline">
                   {card.title}

@@ -47,7 +47,7 @@ export default function HomePage() {
       {/* Hero heading */}
       <section className="bg-gradient-to-b from-tint-cyan-2 to-white">
         <div className="container-content py-10 text-center md:py-14">
-          <h1 className="text-[25px] font-semibold leading-tight text-primary lg:text-[2.5rem]">
+          <h1 className="text-[25px] font-semibold leading-tight text-primary lg:text-[32px]">
             {hero.h1}
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg text-ink">{hero.subtitle}</p>
@@ -101,9 +101,9 @@ export default function HomePage() {
             <h2 className="text-center text-[28px] font-semibold text-primary md:text-[40px]">
               {workingHours.heading}
             </h2>
-            {/* Plain markdown-style table on the original (no theme classes):
-                default border is grey at 50% opacity, odd rows get a faint
-                grey wash (hsla(0,0%,50%,.071)) — not a solid grey fill. */}
+            {/* Plain white table on the original — no zebra striping (a
+                round-4 fix wrongly added a grey wash here; re-measured as
+                solid white rows). Border stays the grey-at-50%-opacity. */}
             <table className="mt-8 w-full border-collapse overflow-hidden rounded-lg border border-[rgba(128,128,128,0.5)] bg-white text-left">
               <thead>
                 <tr>
@@ -119,7 +119,7 @@ export default function HomePage() {
               </thead>
               <tbody>
                 {workingHours.rows.map(([day, hours]) => (
-                  <tr key={day} className="odd:bg-[rgba(128,128,128,0.071)]">
+                  <tr key={day}>
                     <td className="border-b border-[rgba(128,128,128,0.5)] px-6 py-4 text-[14.4px] text-grey">
                       {day}
                     </td>
@@ -143,7 +143,7 @@ export default function HomePage() {
           </p>
           <a
             href={buildTogether.cta.href}
-            className="mt-8 inline-block rounded-md bg-primary px-8 py-4 text-[15px] font-medium text-white transition-colors hover:bg-primary/90"
+            className="mt-8 inline-block rounded-md bg-primary px-8 py-4 text-xl font-medium text-white transition-colors hover:bg-primary/90"
           >
             {buildTogether.cta.label}
           </a>

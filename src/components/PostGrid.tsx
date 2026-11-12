@@ -2,17 +2,24 @@ import Image from "next/image";
 import Link from "next/link";
 import type { PostSummary } from "@/lib/posts";
 
-// 24px on the blog index / Appointments teaser, 32px on category pages
-// (measured from the original: card titles are bigger there). Category pages
-// also measure a distinct #333333 excerpt colour (vs the usual body ink).
+// 24px on the Appointments teaser, 32px on category pages (measured from the
+// original: card titles are bigger there). Category pages also measure a
+// distinct #333333 excerpt colour (vs the usual body ink). The blog index
+// measures a different responsive pair (18px mobile / 32px desktop) plus its
+// own excerpt colour and "Read More »" weight/colour, passed via
+// titleClassName/readMoreClassName since they don't fit the flat px prop.
 export function PostGrid({
   posts,
   titleSize = "24px",
+  titleClassName,
   excerptColor,
+  readMoreClassName,
 }: {
   posts: PostSummary[];
   titleSize?: "24px" | "32px";
+  titleClassName?: string;
   excerptColor?: string;
+  readMoreClassName?: string;
 }) {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -32,8 +39,8 @@ export function PostGrid({
           </Link>
           <div className="p-5">
             <h3
-              className="font-medium text-ink"
-              style={{ fontSize: titleSize }}
+              className={titleClassName ?? "font-medium text-ink"}
+              style={titleClassName ? undefined : { fontSize: titleSize }}
             >
               <Link href={`/${post.slug}/`} className="hover:text-primary hover:underline">
                 {post.h1}
@@ -47,7 +54,7 @@ export function PostGrid({
             </p>
             <Link
               href={`/${post.slug}/`}
-              className="mt-3 inline-block text-sm font-medium text-secondary hover:underline"
+              className={readMoreClassName ?? "mt-3 inline-block text-sm font-medium text-secondary hover:underline"}
             >
               Read More »
             </Link>

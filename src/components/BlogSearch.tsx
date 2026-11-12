@@ -17,6 +17,9 @@ export function BlogSearch({ h1, posts }: { h1: string; posts: PostSummary[] }) 
 
   return (
     <>
+      {/* Purple-to-teal gradient banner, confirmed against the original
+          screenshot — centered white H1/subtitle, white search box inside
+          the banner, post grid in a white panel overlapping the bottom. */}
       <section className="overflow-x-clip bg-gradient-to-br from-primary to-secondary pb-28 pt-16 text-center text-white md:pb-36 md:pt-20">
         <div className="container-content">
           <h1 className="text-4xl font-semibold md:text-5xl">{h1}</h1>
@@ -45,7 +48,12 @@ export function BlogSearch({ h1, posts }: { h1: string; posts: PostSummary[] }) 
             {filtered.length === 0 ? (
               <p className="py-10 text-center text-grey">No posts match “{query}”.</p>
             ) : (
-              <PostGrid posts={filtered} />
+              <PostGrid
+                posts={filtered}
+                titleClassName="text-[18px] font-medium text-ink md:text-[32px]"
+                excerptColor="#777777"
+                readMoreClassName="mt-3 inline-block text-sm font-normal text-[#cc3366] hover:underline"
+              />
             )}
           </div>
         </div>

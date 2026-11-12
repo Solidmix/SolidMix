@@ -20,7 +20,7 @@ function iconFor(title: string) {
   return ShieldIcon; // quality / supervision / fallback
 }
 
-export function ServiceIconCards({ items }: { items: { title: string }[] }) {
+export function ServiceIconCards({ items }: { items: { title: string; body?: string }[] }) {
   return (
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => {
@@ -31,7 +31,8 @@ export function ServiceIconCards({ items }: { items: { title: string }[] }) {
             className="hover-bob flex flex-col items-center gap-4 bg-secondary px-6 py-10 text-center"
           >
             <Icon className="h-12 w-12 text-white" />
-            <h3 className="text-[24px] font-semibold text-white md:text-[28px]">{item.title}</h3>
+            <h3 className="text-[29px] font-semibold text-white md:text-[28px]">{item.title}</h3>
+            {item.body && <p className="text-sm text-white/90">{item.body}</p>}
           </div>
         );
       })}

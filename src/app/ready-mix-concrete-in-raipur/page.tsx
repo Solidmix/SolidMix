@@ -72,8 +72,8 @@ export default function ProductsPage() {
                   href={cta.href}
                   className={
                     i === 0
-                      ? "inline-block rounded-md bg-primary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-primary/90"
-                      : "inline-block rounded-md bg-secondary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
+                      ? "inline-block rounded-md bg-secondary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
+                      : "inline-block rounded-md bg-primary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-primary/90"
                   }
                 >
                   {cta.text}
@@ -84,11 +84,14 @@ export default function ProductsPage() {
         </div>
       </BgSection>
 
-      <section className="py-12 md:py-16 text-center">
-        <div className="container-content max-w-3xl">
+      {/* Dark page-hero-texture background on the original (same image used
+          behind every inner-page title banner, overlay 0.62 per the
+          captured CSS) — white centred text, not a plain light section. */}
+      <BgSection image="/images/bg/stands-apart.webp" overlayOpacity={0.62} className="py-12 text-center text-white md:py-16">
+        <div className="container-content max-w-3xl [&_h2]:text-white [&_h3]:text-white [&_p]:text-white/90">
           <BlockRenderer blocks={whyBlocks} />
         </div>
-      </section>
+      </BgSection>
 
       <section className="pb-12 md:pb-16">
         <div className="container-content max-w-3xl text-center">

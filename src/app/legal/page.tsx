@@ -7,6 +7,7 @@ import {
   resolvePageH1,
   extractCards,
   getFaqItems,
+  stripBoldMarkers,
   type ImageBlock,
   type HeadingBlock,
   type ParaBlock,
@@ -32,11 +33,15 @@ const blocks = stripChrome(content.blocks, h1);
 // FAQ answer — drop any zero-answer item so it never reaches FAQPage JSON-LD.
 const faqs = getFaqItems(blocks).filter((f) => f.a.trim().length > 0);
 
+// Compares against the bold-marker-stripped text: a heading like
+// "Why [[b]]RMC[[/b]]?" (bold-enriched mid-phrase) must still match "Why RMC?".
 function findHeading(text: string) {
-  return blocks.find((b): b is HeadingBlock => b.type === "heading" && b.text === text);
+  return blocks.find(
+    (b): b is HeadingBlock => b.type === "heading" && stripBoldMarkers(b.text) === text,
+  );
 }
 function indexOfHeading(text: string) {
-  return blocks.findIndex((b) => b.type === "heading" && b.text === text);
+  return blocks.findIndex((b) => b.type === "heading" && stripBoldMarkers(b.text) === text);
 }
 function nextOfType<T>(fromIndex: number, type: string): T | undefined {
   for (let i = fromIndex + 1; i < blocks.length; i++) {
@@ -70,6 +75,9 @@ const foundersRole = nextOfType<ParaBlock>(foundersHeadingIdx, "p");
 const foundersCta = blocks.find(
   (b): b is LinkBlock => b.type === "link" && b.text === "Get In Touch",
 );
+const elevateProfileCta = blocks.find(
+  (b): b is LinkBlock => b.type === "link" && b.text === "Elevate Profile",
+);
 
 // CTA 1
 const cta1HeadingIdx = indexOfHeading("Trusted Concrete Solutions, Timely Delivery, Strong Foundation!");
@@ -99,9 +107,7 @@ const teamMembers: TeamMember[] = teamCards.map((c) => ({
 // Services
 const cta2HeadingIdx = indexOfHeading("Build with Strength, Trust & Speed!");
 const servicesHeading = blocks[servicesHeadingIdx] as HeadingBlock;
-const serviceItems = blocks
-  .slice(servicesHeadingIdx + 1, cta2HeadingIdx)
-  .filter((b): b is HeadingBlock => b.type === "heading" && b.level === 3);
+const serviceItems = extractCards(blocks.slice(servicesHeadingIdx + 1, cta2HeadingIdx));
 
 // CTA 2
 const cta2Heading = blocks[cta2HeadingIdx] as HeadingBlock;
@@ -152,7 +158,7 @@ export default function LegalPage() {
             }
           >
             {coreFeaturesHeading && (
-              <p className="font-semibold text-primary">{coreFeaturesHeading.text}</p>
+              <p className="text-[20px] font-semibold text-primary">{coreFeaturesHeading.text}</p>
             )}
             {whyRmcHeading && (
               <h2 className="mt-2 text-[28px] font-semibold text-ink md:text-[40px]">
@@ -211,25 +217,33 @@ export default function LegalPage() {
                     image
                   );
                 })}
+                {elevateProfileCta && (
+                  <Link
+                    href={elevateProfileCta.href}
+                    className="mt-2 inline-block rounded-md bg-white px-6 py-3 text-center text-xl font-medium text-primary transition-colors hover:bg-white/90"
+                  >
+                    {elevateProfileCta.text}
+                  </Link>
+                )}
               </div>
             }
             contentClassName="bg-secondary p-6 text-white md:p-10"
           >
             <h2 className="text-center text-[28px] font-semibold md:text-[40px]">About Us</h2>
             {aboutPara1 && (
-              <p className="mt-4 text-[24px] leading-relaxed text-white/90">
+              <p className="mt-4 text-[18px] leading-relaxed text-white/90 md:text-[24px]">
                 <InlineText text={aboutPara1.text} />
               </p>
             )}
             {aboutPara2 && (
-              <p className="mt-4 text-[24px] leading-relaxed text-white/90">
+              <p className="mt-4 text-[18px] leading-relaxed text-white/90 md:text-[24px]">
                 <InlineText text={aboutPara2.text} />
               </p>
             )}
             {aboutChecklist && (
               <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {aboutChecklist.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2 font-medium">
+                  <li key={item} className="flex items-center gap-2 font-normal text-[#333333]">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
                       <path d="m5 13 4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
@@ -240,7 +254,7 @@ export default function LegalPage() {
             )}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 border-t border-white/20 pt-6">
               <div>
-                <p className="text-[30px] font-semibold">
+                <p className="text-[22px] font-semibold md:text-[30px]">
                   <InlineText text={foundersHeading.text} />
                 </p>
                 {foundersRole && <p className="text-sm text-white/80">{foundersRole.text}</p>}
@@ -286,9 +300,13 @@ export default function LegalPage() {
       {/* Team */}
       <section className="bg-tint-cyan-2/40 py-14 text-center">
         <div className="container-content max-w-3xl">
-          {galleryHeading && <p className="font-semibold text-secondary">{galleryHeading.text}</p>}
+          {galleryHeading && (
+            <p className="text-[20px] font-semibold text-secondary">{galleryHeading.text}</p>
+          )}
           <h2 className="mt-2 text-[28px] font-semibold text-primary md:text-[40px]">{teamHeading.text}</h2>
-          {teamIntroPara && <p className="mt-4 leading-relaxed text-grey">{teamIntroPara.text}</p>}
+          {teamIntroPara && (
+            <p className="mt-4 text-[20px] leading-relaxed text-grey">{teamIntroPara.text}</p>
+          )}
         </div>
         <div className="container-content mt-10 text-left">
           <TeamGrid members={teamMembers} />
@@ -301,7 +319,7 @@ export default function LegalPage() {
           <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">{servicesHeading.text}</h2>
         </div>
         <div className="container-content mt-8 text-left">
-          <ServiceIconCards items={serviceItems.map((h) => ({ title: h.text }))} />
+          <ServiceIconCards items={serviceItems.map((c) => ({ title: c.title, body: c.body }))} />
         </div>
       </section>
 
@@ -331,7 +349,7 @@ export default function LegalPage() {
               )
             }
           >
-            <p className="font-semibold text-secondary">Just a Consultancy</p>
+            <p className="text-[20px] font-semibold text-secondary">Just a Consultancy</p>
             {consultHeading && (
               <h2 className="mt-2 text-[28px] font-semibold text-ink md:text-[40px]">{consultHeading.text}</h2>
             )}
