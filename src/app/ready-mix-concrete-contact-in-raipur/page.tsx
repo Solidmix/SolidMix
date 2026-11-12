@@ -7,6 +7,7 @@ import { site } from "@/content/site";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { InlineText } from "@/components/InlineText";
 import { PhoneIcon, ClockIcon, MailIcon, MapPinIcon, MapIcon } from "@/components/icons";
+import { BgSection } from "@/components/sections/BgSection";
 
 const content = getPageContent("ready-mix-concrete-contact-in-raipur");
 const h1 = resolvePageH1(content);
@@ -112,7 +113,7 @@ export default function ContactPage() {
       {/* Plain light-grey section on the original — no photo background at
           all here (confirmed against the screenshot), unlike Home's
           contact-details block. */}
-      <section className="bg-[#f5f5f5] py-12 md:py-16">
+      <BgSection image="/images/bg/contact-details.webp" overlayOpacity={0} className="py-12 md:py-16">
         <div className="container-content grid gap-10 lg:grid-cols-2">
           <div>
             <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">
@@ -136,7 +137,7 @@ export default function ContactPage() {
             <source src="/videos/ceo-vinit.mp4" type="video/mp4" />
           </video>
         </div>
-      </section>
+      </BgSection>
     </>
   );
 }

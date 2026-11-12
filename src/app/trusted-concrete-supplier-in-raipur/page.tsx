@@ -158,7 +158,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="bg-tint-cyan-2/40 py-14">
+      <section className="bg-tint-cyan-2/40 pb-14 pt-20">
         <div className="container-content max-w-3xl text-center">
           {teamEyebrow && <p className="font-semibold text-secondary">{teamEyebrow.text}</p>}
           {teamH2 && (

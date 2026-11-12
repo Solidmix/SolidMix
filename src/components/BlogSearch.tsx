@@ -23,7 +23,7 @@ export function BlogSearch({ h1, posts }: { h1: string; posts: PostSummary[] }) 
       <section className="overflow-x-clip bg-gradient-to-br from-primary to-secondary pb-28 pt-16 text-center text-white md:pb-36 md:pt-20">
         <div className="container-content">
           <h1 className="text-4xl font-semibold md:text-5xl">{h1}</h1>
-          <p className="mt-4 text-lg">Insights, Updates, and Industry Stories</p>
+          <p className="mt-8 text-lg">Insights, Updates, and Industry Stories</p>
           <form
             onSubmit={(e) => e.preventDefault()}
             className="mx-auto mt-8 flex max-w-xl overflow-hidden rounded-md bg-white shadow-lg"

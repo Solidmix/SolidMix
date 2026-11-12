@@ -23,7 +23,7 @@ export function CtaBanner({
 }) {
   return (
     <section
-      className="relative overflow-hidden bg-[#5f5f5f] bg-cover bg-center py-16 text-center text-white"
+      className="relative overflow-hidden bg-[#5f5f5f] bg-cover bg-center py-20 text-center text-white md:py-28"
       style={bgImage ? { backgroundImage: `url(${bgImage})` } : undefined}
     >
       {bgImage && (

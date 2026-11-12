@@ -55,14 +55,14 @@ export default function HomePage() {
       </section>
 
       {/* About / Mission / Vision tabs */}
-      <section className="py-14">
+      <section className="pb-20 pt-14">
         <div className="container-content">
           <AboutTabs />
         </div>
       </section>
 
       {/* Quality Works */}
-      <BgSection image="/images/bg/quality-works.webp" overlayOpacity={0.8} className="py-16 text-white">
+      <BgSection image="/images/bg/quality-works.webp" overlayOpacity={0.8} className="pb-16 pt-24 text-white">
         <div className="container-content text-center">
           <p className="font-semibold text-primary">{qualityWorks.eyebrow}</p>
           <h2 className="mt-2 text-[28px] font-semibold text-primary md:text-[40px]">
@@ -73,7 +73,7 @@ export default function HomePage() {
       </BgSection>
 
       {/* Services carousel */}
-      <section className="py-16">
+      <section className="pb-16 pt-24">
         <div className="container-content text-center">
           <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">{servicesCarousel.heading}</h2>
           <p className="mx-auto mt-4 max-w-2xl text-grey">{servicesCarousel.intro}</p>
@@ -84,7 +84,7 @@ export default function HomePage() {
       </section>
 
       {/* Why Raipur's Contractors Choose + Working hours */}
-      <section className="bg-tint-cyan-2/50 py-16">
+      <section className="bg-tint-cyan-2/50 pb-16 pt-20">
         <div className="container-content grid gap-12 lg:grid-cols-2">
           <div>
             <h2 className="text-center text-[28px] font-semibold text-primary md:text-[40px]">{whyChoose.heading}</h2>
@@ -135,7 +135,7 @@ export default function HomePage() {
       </section>
 
       {/* Let's Build Stronger Together */}
-      <BgSection image="/images/bg/build-together.webp" overlayOpacity={0.88} className="py-16 text-center text-white">
+      <BgSection image="/images/bg/build-together.webp" overlayOpacity={0.88} className="pb-16 pt-8 text-center text-white">
         <div className="container-content">
           <h2 className="text-[35px] font-semibold lg:text-[60px]">{buildTogether.heading}</h2>
           <p className="mx-auto mt-4 max-w-2xl text-white/90">
