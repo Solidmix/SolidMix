@@ -88,10 +88,6 @@ const backgroundImages = [
   ["Screenshot_2.webp", "cta-blog.webp"],
   ["WhatsApp-Image-2025-04-05-at-15.08.02.webp", "strong-concrete.webp"],
   ["sustanibilityBgImg.webp", "contact-details.webp"],
-  // parity-r6: "Why SolidMix Ready Mix Concrete Stands Apart" on the product
-  // list — same page-hero texture image, overlay 0.62 per the captured CSS
-  // (--overlay-opacity:0.62 on elementor-element-939199a).
-  ["Frame-283-2-1-e1755338174321.webp", "stands-apart.webp"],
 ];
 
 // B2: product/CEO videos with real extracted poster frames.

@@ -13,11 +13,15 @@ const QUESTION_COLOR = {
 
 // Question colour varies per page on the original (measured per-page in
 // .local-tools/parity); default "ink" matches blog posts and product pages.
+// variant "filled" is the solid-teal boxed accordion used on the product
+// list's dark FAQ section (confirmed against the original screenshot) —
+// "bordered" is the plain white/grey-border style used everywhere else.
 export function FaqAccordion({
   items,
   defaultOpen = 0,
   questionColor = "ink",
   firstAnswerColor,
+  variant = "bordered",
 }: {
   items: FaqItem[];
   defaultOpen?: number;
@@ -26,8 +30,45 @@ export function FaqAccordion({
   // original, unlike every other answer on the page — a one-off override
   // rather than a new shared default.
   firstAnswerColor?: keyof typeof QUESTION_COLOR;
+  variant?: "bordered" | "filled";
 }) {
   const [open, setOpen] = useState<number | null>(defaultOpen);
+
+  if (variant === "filled") {
+    return (
+      <div className="space-y-3">
+        {items.map((item, i) => {
+          const isOpen = open === i;
+          return (
+            <div key={item.q} className="overflow-hidden rounded-lg bg-secondary">
+              <h3>
+                <button
+                  type="button"
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center gap-3 px-5 py-4 text-left font-semibold text-white"
+                >
+                  <span aria-hidden="true" className="text-xl leading-none text-white">
+                    {isOpen ? "−" : "+"}
+                  </span>
+                  <span className="text-[20px] font-semibold text-white">
+                    <InlineText text={item.q} />
+                  </span>
+                </button>
+              </h3>
+              {isOpen && (
+                <div className="bg-[#1e1e1e] px-5 pb-5 pl-12 text-white/90">
+                  <p>
+                    <InlineText text={item.a} />
+                  </p>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
 
   return (
     <div className="divide-y divide-grey-line rounded-lg border border-grey-line">

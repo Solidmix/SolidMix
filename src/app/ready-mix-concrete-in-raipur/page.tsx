@@ -5,6 +5,7 @@ import {
   stripChrome,
   resolvePageH1,
   extractCards,
+  getFaqItems,
   type HeadingBlock,
   type ParaBlock,
   type LinkBlock,
@@ -12,10 +13,12 @@ import {
 import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { CardGrid } from "@/components/CardGrid";
+import { FaqAccordion } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, breadcrumbLd } from "@/lib/seo";
 import { PRODUCTS_BASE } from "@/content/site";
 import { BgSection } from "@/components/sections/BgSection";
+import { FlameIcon, TruckIcon, DropletIcon } from "@/components/icons";
 
 const content = getPageContent("ready-mix-concrete-in-raipur");
 const h1 = resolvePageH1(content);
@@ -35,14 +38,22 @@ const ctaHeading1 = blocks[cardsEnd] as HeadingBlock;
 const ctaHeading2 = blocks[cardsEnd + 1] as HeadingBlock;
 const ctaLinks = blocks.slice(cardsEnd + 2, cardsEnd + 4).filter((b): b is LinkBlock => b.type === "link");
 
-const whyStart = blocks.findIndex(
+// "Why SolidMix Ready Mix Concrete Stands Apart" — a WHITE section (confirmed
+// against the original screenshot, not the dark banner round 6 guessed from
+// CSS): eyebrow, teal H2, centred intro, then 3 purple feature cards.
+const whyEyebrowIdx = blocks.findIndex(
   (b) => b.type === "heading" && b.text === "Why SolidMix Ready Mix Concrete Stands Apart",
 );
+const whyEyebrow = blocks[whyEyebrowIdx] as HeadingBlock;
+const whyHeading = blocks[whyEyebrowIdx + 1] as HeadingBlock;
+const whyIntro = blocks[whyEyebrowIdx + 2] as ParaBlock;
 const faqStart = blocks.findIndex((b) => b.type === "heading" && b.text === "Frequently asked question");
-const whyBlocks = blocks.slice(whyStart, faqStart);
+const FEATURE_ICONS = [FlameIcon, TruckIcon, DropletIcon];
+const whyFeatures = extractCards(blocks.slice(whyEyebrowIdx + 3, faqStart)).filter((c) => c.image === undefined);
 const faqHeading = blocks[faqStart] as HeadingBlock;
 const faqIntro = blocks[faqStart + 1] as ParaBlock | undefined;
 const faqRest = blocks.slice(faqStart + 2);
+const faqItems = getFaqItems(faqRest);
 
 export const metadata: Metadata = pageMetadata(content, `${PRODUCTS_BASE}/`, cards[0]?.image?.src);
 
@@ -66,15 +77,11 @@ export default function ProductsPage() {
           <p className="mt-4 leading-relaxed text-white/90">{ctaHeading2.text}</p>
           {ctaLinks.length > 0 && (
             <div className="mt-7 flex flex-wrap items-center justify-center gap-4">
-              {ctaLinks.map((cta, i) => (
+              {ctaLinks.map((cta) => (
                 <Link
                   key={cta.href + cta.text}
                   href={cta.href}
-                  className={
-                    i === 0
-                      ? "inline-block rounded-md bg-secondary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
-                      : "inline-block rounded-md bg-primary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-primary/90"
-                  }
+                  className="inline-block rounded-md bg-secondary px-8 py-3.5 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
                 >
                   {cta.text}
                 </Link>
@@ -84,22 +91,37 @@ export default function ProductsPage() {
         </div>
       </BgSection>
 
-      {/* Dark page-hero-texture background on the original (same image used
-          behind every inner-page title banner, overlay 0.62 per the
-          captured CSS) — white centred text, not a plain light section. */}
-      <BgSection image="/images/bg/stands-apart.webp" overlayOpacity={0.62} className="py-12 text-center text-white md:py-16">
-        <div className="container-content max-w-3xl [&_h2]:text-white [&_h3]:text-white [&_p]:text-white/90">
-          <BlockRenderer blocks={whyBlocks} />
+      {/* White section, confirmed against the original screenshot: pink
+          eyebrow, teal H2, centred intro, 3 purple feature cards. */}
+      <section className="py-12 text-center md:py-16">
+        <div className="container-content max-w-3xl">
+          <p className="text-[28px] font-semibold text-primary">{whyEyebrow.text}</p>
+          <h2 className="mt-2 text-[32px] font-semibold text-secondary md:text-[56px]">{whyHeading.text}</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-[20px] leading-relaxed text-[#292929]">{whyIntro.text}</p>
         </div>
-      </BgSection>
+        <div className="container-content mt-10 grid grid-cols-1 gap-5 text-left lg:grid-cols-3">
+          {whyFeatures.map((f, i) => {
+            const Icon = FEATURE_ICONS[i] ?? FlameIcon;
+            return (
+              <div key={f.title} className="rounded-lg bg-primary p-7 text-white">
+                <Icon className="h-9 w-9 text-white" />
+                <h3 className="mt-4 text-[22px] font-semibold text-white">{f.title}</h3>
+                {f.body && <p className="mt-2 leading-relaxed text-white/90">{f.body}</p>}
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
-      <section className="pb-12 md:pb-16">
+      {/* Dark FAQ section with teal filled accordion boxes — confirmed
+          against the original screenshot, not a plain white section. */}
+      <section className="bg-[#1e1e1e] py-12 md:py-16">
         <div className="container-content max-w-3xl text-center">
           <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">{faqHeading.text}</h2>
-          {faqIntro && <p className="mt-4 leading-relaxed text-grey">{faqIntro.text}</p>}
+          {faqIntro && <p className="mt-4 leading-relaxed text-white/80">{faqIntro.text}</p>}
         </div>
         <div className="container-content mt-8 max-w-3xl">
-          <BlockRenderer blocks={faqRest} />
+          <FaqAccordion items={faqItems} variant="filled" />
         </div>
       </section>
     </>

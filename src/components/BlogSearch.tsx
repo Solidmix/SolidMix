@@ -52,7 +52,7 @@ export function BlogSearch({ h1, posts }: { h1: string; posts: PostSummary[] }) 
                 posts={filtered}
                 titleClassName="text-[18px] font-medium text-ink md:text-[32px]"
                 excerptColor="#777777"
-                readMoreClassName="mt-3 inline-block text-sm font-normal text-[#cc3366] hover:underline"
+                readMoreClassName="mt-3 inline-block text-sm font-normal text-secondary hover:underline"
               />
             )}
           </div>

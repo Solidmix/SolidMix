@@ -154,6 +154,17 @@ export function MixerIcon({ className = "h-10 w-10" }: IconProps) {
   );
 }
 
+export function FlameIcon({ className = "h-10 w-10" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className} aria-hidden="true">
+      <path
+        d="M12 2c1.5 3 4.5 5.5 4.5 9.5a4.5 4.5 0 0 1-9 0c0-1.3.5-2.2 1.2-3.1.2 1.3 1 2 1.8 2 .9 0 1.5-.7 1.3-1.8-.3-1.6-.8-2.7.2-4.2.6-.9 1.3-1.4 0-2.4Z"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function PdfIcon({ className = "h-10 w-10" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className} aria-hidden="true">

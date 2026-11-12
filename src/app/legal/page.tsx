@@ -220,7 +220,7 @@ export default function LegalPage() {
                 {elevateProfileCta && (
                   <Link
                     href={elevateProfileCta.href}
-                    className="mt-2 inline-block rounded-md bg-white px-6 py-3 text-center text-xl font-medium text-primary transition-colors hover:bg-white/90"
+                    className="mt-2 inline-block rounded-md bg-secondary px-6 py-3 text-center text-xl font-medium text-white transition-colors hover:bg-secondary/90"
                   >
                     {elevateProfileCta.text}
                   </Link>
@@ -243,7 +243,7 @@ export default function LegalPage() {
             {aboutChecklist && (
               <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {aboutChecklist.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2 font-normal text-[#333333]">
+                  <li key={item} className="flex items-center gap-2 font-medium text-white">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
                       <path d="m5 13 4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
