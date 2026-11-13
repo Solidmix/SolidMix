@@ -24,7 +24,16 @@ export default function SafetyPage() {
       <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Safety" }]} />
       <section className="py-12 md:py-16">
         <div className="container-content max-w-3xl">
-          <BlockRenderer blocks={blocks} />
+          {/* These two level-2 headings are plain inline <h2> in the
+              original (inside a text-editor widget, not a heading widget),
+              so they inherit the page's dark body colour, not primary. */}
+          <BlockRenderer
+            blocks={blocks}
+            darkHeadings={[
+              "Safety – Commitment to Safe Construction & Concrete Operations",
+              "Our Modern Safety Practices",
+            ]}
+          />
         </div>
       </section>
     </>

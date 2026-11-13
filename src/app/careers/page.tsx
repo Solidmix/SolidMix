@@ -14,7 +14,22 @@ const withoutForm = formStart === -1 ? stripped : stripped.slice(0, formStart);
 // "Career options at Solidmixrmc" measures 40px desktop / 24px mobile,
 // unlike BlockRenderer's generic (28px flat) heading default.
 const introHeading = withoutForm.find((b): b is HeadingBlock => b.type === "heading");
-const bodyBlocks = introHeading ? withoutForm.filter((b) => b !== introHeading) : withoutForm;
+const afterIntro = introHeading ? withoutForm.filter((b) => b !== introHeading) : withoutForm;
+// "Inside Elevate" / "Company Benefits" cards are hidden on every breakpoint
+// on the original (elementor-hidden-desktop/tablet/mobile) — never rendered,
+// kept in content.json only.
+const insideElevateStart = afterIntro.findIndex((b) => b.type === "heading" && b.text === "Inside Elevate");
+const insideElevateEnd =
+  insideElevateStart === -1
+    ? -1
+    : afterIntro.findIndex((b, idx) => idx > insideElevateStart && b.type === "image");
+const bodyBlocks =
+  insideElevateStart === -1
+    ? afterIntro
+    : [
+        ...afterIntro.slice(0, insideElevateStart),
+        ...afterIntro.slice(insideElevateEnd === -1 ? afterIntro.length : insideElevateEnd),
+      ];
 
 export const metadata: Metadata = pageMetadata(content, "/careers/");
 

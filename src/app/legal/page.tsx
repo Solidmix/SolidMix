@@ -328,7 +328,7 @@ export default function LegalPage() {
         heading={cta2Heading.text}
         ctas={cta2Link ? [{ label: cta2Link.text, href: cta2Link.href, variant: "white" }] : undefined}
         bgImage="/images/bg/build-together.webp"
-        bgOpacity={0.88}
+        bgOpacity={0.73}
       >
         {cta2Para && <InlineText text={cta2Para.text} />}
       </CtaBanner>

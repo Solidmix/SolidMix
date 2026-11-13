@@ -13,13 +13,13 @@ export function PageHero({ title, crumbs }: { title: string; crumbs: Crumb[] }) 
       className="overflow-x-clip bg-[#2a2a2a] bg-cover bg-center"
       style={{ backgroundImage: "linear-gradient(0deg, rgba(20,20,20,0.55), rgba(20,20,20,0.55)), url(/images/page-hero-bg.webp)" }}
     >
-      <div className="container-content grid items-center gap-6 py-14 md:py-20 lg:grid-cols-[1fr_auto]">
+      <div className="container-content grid items-center gap-6 py-14 md:py-20 lg:grid-cols-[1fr_auto] lg:py-[50px]">
         <div>
-          <h1 className="text-4xl font-semibold text-primary md:text-5xl lg:text-6xl">{title}</h1>
-          <nav aria-label="Breadcrumb" className="mt-4 text-base font-semibold text-white md:text-lg">
+          <h1 className="text-[40px] font-semibold leading-[40px] text-primary md:text-5xl lg:text-6xl">{title}</h1>
+          <nav aria-label="Breadcrumb" className="mt-4 text-base font-semibold text-white">
             {crumbs.map((c, i) => (
               <span key={i}>
-                {i > 0 && <span className="mx-2 text-white/60">/</span>}
+                {i > 0 && <span className="text-white/60">{" / "}</span>}
                 {c.href ? (
                   <Link href={c.href} className="hover:underline">
                     {c.label}
@@ -37,6 +37,7 @@ export function PageHero({ title, crumbs }: { title: string; crumbs: Crumb[] }) 
             alt="SolidMix RMC transit mixer truck"
             width={420}
             height={250}
+            priority
             className="h-auto w-48 md:w-64 lg:w-96"
           />
         </Reveal>

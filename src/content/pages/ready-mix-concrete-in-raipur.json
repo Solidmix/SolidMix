@@ -288,20 +288,45 @@
       "text": "Our FAQ section answers the most common questions about our ready mix concrete services, delivery process, pricing, order quantities, quality standards, and project support. Whether you need concrete for residential, commercial, or large construction work, you’ll find clear and useful information here. We aim to make the ordering process simple, reliable, and transparent so you can plan your project with confidence and receive high-quality concrete on time."
     },
     {
+      "type": "heading",
+      "level": 3,
+      "text": "1. What types of ready-mix concrete products does SolidMix RMC offer?"
+    },
+    {
       "type": "p",
       "text": "[SolidMix RMC](/) offers a wide range of ready-mix concrete products including high strength concrete, self-compacting concrete, lightweight concrete, eco-friendly concrete, waterproof concrete, stamped concrete, fiber-reinforced concrete, and permeable concrete solutions for different construction needs."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "2. Which concrete is best for high-rise or heavy construction projects?"
     },
     {
       "type": "p",
       "text": "High strength concrete and steel fiber concrete are best for high-rise buildings and heavy construction because they provide superior load-bearing capacity, durability, and long-term performance."
     },
     {
+      "type": "heading",
+      "level": 3,
+      "text": "3. What is self-compacting concrete and where is it used?"
+    },
+    {
       "type": "p",
       "text": "Self-compacting concrete is a highly flowable concrete that spreads easily without vibration, making it ideal for complex structures, dense reinforcement areas, bridges, and precast construction projects."
     },
     {
+      "type": "heading",
+      "level": 3,
+      "text": "4. What is eco-friendly concrete and why is it important?"
+    },
+    {
       "type": "p",
       "text": "Eco-friendly concrete is made using recycled materials, low-carbon cement, and industrial by-products like fly ash, reducing environmental impact while maintaining strength and durability for sustainable construction."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "5. Which concrete is best for waterproofing and moisture protection?"
     },
     {
       "type": "p",

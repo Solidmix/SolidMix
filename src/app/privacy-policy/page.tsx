@@ -14,8 +14,8 @@ export const metadata: Metadata = pageMetadata(content, "/privacy-policy/");
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Privacy Policy" }])]} />
-      <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Privacy Policy" }]} />
+      <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Privacy policy" }])]} />
+      <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Privacy policy" }]} />
       <section className="py-12 md:py-16">
         {/* This page's body text measures weight 600 (bold phrases compute
             "bolder" from that to 900, per the global b,strong CSS rule) and

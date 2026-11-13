@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { InlineText } from "@/components/InlineText";
 
-type FaqItem = { q: string; a: string };
+type FaqItem = { q: string; a: string; list?: string[] };
 
 const QUESTION_COLOR = {
   ink: "text-ink",
@@ -33,36 +33,54 @@ export function FaqAccordion({
   variant?: "bordered" | "filled";
 }) {
   const [open, setOpen] = useState<number | null>(defaultOpen);
+  const uid = useId();
 
   if (variant === "filled") {
     return (
       <div className="space-y-3">
         {items.map((item, i) => {
           const isOpen = open === i;
+          const buttonId = `${uid}-button-${i}`;
+          const panelId = `${uid}-panel-${i}`;
           return (
-            <div key={item.q} className="overflow-hidden rounded-lg bg-secondary">
+            <div key={item.q} className="overflow-hidden rounded-none bg-secondary">
               <h3>
                 <button
                   type="button"
+                  id={buttonId}
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-center gap-3 px-5 py-4 text-left font-semibold text-white"
+                  aria-controls={panelId}
+                  className="flex w-full items-center justify-between gap-3 p-[15px] text-left font-semibold text-white"
                 >
-                  <span aria-hidden="true" className="text-xl leading-none text-white">
-                    {isOpen ? "−" : "+"}
-                  </span>
                   <span className="text-[20px] font-semibold text-white">
                     <InlineText text={item.q} />
                   </span>
+                  <span aria-hidden="true" className="text-xl leading-none text-white">
+                    {isOpen ? "−" : "+"}
+                  </span>
                 </button>
               </h3>
-              {isOpen && (
-                <div className="bg-[#1e1e1e] px-5 pb-5 pl-12 text-white/90">
-                  <p>
-                    <InlineText text={item.a} />
-                  </p>
-                </div>
-              )}
+              <div
+                id={panelId}
+                role="region"
+                aria-labelledby={buttonId}
+                hidden={!isOpen}
+                className="bg-[#292929] p-[15px] text-white"
+              >
+                <p>
+                  <InlineText text={item.a} />
+                </p>
+                {item.list && (
+                  <ul className="mt-4 list-disc space-y-2 pl-6">
+                    {item.list.map((li, j) => (
+                      <li key={j}>
+                        <InlineText text={li} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
           );
         })}
@@ -74,13 +92,17 @@ export function FaqAccordion({
     <div className="divide-y divide-grey-line rounded-lg border border-grey-line">
       {items.map((item, i) => {
         const isOpen = open === i;
+        const buttonId = `${uid}-button-${i}`;
+        const panelId = `${uid}-panel-${i}`;
         return (
           <div key={item.q}>
             <h3>
               <button
                 type="button"
+                id={buttonId}
                 onClick={() => setOpen(isOpen ? null : i)}
                 aria-expanded={isOpen}
+                aria-controls={panelId}
                 className="flex w-full items-center gap-3 px-4 py-4 text-left font-semibold text-primary"
               >
                 <span aria-hidden="true" className="text-xl leading-none text-primary">
@@ -91,15 +113,17 @@ export function FaqAccordion({
                 </span>
               </button>
             </h3>
-            {isOpen && (
-              <div
-                className={`px-4 pb-5 pl-11 ${i === 0 && firstAnswerColor ? QUESTION_COLOR[firstAnswerColor] : "text-grey"}`}
-              >
-                <p>
-                  <InlineText text={item.a} />
-                </p>
-              </div>
-            )}
+            <div
+              id={panelId}
+              role="region"
+              aria-labelledby={buttonId}
+              hidden={!isOpen}
+              className={`px-4 pb-5 pl-11 ${i === 0 && firstAnswerColor ? QUESTION_COLOR[firstAnswerColor] : "text-grey"}`}
+            >
+              <p>
+                <InlineText text={item.a} />
+              </p>
+            </div>
           </div>
         );
       })}

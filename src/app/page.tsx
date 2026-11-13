@@ -207,7 +207,7 @@ export default function HomePage() {
       <BgSection image="/images/bg/contact-details.webp" overlayOpacity={0} className="py-16">
         <div className="container-content grid gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="flex items-center gap-2 text-[16px] font-normal text-secondary">
+            <h2 className="flex items-center gap-2 text-[16px] font-normal text-ink">
               {contactBlock.detailsHeading}
             </h2>
             <div className="mt-6 space-y-5 border-l-2 border-primary pl-5">
@@ -215,7 +215,7 @@ export default function HomePage() {
               <p className="text-[20px] font-medium text-[#292929]">{contactBlock.number}</p>
               <p className="text-[20px] font-medium text-[#292929]">{contactBlock.emailLine}</p>
             </div>
-            <h2 className="mt-8 flex items-center gap-2 text-[16px] font-normal text-secondary">
+            <h2 className="mt-8 flex items-center gap-2 text-[16px] font-normal text-ink">
               {contactBlock.hoursHeading}
             </h2>
             <p className="mt-4 border-l-2 border-primary pl-5 text-[20px] font-medium text-[#292929]">

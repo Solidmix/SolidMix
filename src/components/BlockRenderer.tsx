@@ -12,6 +12,8 @@ export function BlockRenderer({
   faqQuestionColor,
   faqMode = "accordion",
   noFaq = false,
+  darkHeadings = [],
+  resetTables = [],
 }: {
   blocks: Block[];
   faqQuestionColor?: "ink" | "primary" | "secondary";
@@ -23,6 +25,16 @@ export function BlockRenderer({
   // sweep them into a one-item FAQ accordion. noFaq bypasses that sweep
   // entirely and renders every block as plain content.
   noFaq?: boolean;
+  // Exact text of level-2 headings that are plain inline <h2> in the
+  // original (inside a text-editor widget, not a heading widget) and so
+  // inherit the page's dark body colour instead of the primary heading
+  // colour. Empty by default — only the caller's explicit list is affected.
+  darkHeadings?: string[];
+  // Header rows (exact match) of tables that use the site's bare reset.css
+  // table styling (bordered cells, bold th, odd-row grey tint) instead of
+  // this component's default grey-header/cyan-stripe styling. Empty by
+  // default — only the caller's explicit list is affected.
+  resetTables?: string[][];
 }) {
   const segments = noFaq ? [{ kind: "blocks" as const, blocks }] : segmentBlocks(blocks);
   return (
@@ -54,7 +66,7 @@ export function BlockRenderer({
         return (
           <div key={`blocks-${i}`}>
             {seg.blocks.map((b, j) => (
-              <BlockItem key={j} block={b} />
+              <BlockItem key={j} block={b} darkHeadings={darkHeadings} resetTables={resetTables} />
             ))}
           </div>
         );
@@ -63,12 +75,23 @@ export function BlockRenderer({
   );
 }
 
-function BlockItem({ block }: { block: Block }) {
+function BlockItem({
+  block,
+  darkHeadings = [],
+  resetTables = [],
+}: {
+  block: Block;
+  darkHeadings?: string[];
+  resetTables?: string[][];
+}) {
   switch (block.type) {
     case "heading": {
       const text = <InlineText text={block.text} />;
       if (block.level <= 2) {
-        return <h2 className="mt-10 text-[28px] font-semibold text-primary">{text}</h2>;
+        const isDark = darkHeadings.includes(block.text);
+        return (
+          <h2 className={`mt-10 text-[28px] font-semibold ${isDark ? "text-ink" : "text-primary"}`}>{text}</h2>
+        );
       }
       if (block.level === 3) {
         return <h3 className="mt-7 text-[22px] font-semibold text-ink">{text}</h3>;
@@ -131,6 +154,47 @@ function BlockItem({ block }: { block: Block }) {
       // text rather than a fixed index, since it's the only column this
       // applies to anywhere on the site.
       const mixRatioCol = headerRow?.indexOf("Mix Ratio") ?? -1;
+      const useReset = resetTables.some((h) => JSON.stringify(h) === JSON.stringify(headerRow));
+      if (useReset) {
+        // Bare reset.css table styling (css/reset.css.css): 1px solid
+        // hsla(0,0%,50%,.502) border + 15px padding on every cell, bold th,
+        // odd body rows tinted hsla(0,0%,50%,.071) — no grey header fill, no
+        // cyan stripe.
+        return (
+          <div className="mt-6 overflow-x-auto">
+            <table className="w-full min-w-[480px] border-collapse text-left text-[18px]">
+              {headerRow && (
+                <thead>
+                  <tr>
+                    {headerRow.map((cell, j) => (
+                      <th
+                        key={j}
+                        className={`border border-[rgba(128,128,128,0.502)] p-[15px] align-top font-bold leading-[1.5] text-grey ${j === mixRatioCol ? "text-right" : ""}`}
+                      >
+                        {cell}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+              )}
+              <tbody>
+                {bodyRows.map((row, i) => (
+                  <tr key={i} className={i % 2 === 0 ? "bg-[rgba(128,128,128,0.071)]" : ""}>
+                    {row.map((cell, j) => (
+                      <td
+                        key={j}
+                        className={`border border-[rgba(128,128,128,0.502)] p-[15px] align-top leading-[1.5] text-grey ${j === mixRatioCol ? "text-right" : ""}`}
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      }
       return (
         <div className="mt-6 overflow-x-auto rounded-lg border border-grey-line">
           <table className="w-full min-w-[480px] border-collapse text-left text-[18px]">

@@ -96,7 +96,11 @@ export default async function PostPage({ params }: { params: Promise<{ post: str
               list items) is 20px — scoped here via CSS, not a BlockRenderer
               default, since other pages keep their own colours/sizes. */}
           <div className="mt-6 [&_a]:text-[#cc3366] [&_h2]:text-[#292929] [&_h3]:text-[#292929] [&_li]:text-[20px] [&_p]:text-[20px]">
-            <BlockRenderer blocks={bodyBlocks} faqMode="plain" />
+            <BlockRenderer
+              blocks={bodyBlocks}
+              faqMode="plain"
+              resetTables={post === "bulking-of-sand" ? [["Grade", "Mix Ratio", "Usage"]] : []}
+            />
           </div>
         </div>
       </section>

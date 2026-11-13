@@ -8,14 +8,17 @@ import {
   resolvePageH1,
   getFaqItems,
   findFirstImage,
+  segmentBlocks,
   type LinkBlock,
   type ImageBlock,
   type HeadingBlock,
   type ParaBlock,
+  type ListBlock,
 } from "@/lib/content";
 import { InlineText } from "@/components/InlineText";
 import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
+import { FaqAccordion } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, breadcrumbLd, faqPageLd, productLd, metaDescriptionFrom } from "@/lib/seo";
 import { PRODUCTS_BASE, menu } from "@/content/site";
@@ -83,19 +86,53 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   // The "Frequently asked question" heading + intro paragraph are centered
   // on the original (unlike the rest of the body) — pulled out so they can
   // get that treatment, with the main body and the FAQ accordion rendered
-  // separately around them instead of one flat BlockRenderer flow.
+  // separately around them instead of one flat BlockRenderer flow. The FAQ
+  // icon (FAQ_Icon.svg) always sits immediately before that heading on the
+  // original — pulled out too so it never renders full-width through the
+  // generic image block.
   const faqHeadingIndex = withoutPhoto.findIndex(
     (b) => b.type === "heading" && b.text === "Frequently asked question",
   );
+  const faqIconIndex = faqHeadingIndex > 0 && withoutPhoto[faqHeadingIndex - 1]?.type === "image" ? faqHeadingIndex - 1 : -1;
+  const faqIcon = faqIconIndex === -1 ? undefined : (withoutPhoto[faqIconIndex] as ImageBlock);
   const faqHeading = faqHeadingIndex === -1 ? undefined : (withoutPhoto[faqHeadingIndex] as HeadingBlock);
   const faqIntroIndex = faqHeadingIndex === -1 ? -1 : faqHeadingIndex + 1;
   const faqIntro =
     faqIntroIndex !== -1 && withoutPhoto[faqIntroIndex]?.type === "p"
       ? (withoutPhoto[faqIntroIndex] as ParaBlock)
       : undefined;
-  const bodyBlocks = faqHeadingIndex === -1 ? withoutPhoto : withoutPhoto.slice(0, faqHeadingIndex);
+  const bodyBlocks =
+    faqHeadingIndex === -1 ? withoutPhoto : withoutPhoto.slice(0, faqIconIndex !== -1 ? faqIconIndex : faqHeadingIndex);
   const faqQaBlocks =
     faqHeadingIndex === -1 ? [] : withoutPhoto.slice(faqIntro ? faqIntroIndex + 1 : faqHeadingIndex + 1);
+
+  // Level-2 headings whose entire text is wrapped in [[b]]...[[/b]] (e.g.
+  // "Applications of Modern X Concrete") are plain inline <h2> on the
+  // original — inside a text-editor widget, not a heading widget — so they
+  // inherit the page's dark body colour instead of the primary heading
+  // colour used by the page's real heading widgets (e.g. "X – Reliable
+  // Solution for..."), which never carry bold markers.
+  const darkHeadings = bodyBlocks
+    .filter((b): b is HeadingBlock => b.type === "heading" && b.level === 2 && /^\[\[b\]\].*\[\[\/b\]\]$/.test(b.text))
+    .map((b) => b.text);
+
+  // A bullet list trailing a FAQ answer (e.g. standard-concrete's "Where is
+  // standard concrete used?") belongs inside that answer's panel, not as a
+  // separate block after the accordion — fold it into the item here.
+  const faqSegments = faqQaBlocks.length > 0 ? segmentBlocks(faqQaBlocks) : [];
+  const faqAccordionItems: Array<{ q: string; a: string; list?: string[] }> = [];
+  faqSegments.forEach((seg, i) => {
+    if (seg.kind !== "faq") return;
+    seg.items.forEach((item, j) => {
+      const isLast = j === seg.items.length - 1;
+      const next = isLast ? faqSegments[i + 1] : undefined;
+      const list =
+        next && next.kind === "blocks" && next.blocks.length === 1 && next.blocks[0].type === "list"
+          ? (next.blocks[0] as ListBlock).items
+          : undefined;
+      faqAccordionItems.push({ ...item, list });
+    });
+  });
 
   return (
     <>
@@ -131,6 +168,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 alt={mainPhoto.alt || h1}
                 width={715}
                 height={500}
+                priority
                 className="h-auto w-full rounded-lg object-contain"
               />
             </div>
@@ -140,19 +178,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               weight 600) — scoped here, not a BlockRenderer default, since
               other pages keep their own sizes. */}
           <div className="[&_h2]:text-[32px] [&_h2]:font-medium [&_h3]:text-[28px] [&_h3]:font-medium">
-            <BlockRenderer blocks={bodyBlocks} />
+            <BlockRenderer blocks={bodyBlocks} darkHeadings={darkHeadings} />
           </div>
-          {faqHeading && (
-            <div className="mt-10 text-center">
-              <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">{faqHeading.text}</h2>
-              {faqIntro && (
-                <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-grey">
-                  <InlineText text={faqIntro.text} />
-                </p>
-              )}
-            </div>
-          )}
-          {faqQaBlocks.length > 0 && <BlockRenderer blocks={faqQaBlocks} />}
           {bottomCtas.length > 0 && (
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               {bottomCtas.map((cta, i) => (
@@ -172,6 +199,34 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           )}
         </div>
       </section>
+      {faqHeading && (
+        <section className="bg-[#292929] p-[100px]">
+          <div className="mx-auto flex w-full max-w-[1140px] flex-col items-center gap-8 md:flex-row md:items-start md:gap-10">
+            <div className="flex w-full flex-col items-center text-center md:w-[40%]">
+              {faqIcon && (
+                <div className="w-[14%]">
+                  <NextImage
+                    src={faqIcon.src}
+                    alt={faqIcon.alt || "FAQ"}
+                    width={112}
+                    height={112}
+                    className="h-auto w-full"
+                  />
+                </div>
+              )}
+              <h2 className="mt-4 text-[28px] font-semibold text-primary md:text-[40px]">{faqHeading.text}</h2>
+              {faqIntro && (
+                <p className="mt-4 max-w-md text-white">
+                  <InlineText text={faqIntro.text} />
+                </p>
+              )}
+            </div>
+            <div className="w-full md:w-[60%]">
+              <FaqAccordion items={faqAccordionItems} variant="filled" />
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }
