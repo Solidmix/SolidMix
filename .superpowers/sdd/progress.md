@@ -13,4 +13,4 @@
 | 2026-11-11 | Parity | fix/parity-30 rounds 1-4 merged: body text #292929, heading weight 600, button/heading sizes, bold restored ([[b]] markers), 5 section background images, button/link colours (#cc3366), product/team/poster images and motion, blog meta/tables/open Q&A, skip link; regress ALL PASS | d8eaa01 |
 | 2026-11-11 | Parity | fix/parity-r5 rounds 5-6 merged: remaining heading/button/image sizes and colours, legal "Why RMC?" heading bug fixed, blog banner kept as original, products "Stands Apart" background, exact missing legal strings added; regress ALL PASS | dbd04ab |
 | 2026-11-12 | Parity | fix/parity-r5 merged (rounds 5-7): products 'Stands Apart' white + purple cards, products FAQ dark + teal boxes, contact section light grey, services card/FAQ styles, about/legal frames and checklists, section-by-section screenshot check; regress ALL PASS | f775eea |
-| 2026-11-13 | Parity | Merged fix/parity-r8 (R8 911d67b, R9 560d6d7) into main | - |
+| 2026-11-13 | Parity | Merged fix/parity-r8 (R8 911d67b, R9 560d6d7) into main | 46becbe |

@@ -23,26 +23,40 @@ function Chevron({ open = false }: { open?: boolean }) {
   );
 }
 
+// Filled caret-down (not the outline Chevron above) inside a 26x36 box, per
+// the original desktop nav's "e-fas-caret-down" dropdown arrow.
+function CaretDown() {
+  return (
+    <svg width="26" height="36" viewBox="0 0 26 36" fill="#9f1481" aria-hidden="true">
+      <path d="M8 15h10l-5 6Z" />
+    </svg>
+  );
+}
+
 function DesktopNav() {
   return (
     <nav aria-label="Primary" className="hidden lg:block">
-      <ul className="flex items-center gap-1">
+      <ul className="flex items-center">
         {menu.map((item) => (
           <li key={item.label} className="group relative">
             <Link
               href={item.href}
-              className="flex items-center gap-1 rounded px-3 py-2 text-[16px] font-semibold text-primary transition-colors hover:text-secondary"
+              className="flex items-center rounded px-[20px] py-[13px] text-[16px] font-semibold text-primary transition-colors hover:text-secondary"
             >
               {item.label}
-              {item.children && <Chevron />}
+              {item.children && <CaretDown />}
             </Link>
             {item.children && (
-              <ul className="invisible absolute left-0 top-full z-50 min-w-[220px] translate-y-2 rounded-md border border-grey-line bg-white py-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+              <ul
+                className={`invisible absolute left-0 top-full z-50 min-w-[130px] ${
+                  item.label === "Products" ? "w-[238px]" : "w-max"
+                } translate-y-2 bg-primary opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100`}
+              >
                 {item.children.map((child) => (
                   <li key={child.label}>
                     <Link
                       href={child.href}
-                      className="block px-4 py-2 text-sm text-ink transition-colors hover:bg-tint-pink hover:text-primary"
+                      className="block whitespace-nowrap px-[20px] py-[13px] text-[14px] leading-5 text-white transition-colors hover:bg-[#3f444b] focus-visible:bg-[#3f444b]"
                     >
                       {child.label}
                     </Link>
@@ -163,7 +177,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-grey-line bg-white">
-      <div className="container-content flex h-[72px] items-center justify-between gap-4 lg:h-[92px] lg:justify-start lg:gap-[64px]">
+      <div className="mx-auto flex h-[72px] w-full max-w-[1360px] items-center justify-between gap-4 px-4 lg:h-[76px] lg:max-w-none lg:justify-start lg:gap-[64px] lg:px-[60px]">
         <Link href="/" aria-label="SolidMix RMC home" className="flex-shrink-0">
           <Image
             src="/images/solidmix-logo.webp"
