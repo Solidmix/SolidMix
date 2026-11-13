@@ -115,6 +115,44 @@ video {
   }
 }
 
+/* Flip card (Elementor flip-box, direction-down + effect-flip — see
+   css/widget-flip-box.min.css.css in docs/reference/original-site):
+   280px tall, 1000px perspective, 0.6s ease-in-out rotateX flip. Flips on
+   hover, keyboard focus, or a toggled .is-flipped class (tap/click). */
+.flip-card {
+  position: relative;
+  height: 280px;
+  perspective: 1000px;
+  cursor: pointer;
+  outline-offset: 4px;
+}
+.flip-card-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-in-out;
+}
+.flip-card-front {
+  transform: rotateX(0deg);
+}
+.flip-card-back {
+  transform: rotateX(180deg);
+}
+.flip-card:hover .flip-card-front,
+.flip-card:focus-visible .flip-card-front,
+.flip-card.is-flipped .flip-card-front {
+  transform: rotateX(-180deg);
+}
+.flip-card:hover .flip-card-back,
+.flip-card:focus-visible .flip-card-back,
+.flip-card.is-flipped .flip-card-back {
+  transform: rotateX(0deg);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1 !important;
@@ -126,5 +164,25 @@ video {
   }
   html {
     scroll-behavior: auto !important;
+  }
+  .flip-card-layer {
+    transition: opacity 0.2s ease-in-out;
+    transform: none;
+  }
+  .flip-card-back {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .flip-card:hover .flip-card-back,
+  .flip-card:focus-visible .flip-card-back,
+  .flip-card.is-flipped .flip-card-back {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .flip-card:hover .flip-card-front,
+  .flip-card:focus-visible .flip-card-front,
+  .flip-card.is-flipped .flip-card-front {
+    opacity: 0;
+    pointer-events: none;
   }
 }

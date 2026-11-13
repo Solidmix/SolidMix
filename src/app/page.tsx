@@ -84,8 +84,15 @@ export default function HomePage() {
       </section>
 
       {/* Why Raipur's Contractors Choose + Working hours */}
-      <section className="bg-tint-cyan-2/50 pb-16 pt-20">
-        <div className="container-content grid gap-12 lg:grid-cols-2">
+      <section className="relative overflow-hidden bg-tint-cyan-2/50 pb-16 pt-20">
+        <Image
+          src="/images/bg/triangle-pattern.webp"
+          alt=""
+          aria-hidden="true"
+          fill
+          className="pointer-events-none object-cover object-top opacity-20"
+        />
+        <div className="container-content relative grid gap-12 lg:grid-cols-2">
           <div>
             <h2 className="text-center text-[28px] font-semibold text-primary md:text-[40px]">{whyChoose.heading}</h2>
             <div className="mt-8 space-y-7">

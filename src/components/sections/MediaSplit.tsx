@@ -11,6 +11,8 @@ export function MediaSplit({
   contentClassName = "",
   gap = "gap-8",
   className = "",
+  align = "center",
+  gridCols = "lg:grid-cols-2",
 }: {
   media: ReactNode;
   children: ReactNode;
@@ -19,9 +21,17 @@ export function MediaSplit({
   contentClassName?: string;
   gap?: string;
   className?: string;
+  // "stretch" makes both panels equal height — used for the "About Us"
+  // joined-card pattern (css/post-17.css.css element a4bebf1, flex row,
+  // default stretch), unlike MediaSplit's other callers which keep the
+  // existing vertically-centered default.
+  align?: "center" | "stretch";
+  // Column width ratio — the joined-card pattern uses 33.33%/66.67%
+  // (css/post-17.css.css elements 9102b41/d2e413f), not an even 50/50 split.
+  gridCols?: string;
 }) {
   return (
-    <div className={`grid items-center lg:grid-cols-2 ${gap} ${className}`}>
+    <div className={`grid ${align === "stretch" ? "items-stretch" : "items-center"} ${gridCols} ${gap} ${className}`}>
       <div className={`${mediaPosition === "right" ? "lg:order-2" : ""} ${mediaClassName}`}>{media}</div>
       <div className={contentClassName}>{children}</div>
     </div>

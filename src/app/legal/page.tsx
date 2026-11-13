@@ -8,6 +8,7 @@ import {
   extractCards,
   getFaqItems,
   stripBoldMarkers,
+  parseMdLink,
   type ImageBlock,
   type HeadingBlock,
   type ParaBlock,
@@ -25,6 +26,7 @@ import { ProgressBars } from "@/components/sections/ProgressBars";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { ConsultancyTabs, type ConsultancyItem } from "@/components/legal/ConsultancyTabs";
 import { whyChooseStats } from "@/content/stats";
+import { UsersIcon } from "@/components/icons";
 
 const content = getPageContent("legal");
 const h1 = resolvePageH1(content);
@@ -71,6 +73,11 @@ const foundersHeadingIdx = blocks.findIndex(
   (b) => b.type === "heading" && b.text.includes("Vinit Tiwari & Pratham Bafna"),
 );
 const foundersHeading = blocks[foundersHeadingIdx] as HeadingBlock;
+// The original wraps both the icon and the name in a link to Contact Us
+// (page.html: <a href=".../contact-us/" aria-label="Vinit Tiwari & Pratham
+// Bafna">) — parsed here instead of InlineText so it gets the icon-box's own
+// white/bold styling, not the sitewide #cc3366 link colour.
+const foundersLink = parseMdLink(foundersHeading.text);
 const foundersRole = nextOfType<ParaBlock>(foundersHeadingIdx, "p");
 const foundersCta = blocks.find(
   (b): b is LinkBlock => b.type === "link" && b.text === "Get In Touch",
@@ -195,18 +202,19 @@ export default function LegalPage() {
         <div className="container-content">
           <MediaSplit
             gap="gap-0"
-            className="overflow-hidden rounded-lg"
+            align="stretch"
+            gridCols="lg:grid-cols-[1fr_2fr]"
             media={
-              <div className="mx-auto grid w-full max-w-[460px] grid-cols-1 gap-2 bg-primary p-4">
+              <div className="flex h-full flex-col gap-[20px] bg-primary p-[20px]">
                 {aboutImages.map((img, i) => {
                   const image = (
                     <Image
                       key={i}
                       src={img.src}
                       alt={img.alt || "SolidMix RMC"}
-                      width={500}
-                      height={300}
-                      className="h-auto w-full rounded-md object-cover"
+                      width={img.src.includes("untitled-design-20") ? 448 : 1000}
+                      height={img.src.includes("untitled-design-20") ? 550 : 572}
+                      className="h-auto w-full"
                     />
                   );
                   return img.href ? (
@@ -220,14 +228,14 @@ export default function LegalPage() {
                 {elevateProfileCta && (
                   <Link
                     href={elevateProfileCta.href}
-                    className="mt-2 inline-block rounded-md bg-secondary px-6 py-3 text-center text-xl font-medium text-white transition-colors hover:bg-secondary/90"
+                    className="inline-block self-start rounded-lg bg-secondary px-[50px] py-[25px] text-[20px] font-medium text-white transition-colors hover:bg-secondary/90"
                   >
                     {elevateProfileCta.text}
                   </Link>
                 )}
               </div>
             }
-            contentClassName="bg-secondary p-6 text-white md:p-10"
+            contentClassName="bg-secondary p-[20px] text-white md:p-[50px]"
           >
             <h2 className="text-center text-[28px] font-semibold md:text-[40px]">About Us</h2>
             {aboutPara1 && (
@@ -241,9 +249,9 @@ export default function LegalPage() {
               </p>
             )}
             {aboutChecklist && (
-              <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              <ul className="mt-6 grid grid-cols-1 gap-x-[25px] gap-y-2 sm:grid-cols-2">
                 {aboutChecklist.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2 font-medium text-white">
+                  <li key={item} className="flex items-center gap-2 text-[16px] font-normal text-white">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
                       <path d="m5 13 4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
@@ -252,17 +260,26 @@ export default function LegalPage() {
                 ))}
               </ul>
             )}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 border-t border-white/20 pt-6">
-              <div>
-                <p className="text-[22px] font-semibold md:text-[30px]">
-                  <InlineText text={foundersHeading.text} />
-                </p>
-                {foundersRole && <p className="text-sm text-white/80">{foundersRole.text}</p>}
+            <div className="mt-8 flex flex-wrap items-center justify-start gap-4">
+              <div className="flex items-start gap-[15px]">
+                <Link href={foundersLink.href ?? "#"} aria-hidden="true" tabIndex={-1} className="shrink-0 text-white">
+                  <UsersIcon className="h-9 w-9" />
+                </Link>
+                <div>
+                  <Link
+                    href={foundersLink.href ?? "#"}
+                    aria-label={foundersLink.label}
+                    className="text-[22px] font-semibold text-white md:text-[30px]"
+                  >
+                    {foundersLink.label}
+                  </Link>
+                  {foundersRole && <p className="mt-1 text-[16px] text-white">{foundersRole.text}</p>}
+                </div>
               </div>
               {foundersCta && (
                 <Link
                   href={foundersCta.href}
-                  className="rounded-md bg-white px-6 py-3 text-center text-xl font-medium text-secondary transition-colors hover:bg-white/90"
+                  className="rounded-lg bg-white px-[20px] py-[20px] text-[18px] font-medium text-secondary transition-colors hover:bg-white/90 md:px-[50px] md:py-[30px] md:text-[20px]"
                 >
                   {foundersCta.text}
                 </Link>

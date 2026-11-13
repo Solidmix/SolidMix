@@ -7,6 +7,7 @@ import {
   resolvePageH1,
   extractCards,
   getFaqItems,
+  parseMdLink,
   type ImageBlock,
   type HeadingBlock,
   type ParaBlock,
@@ -23,6 +24,7 @@ import { ServiceIconCards } from "@/components/sections/ServiceIconCards";
 import { ProgressBars } from "@/components/sections/ProgressBars";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { whyChooseStats } from "@/content/stats";
+import { UsersIcon } from "@/components/icons";
 
 const content = getPageContent("trusted-concrete-supplier-in-raipur");
 const h1 = resolvePageH1(content);
@@ -33,6 +35,11 @@ const introHeading = blocks[2] as HeadingBlock;
 const introParas = blocks.slice(3, 6) as ParaBlock[];
 const introList = blocks[6] as ListBlock;
 const foundersHeading = blocks[7] as HeadingBlock;
+// The original wraps both the icon and the name in a link to Contact Us
+// (page.html: <a href=".../contact-us/" aria-label="Vinit Tiwari & Pratham
+// Bafna">) — parsed here instead of InlineText so it gets the icon-box's own
+// white/bold styling, not the sitewide #cc3366 link colour.
+const foundersLink = parseMdLink(foundersHeading.text);
 const foundersRole = blocks[8] as ParaBlock;
 const foundersCta = blocks[9] as LinkBlock;
 
@@ -59,10 +66,12 @@ const teamMembers: TeamMember[] = teamCards.map((c) => ({
 
 const servicesHeading = blocks[35] as HeadingBlock;
 const servicesIntro = blocks[36] as ParaBlock;
-const serviceChips = extractCards(blocks.slice(37, 43));
+// Each of the 6 service headings is now followed by its restored back-face
+// description (a "p" block) — the range grows from 6 to 12 blocks.
+const serviceChips = extractCards(blocks.slice(37, 49));
 
-const tailCta = blocks.slice(43, 46);
-const faqSectionAll = blocks.slice(46, 59);
+const tailCta = blocks.slice(49, 52);
+const faqSectionAll = blocks.slice(52, 65);
 const faqs = getFaqItems(faqSectionAll);
 // "Frequently Asked Questions" is centered and 40px on the original, unlike
 // BlockRenderer's generic (left, 28px) heading default — pulled out so it
@@ -87,23 +96,23 @@ export default function AboutPage() {
       />
       <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]} />
 
-      {/* Intro: image collage + teal text column */}
+      {/* Intro: image collage + teal text column (one joined card, 33/66 split) */}
       <section className="py-14">
-        <div className="container-content grid gap-0 overflow-hidden rounded-lg lg:grid-cols-2">
-          <div className="mx-auto grid w-full max-w-[460px] grid-cols-2 gap-2 bg-primary p-4">
+        <div className="container-content grid items-stretch gap-0 lg:grid-cols-[1fr_2fr]">
+          <div className="flex flex-col gap-[20px] bg-primary p-[20px]">
             {collageImages.map((img, i) => (
               <Image
                 key={i}
                 src={img.src}
                 alt={img.alt || h1}
-                width={400}
-                height={300}
+                width={img.src.includes("untitled-design-20") ? 448 : 1000}
+                height={img.src.includes("untitled-design-20") ? 550 : 572}
                 priority={img.src.includes("untitled-design-20")}
-                className={`h-auto w-full rounded-md object-cover ${i === 0 ? "col-span-2" : ""}`}
+                className="h-auto w-full"
               />
             ))}
           </div>
-          <div className="bg-secondary p-6 text-white md:p-10">
+          <div className="bg-secondary p-[20px] text-white md:p-[50px]">
             <h2 className="text-center text-[28px] font-semibold md:text-[40px]">
               <InlineText text={introHeading.text} />
             </h2>
@@ -112,9 +121,9 @@ export default function AboutPage() {
                 <InlineText text={p.text} />
               </p>
             ))}
-            <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+            <ul className="mt-6 grid grid-cols-1 gap-x-[50px] gap-y-2 sm:grid-cols-2">
               {introList.items.map((item) => (
-                <li key={item} className="flex items-center gap-2 font-medium text-white">
+                <li key={item} className="flex items-center gap-2 text-[16px] font-normal text-white">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
                     <path d="m5 13 4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -122,16 +131,25 @@ export default function AboutPage() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 border-t border-white/20 pt-6">
-              <div>
-                <p className="text-[30px] font-semibold">
-                  <InlineText text={foundersHeading.text} />
-                </p>
-                <p className="text-sm text-white/80">{foundersRole.text}</p>
+            <div className="mt-8 flex flex-wrap items-center justify-start gap-4">
+              <div className="flex items-start gap-[15px]">
+                <Link href={foundersLink.href ?? "#"} aria-hidden="true" tabIndex={-1} className="shrink-0 text-white">
+                  <UsersIcon className="h-9 w-9" />
+                </Link>
+                <div>
+                  <Link
+                    href={foundersLink.href ?? "#"}
+                    aria-label={foundersLink.label}
+                    className="text-[30px] font-semibold text-white"
+                  >
+                    {foundersLink.label}
+                  </Link>
+                  <p className="mt-1 text-[16px] text-white">{foundersRole.text}</p>
+                </div>
               </div>
               <Link
                 href={foundersCta.href}
-                className="rounded-md bg-white px-6 py-3 text-center text-xl font-medium text-secondary transition-colors hover:bg-white/90"
+                className="rounded-lg bg-white px-[20px] py-[20px] text-[18px] font-medium text-secondary transition-colors hover:bg-white/90 md:px-[50px] md:py-[30px] md:text-[20px]"
               >
                 {foundersCta.text}
               </Link>
@@ -181,7 +199,7 @@ export default function AboutPage() {
           </p>
         </div>
         <div className="container-content mt-8 text-left">
-          <ServiceIconCards items={serviceChips.map((c) => ({ title: c.title }))} />
+          <ServiceIconCards items={serviceChips.map((c) => ({ title: c.title, body: c.body }))} />
         </div>
       </section>
 
