@@ -15,7 +15,7 @@ import { BlockRenderer } from "@/components/BlockRenderer";
 import { CardGrid } from "@/components/CardGrid";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, faqPageLd } from "@/lib/seo";
 import { PRODUCTS_BASE } from "@/content/site";
 import { BgSection } from "@/components/sections/BgSection";
 import { FlameIcon, TruckIcon, DropletIcon } from "@/components/icons";
@@ -60,14 +60,19 @@ export const metadata: Metadata = pageMetadata(content, `${PRODUCTS_BASE}/`, car
 export default function ProductsPage() {
   return (
     <>
-      <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Products" }])]} />
+      <JsonLd
+        data={[
+          breadcrumbLd([{ name: "Home", url: "/" }, { name: "Products" }]),
+          ...(faqItems.length ? [faqPageLd(faqItems)] : []),
+        ]}
+      />
       <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Products" }]} />
       <section className="py-12 md:py-16">
         <div className="container-content max-w-3xl text-center">
           <BlockRenderer blocks={before} />
         </div>
         <div className="container-content mt-10">
-          <CardGrid cards={cards} columns={3} imageAspect="square" />
+          <CardGrid cards={cards} columns={3} imageAspect="square" priorityCount={3} />
         </div>
       </section>
 

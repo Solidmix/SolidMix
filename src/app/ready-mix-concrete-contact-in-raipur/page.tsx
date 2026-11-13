@@ -58,7 +58,7 @@ export default function ContactPage() {
       <section className="pb-10 md:pb-14">
         <div className="container-content grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
-            <PhoneIcon className="mx-auto h-9 w-9 text-secondary" />
+            <PhoneIcon className="mx-auto h-9 w-9 text-primary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">Phone Number</h3>
             <p className="mt-3 space-x-1 text-[20px]">
               <a href={site.phoneHref} className="text-ink hover:text-primary">
@@ -71,12 +71,12 @@ export default function ContactPage() {
             </p>
           </div>
           <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
-            <ClockIcon className="mx-auto h-9 w-9 text-secondary" />
+            <ClockIcon className="mx-auto h-9 w-9 text-primary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">Working Hour</h3>
             <p className="mt-3 text-[20px] text-ink">We Are Open 24*7</p>
           </div>
           <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
-            <MailIcon className="mx-auto h-9 w-9 text-secondary" />
+            <MailIcon className="mx-auto h-9 w-9 text-primary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">Office Email</h3>
             <p className="mt-3 space-x-1 text-[20px]">
               {site.emails.map((email, i) => (
@@ -90,7 +90,7 @@ export default function ContactPage() {
             </p>
           </div>
           <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
-            <MapPinIcon className="mx-auto h-9 w-9 text-secondary" />
+            <MapPinIcon className="mx-auto h-9 w-9 text-primary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">
               <a href={PLANT_MAP_LINK} target="_blank" rel="noopener noreferrer" className="hover:underline">
                 Plant Address
@@ -99,7 +99,7 @@ export default function ContactPage() {
             <p className="mt-3 text-ink">{site.plantAddress.lines.join(", ")}</p>
           </div>
           <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
-            <MapIcon className="mx-auto h-9 w-9 text-secondary" />
+            <MapIcon className="mx-auto h-9 w-9 text-primary" />
             <h3 className="mt-4 text-[28px] font-semibold text-primary">
               <a href={OFFICE_MAP_LINK} target="_blank" rel="noopener noreferrer" className="hover:underline">
                 Office Address

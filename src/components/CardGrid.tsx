@@ -8,10 +8,14 @@ export function CardGrid({
   cards,
   columns = 3,
   imageAspect = "square",
+  priorityCount = 0,
 }: {
   cards: Card[];
   columns?: 2 | 3 | 4;
   imageAspect?: "square" | "portrait" | "none";
+  // Number of leading cards whose image gets next/image priority (eager
+  // load). 0 by default — only a caller that opts in is affected.
+  priorityCount?: number;
 }) {
   const colsClass =
     columns === 4
@@ -34,6 +38,7 @@ export function CardGrid({
                 alt={card.image.alt || card.title}
                 width={400}
                 height={400}
+                priority={i < priorityCount}
                 className="h-full w-full object-cover"
               />
             </div>

@@ -106,6 +106,16 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const faqQaBlocks =
     faqHeadingIndex === -1 ? [] : withoutPhoto.slice(faqIntro ? faqIntroIndex + 1 : faqHeadingIndex + 1);
 
+  // Level-2 headings whose entire text is wrapped in [[b]]...[[/b]] (e.g.
+  // "Applications of Modern X Concrete") are plain inline <h2> on the
+  // original — inside a text-editor widget, not a heading widget — so they
+  // inherit the page's dark body colour instead of the primary heading
+  // colour used by the page's real heading widgets (e.g. "X – Reliable
+  // Solution for..."), which never carry bold markers.
+  const darkHeadings = bodyBlocks
+    .filter((b): b is HeadingBlock => b.type === "heading" && b.level === 2 && /^\[\[b\]\].*\[\[\/b\]\]$/.test(b.text))
+    .map((b) => b.text);
+
   // A bullet list trailing a FAQ answer (e.g. standard-concrete's "Where is
   // standard concrete used?") belongs inside that answer's panel, not as a
   // separate block after the accordion — fold it into the item here.
@@ -158,6 +168,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 alt={mainPhoto.alt || h1}
                 width={715}
                 height={500}
+                priority
                 className="h-auto w-full rounded-lg object-contain"
               />
             </div>
@@ -167,7 +178,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               weight 600) — scoped here, not a BlockRenderer default, since
               other pages keep their own sizes. */}
           <div className="[&_h2]:text-[32px] [&_h2]:font-medium [&_h3]:text-[28px] [&_h3]:font-medium">
-            <BlockRenderer blocks={bodyBlocks} />
+            <BlockRenderer blocks={bodyBlocks} darkHeadings={darkHeadings} />
           </div>
           {bottomCtas.length > 0 && (
             <div className="mt-6 flex flex-wrap justify-center gap-4">

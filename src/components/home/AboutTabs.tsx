@@ -49,7 +49,7 @@ export function AboutTabs() {
             <p className="leading-relaxed text-ink">{panel.body}</p>
           )}
           {active === "about" && (
-            <div className="mt-6 text-center">
+            <div className="mt-6 text-left">
               <a
                 href={intro.cta.href}
                 className="inline-block rounded-md bg-secondary px-6 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-secondary/90"

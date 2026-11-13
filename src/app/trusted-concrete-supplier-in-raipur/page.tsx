@@ -98,6 +98,7 @@ export default function AboutPage() {
                 alt={img.alt || h1}
                 width={400}
                 height={300}
+                priority={img.src.includes("untitled-design-20")}
                 className={`h-auto w-full rounded-md object-cover ${i === 0 ? "col-span-2" : ""}`}
               />
             ))}

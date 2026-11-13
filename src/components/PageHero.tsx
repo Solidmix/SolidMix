@@ -37,6 +37,7 @@ export function PageHero({ title, crumbs }: { title: string; crumbs: Crumb[] }) 
             alt="SolidMix RMC transit mixer truck"
             width={420}
             height={250}
+            priority
             className="h-auto w-48 md:w-64 lg:w-96"
           />
         </Reveal>
