@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { InlineText } from "@/components/InlineText";
 
-type FaqItem = { q: string; a: string };
+type FaqItem = { q: string; a: string; list?: string[] };
 
 const QUESTION_COLOR = {
   ink: "text-ink",
@@ -40,27 +40,36 @@ export function FaqAccordion({
         {items.map((item, i) => {
           const isOpen = open === i;
           return (
-            <div key={item.q} className="overflow-hidden rounded-lg bg-secondary">
+            <div key={item.q} className="overflow-hidden rounded-none bg-secondary">
               <h3>
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-center gap-3 px-5 py-4 text-left font-semibold text-white"
+                  className="flex w-full items-center justify-between gap-3 p-[15px] text-left font-semibold text-white"
                 >
-                  <span aria-hidden="true" className="text-xl leading-none text-white">
-                    {isOpen ? "−" : "+"}
-                  </span>
                   <span className="text-[20px] font-semibold text-white">
                     <InlineText text={item.q} />
+                  </span>
+                  <span aria-hidden="true" className="text-xl leading-none text-white">
+                    {isOpen ? "−" : "+"}
                   </span>
                 </button>
               </h3>
               {isOpen && (
-                <div className="bg-[#1e1e1e] px-5 pb-5 pl-12 text-white/90">
+                <div className="bg-[#292929] p-[15px] text-white">
                   <p>
                     <InlineText text={item.a} />
                   </p>
+                  {item.list && (
+                    <ul className="mt-4 list-disc space-y-2 pl-6">
+                      {item.list.map((li, j) => (
+                        <li key={j}>
+                          <InlineText text={li} />
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               )}
             </div>
