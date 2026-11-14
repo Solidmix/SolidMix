@@ -93,7 +93,7 @@ export default function ServicesPage() {
       {/* FAQ */}
       <section className="py-12 md:py-16">
         <div className="container-content">
-          <MediaSplit
+          <MediaSplit gridCols="md:grid-cols-[59%_41%] lg:grid-cols-[33.33%_66.67%]"
             media={
               faqImage && (
                 <Tilt className="mx-auto w-full max-w-sm">
@@ -108,14 +108,19 @@ export default function ServicesPage() {
               )
             }
           >
-            <p className="font-semibold text-secondary">{faqHeading.text}</p>
+            <p className="text-[20px] font-semibold text-secondary">{faqHeading.text}</p>
             {faqSubtitle && (
-              <h2 className="mt-2 text-[28px] font-bold leading-snug text-primary md:text-[32px]">
-                {faqSubtitle.text}
-              </h2>
+              <h2 className="mt-2 text-[40px] font-semibold text-primary">{faqSubtitle.text}</h2>
             )}
             <div className="mt-6">
-              <FaqAccordion items={faqs} questionColor="secondary" />
+              <FaqAccordion
+                items={faqs}
+                questionColor="secondary"
+                openQuestionColor="text-primary"
+                hoverQuestionColorClass="[@media(hover:hover)]:hover:text-primary"
+                questionSizeClass="text-[20px]"
+                questionWeightClass="font-medium"
+              />
             </div>
           </MediaSplit>
         </div>

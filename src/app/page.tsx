@@ -176,7 +176,14 @@ export default function HomePage() {
           </Tilt>
           <div>
             <h2 className="mb-8 text-center text-[28px] font-semibold text-primary md:text-[40px]">{faq.heading}</h2>
-            <FaqAccordion items={faq.items} questionColor="primary" firstAnswerColor="secondary" />
+            <FaqAccordion
+              items={faq.items}
+              questionColor="primary"
+              firstAnswerColor="secondary"
+              openQuestionColor="text-[#1f2124]"
+              hoverQuestionColorClass="[@media(hover:hover)]:hover:text-secondary"
+              questionSizeClass="text-[20px]"
+            />
           </div>
         </div>
       </section>
