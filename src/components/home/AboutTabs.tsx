@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { hero, intro } from "@/content/home";
+import { Reveal } from "@/components/Reveal";
 
 export function AboutTabs() {
   const [active, setActive] = useState<"about" | "mission" | "vision">("about");
@@ -60,7 +61,7 @@ export function AboutTabs() {
           )}
         </div>
       </div>
-      <div className="flex justify-center lg:justify-end">
+      <Reveal variant="slide-right" className="flex justify-center lg:justify-end">
         <Image
           src="/images/mixer-truck.webp"
           alt="SolidMix RMC transit mixer truck"
@@ -68,7 +69,7 @@ export function AboutTabs() {
           height={310}
           className="h-auto w-full max-w-md"
         />
-      </div>
+      </Reveal>
     </div>
   );
 }

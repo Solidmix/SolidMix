@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import {
   hero,
@@ -84,7 +85,7 @@ export default function HomePage() {
       </section>
 
       {/* Why Raipur's Contractors Choose + Working hours */}
-      <section className="relative overflow-hidden bg-tint-cyan-2/50 pb-16 pt-20">
+      <section className="relative overflow-hidden py-[50px] px-[10px] md:px-[20px] lg:px-0 lg:py-[100px]">
         <Image
           src="/images/bg/triangle-pattern.webp"
           alt=""
@@ -92,7 +93,7 @@ export default function HomePage() {
           fill
           className="pointer-events-none object-cover object-top opacity-20"
         />
-        <div className="container-content relative grid gap-12 lg:grid-cols-2">
+        <div className="relative mx-auto grid w-full max-w-[1360px] gap-12 lg:grid-cols-2">
           <div>
             <h2 className="text-center text-[28px] font-semibold text-primary md:text-[40px]">{whyChoose.heading}</h2>
             <div className="mt-8 space-y-7">
@@ -177,6 +178,28 @@ export default function HomePage() {
             <h2 className="mb-8 text-center text-[28px] font-semibold text-primary md:text-[40px]">{faq.heading}</h2>
             <FaqAccordion items={faq.items} questionColor="primary" firstAnswerColor="secondary" />
           </div>
+        </div>
+      </section>
+
+      {/* Companion photo — sits right before "Our Core Skills" on the
+          original (element 644c140/4035340, css/post-11.css.css): image
+          width 66% desktop / 100% mobile (<768px), radius 8px, linked to
+          Contact Us, mouse-tilt motion (motion_fx_tilt_speed 1.8 — reusing
+          the site's existing Tilt component/default, same as the other two
+          mouse-tilt photos already on this page). */}
+      <section className="py-[20px]">
+        <div className="container-content flex justify-center">
+          <Link href="/ready-mix-concrete-contact-in-raipur/" className="w-full md:w-[66%]">
+            <Tilt>
+              <Image
+                src="/images/content/whatsapp-image-2026-06-16-at-3-39-08-pm.webp"
+                alt="SolidMix RMC"
+                width={1280}
+                height={1600}
+                className="h-auto w-full rounded-lg object-contain"
+              />
+            </Tilt>
+          </Link>
         </div>
       </section>
 

@@ -65,7 +65,7 @@ export function HeroSlider() {
             fill
             priority={i === 0}
             sizes="100vw"
-            className={`object-cover transition-opacity duration-700 ${
+            className={`object-cover transition-opacity duration-500 ${
               i === index ? "opacity-100" : "opacity-0"
             }`}
             aria-hidden={i !== index}
