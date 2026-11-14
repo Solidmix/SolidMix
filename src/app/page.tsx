@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 import {
   hero,
@@ -185,28 +184,6 @@ export default function HomePage() {
               questionSizeClass="text-[20px]"
             />
           </div>
-        </div>
-      </section>
-
-      {/* Companion photo — sits right before "Our Core Skills" on the
-          original (element 644c140/4035340, css/post-11.css.css): image
-          width 66% desktop / 100% mobile (<768px), radius 8px, linked to
-          Contact Us, mouse-tilt motion (motion_fx_tilt_speed 1.8 — reusing
-          the site's existing Tilt component/default, same as the other two
-          mouse-tilt photos already on this page). */}
-      <section className="py-[20px]">
-        <div className="container-content flex justify-center">
-          <Link href="/ready-mix-concrete-contact-in-raipur/" className="w-full md:w-[66%]">
-            <Tilt>
-              <Image
-                src="/images/content/whatsapp-image-2026-06-16-at-3-39-08-pm.webp"
-                alt="SolidMix RMC"
-                width={1280}
-                height={1600}
-                className="h-auto w-full rounded-lg object-contain"
-              />
-            </Tilt>
-          </Link>
         </div>
       </section>
 
