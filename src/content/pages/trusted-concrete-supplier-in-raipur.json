@@ -210,9 +210,17 @@
       "text": "🌊 Waterproof Concrete"
     },
     {
+      "type": "p",
+      "text": "High-performance mixes designed to resist water damage and extend the life of your structures."
+    },
+    {
       "type": "heading",
       "level": 3,
       "text": "🛠️ Material Handling"
+    },
+    {
+      "type": "p",
+      "text": "Efficient management of raw materials to maintain consistency and quality in every batch."
     },
     {
       "type": "heading",
@@ -220,9 +228,17 @@
       "text": "⚙️ Concrete Mixing"
     },
     {
+      "type": "p",
+      "text": "State-of-the-art batching technology for accurate proportions and uniform strength."
+    },
+    {
       "type": "heading",
       "level": 3,
       "text": "🚚 Concrete Placement"
+    },
+    {
+      "type": "p",
+      "text": "Seamless on-site delivery and placement to keep your projects moving on time."
     },
     {
       "type": "heading",
@@ -230,9 +246,17 @@
       "text": "🏗️ Site Operations"
     },
     {
+      "type": "p",
+      "text": "Professional site support ensures smooth execution from start to finish."
+    },
+    {
       "type": "heading",
       "level": 3,
       "text": "✔️ Quality Supervision"
+    },
+    {
+      "type": "p",
+      "text": "Strict testing and monitoring at every stage to guarantee the best concrete strength."
     },
     {
       "type": "heading",
