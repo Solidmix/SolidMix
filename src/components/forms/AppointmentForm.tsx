@@ -103,6 +103,7 @@ export function AppointmentForm() {
         <input
           type="date"
           aria-label="Select Date"
+          placeholder="Select Date"
           value={values.date}
           onChange={(e) => setValues((v) => ({ ...v, date: e.target.value }))}
           className={field}
@@ -110,6 +111,7 @@ export function AppointmentForm() {
         <input
           type="time"
           aria-label="Select Time"
+          placeholder="Select Time"
           value={values.time}
           onChange={(e) => setValues((v) => ({ ...v, time: e.target.value }))}
           className={field}

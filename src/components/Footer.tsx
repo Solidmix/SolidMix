@@ -26,8 +26,8 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="mb-4 text-lg font-semibold">Useful Links</h2>
-            <ul className="space-y-2.5 text-sm">
+            <h2 className="mb-4 text-[20px] font-semibold">Useful Links</h2>
+            <ul className="space-y-2.5 text-[16px] font-medium">
               {footerUsefulLinks.map((link) => (
                 <li key={link.label} className="flex items-center gap-2.5">
                   <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-secondary">
@@ -50,7 +50,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="mb-4 text-lg font-semibold">Phone Number</h2>
+            <h2 className="mb-4 text-[20px] font-semibold">Phone Number</h2>
             <a href={site.phoneHref} className="flex items-center gap-2 text-sm hover:underline">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
                 <path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1l-2.1 2.2Z" />
@@ -58,7 +58,7 @@ export function Footer() {
               {site.phoneDisplay}
             </a>
 
-            <h2 className="mb-4 mt-7 text-lg font-semibold">Email Address</h2>
+            <h2 className="mb-4 mt-7 text-[20px] font-semibold">Email Address</h2>
             <a href={site.emails[0].href} className="flex items-center gap-2 text-sm hover:underline">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
                 <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z" />
@@ -68,7 +68,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="mb-4 text-lg font-semibold">{site.officeAddress.label}</h2>
+            <h2 className="mb-4 text-[20px] font-semibold">{site.officeAddress.label}</h2>
             {site.officeAddress.lines.map((line) => (
               <p key={line} className="text-sm leading-relaxed text-white/90">
                 {line}
@@ -77,7 +77,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="mb-4 text-lg font-semibold">{site.plantAddress.label}</h2>
+            <h2 className="mb-4 text-[20px] font-semibold">{site.plantAddress.label}</h2>
             {site.plantAddress.lines.map((line) => (
               <p key={line} className="text-sm leading-relaxed text-white/90">
                 {line}

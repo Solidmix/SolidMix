@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-export type LightboxImage = { src: string; alt: string };
+export type LightboxImage = { src: string; alt: string; width?: number; height?: number };
 
 export function Lightbox({ images }: { images: LightboxImage[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -26,22 +26,26 @@ export function Lightbox({ images }: { images: LightboxImage[] }) {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      {/* Masonry (page.html e9e9ec7: gallery_layout:masonry, columns:4/2/1 desktop/
+          tablet/mobile, gap:10px) via CSS multi-column — each photo keeps its own
+          natural aspect ratio (no crop), unlike a uniform grid. */}
+      <div className="columns-1 gap-[10px] md:columns-2 lg:columns-4">
         {images.map((img, i) => (
           <button
             key={i}
             type="button"
             onClick={() => setOpenIndex(i)}
-            className="reveal reveal-fade is-visible aspect-square overflow-hidden rounded-lg bg-tint-cyan-2 transition-transform hover:scale-[1.02]"
+            className="reveal reveal-fade is-visible mb-[10px] block w-full overflow-hidden rounded-lg bg-tint-cyan-2 transition-transform hover:scale-[1.02]"
+            style={{ breakInside: "avoid" }}
             aria-label={`Open photo ${i + 1} of ${images.length}`}
           >
             <Image
               src={img.src}
               alt={img.alt}
-              width={300}
-              height={300}
-              loading={i < 8 ? "eager" : "lazy"}
-              className="h-full w-full object-cover"
+              width={img.width ?? 800}
+              height={img.height ?? 800}
+              loading={i < 4 ? "eager" : "lazy"}
+              className="h-auto w-full"
             />
           </button>
         ))}
