@@ -27,28 +27,23 @@ export function CategoryListing({ cat, page }: { cat: string; page: number }) {
       />
       <section className="py-10 md:py-14">
         <div className="container-content">
-          <PostGrid posts={posts} titleSize="32px" excerptColor="#333333" />
+          <PostGrid posts={posts} layout="list" />
           {totalPages > 1 && (
-            <nav aria-label="Category pagination" className="mt-10 flex items-center justify-center gap-6">
-              {page > 1 && (
-                <Link
-                  href={categoryPageHref(cat, page - 1)}
-                  className="font-semibold text-secondary hover:underline"
-                >
-                  ← Previous
-                </Link>
-              )}
-              <span className="text-sm text-grey-2">
-                Page {page} of {totalPages}
+            <nav aria-label="Category pagination" className="mt-10 flex items-center justify-between">
+              <span>
+                {page > 1 && (
+                  <Link href={categoryPageHref(cat, page - 1)} className="hover:underline">
+                    ← Previous
+                  </Link>
+                )}
               </span>
-              {page < totalPages && (
-                <Link
-                  href={categoryPageHref(cat, page + 1)}
-                  className="font-semibold text-secondary hover:underline"
-                >
-                  Next →
-                </Link>
-              )}
+              <span>
+                {page < totalPages && (
+                  <Link href={categoryPageHref(cat, page + 1)} className="hover:underline">
+                    Next →
+                  </Link>
+                )}
+              </span>
             </nav>
           )}
         </div>

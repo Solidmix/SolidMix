@@ -6,7 +6,6 @@ import {
   stripChrome,
   resolvePageH1,
   extractCards,
-  getFaqItems,
   parseMdLink,
   type ImageBlock,
   type HeadingBlock,
@@ -23,6 +22,9 @@ import { TeamGrid, type TeamMember } from "@/components/sections/TeamGrid";
 import { ServiceIconCards } from "@/components/sections/ServiceIconCards";
 import { ProgressBars } from "@/components/sections/ProgressBars";
 import { CtaBanner } from "@/components/sections/CtaBanner";
+import { MediaSplit } from "@/components/sections/MediaSplit";
+import { FaqAccordion } from "@/components/FaqAccordion";
+import { Tilt } from "@/components/Tilt";
 import { whyChooseStats } from "@/content/stats";
 import { UsersIcon } from "@/components/icons";
 
@@ -72,12 +74,25 @@ const serviceChips = extractCards(blocks.slice(37, 49));
 
 const tailCta = blocks.slice(49, 52);
 const faqSectionAll = blocks.slice(52, 65);
-const faqs = getFaqItems(faqSectionAll);
 // "Frequently Asked Questions" is centered and 40px on the original, unlike
 // BlockRenderer's generic (left, 28px) heading default — pulled out so it
 // can get that treatment.
 const faqHeading = faqSectionAll.find((b): b is HeadingBlock => b.type === "heading");
 const faqSection = faqHeading ? faqSectionAll.filter((b) => b !== faqHeading) : faqSectionAll;
+// The original's 5th item is itself an answer-looking sentence ("Yes. Every
+// batch...") used as the question text (page.html e-n-accordion-item-2364) —
+// it doesn't end in "?", so BlockRenderer/segmentBlocks' "?"-based FAQ
+// detection would split this run into three pieces around it. Paired by
+// strict position instead (heading, para, heading, para, ...) so all 6
+// original items land in one accordion, in the original order and wording.
+const faqs: { q: string; a: string }[] = [];
+for (let k = 0; k + 1 < faqSection.length; k += 2) {
+  faqs.push({ q: (faqSection[k] as HeadingBlock).text, a: (faqSection[k + 1] as ParaBlock).text });
+}
+// Poster image (page.html elementor-element-1bebdc3) sits right after the
+// FAQ blocks and was previously dropped — stripChrome offsets content.json's
+// raw index 68 down to 65 here.
+const faqImage = blocks[65]?.type === "image" ? (blocks[65] as ImageBlock) : undefined;
 
 export const metadata: Metadata = pageMetadata(
   content,
@@ -206,15 +221,41 @@ export default function AboutPage() {
       {/* Tail CTA — "Contact Us" is a white button on the original, not primary. */}
       <BlocksCta blocks={tailCta} bgImage="/images/bg/cta-blog.webp" bgOpacity={0.73} ctaVariant="white" />
 
-      {/* FAQ */}
+      {/* FAQ — poster image left, accordion right (page.html elementor-element-15be88e:
+          flex-direction:row-reverse, --flex-wrap-mobile:wrap-reverse, so the image
+          stays first both stacked on mobile and side-by-side on tablet/desktop). */}
       <section className="py-14">
-        <div className="container-content max-w-3xl">
+        <div className="container-content">
           {faqHeading && (
             <h2 className="mb-6 text-center text-[28px] font-semibold text-primary md:text-[40px]">
               {faqHeading.text}
             </h2>
           )}
-          <BlockRenderer blocks={faqSection} faqQuestionColor="primary" />
+          <MediaSplit
+            gridCols="md:grid-cols-2"
+            media={
+              faqImage && (
+                <Tilt className="mx-auto w-full md:w-[80%]">
+                  <Image
+                    src={faqImage.src}
+                    alt={faqImage.alt || "SolidMix RMC team on site"}
+                    width={1280}
+                    height={1600}
+                    className="h-auto w-full rounded-lg object-contain"
+                  />
+                </Tilt>
+              )
+            }
+          >
+            <FaqAccordion
+              items={faqs}
+              questionColor="primary"
+              openQuestionColor="text-[#1f2124]"
+              hoverQuestionColorClass="[@media(hover:hover)]:hover:text-secondary"
+              questionSizeClass="text-[20px]"
+              answerColor="text-secondary"
+            />
+          </MediaSplit>
         </div>
       </section>
     </>

@@ -14,13 +14,45 @@ export function PostGrid({
   titleClassName,
   excerptColor,
   readMoreClassName,
+  layout = "grid",
 }: {
   posts: PostSummary[];
   titleSize?: "24px" | "32px";
   titleClassName?: string;
   excerptColor?: string;
   readMoreClassName?: string;
+  // Category archives are the WP theme's bare fallback loop (page.html
+  // category-construction: stacked <article class="post">, no card, no
+  // "Read More" link) — "list" reproduces that; default "grid" keeps every
+  // other caller (blog index, appointments teaser) exactly as it was.
+  layout?: "grid" | "list";
 }) {
+  if (layout === "list") {
+    return (
+      <div className="space-y-10">
+        {posts.map((post) => (
+          <article key={post.slug}>
+            <h2 className="text-[20px] font-semibold text-ink">
+              <Link href={`/${post.slug}/`} className="hover:text-primary hover:underline">
+                {post.h1}
+              </Link>
+            </h2>
+            <Link href={`/${post.slug}/`} className="mt-3 block">
+              <Image
+                src={post.featuredImage}
+                alt={post.h1}
+                width={800}
+                height={450}
+                className="h-auto w-full max-w-[800px] rounded-lg object-cover"
+              />
+            </Link>
+            <p className="mt-3 leading-relaxed text-grey">{post.excerpt}</p>
+          </article>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {posts.map((post) => (
