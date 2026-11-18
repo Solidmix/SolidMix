@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import NextImage from "next/image";
 import {
   getPageContent,
   stripChrome,
@@ -9,11 +10,13 @@ import {
   type HeadingBlock,
   type ParaBlock,
   type LinkBlock,
+  type ImageBlock,
 } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { CardGrid } from "@/components/CardGrid";
 import { FaqAccordion } from "@/components/FaqAccordion";
+import { InlineText } from "@/components/InlineText";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, breadcrumbLd, faqPageLd } from "@/lib/seo";
 import { PRODUCTS_BASE } from "@/content/site";
@@ -49,7 +52,12 @@ const whyHeading = blocks[whyEyebrowIdx + 1] as HeadingBlock;
 const whyIntro = blocks[whyEyebrowIdx + 2] as ParaBlock;
 const faqStart = blocks.findIndex((b) => b.type === "heading" && b.text === "Frequently asked question");
 const FEATURE_ICONS = [FlameIcon, TruckIcon, DropletIcon];
-const whyFeatures = extractCards(blocks.slice(whyEyebrowIdx + 3, faqStart)).filter((c) => c.image === undefined);
+// FAQ_Icon.svg sits immediately before the heading (css/post-60.css element
+// 78cc379, 40% column) — same icon used on the product detail pages' FAQ.
+const faqIconIndex = faqStart > 0 && blocks[faqStart - 1]?.type === "image" ? faqStart - 1 : -1;
+const faqIcon = faqIconIndex === -1 ? undefined : (blocks[faqIconIndex] as ImageBlock);
+const whyFeaturesEnd = faqIconIndex === -1 ? faqStart : faqIconIndex;
+const whyFeatures = extractCards(blocks.slice(whyEyebrowIdx + 3, whyFeaturesEnd)).filter((c) => c.image === undefined);
 const faqHeading = blocks[faqStart] as HeadingBlock;
 const faqIntro = blocks[faqStart + 1] as ParaBlock | undefined;
 const faqRest = blocks.slice(faqStart + 2);
@@ -118,15 +126,43 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Dark FAQ section with teal filled accordion boxes — confirmed
-          against the original screenshot, not a plain white section. */}
-      <section className="bg-[#1e1e1e] py-12 md:py-16">
-        <div className="container-content max-w-3xl text-center">
-          <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">{faqHeading.text}</h2>
-          {faqIntro && <p className="mt-4 leading-relaxed text-white/80">{faqIntro.text}</p>}
-        </div>
-        <div className="container-content mt-8 max-w-3xl">
-          <FaqAccordion items={faqItems} variant="filled" />
+      {/* Dark FAQ section, two columns like the product detail pages' FAQ
+          section (css/post-60.css: icon+heading+intro col 40%, accordion
+          col 60%, bg #292929 — same structure as [slug]/page.tsx). */}
+      <section className="bg-[#292929] p-[100px]">
+        <div className="mx-auto flex w-full max-w-[1140px] flex-col items-center gap-8 md:flex-row md:items-start md:gap-10">
+          <div className="flex w-full flex-col items-center text-center md:w-[40%]">
+            {faqIcon && (
+              <div className="w-[14%]">
+                <NextImage
+                  src={faqIcon.src}
+                  alt={faqIcon.alt || "FAQ"}
+                  width={112}
+                  height={112}
+                  className="h-auto w-full"
+                />
+              </div>
+            )}
+            <h2 className="mt-4 text-[28px] font-semibold text-primary md:text-[40px]">{faqHeading.text}</h2>
+            {faqIntro && (
+              <p className="mt-4 max-w-md text-white">
+                <InlineText text={faqIntro.text} />
+              </p>
+            )}
+          </div>
+          <div className="w-full md:w-[60%]">
+            <FaqAccordion
+              items={faqItems}
+              questionSizeClass="text-[20px]"
+              boxedStyle={{
+                borderClass: "border-[#d5d8dc]",
+                titleBgClass: "bg-secondary",
+                titleTextClass: "text-white",
+                panelPaddingClass: "p-[15px]",
+                answerSizeClass: "text-[18px]",
+              }}
+            />
+          </div>
         </div>
       </section>
     </>

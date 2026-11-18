@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { getPageContent, stripChrome, resolvePageH1, type HeadingBlock } from "@/lib/content";
+import NextImage from "next/image";
+import { getPageContent, stripChrome, resolvePageH1, type HeadingBlock, type ImageBlock } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { JsonLd } from "@/components/JsonLd";
@@ -23,13 +24,23 @@ const insideElevateEnd =
   insideElevateStart === -1
     ? -1
     : afterIntro.findIndex((b, idx) => idx > insideElevateStart && b.type === "image");
-const bodyBlocks =
+const withoutInsideElevate =
   insideElevateStart === -1
     ? afterIntro
     : [
         ...afterIntro.slice(0, insideElevateStart),
         ...afterIntro.slice(insideElevateEnd === -1 ? afterIntro.length : insideElevateEnd),
       ];
+// The Hindi graduation poster ("सही शिक्षा का SOLID फैसला...") sits
+// immediately before the form on the original (two-column row: image col
+// 50% / form col 50%, image itself 72% of its column — css/post-35.css
+// elements 73daf38/22cf096/92be738/910bc19). Its alt text says "column
+// casting" but it is visually the poster (confirmed against the live site).
+const posterImage =
+  withoutInsideElevate[withoutInsideElevate.length - 1]?.type === "image"
+    ? (withoutInsideElevate[withoutInsideElevate.length - 1] as ImageBlock)
+    : undefined;
+const bodyBlocks = posterImage ? withoutInsideElevate.slice(0, -1) : withoutInsideElevate;
 
 export const metadata: Metadata = pageMetadata(content, "/careers/");
 
@@ -45,7 +56,18 @@ export default function CareersPage() {
           )}
           <BlockRenderer blocks={bodyBlocks} />
         </div>
-        <div className="container-content mt-10 max-w-2xl">
+        <div className="container-content mt-10 grid gap-x-[11px] gap-y-10 md:grid-cols-2 md:items-center">
+          {posterImage && (
+            <div className="flex justify-center">
+              <NextImage
+                src={posterImage.src}
+                alt={posterImage.alt || ""}
+                width={1280}
+                height={1600}
+                className="h-auto w-[72%]"
+              />
+            </div>
+          )}
           <CareersForm />
         </div>
       </section>

@@ -27,6 +27,7 @@ export function FaqAccordion({
   questionSizeClass = "text-[22px]",
   questionWeightClass = "font-semibold",
   answerColor = "text-grey",
+  boxedStyle,
 }: {
   items: FaqItem[];
   defaultOpen?: number;
@@ -54,6 +55,19 @@ export function FaqAccordion({
   questionSizeClass?: string;
   questionWeightClass?: string;
   answerColor?: string;
+  // "bordered" variant only. Reproduces the listing page's own n-accordion
+  // widget (css/post-60.css element 0938717 + widget-nested-accordion.min.css
+  // defaults): each item boxed in its own 1px #d5d8dc border with 0 gap
+  // between items, teal title bar, white title text, square corners, and the
+  // open answer panel boxed with the same border. Undefined (the default)
+  // keeps every existing "bordered" caller's look exactly as it was.
+  boxedStyle?: {
+    borderClass: string;
+    titleBgClass: string;
+    titleTextClass: string;
+    panelPaddingClass: string;
+    answerSizeClass?: string;
+  };
 }) {
   const [open, setOpen] = useState<number | null>(defaultOpen);
   const uid = useId();
@@ -111,8 +125,17 @@ export function FaqAccordion({
     );
   }
 
+  const wrapperClass = boxedStyle ? "rounded-none" : "divide-y divide-grey-line rounded-lg border border-grey-line";
+  const titleClass = boxedStyle
+    ? `flex w-full items-center gap-3 border px-4 py-4 text-left font-semibold ${boxedStyle.borderClass} ${boxedStyle.titleBgClass} ${boxedStyle.titleTextClass}`
+    : "flex w-full items-center gap-3 px-4 py-4 text-left font-semibold text-primary";
+  const iconClass = boxedStyle ? `text-xl leading-none ${boxedStyle.titleTextClass}` : "text-xl leading-none text-primary";
+  const panelClass = boxedStyle
+    ? `${boxedStyle.panelPaddingClass} border border-t-0 text-white ${boxedStyle.borderClass} ${boxedStyle.answerSizeClass ?? ""}`
+    : "px-4 pb-5 pl-11";
+
   return (
-    <div className="divide-y divide-grey-line rounded-lg border border-grey-line">
+    <div className={wrapperClass}>
       {items.map((item, i) => {
         const isOpen = open === i;
         const buttonId = `${uid}-button-${i}`;
@@ -126,14 +149,18 @@ export function FaqAccordion({
                 onClick={() => setOpen(isOpen ? null : i)}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                className="flex w-full items-center gap-3 px-4 py-4 text-left font-semibold text-primary"
+                className={titleClass}
               >
-                <span aria-hidden="true" className="text-xl leading-none text-primary">
+                <span aria-hidden="true" className={iconClass}>
                   {isOpen ? "−" : "+"}
                 </span>
                 <span
                   className={`${questionSizeClass} ${questionWeightClass} ${
-                    isOpen && openQuestionColor ? openQuestionColor : QUESTION_COLOR[questionColor]
+                    boxedStyle
+                      ? boxedStyle.titleTextClass
+                      : isOpen && openQuestionColor
+                        ? openQuestionColor
+                        : QUESTION_COLOR[questionColor]
                   } ${hoverQuestionColorClass ?? ""}`}
                 >
                   <InlineText text={item.q} />
@@ -145,7 +172,9 @@ export function FaqAccordion({
               role="region"
               aria-labelledby={buttonId}
               hidden={!isOpen}
-              className={`px-4 pb-5 pl-11 ${i === 0 && firstAnswerColor ? QUESTION_COLOR[firstAnswerColor] : answerColor}`}
+              className={`${panelClass} ${
+                boxedStyle ? "" : i === 0 && firstAnswerColor ? QUESTION_COLOR[firstAnswerColor] : answerColor
+              }`}
             >
               <p>
                 <InlineText text={item.a} />
