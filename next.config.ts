@@ -36,7 +36,8 @@ const categoryPrefixRedirects = categoryPrefixes.map((prefix) => ({
 const nextConfig: NextConfig = {
   trailingSlash: true,
   images: {
-    formats: ["image/avif", "image/webp"],
+    formats: ["image/webp"],
+    minimumCacheTTL: 2678400,
   },
   async redirects() {
     return [

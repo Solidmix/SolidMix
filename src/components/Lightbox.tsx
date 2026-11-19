@@ -190,15 +190,17 @@ export function Lightbox({ images }: { images: LightboxImage[] }) {
             </svg>
           </button>
           <div
-            className="relative max-h-[85vh] w-full max-w-3xl"
+            className="relative max-h-[90vh] max-w-[95vw]"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
               src={images[openIndex].src}
               alt={images[openIndex].alt}
-              width={1200}
-              height={1200}
-              className="mx-auto h-auto max-h-[85vh] w-auto rounded-lg object-contain"
+              width={images[openIndex].width ?? 1200}
+              height={images[openIndex].height ?? 1200}
+              sizes="95vw"
+              priority
+              className="mx-auto h-auto max-h-[90vh] w-auto max-w-[95vw] object-contain"
             />
           </div>
         </div>
