@@ -92,13 +92,9 @@ export function Footer() {
           <p>{footer.tagline}</p>
           <p className="mt-2">
             {footer.copyright}{" "}
-            <Link href="/" className="font-medium hover:underline">
+            <Link href="/" className="font-bold hover:underline">
               {site.legalName}.
-            </Link>{" "}
-            Powered by{" "}
-            <a href={footer.poweredBy.href} target="_blank" rel="noopener noreferrer" className="font-medium hover:underline">
-              {footer.poweredBy.label}.
-            </a>
+            </Link>
           </p>
         </div>
       </div>
