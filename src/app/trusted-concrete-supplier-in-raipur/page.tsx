@@ -44,6 +44,10 @@ const foundersHeading = blocks[7] as HeadingBlock;
 const foundersLink = parseMdLink(foundersHeading.text);
 const foundersRole = blocks[8] as ParaBlock;
 const foundersCta = blocks[9] as LinkBlock;
+// Dropped during content extraction, but present on the live original right
+// after the two collage images (page.html elementor-element-066d383, links to
+// /our-work/) — same button already rendered on the Legal page.
+const elevateProfileCta: LinkBlock = { type: "link", text: "Elevate Profile", href: "/our-work/" };
 
 const strongSection = blocks.slice(10, 13);
 // Rendered directly below (not via BlockRenderer): the heading ends with "?"
@@ -126,6 +130,12 @@ export default function AboutPage() {
                 className="h-auto w-full"
               />
             ))}
+            <Link
+              href={elevateProfileCta.href}
+              className="inline-block self-start rounded-lg bg-secondary px-[50px] py-[25px] text-[20px] font-medium text-white transition-colors hover:bg-secondary/90"
+            >
+              {elevateProfileCta.text}
+            </Link>
           </div>
           <div className="bg-secondary p-[20px] text-white md:p-[50px]">
             <h2 className="text-center text-[28px] font-semibold md:text-[40px]">
@@ -136,17 +146,17 @@ export default function AboutPage() {
                 <InlineText text={p.text} />
               </p>
             ))}
-            <ul className="mt-6 grid grid-cols-1 gap-x-[50px] gap-y-2 sm:grid-cols-2">
+            <ul className="mt-6 grid grid-cols-1 gap-x-[50px] gap-y-2 sm:grid-flow-col sm:grid-cols-2 sm:grid-rows-2">
               {introList.items.map((item) => (
-                <li key={item} className="flex items-center gap-2 text-[16px] font-normal text-white">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
+                <li key={item} className="flex items-center gap-2 text-[19px] font-normal text-white">
+                  <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
                     <path d="m5 13 4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                   {item}
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-wrap items-center justify-start gap-4">
+            <div className="mt-8 flex flex-col items-start gap-4">
               <div className="flex items-start gap-[15px]">
                 <Link href={foundersLink.href ?? "#"} aria-hidden="true" tabIndex={-1} className="shrink-0 text-white">
                   <UsersIcon className="h-9 w-9" />
