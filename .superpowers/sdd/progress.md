@@ -20,3 +20,4 @@
 | 2026-11-14 | Parity | fix/parity-r13 merged: removed home companion photo added in r11-2 (not visible on live original); regress ALL PASS, content-lock PASS | 526f404 |
 | 2026-11-18 | Parity | fix/parity-r14 merged: careers two-column poster + form (sourced styles, file field), products listing FAQ two-column + boxed accordion like original; regress ALL PASS, content-lock PASS | f2b6df0 |
 | 2026-11-19 | Parity | fix/parity-r15 merged: About intro card (Elevate Profile button restored, checklist order + 19px, Get In Touch below founders), footer copyright without Powered by line and bold Solidmixrmc; regress ALL PASS, content-lock PASS | cfd67c9 |
+| 2026-11-19 | Parity | fix/parity-r16 merged: gallery = original 21 photos (byte-identical files), order, alt text, shortest-column masonry 4/2/1, 10px gap, 0 radius, container 1381/800/350; gallery-measure PASS, regress ALL PASS, content-lock PASS | dadc096 |
