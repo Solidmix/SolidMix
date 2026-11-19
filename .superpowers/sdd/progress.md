@@ -19,3 +19,4 @@
 | 2026-11-14 | Parity | fix/parity-r12 merged: About FAQ all 6 items in one accordion + poster, Services/Home FAQ sourced styles; gallery masonry no crop; category pages plain list; footer sizes; appointment placeholders; regress ALL PASS, content-lock PASS | 2f4a792 |
 | 2026-11-14 | Parity | fix/parity-r13 merged: removed home companion photo added in r11-2 (not visible on live original); regress ALL PASS, content-lock PASS | 526f404 |
 | 2026-11-18 | Parity | fix/parity-r14 merged: careers two-column poster + form (sourced styles, file field), products listing FAQ two-column + boxed accordion like original; regress ALL PASS, content-lock PASS | f2b6df0 |
+| 2026-11-19 | Parity | fix/parity-r15 merged: About intro card (Elevate Profile button restored, checklist order + 19px, Get In Touch below founders), footer copyright without Powered by line and bold Solidmixrmc; regress ALL PASS, content-lock PASS | cfd67c9 |
