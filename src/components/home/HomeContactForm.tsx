@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { contactBlock } from "@/content/home";
 import {
   sendEnquiry,
+  saveSubmission,
   validateEmail,
   validateRequired,
   isHoneypotFilled,
@@ -51,6 +52,17 @@ export function HomeContactForm() {
       Email: values.email,
       "Your Area": values.area === OTHER_AREA_OPTION ? values.otherArea : values.area,
       Message: values.message,
+    });
+    saveSubmission("enquiry", {
+      source: "home",
+      name: values.name,
+      email: values.email,
+      phone: values.contact,
+      area: values.area === OTHER_AREA_OPTION ? values.otherArea : values.area,
+      otherArea: values.area === OTHER_AREA_OPTION ? values.otherArea : undefined,
+      message: values.message,
+      page: "/",
+      honeypot: values[HONEYPOT_FIELD],
     });
     setSubmitted(true);
   };

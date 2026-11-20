@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import {
   sendEnquiry,
+  saveSubmission,
   validateEmail,
   isHoneypotFilled,
   HONEYPOT_FIELD,
@@ -48,6 +49,16 @@ export function CareersForm() {
       Subject: values.subject,
       Resume: resume?.name ?? "",
       Comments: values.comments,
+    });
+    saveSubmission("career", {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      subject: values.subject,
+      resumeFileName: resume?.name,
+      comments: values.comments,
+      page: "/careers/",
+      honeypot: values[HONEYPOT_FIELD],
     });
     setSubmitted(true);
   };

@@ -1,4 +1,6 @@
 import { site } from "@/content/site";
+import { ConvexHttpClient } from "convex/browser";
+import { api } from "../../convex/_generated/api";
 
 // Central enquiry submission. For this phase it opens WhatsApp with a
 // pre-filled message; it can later be swapped for an email service (Resend)
@@ -12,6 +14,68 @@ export function sendEnquiry(formName: string, pagePath: string, fields: Record<s
   );
   const url = `https://wa.me/${site.whatsappNumber}?text=${text}`;
   window.open(url, "_blank", "noopener,noreferrer");
+}
+
+type EnquirySubmission = {
+  source: "contact" | "home";
+  name?: string;
+  email: string;
+  phone?: string;
+  area: string;
+  otherArea?: string;
+  message?: string;
+  page: string;
+  honeypot?: string;
+};
+
+type AppointmentSubmission = {
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  mobile?: string;
+  date?: string;
+  time?: string;
+  topic: string;
+  page: string;
+  honeypot?: string;
+};
+
+type CareerSubmission = {
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  subject?: string;
+  resumeFileName?: string;
+  comments?: string;
+  page: string;
+  honeypot?: string;
+};
+
+// Fire-and-forget save to Convex, run in the background after sendEnquiry
+// opens WhatsApp. Never awaited by the caller, so a missing URL or a failed
+// request never blocks or delays the WhatsApp flow. No personal data logged.
+export function saveSubmission(kind: "enquiry", data: EnquirySubmission): void;
+export function saveSubmission(kind: "appointment", data: AppointmentSubmission): void;
+export function saveSubmission(kind: "career", data: CareerSubmission): void;
+export function saveSubmission(
+  kind: "enquiry" | "appointment" | "career",
+  data: EnquirySubmission | AppointmentSubmission | CareerSubmission,
+): void {
+  const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
+  if (!convexUrl) return;
+
+  const client = new ConvexHttpClient(convexUrl);
+  let promise: Promise<unknown>;
+  if (kind === "enquiry") {
+    promise = client.mutation(api.submissions.submitEnquiry, data as EnquirySubmission);
+  } else if (kind === "appointment") {
+    promise = client.mutation(api.submissions.submitAppointment, data as AppointmentSubmission);
+  } else {
+    promise = client.mutation(api.submissions.submitCareerApplication, data as CareerSubmission);
+  }
+  promise.catch(() => {
+    console.warn("saveSubmission: Convex save failed");
+  });
 }
 
 // Hidden field name every form includes as a honeypot. Bots tend to fill
