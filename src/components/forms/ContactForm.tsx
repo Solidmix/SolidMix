@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import {
   sendEnquiry,
+  saveSubmission,
   validateEmail,
   validateIndianMobile,
   validateRequired,
@@ -56,6 +57,17 @@ export function ContactForm() {
       "Contact No.": values.contact,
       "Your Area": values.area === OTHER_AREA_OPTION ? values.otherArea : values.area,
       Message: values.message,
+    });
+    saveSubmission("enquiry", {
+      source: "contact",
+      name: values.name,
+      email: values.email,
+      phone: values.contact,
+      area: values.area === OTHER_AREA_OPTION ? values.otherArea : values.area,
+      otherArea: values.area === OTHER_AREA_OPTION ? values.otherArea : undefined,
+      message: values.message,
+      page: "/ready-mix-concrete-contact-in-raipur/",
+      honeypot: values[HONEYPOT_FIELD],
     });
     setSubmitted(true);
   };

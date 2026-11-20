@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import {
   sendEnquiry,
+  saveSubmission,
   validateEmail,
   isHoneypotFilled,
   HONEYPOT_FIELD,
@@ -49,6 +50,17 @@ export function AppointmentForm() {
       Date: values.date,
       Time: values.time,
       Topic: values.topic,
+    });
+    saveSubmission("appointment", {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      mobile: values.mobile,
+      date: values.date,
+      time: values.time,
+      topic: values.topic,
+      page: "/appointments/",
+      honeypot: values[HONEYPOT_FIELD],
     });
     setSubmitted(true);
   };
