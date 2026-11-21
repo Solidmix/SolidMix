@@ -3,17 +3,29 @@ import { notFound } from "next/navigation";
 import { PageHero } from "@/components/PageHero";
 import { PostGrid } from "@/components/PostGrid";
 import { getCategoryDefs, getCategoryPageCount, getCategoryPagePosts } from "@/lib/categories";
+import type { PostSummary } from "@/lib/posts";
 
 function categoryPageHref(cat: string, page: number) {
   return page <= 1 ? `/category/${cat}/` : `/category/${cat}/page/${page}/`;
 }
 
-export function CategoryListing({ cat, page }: { cat: string; page: number }) {
+// `posts` is passed in only by page 1 (new published posts prepended ahead
+// of the legacy order); every other page keeps calling the legacy-only
+// getCategoryPagePosts itself, unchanged.
+export function CategoryListing({
+  cat,
+  page,
+  posts: postsOverride,
+}: {
+  cat: string;
+  page: number;
+  posts?: PostSummary[];
+}) {
   const def = getCategoryDefs().find((d) => d.slug === cat);
   const totalPages = getCategoryPageCount(cat);
   if (!def || page < 1 || page > totalPages) notFound();
 
-  const posts = getCategoryPagePosts(cat, page);
+  const posts = postsOverride ?? getCategoryPagePosts(cat, page);
 
   return (
     <>

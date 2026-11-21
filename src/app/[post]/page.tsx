@@ -1,28 +1,25 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { notFound } from "next/navigation";
-import { getPageContent, stripChrome, resolvePageH1, getFaqItems } from "@/lib/content";
+import { notFound, permanentRedirect } from "next/navigation";
+import { stripChrome, resolvePageH1, getFaqItems } from "@/lib/content";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, breadcrumbLd, faqPageLd, articleLd } from "@/lib/seo";
-import { getPostSlugs, formatPostDate } from "@/lib/posts";
+import { formatPostDate } from "@/lib/posts";
+import { getPost, getPostSlugs, type PostPageContent } from "@/lib/blogData";
 
-const POST_SLUGS = getPostSlugs();
+export const dynamicParams = true;
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return POST_SLUGS.map((post) => ({ post }));
+export async function generateStaticParams() {
+  const slugs = await getPostSlugs();
+  return slugs.map((post) => ({ post }));
 }
 
-function loadPost(slug: string) {
-  if (!POST_SLUGS.includes(slug)) return null;
-  try {
-    const content = getPageContent(slug);
-    return content.kind === "post" ? content : null;
-  } catch {
-    return null;
-  }
+async function loadPost(slug: string): Promise<PostPageContent | null> {
+  const result = await getPost(slug);
+  if (result.kind === "found") return result.content;
+  if (result.kind === "redirect") permanentRedirect(`/${result.to}/`);
+  return null;
 }
 
 export async function generateMetadata({
@@ -31,14 +28,14 @@ export async function generateMetadata({
   params: Promise<{ post: string }>;
 }): Promise<Metadata> {
   const { post } = await params;
-  const content = loadPost(post);
+  const content = await loadPost(post);
   if (!content) return {};
   return pageMetadata(content, `/${post}/`, content.featuredImage?.src);
 }
 
 export default async function PostPage({ params }: { params: Promise<{ post: string }> }) {
   const { post } = await params;
-  const content = loadPost(post);
+  const content = await loadPost(post);
   if (!content) notFound();
 
   const h1 = resolvePageH1(content);
@@ -63,6 +60,7 @@ export default async function PostPage({ params }: { params: Promise<{ post: str
                 articleLd({
                   headline: h1,
                   datePublished: content.date,
+                  dateModified: content.updatedAt,
                   image: content.featuredImage.src,
                   url: `/${post}/`,
                 }),

@@ -38,6 +38,9 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/webp"],
     minimumCacheTTL: 2678400,
+    remotePatterns: [
+      { protocol: "https", hostname: "**.convex.cloud", pathname: "/api/storage/**" },
+    ],
   },
   async redirects() {
     return [

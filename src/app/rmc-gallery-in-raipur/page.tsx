@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { api } from "../../../convex/_generated/api";
+import { getServerConvexClient } from "@/lib/convexServer";
 import { getPageContent, stripChrome, resolvePageH1 } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
@@ -15,7 +17,9 @@ const blocks = stripChrome(content.blocks, h1);
 // files (1/14/21, 3/19, 15/17 are byte-identical pairs/triples) so all 21
 // are kept as-is. Dimensions are each file's own real natural size (the
 // originals, not the smaller srcset size the live page happened to load).
-const images: LightboxImage[] = [
+// Used only as a fallback when Convex has no photos or the fetch fails, so
+// the public page never goes empty.
+const FALLBACK_IMAGES: LightboxImage[] = [
   { src: "/images/gallery/rmc-gallery-01-whatsapp-image-2025-03-24-at-19.07.10-2.webp", alt: "SolidMix RMC transit mixer delivering ready mix concrete to construction site in Raipur", width: 1236, height: 1600 },
   { src: "/images/gallery/rmc-gallery-02-whatsapp-image-2025-04-10-at-4.09.01-pm-1-e1758811233899.webp", alt: "Ready mix concrete being poured for slab construction — SolidMix RMC Raipur", width: 643, height: 726 },
   { src: "/images/gallery/rmc-gallery-03-whatsapp-image-2025-04-10-at-4.15.12-pm-1.webp", alt: "Concrete placement at residential construction site, Raipur — SolidMix RMC", width: 645, height: 685 },
@@ -39,9 +43,25 @@ const images: LightboxImage[] = [
   { src: "/images/gallery/rmc-gallery-21-whatsapp-image-2025-03-24-at-19.07.10.webp", alt: "Ready mix concrete delivery and site operations — SolidMix RMC Raipur", width: 1236, height: 1600 },
 ];
 
-export const metadata: Metadata = pageMetadata(content, "/rmc-gallery-in-raipur/", images[0]?.src);
+async function getGalleryImages(): Promise<LightboxImage[]> {
+  const client = getServerConvexClient();
+  if (!client) return FALLBACK_IMAGES;
+  try {
+    const photos = await client.query(api.gallery.listPublic, {});
+    if (!photos || photos.length === 0) return FALLBACK_IMAGES;
+    return photos.map((p) => ({ src: p.src, alt: p.alt, width: p.width, height: p.height }));
+  } catch {
+    return FALLBACK_IMAGES;
+  }
+}
 
-export default function GalleryPage() {
+export async function generateMetadata(): Promise<Metadata> {
+  const images = await getGalleryImages();
+  return pageMetadata(content, "/rmc-gallery-in-raipur/", images[0]?.src);
+}
+
+export default async function GalleryPage() {
+  const images = await getGalleryImages();
   return (
     <>
       <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Gallery" }])]} />
