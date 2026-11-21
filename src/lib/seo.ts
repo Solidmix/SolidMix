@@ -146,11 +146,13 @@ export function breadcrumbLd(items: { name: string; url?: string }[]) {
 export function articleLd({
   headline,
   datePublished,
+  dateModified,
   image,
   url,
 }: {
   headline: string;
   datePublished: string;
+  dateModified?: string;
   image: string;
   url: string;
 }) {
@@ -159,6 +161,7 @@ export function articleLd({
     "@type": "Article",
     headline,
     datePublished,
+    ...(dateModified ? { dateModified } : {}),
     image: absUrl(image),
     url: absUrl(url),
     author: { "@type": "Organization", name: site.name },

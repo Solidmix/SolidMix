@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
 import { PRODUCTS_BASE } from "@/content/site";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPostsSorted } from "@/lib/blogData";
 import { getCategoryDefs } from "@/lib/categories";
 
 const PRODUCT_SLUGS = [
@@ -55,7 +55,11 @@ const routes = [
   ),
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Rebuilt at most every 5 minutes so new/trashed blog posts appear without
+// relying on revalidatePath("/sitemap.xml").
+export const revalidate = 300;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
   const staticEntries: MetadataRoute.Sitemap = routes.map((route) => ({
     url: `${SITE_URL}${route}`,
@@ -63,9 +67,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "weekly",
     priority: route === "/" ? 1 : 0.7,
   }));
-  const postEntries: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+  const posts = await getAllPostsSorted();
+  const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${SITE_URL}/${post.slug}/`,
-    lastModified: new Date(post.date),
+    lastModified: new Date(post.updatedAt ?? post.date),
     changeFrequency: "monthly",
     priority: 0.6,
   }));

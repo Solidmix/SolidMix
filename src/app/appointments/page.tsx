@@ -4,15 +4,15 @@ import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, breadcrumbLd } from "@/lib/seo";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
 import { PostGrid } from "@/components/PostGrid";
-import { getAllPostsSorted } from "@/lib/posts";
+import { getLatestPosts } from "@/lib/blogData";
 
 const content = getPageContent("appointments");
 const h1 = resolvePageH1(content);
-const latestPosts = getAllPostsSorted().slice(0, 3);
 
 export const metadata: Metadata = pageMetadata(content, "/appointments/");
 
-export default function AppointmentsPage() {
+export default async function AppointmentsPage() {
+  const latestPosts = await getLatestPosts(3);
   return (
     <>
       <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Appointments" }])]} />
