@@ -88,14 +88,6 @@
     "blocks": 75
   },
   {
-    "slug": "appointments",
-    "path": "/appointments/",
-    "kind": "page",
-    "title": "Book RMC Appointment | Ready Mix Concrete Raipur",
-    "h1": "Appointments",
-    "blocks": 21
-  },
-  {
     "slug": "calculator",
     "path": "/calculator/",
     "kind": "page",

@@ -7,10 +7,10 @@ const CATEGORY_PATH_RE = /^\/category\/[a-z0-9-]+\/(page\/\d+\/)?$/;
 const SINGLE_SLUG_RE = /^\/[a-z0-9-]+\/$/;
 
 // Allow-list only: a post's own path, an old slug's redirect target, the
-// blog index, category pages, the appointments teaser, and the sitemap.
+// blog index, category pages, and the sitemap.
 // Anything else is rejected even though the caller is authenticated.
 function isAllowedBlogPath(path: string): boolean {
-  if (path === "/concrete-blog-in-raipur/" || path === "/appointments/" || path === "/sitemap.xml") {
+  if (path === "/concrete-blog-in-raipur/" || path === "/sitemap.xml") {
     return true;
   }
   if (CATEGORY_PATH_RE.test(path)) return true;

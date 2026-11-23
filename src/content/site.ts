@@ -89,7 +89,7 @@ export const menu: MenuItem[] = [
     label: "Contact Us",
     href: "/ready-mix-concrete-contact-in-raipur/",
     children: [
-      { label: "Appointments", href: "/appointments/" },
+      { label: "Book Us", href: "/ready-mix-concrete-contact-in-raipur/" },
       { label: "Careers", href: "/careers/" },
     ],
   },

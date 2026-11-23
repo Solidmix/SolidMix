@@ -1,0 +1,24 @@
+{
+  "_note": "Two separate blocks. Article for each guide/blog post. WebApplication for /concrete-calculator/. Paste each as its own script tag. Delete this _note key.",
+  "article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "REPLACE_TITLE",
+    "image": "https://REPLACE_DOMAIN/images/REPLACE_image.webp",
+    "datePublished": "REPLACE_YYYY-MM-DD",
+    "dateModified": "REPLACE_YYYY-MM-DD",
+    "author": { "@type": "Person", "name": "REPLACE_REAL_TEAM_MEMBER" },
+    "publisher": { "@id": "https://REPLACE_DOMAIN/#organization" },
+    "mainEntityOfPage": "https://REPLACE_DOMAIN/guides/REPLACE-slug/"
+  },
+  "webapplication": {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SolidMix Concrete Volume Calculator",
+    "url": "https://REPLACE_DOMAIN/concrete-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+    "publisher": { "@id": "https://REPLACE_DOMAIN/#organization" }
+  }
+}

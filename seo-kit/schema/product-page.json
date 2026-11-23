@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": "REPLACE_PRODUCT_NAME (e.g. Waterproof Ready Mix Concrete)",
+      "description": "REPLACE_ONE_CONFIRMED_SENTENCE",
+      "image": "https://REPLACE_DOMAIN/images/REPLACE_product-image.webp",
+      "url": "https://REPLACE_DOMAIN/REPLACE-slug/",
+      "brand": { "@type": "Brand", "name": "SolidMix RMC" },
+      "category": "Ready mix concrete",
+      "areaServed": "Raipur"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://REPLACE_DOMAIN/" },
+        { "@type": "ListItem", "position": 2, "name": "Ready Mix Concrete Raipur", "item": "https://REPLACE_DOMAIN/ready-mix-concrete-in-raipur/" },
+        { "@type": "ListItem", "position": 3, "name": "REPLACE_PRODUCT_NAME", "item": "https://REPLACE_DOMAIN/REPLACE-slug/" }
+      ]
+    }
+  ]
+}

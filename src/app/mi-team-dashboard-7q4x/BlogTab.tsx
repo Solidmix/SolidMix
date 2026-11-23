@@ -22,7 +22,7 @@ export type PostRow = {
 type Busy = { action: "trash" | "restore"; label: string };
 
 export function postRevalidatePaths(row: { slug: string; category: string }): string[] {
-  return [`/${row.slug}/`, `/category/${row.category}/`, "/concrete-blog-in-raipur/", "/appointments/", "/sitemap.xml"];
+  return [`/${row.slug}/`, `/category/${row.category}/`, "/concrete-blog-in-raipur/", "/sitemap.xml"];
 }
 
 export function BlogTab({ token }: { token: string }) {

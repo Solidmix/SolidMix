@@ -12,6 +12,7 @@ import type * as auth from "../auth.js";
 import type * as authData from "../authData.js";
 import type * as gallery from "../gallery.js";
 import type * as history from "../history.js";
+import type * as leads from "../leads.js";
 import type * as posts from "../posts.js";
 import type * as seedGallery from "../seedGallery.js";
 import type * as seedPosts from "../seedPosts.js";
@@ -28,6 +29,7 @@ declare const fullApi: ApiFromModules<{
   authData: typeof authData;
   gallery: typeof gallery;
   history: typeof history;
+  leads: typeof leads;
   posts: typeof posts;
   seedGallery: typeof seedGallery;
   seedPosts: typeof seedPosts;

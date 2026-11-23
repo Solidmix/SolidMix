@@ -50,6 +50,11 @@ const nextConfig: NextConfig = {
       { source: "/our-services/", destination: "/rmc-services-in-raipur/", statusCode: 301 },
       { source: "/products/", destination: `${PRODUCTS_BASE}/`, statusCode: 301 },
 
+      // Appointments page removed; Book Us (the contact page) replaces it
+      { source: "/appointments/", destination: "/ready-mix-concrete-contact-in-raipur/", statusCode: 301 },
+      { source: "/appointment/", destination: "/ready-mix-concrete-contact-in-raipur/", statusCode: 301 },
+      { source: "/book-appointment/", destination: "/ready-mix-concrete-contact-in-raipur/", statusCode: 301 },
+
       // About-us member pages -> our-team member pages
       { source: "/about-us/:member", destination: "/our-team/:member/", statusCode: 301 },
 
