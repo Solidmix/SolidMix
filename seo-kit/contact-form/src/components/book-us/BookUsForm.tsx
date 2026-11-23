@@ -43,6 +43,8 @@ export default function BookUsForm() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [organisation, setOrganisation] = useState('');
+  const [designation, setDesignation] = useState('');
   const [message, setMessage] = useState('');
   const [website, setWebsite] = useState(''); // honeypot
   const [busy, setBusy] = useState(false);
@@ -103,6 +105,8 @@ export default function BookUsForm() {
           name,
           phone,
           email,
+          organisation,
+          designation,
           message,
           website,
         }),
@@ -318,6 +322,17 @@ export default function BookUsForm() {
       <div>
         <label className={label} htmlFor="email">Email (optional)</label>
         <input id="email" className={field} type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label className={label} htmlFor="org">Organisation name (optional)</label>
+          <input id="org" className={field} autoComplete="organization" value={organisation} onChange={(e) => setOrganisation(e.target.value)} />
+        </div>
+        <div>
+          <label className={label} htmlFor="desig">Designation (optional)</label>
+          <input id="desig" className={field} autoComplete="organization-title" value={designation} onChange={(e) => setDesignation(e.target.value)} />
+        </div>
       </div>
 
       <div>

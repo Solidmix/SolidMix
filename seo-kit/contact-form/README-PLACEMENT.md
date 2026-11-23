@@ -53,7 +53,6 @@ The `@/` import alias must point at `src/`. If the repo has no `src/` folder, ad
 7. Google Rich Results Test shows no errors on the page. Phone width: no sideways scroll, tap targets 44px.
 
 ## 7. Still waiting for the client (do not guess)
-- Grade list: the form uses M5 to M80 in steps of 5; the website says M20 to M40.
-- Pump label "Only dump (no pump)": confirm the wording.
+- Grade list: client confirmed M5 to M80 plus a custom grade for the form (2026-11-23). Steps of 5 are still assumed. The website pages still say M20 to M40, so do not publish a grade range on product pages yet.
 - Plants 2 and 3 have area-only addresses; get full addresses and plant coordinates.
 - Email address and hours for the page.

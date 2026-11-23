@@ -151,6 +151,8 @@ export default defineSchema({
     name: v.string(),
     phone: v.string(),
     email: v.optional(v.string()),
+    organisation: v.optional(v.string()),
+    designation: v.optional(v.string()),
     message: v.optional(v.string()),
     leadId: v.string(),
     createdAt: v.string(),

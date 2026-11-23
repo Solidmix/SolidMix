@@ -38,6 +38,8 @@ export async function saveLead(lead: StoredLead): Promise<boolean> {
     name: lead.name,
     phone: lead.phone,
     email: lead.email,
+    organisation: lead.organisation,
+    designation: lead.designation,
     message: lead.message,
     leadId: lead.leadId,
     createdAt: lead.createdAt,

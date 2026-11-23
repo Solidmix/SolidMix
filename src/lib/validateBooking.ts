@@ -28,6 +28,8 @@ export type BookingInput = {
   name: string;
   phone: string;
   email?: string;
+  organisation?: string;
+  designation?: string;
   message?: string;
   website?: string; // honeypot: must stay empty
 };
@@ -56,6 +58,8 @@ export function validateBooking(
     name: clean(raw.name, 100),
     phone: clean(raw.phone, 20),
     email: clean(raw.email, 120),
+    organisation: clean(raw.organisation, 120),
+    designation: clean(raw.designation, 80),
     message: clean(raw.message, 1500),
     website: clean(raw.website, 50),
   };
