@@ -19,7 +19,9 @@ const poppins = Poppins({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://solidmixrmc.com";
-const indexingOn = process.env.INDEXING === "on";
+// Same condition as src/app/robots.ts — launch is a human step (brief hard
+// rule #2): only Production, and only once Saidul sets SITE_INDEXABLE=true.
+const indexable = process.env.VERCEL_ENV === "production" && process.env.SITE_INDEXABLE === "true";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
   // text as Home's (seo-kit/01-seo-meta.csv, Phase 2).
   description:
     "SolidMix RMC supplies ready mix concrete in Raipur for residential, commercial and infrastructure projects. Call or contact us.",
-  robots: indexingOn
+  robots: indexable
     ? { index: true, follow: true }
     : { index: false, follow: false },
   openGraph: {
