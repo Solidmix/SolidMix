@@ -90,8 +90,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   // " in Raipur"), not the raw scrape h1: a few scrape h1 fields are
   // garbled (e.g. permeable-concrete-in-kotni-raipur) or still carry the
   // slug's place name (e.g. "... in Bhanpuri, Raipur"), which the brief
-  // says must never appear in new copy. h1 itself is untouched and still
-  // feeds the existing JSON-LD/breadcrumbs exactly as before.
+  // says must never appear in new copy. The visible breadcrumb and
+  // BreadcrumbList JSON-LD use displayH1 for the same reason (below); h1
+  // itself is kept only for stripChrome() and productLd()'s name.
   const productName = displayH1.replace(/ in Raipur$/, "");
   const blocks = stripChrome(content.blocks, h1);
   const faqs = getFaqItems(blocks);
@@ -177,7 +178,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           breadcrumbLd([
             { name: "Home", url: "/" },
             { name: "Products", url: `${PRODUCTS_BASE}/` },
-            { name: h1 },
+            { name: displayH1 },
           ]),
           productLd({
             name: h1,
@@ -192,7 +193,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         crumbs={[
           { label: "Home", href: "/" },
           { label: "Products", href: `${PRODUCTS_BASE}/` },
-          { label: h1 },
+          { label: displayH1 },
         ]}
       />
       {answer && (
