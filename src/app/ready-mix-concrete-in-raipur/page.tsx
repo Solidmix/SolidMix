@@ -18,13 +18,14 @@ import { CardGrid } from "@/components/CardGrid";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { InlineText } from "@/components/InlineText";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd, faqPageLd } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, faqPageLd, resolveDisplayH1 } from "@/lib/seo";
 import { PRODUCTS_BASE } from "@/content/site";
 import { BgSection } from "@/components/sections/BgSection";
 import { FlameIcon, TruckIcon, DropletIcon } from "@/components/icons";
 
 const content = getPageContent("ready-mix-concrete-in-raipur");
 const h1 = resolvePageH1(content);
+const displayH1 = resolveDisplayH1(`${PRODUCTS_BASE}/`, h1);
 const blocks = stripChrome(content.blocks, h1);
 
 const cardsStart = blocks.findIndex((b) => b.type === "image");
@@ -74,7 +75,7 @@ export default function ProductsPage() {
           ...(faqItems.length ? [faqPageLd(faqItems)] : []),
         ]}
       />
-      <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Products" }]} />
+      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Products" }]} />
       <section className="py-12 md:py-16">
         <div className="container-content max-w-3xl text-center">
           <BlockRenderer blocks={before} />

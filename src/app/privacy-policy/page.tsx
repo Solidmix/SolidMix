@@ -3,10 +3,11 @@ import { getPageContent, stripChrome, resolvePageH1 } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, resolveDisplayH1 } from "@/lib/seo";
 
 const content = getPageContent("privacy-policy");
 const h1 = resolvePageH1(content);
+const displayH1 = resolveDisplayH1("/privacy-policy/", h1);
 const blocks = stripChrome(content.blocks, h1);
 
 export const metadata: Metadata = pageMetadata(content, "/privacy-policy/");
@@ -15,7 +16,7 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Privacy policy" }])]} />
-      <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Privacy policy" }]} />
+      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Privacy policy" }]} />
       <section className="py-12 md:py-16">
         {/* This page's body text measures weight 600 (bold phrases compute
             "bolder" from that to 900, per the global b,strong CSS rule) and

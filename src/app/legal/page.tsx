@@ -18,7 +18,7 @@ import {
 import { PageHero } from "@/components/PageHero";
 import { InlineText } from "@/components/InlineText";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd, faqPageLd } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, faqPageLd, resolveDisplayH1 } from "@/lib/seo";
 import { MediaSplit } from "@/components/sections/MediaSplit";
 import { TeamGrid, type TeamMember } from "@/components/sections/TeamGrid";
 import { ServiceIconCards } from "@/components/sections/ServiceIconCards";
@@ -30,6 +30,7 @@ import { UsersIcon } from "@/components/icons";
 
 const content = getPageContent("legal");
 const h1 = resolvePageH1(content);
+const displayH1 = resolveDisplayH1("/legal/", h1);
 const blocks = stripChrome(content.blocks, h1);
 // "Why RMC?" ends with "?" but is a heading followed by a list, not a real
 // FAQ answer — drop any zero-answer item so it never reaches FAQPage JSON-LD.
@@ -146,7 +147,7 @@ export default function LegalPage() {
           ...(faqs.length ? [faqPageLd(faqs)] : []),
         ]}
       />
-      <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Legal" }]} />
+      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Legal" }]} />
 
       {/* Why RMC? */}
       <section className="py-14">

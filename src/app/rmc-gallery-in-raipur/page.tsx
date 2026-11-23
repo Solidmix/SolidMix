@@ -6,10 +6,11 @@ import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { Lightbox, type LightboxImage } from "@/components/Lightbox";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, resolveDisplayH1 } from "@/lib/seo";
 
 const content = getPageContent("rmc-gallery-in-raipur");
 const h1 = resolvePageH1(content);
+const displayH1 = resolveDisplayH1("/rmc-gallery-in-raipur/", h1);
 const blocks = stripChrome(content.blocks, h1);
 
 // The live original (rmc-gallery-in-raipur, gallery widget e9e9ec7) shows
@@ -65,7 +66,7 @@ export default async function GalleryPage() {
   return (
     <>
       <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Gallery" }])]} />
-      <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Gallery" }]} />
+      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Gallery" }]} />
       <section className="py-12 md:py-16">
         <div className="container-content max-w-2xl text-center">
           <BlockRenderer blocks={blocks} />

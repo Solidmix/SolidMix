@@ -22,15 +22,18 @@ import { InlineText } from "@/components/InlineText";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL, organizationLd, localBusinessLd, faqPageLd } from "@/lib/seo";
 
+// Title/description from seo-kit/01-seo-meta.csv (Phase 2, 2026-11-21) — base
+// title only, no template suffix (the CSV's own note for this row), and the
+// description no longer claims "24/7" or "M20 to M40" (hard rule #1).
 export const metadata: Metadata = {
-  title: "RMC Plant in Raipur | Ready Mix Concrete Supplier — SolidMix",
+  title: "Ready Mix Concrete Supplier in Raipur",
   description:
-    "RMC Plant in Raipur – SolidMix RMC delivers premium M20 to M40 ready mix concrete with 24/7 supply across Raipur, Naya Raipur & Chhattisgarh. Trusted for quality, strength, and on-time delivery. Call +91 9893111201",
+    "SolidMix RMC supplies ready mix concrete in Raipur for residential, commercial and infrastructure projects. Call or contact us.",
   alternates: { canonical: SITE_URL + "/" },
   openGraph: {
-    title: "RMC Plant in Raipur | Ready Mix Concrete Supplier — SolidMix",
+    title: "Ready Mix Concrete Supplier in Raipur",
     description:
-      "RMC Plant in Raipur – SolidMix RMC delivers premium M20 to M40 ready mix concrete with 24/7 supply across Raipur, Naya Raipur & Chhattisgarh.",
+      "SolidMix RMC supplies ready mix concrete in Raipur for residential, commercial and infrastructure projects. Call or contact us.",
     url: SITE_URL + "/",
     type: "website",
   },

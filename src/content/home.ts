@@ -9,7 +9,10 @@ export const ABOUT_URL = "/trusted-concrete-supplier-in-raipur/";
 export const SAFETY_URL = "/safety/";
 
 export const hero = {
-  h1: "RMC Plant in Raipur | Ready Mix Concrete Supplier — SolidMix",
+  // H1 from seo-kit/01-seo-meta.csv (Phase 2, 2026-11-21). The <title> tag
+  // (src/app/page.tsx) uses the CSV's title_base instead, which is a
+  // different, shorter string — they're not meant to match.
+  h1: "Ready Mix Concrete in Raipur",
   subtitle:
     "Raipur’s #1 ready mix concrete plant delivering M20 to M40 grade high-strength concrete directly to your construction site — 24×7 delivery, zero compromise on quality.",
   tabs: [

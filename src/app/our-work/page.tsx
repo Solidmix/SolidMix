@@ -11,11 +11,12 @@ import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { WorkTabs, type WorkPanel } from "@/components/work/WorkTabs";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, resolveDisplayH1 } from "@/lib/seo";
 import { PdfIcon } from "@/components/icons";
 
 const content = getPageContent("our-work");
 const h1 = resolvePageH1(content);
+const displayH1 = resolveDisplayH1("/our-work/", h1);
 const blocks = stripChrome(content.blocks, h1);
 
 const intro = blocks.slice(0, 2);
@@ -57,7 +58,7 @@ export default function OurWorkPage() {
   return (
     <>
       <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Our Work" }])]} />
-      <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Our Work" }]} />
+      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Our Work" }]} />
       <section className="py-12 md:py-16">
         <div className="container-content max-w-2xl text-center [&_p]:text-[20px]">
           <BlockRenderer blocks={intro} />

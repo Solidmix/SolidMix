@@ -30,8 +30,54 @@ Inspected before Phase 1/2 work (seo-kit brief Phase 0). Branch `seo-build`, HEA
 - Theme tokens confirmed present in `src/app/globals.css`: `primary` `#9f1481`, `secondary` `#167484`, `ink` `#292929`, `grey-line` `#dad8d8`, `tint-pink` `#ffd7f6`, `tint-cyan` `#dff9fd` — match the brief's Phase 0 list exactly.
 - Current header/footer: `src/components/Header.tsx` + `src/components/TopBar.tsx` (desktop dropdown + mobile drawer, driven by `src/content/site.ts`'s `menu` array) and `src/components/Footer.tsx` (logo, blurb, `footerUsefulLinks`, Phone/Email/Office/Plant address blocks, no WhatsApp link, no Products/Calculator/Projects/Guides/Team/Legal Information links, copyright line hardcoded to "2025" not dynamic) — these are what Phase 1 replaces/extends.
 
+## Phase 2 — metadata (2026-11-23)
+
+Root layout already had `metadataBase`, `title.template: "%s | SolidMix RMC"`, a default title, and `trailingSlash: true` (set in earlier batches) — confirmed, not duplicated.
+
+New `src/content/seoMeta.ts`: one override map, keyed by path, holding `01-seo-meta.csv`'s `title_base`/`description`/`h1` for every CSV row that is both (a) live in this build and (b) not a blog post (blog posts keep `generateMetadata` using the post's own description, unchanged) and not a planned page. `src/lib/seo.ts`'s `pageMetadata()` now reads this map first, falling back to the scraped content JSON's title/description when no row exists — this fixed every page that uses `pageMetadata()` centrally, with no edits to any content JSON. A new `resolveDisplayH1(path, originalH1)` helper does the same for the on-page `<h1>` only; every page still passes its own original (scrape-derived) H1 to `stripChrome()` so the duplicate heading is still correctly removed from the body.
+
+Confirmed empirically (before and after, via the built `.next/server/app/*.html` output):
+- Fixed 5 real "SolidMix RMC | SolidMix RMC" duplicates: `/rmc-gallery-in-raipur/`, `/concrete-blog-in-raipur/`, `/trusted-concrete-supplier-in-raipur/`, `/rmc-services-in-raipur/`, `/ready-mix-concrete-in-raipur/`.
+- Fixed the weak legacy titles the CSV flagged ("Standard Concrete - Solidmixrmc", "Safety - Solidmixrmc", "Privacy Policy - Solidmixrmc", "Concrete 101 - Solidmixrmc", etc.) across all 27 overridden pages.
+- Found and fixed a real H1 bug in `src/components/CategoryListing.tsx` (not explicitly flagged in the brief): it rendered `` `Category: ${def.label}` `` — prepending "Category: ", which is not in the CSV's `h1` column at all — and `def.label` for `/category/rmc-plant/` was "Rmc Plant" (wrong casing, from the original scrape). Now renders the override's exact H1: "Concrete 101", "Construction", "RMC Plant".
+- Home (`src/app/page.tsx`, own metadata, not via `pageMetadata()`): title and description replaced with the CSV's row-1 text (title no longer gets the template suffix, same as before — confirmed in the built HTML). `src/content/home.ts`'s `hero.h1` (the on-page `<h1>`) changed from the long scrape title to the CSV's "Ready Mix Concrete in Raipur"; the subtitle underneath is untouched (see the body-copy list below).
+- Root layout's fallback `description` (`src/app/layout.tsx`) replaced with the same clean Home description — it contained the "24/7"/"M20 to M40" sentence and is the sitewide fallback, so Phase 2's "default title" checklist item extended naturally to it.
+- Book Us page (`/ready-mix-concrete-contact-in-raipur/`) metadata confirmed unchanged and already matching the CSV exactly (set in the Phase 5C build) — title "Contact SolidMix RMC Raipur | SolidMix RMC" (single brand), description verbatim from the CSV.
+- 2 rows have no description override: `/rmc-services-in-raipur/` and `/safety/` — their CSV `meta_description` contains a `[CLIENT TO CONFIRM ...]` placeholder (service list / safety practices), which hard rule #1 forbids publishing. Both pages' title/H1 were still fixed; their description stays whatever the content JSON already produces, unchanged.
+
+**CSV descriptions outside 120–155 characters** (per your instruction: used exactly as the CSV has them, not rewritten):
+`/ready-mix-concrete-in-raipur/self-compacting-concrete-in-bhanpuri-raipur/` (119), `/lightweight-concrete-in-sejbahar-raipur/` (107), `/steel-fiber-concrete/` (100), `/pp-fiber-concrete-in-kumhari-raipur/` (110), `/waterproof-concrete-in-mandir-hasaud-raipur/` (93), `/heat-resistant-concrete-2/` (106), `/permeable-concrete-in-kotni-raipur/` (103), `/eco-friendly-concrete-in-saddu-raipur/` (112), `/stamped-concrete-in-atal-nagar-raipur/` (91), `/bagged-concrete-in-farfaud-raipur/` (81); `/our-work/` (78); `/rmc-gallery-in-raipur/` (71); `/concrete-blog-in-raipur/` (109); `/category/concrete-101/` (53), `/category/construction/` (47), `/category/rmc-plant/` (52); `/trusted-concrete-supplier-in-raipur/` (105); `/our-team/` (107); `/careers/` (47); `/privacy-policy/` (65); `/legal/` (53); `/ready-mix-concrete-contact-in-raipur/` (98, already live since the Phase 5C build, listed here for completeness).
+
+**"24/7" / "M20 to M40" — full occurrence list (2026-11-23).** Metadata occurrences (3) are fixed in this commit. Every other occurrence is **visible body copy** and is listed only — nothing below is changed without a separate OK:
+
+Fixed (metadata):
+- `src/app/page.tsx:28,33` — Home's `description`/`openGraph.description`: *"RMC Plant in Raipur – SolidMix RMC delivers premium M20 to M40 ready mix concrete with 24/7 supply across Raipur, Naya Raipur & Chhattisgarh. Trusted for quality, strength, and on-time delivery. Call +91 9893111201"* — replaced with the CSV text.
+- `src/app/layout.tsx:31` — root fallback `description`, same sentence — replaced with the same CSV text.
+
+Pending (body copy, not changed):
+1. `src/content/home.ts:14` — hero subtitle: *"Raipur's #1 ready mix concrete plant delivering M20 to M40 grade high-strength concrete directly to your construction site — 24×7 delivery, zero compromise on quality."*
+2. `src/content/home.ts:148` — Home FAQ answer: *"We supply M20, M25, M30, M35, and M40 grade ready mix concrete. Free consultation is available to help you choose the right grade for your project."*
+3. `src/content/home.ts:179` — `hours: "24*7 Hours Open"` (Home "Working hours" section)
+4. `src/content/pages/home.json:16` — same sentence as #1 (raw scrape; `home.ts` is the rendered source)
+5. `src/content/pages/home.json:301` — *"We supply M20, M25, M30, M35, and M40 grade ready mix concrete. [Free consultation](/appointments/) is available..."* (also has the already-flagged `/appointments/` link, content-locked)
+6. `src/content/pages/home.json:363` — *"24*7 Hours Open"* (raw scrape dup of #3)
+7. `src/content/pages/our-work.json:69` — *"24/7 Quality Service"* (Our Work feature/tab label)
+8. `src/components/work/WorkTabs.tsx:27` — `"24/7 Quality Service": ClockIcon` (code mapping key tied to #7 — would need updating together)
+9. `src/content/pages/legal.json:93` — *"24/7 On Time Support"* (Legal page body — part of the mismatched-widget content already noted in `current-state.md`)
+10. `src/content/pages/rmc-services-in-raipur.json:58` — *"24x7 On-Time Concrete Delivery"* (RMC Services feature list)
+11. `src/content/pages/trusted-concrete-supplier-in-raipur.json:61` — *"24/7 On-Time Support"* (About page flip-card back text)
+12. `src/content/pages/trusted-concrete-supplier-in-raipur.json:287` — *"We supply M15, M20, M25, M30, M35, and M40 grade concrete, as well as custom mixes for specialized structural requirements."*
+13. `src/content/pages/trusted-concrete-supplier-in-raipur.json:314` — same FAQ sentence as #5, also has the `/appointments/` link
+14. `src/content/pages/ready-mix-concrete-in-raipur.json:212` — *"SolidMix Standard Concrete Mix is available in M15, M20, M25, M30, M35, and M40 grades..."* (Standard Concrete product page body — directly conflicts with the M5–M80 grade list already confirmed for the Book Us form)
+15. `src/content/pages/ready-mix-concrete-contact-in-raipur.json:49` — *"We Are Open 24*7 ‎"* — dead text: this card was already removed from rendering in the Phase 5C Book Us merge, but the sentence still sits in the JSON
+16. `src/app/rmc-gallery-in-raipur/page.tsx:34` — image `alt` text: *"Night-time ready mix concrete delivery by SolidMix RMC — 24x7 availability"*
+
+Not a publishing concern: `src/data/bookingOptions.ts:13` is a code comment ("...the website says M20-M40") — accurate and intentional, not published anywhere.
+
 ## Waiting for client
 
-- **Grade list wording**: this form offers M5–M80 (per Ma'am's 2026-11-21 answer and the kit); other existing pages on the site still say "M20 to M40". Not changed elsewhere in this build — flagged as a site-wide inconsistency for a future pass.
+- **Grade list wording**: this form offers M5–M80 (per Ma'am's 2026-11-21 answer and the kit); other existing pages on the site still say "M20 to M40". Not changed elsewhere in this build — flagged as a site-wide inconsistency for a future pass. See the full body-copy list in Phase 2 above — items 1, 2, 5, 12, 13, 14 are the M20–M40 claims specifically.
 - **Browser pin check**: Plant 1 (Serikhedi) and Plant 3 (Mana) map links are `share.google` short links that only resolve via a real browser (confirmed not resolvable with `curl` during the audit). Saidul checks all 3 pins before launch, per the kit's own README-PLACEMENT.md step 6 — confirm Plant 3 is not the forbidden Plus Code `5PJ6+FHJ`.
 - **Kept office/video section**: confirm the retained Phone Number / Office Email / Office Address cards, office map, and CEO video section (below the new Book Us form and plant cards) are wanted in that position, or should be reordered/removed once the new sections are reviewed.
+- **"24/7" body copy**: 14 remaining occurrences (Phase 2 list above) across Home, Our Work, Legal, RMC Services, About, the Standard Concrete product page, and one dead Book Us JSON line, plus a Gallery image alt text — waiting for an OK on wording before any are touched.
+- **CSV descriptions outside 120–155 characters**: used as-is per instruction (list above) — not rewritten; flag if any should be tightened later.

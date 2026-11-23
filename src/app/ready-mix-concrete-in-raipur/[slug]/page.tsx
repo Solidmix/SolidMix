@@ -20,7 +20,7 @@ import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd, faqPageLd, productLd, metaDescriptionFrom } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, faqPageLd, productLd, metaDescriptionFrom, resolveDisplayH1 } from "@/lib/seo";
 import { PRODUCTS_BASE, menu } from "@/content/site";
 
 const PRODUCT_SLUGS =
@@ -60,6 +60,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   if (!content) notFound();
 
   const h1 = resolvePageH1(content);
+  const displayH1 = resolveDisplayH1(`${PRODUCTS_BASE}/${slug}/`, h1);
   const blocks = stripChrome(content.blocks, h1);
   const faqs = getFaqItems(blocks);
   const image = findFirstImage(content.blocks);
@@ -152,7 +153,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         ]}
       />
       <PageHero
-        title={h1}
+        title={displayH1}
         crumbs={[
           { label: "Home", href: "/" },
           { label: "Products", href: `${PRODUCTS_BASE}/` },

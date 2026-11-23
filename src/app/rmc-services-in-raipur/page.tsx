@@ -15,7 +15,7 @@ import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd, faqPageLd } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, faqPageLd, resolveDisplayH1 } from "@/lib/seo";
 import { IconFeatureGrid } from "@/components/sections/IconFeatureGrid";
 import { MediaSplit } from "@/components/sections/MediaSplit";
 import { CtaBanner } from "@/components/sections/CtaBanner";
@@ -24,6 +24,7 @@ import { Tilt } from "@/components/Tilt";
 
 const content = getPageContent("rmc-services-in-raipur");
 const h1 = resolvePageH1(content);
+const displayH1 = resolveDisplayH1("/rmc-services-in-raipur/", h1);
 const blocks = stripChrome(content.blocks, h1);
 
 const cardsStart = blocks.findIndex((b) => b.type === "image");
@@ -65,7 +66,7 @@ export default function ServicesPage() {
           ...(faqs.length ? [faqPageLd(faqs)] : []),
         ]}
       />
-      <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Our Services" }]} />
+      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Our Services" }]} />
 
       <section className="py-12 md:py-16 text-center">
         <div className="container-content max-w-3xl">

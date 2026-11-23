@@ -3,11 +3,12 @@ import { getPageContent, stripChrome, resolvePageH1 } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, resolveDisplayH1 } from "@/lib/seo";
 import { Calculator } from "@/components/forms/Calculator";
 
 const content = getPageContent("calculator");
 const h1 = resolvePageH1(content);
+const displayH1 = resolveDisplayH1("/calculator/", h1);
 const stripped = stripChrome(content.blocks, h1);
 const labelStart = stripped.findIndex((b) => b.type === "label");
 const introBlocks = labelStart === -1 ? stripped : stripped.slice(0, labelStart);
@@ -18,7 +19,7 @@ export default function CalculatorPage() {
   return (
     <>
       <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Calculator" }])]} />
-      <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Calculator" }]} />
+      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Calculator" }]} />
       <section className="py-12 md:py-16">
         <div className="container-content grid gap-10 lg:grid-cols-2">
           <div>

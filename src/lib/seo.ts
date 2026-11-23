@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { site } from "@/content/site";
 import type { PageContent } from "@/lib/content";
 import { stripBoldMarkers } from "@/lib/content";
+import { seoMetaOverrides } from "@/content/seoMeta";
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://solidmixrmc.com").replace(/\/$/, "");
 
@@ -20,20 +21,34 @@ export function metaDescriptionFrom(content: PageContent): string {
 }
 
 export function pageMetadata(content: PageContent, pagePath: string, ogImage?: string): Metadata {
-  const description = metaDescriptionFrom(content);
+  // seo-kit/01-seo-meta.csv (Phase 2) overrides the scraped title/description
+  // when a row exists for this path — see src/content/seoMeta.ts. Fixes the
+  // duplicated-brand titles and the weak legacy titles without editing the
+  // content JSON itself.
+  const override = seoMetaOverrides[pagePath];
+  const title = override?.title ?? content.title;
+  const description = override?.description ?? metaDescriptionFrom(content);
   const url = absUrl(pagePath);
   return {
-    title: content.title,
+    title,
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: content.title,
+      title,
       description,
       url,
       type: "website",
       ...(ogImage ? { images: [{ url: absUrl(ogImage) }] } : {}),
     },
   };
+}
+
+// Display-only H1 override (seo-kit/01-seo-meta.csv Phase 2). `originalH1` is
+// still what every page passes to stripChrome() to dedupe the body's own
+// heading block — only the rendered <h1> text changes here, never the
+// content JSON or the dedup match.
+export function resolveDisplayH1(pagePath: string, originalH1: string): string {
+  return seoMetaOverrides[pagePath]?.h1 ?? originalH1;
 }
 
 // Service areas (from docs/reference/service-areas.md) for LocalBusiness areaServed.

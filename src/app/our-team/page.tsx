@@ -11,10 +11,11 @@ import { PageHero } from "@/components/PageHero";
 import { InlineText } from "@/components/InlineText";
 import { TeamGrid, type TeamMember } from "@/components/sections/TeamGrid";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, resolveDisplayH1 } from "@/lib/seo";
 
 const content = getPageContent("our-team");
 const h1 = resolvePageH1(content);
+const displayH1 = resolveDisplayH1("/our-team/", h1);
 const blocks = stripChrome(content.blocks, h1);
 
 const cardsStart = blocks.findIndex((b) => b.type === "image");
@@ -39,7 +40,7 @@ export default function OurTeamPage() {
   return (
     <>
       <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Our Team" }])]} />
-      <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Our Team" }]} />
+      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Our Team" }]} />
       <section className="py-12 md:py-16 text-center">
         <div className="container-content max-w-3xl">
           {eyebrow && <p className="font-semibold text-secondary">{eyebrow.text}</p>}
