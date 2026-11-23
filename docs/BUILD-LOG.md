@@ -231,4 +231,54 @@ Built per `seo-kit/00-CLAUDE-BUILD-BRIEF.md` Phase 7 and `seo-kit/05-tracking.md
 
 Waiting for client: GTM container ID (`NEXT_PUBLIC_GTM_ID`, Vercel Production only), GA4, Search Console, Meta pixel access.
 
+## Phase 8 summary (2026-11-23)
+
+### Done
+- `npm run build`: compiles clean, 84/84 pages static (the 3 `/api/*` routes are correctly dynamic/on-demand). Same in a `VERCEL_ENV=production` build with `SITE_INDEXABLE` unset.
+- `scripts/audit.mjs` (new, plain Node, no new dependency; `npm run audit`): crawls `/sitemap.xml` plus every internal link found, against a running `next start` build. Checks broken internal links, redirect chains (>1 hop), duplicate `<title>`/meta description, pages with 0 or >1 `<h1>`, and sitemap URLs not returning 200. All canonical identity is kept in `https://solidmixrmc.com/...` form and only swapped onto the local host at the moment of fetching — the sitemap's `<loc>` entries are always the production canonical origin even for a local build, and the script must never actually send requests to the real solidmixrmc.com (first draft of the script had this bug and briefly crawled the real site with read-only GETs before being caught and fixed; no login, form submit or write occurred).
+- Audit found two real duplicate-title/description bugs and both were fixed with already-approved text (no invented copy, no URL change):
+  - `src/app/category/[cat]/page/[n]/page.tsx`: pages 2–4 of `/category/construction/` had an identical scraped title/description on every page (no per-page CSV row exists). Now reuses the category's own confirmed page-1 title/description (`seo-kit/01-seo-meta.csv` via `seoMetaOverrides`) with "– Page N" appended — the real page number, not new copy.
+  - `src/content/seoMeta.ts`: the blog post `/best-ready-mix-concrete-supplier-in-raipur-what-to-look-for/` had a scraped title/description byte-identical to `/ready-mix-concrete/`'s (a pre-existing duplicate on the original WordPress site, inherited by the scrape). This one post now uses its own CSV row (title "Choosing an RMC Supplier in Raipur", description from the CSV) instead of the raw scrape — the other 3 CSV blog posts are untouched and still use their own scraped description, per the existing Phase 2 decision.
+  - Re-ran `npm run audit` after both fixes: **0 issues** (0 broken links, 0 redirect chains, 0 sitemap failures, 0 H1 issues, 0 duplicate titles, 0 duplicate descriptions).
+- Lighthouse mobile (local `next start`, Playwright's Chromium via `CHROME_PATH`), targets Performance 85+/Accessibility 95+/SEO 100:
+  | Page | Performance | Accessibility | Best Practices | SEO |
+  |---|---|---|---|---|
+  | `/` | 75 (cold run) / 89 (warm re-run) | 97 | 100 | 69 |
+  | `/ready-mix-concrete-in-raipur/standard-concrete/` | 90 | 96 | 100 | 69 |
+  | `/calculator/` | 91 | 100 | 100 | 69 |
+
+  SEO 69 on every page is caused by exactly one audit, `is-crawlable` ("Page is blocked from indexing") — expected and correct, since the local/non-production build is intentionally `noindex`/`Disallow: /`; it is not a defect. Accessibility already clears the 95 target everywhere (Home's only miss, `target-size`, is the pre-existing hero carousel's small slide-indicator dots — not alt/contrast/label/image-sizing, so left alone per the "safe fixes only" scope; Product's only miss is `color-contrast`, also not touched for the same reason and because A11y already passes at 96). Home's cold-run Performance of 75 was a local image-optimizer cold-start artifact (the hero image already has `priority` correctly set on the first slide only, per Phase 5): a second run against a warm cache scored 89, clearing the 85 target; Product and Calculator both cleared 85 on the first run. No performance "fix" was applied — there was no real code defect to fix, only local cold-cache noise.
+- Production-mode robots check: built and started with `VERCEL_ENV=production` and `SITE_INDEXABLE` unset — `robots.txt` still says `User-Agent: *` / `Disallow: /`, and Home's `<meta name="robots">` still says `noindex, nofollow`. Rebuilt normally afterward.
+- Secret scan: grepped the working tree (all tracked files) and the full `git log -p --all` for API keys, tokens, passwords, Convex deploy keys (`prod:`/`dev:` prefixed), `DASHBOARD_BOOTSTRAP_SECRET` values, and any committed `.env`/`.env.local`. Nothing found — only `.env.example` is tracked, and every value in it is blank (a template). No `.env*` file with real values was ever committed, in any commit. No STOP needed.
+- `docs/LAUNCH.md` updated: added "deploy the leads table to the production Convex deployment `mild-kingfisher-300` before merging" as its own step before the merge, and "make the GitHub repo private" alongside the merge step. The rest of the human steps already matched brief section 9 exactly from the Phase 4 build.
+
+### Skipped
+- Opening the `seo-build` → `main` pull request (brief's last Phase 8 bullet): explicitly held back this round per instruction ("No push, no PR yet"). Everything else in Phase 8 is done so the PR can be opened on request.
+
+### Waiting for client (brief section 8, plus Ma'am's pending items)
+- Exact address, hours and map position (brief section 8).
+- Concrete grades: FAQ doc says M5–M80, website says M20–M40 — which is correct (brief section 8; same open item as the Book Us grade field, Phase 5C).
+- Delivery areas (brief section 8) — plants.ts areas are already client-confirmed; this is for any areas beyond those three plants' lists.
+- Services, quality and safety practices (brief section 8).
+- Team names and titles (brief section 8).
+- Prices and delivery times — publish only if approved (brief section 8).
+- Google Business Profile and social links (brief section 8).
+- Analytics, Search Console and Meta pixel access (brief section 8) — same as the Phase 7 "waiting for client" line: GTM container ID (`NEXT_PUBLIC_GTM_ID`), GA4, Search Console, Meta pixel.
+- Sales contacts per plant / CRM connection details (Ma'am).
+- Plant 2 and Plant 3 full street addresses (Ma'am) — currently locality-only per `plants.ts`, as confirmed in Phase 5C.
+- Page email and working hours (Ma'am).
+- Grade sentences on the Home FAQ, About page and Standard Concrete page (Ma'am).
+- Stamped Concrete "Typical uses" list (Ma'am) — no source list exists to quote yet (same open item logged earlier in this file).
+- Bhilai number 98271-22406 — is this a real, confirmed SolidMix number to publish (Ma'am)?
+- Whether the Book Us grade list should really step by 5 from M5 to M80 (Ma'am) — currently unconfirmed free text only, per Phase 5C.
+- GTM ID / GA4 / Search Console / Meta pixel access (Ma'am) — duplicate of the brief section 8 item above, listed because Ma'am raised it separately.
+
+### Risks
+- The audit script's crawl is bounded by what's reachable from the sitemap plus same-origin `<a href>` links found on crawled pages; a page that's unreachable by any link (an orphan) and also missing from the sitemap would not be checked. No such page is currently known.
+- The two duplicate-title/description fixes reuse already-confirmed CSV text; if the client later changes that CSV text, both the page-1 category title and the one blog post's override need updating together (they're no longer independent).
+- Lighthouse Performance scores on this local WSL box are noisy (cold vs. warm cache gave Home a 14-point swing); real-world Vercel/CDN numbers will differ and should be re-checked on a preview deployment before launch.
+- Until the client confirms the grade-list range (M5–M80 vs M20–M40) and the other open items above, those lines stay out of every page per hard rule #1 — several facts boxes and FAQ answers are shorter than the original site's equivalent copy as a result.
+- The production Convex deployment (`mild-kingfisher-300`) does not yet have the leads table deployed; `docs/LAUNCH.md` now requires this before merging, but it has not been done as part of this build (no production Convex access from this environment).
+- The GitHub repo is not yet private; `docs/LAUNCH.md` now calls for this at launch, but it must be done by a human with repo admin access.
+
 2026-11-23 pushed seo-build to 31a8d3b (Phase 5 + breadcrumb + productLd + menu parents). Frontend done; backend pending.

@@ -128,6 +128,16 @@ export const seoMetaOverrides: Record<string, SeoMetaOverride> = {
     description:
       "Plain-language guides on ready mix concrete from SolidMix RMC: grades, curing, ordering and common questions.",
   },
+  // Blog posts normally keep their own scraped title/description (not listed
+  // here) — but this post's raw scrape is byte-identical to /ready-mix-concrete/'s
+  // (a duplicate-title/description Phase 8 audit failure), so it uses its own
+  // CSV row (seo-kit/01-seo-meta.csv) instead, same as the static pages above.
+  "/best-ready-mix-concrete-supplier-in-raipur-what-to-look-for/": {
+    title: "Choosing an RMC Supplier in Raipur",
+    h1: "How to Choose a Ready Mix Concrete Supplier in Raipur",
+    description:
+      "What to check before you choose a ready mix concrete supplier in Raipur: quality, delivery, testing and support.",
+  },
   "/category/concrete-101/": {
     title: "Concrete 101",
     h1: "Concrete 101",
