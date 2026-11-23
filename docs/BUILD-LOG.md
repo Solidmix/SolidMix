@@ -18,6 +18,18 @@ Branch `seo-build`. Design: `docs/superpowers/specs/2026-11-21-book-us-page-desi
 - `tsconfig.json`: added `"seo-kit"` to `exclude` so the read-only kit's own reference files aren't type-checked as part of this build.
 - Fix: added the Phase 5B "Nearest plant" helper text ("Choose the plant nearest your site. Our team will confirm availability.") under the plant select in `BookUsForm.tsx` — missing from the kit's own `BookUsForm.tsx`, required by `00-CLAUDE-BUILD-BRIEF.md` Phase 5B.
 
+## Phase 0 — baseline (menu/metadata workstream, 2026-11-23)
+
+Inspected before Phase 1/2 work (seo-kit brief Phase 0). Branch `seo-build`, HEAD `a11de3c`.
+
+- Stack: Next.js 15.5.29 (App Router), React 19, Tailwind CSS v4, Convex ^1.48.0, Poppins via `next/font/google` (`src/app/layout.tsx`). No new dependencies.
+- `npm run build`: succeeded, 85 routes. Static (`○`): Home, product overview, 12 product pages, About, Our Team, Services, Our Work, Safety, Gallery, Legal, Privacy, Blog index, Contact (Book Us), Careers, Calculator, robots.txt, sitemap.xml, icons. SSG (`●`, `generateStaticParams`): `/[post]` (36 posts), `/category/[cat]` (3), `/category/[cat]/page/[n]` (3 paginated), `/our-team/[slug]` (6 members). Dynamic (`ƒ`): `/api/book-us`, `/api/revalidate-blog`, `/api/revalidate-gallery`.
+- Warnings: only the 3 pre-existing `@typescript-eslint/no-unused-vars` warnings in `src/lib/leadStore.ts` (`notifyTeam`'s unused params, inherited from the kit's own stub signature) — no new warnings.
+- `noindex`/robots source: `src/app/robots.ts` returns `disallow: "/"` unless `process.env.INDEXING === "on"`; `src/app/layout.tsx`'s root `metadata.robots` uses the same `INDEXING` env var for `index`/`follow`. `INDEXING` is not set to `"on"` in this environment, so the current build is correctly in review/noindex mode. Neither is touched by Phase 1/2 work (brief hard rule #2 — launch is a human step).
+- `next.config.ts` already has `trailingSlash: true` (set in Build 1/earlier batches) — Phase 2's requirement is already met, nothing to duplicate.
+- Theme tokens confirmed present in `src/app/globals.css`: `primary` `#9f1481`, `secondary` `#167484`, `ink` `#292929`, `grey-line` `#dad8d8`, `tint-pink` `#ffd7f6`, `tint-cyan` `#dff9fd` — match the brief's Phase 0 list exactly.
+- Current header/footer: `src/components/Header.tsx` + `src/components/TopBar.tsx` (desktop dropdown + mobile drawer, driven by `src/content/site.ts`'s `menu` array) and `src/components/Footer.tsx` (logo, blurb, `footerUsefulLinks`, Phone/Email/Office/Plant address blocks, no WhatsApp link, no Products/Calculator/Projects/Guides/Team/Legal Information links, copyright line hardcoded to "2025" not dynamic) — these are what Phase 1 replaces/extends.
+
 ## Waiting for client
 
 - **Grade list wording**: this form offers M5–M80 (per Ma'am's 2026-11-21 answer and the kit); other existing pages on the site still say "M20 to M40". Not changed elsewhere in this build — flagged as a site-wide inconsistency for a future pass.
