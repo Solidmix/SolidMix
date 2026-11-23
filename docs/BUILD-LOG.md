@@ -79,5 +79,18 @@ Not a publishing concern: `src/data/bookingOptions.ts:13` is a code comment ("..
 - **Grade list wording**: this form offers M5–M80 (per Ma'am's 2026-11-21 answer and the kit); other existing pages on the site still say "M20 to M40". Not changed elsewhere in this build — flagged as a site-wide inconsistency for a future pass. See the full body-copy list in Phase 2 above — items 1, 2, 5, 12, 13, 14 are the M20–M40 claims specifically.
 - **Browser pin check**: Plant 1 (Serikhedi) and Plant 3 (Mana) map links are `share.google` short links that only resolve via a real browser (confirmed not resolvable with `curl` during the audit). Saidul checks all 3 pins before launch, per the kit's own README-PLACEMENT.md step 6 — confirm Plant 3 is not the forbidden Plus Code `5PJ6+FHJ`.
 - **Kept office/video section**: confirm the retained Phone Number / Office Email / Office Address cards, office map, and CEO video section (below the new Book Us form and plant cards) are wanted in that position, or should be reordered/removed once the new sections are reviewed.
-- **"24/7" body copy**: 14 remaining occurrences (Phase 2 list above) across Home, Our Work, Legal, RMC Services, About, the Standard Concrete product page, and one dead Book Us JSON line, plus a Gallery image alt text — waiting for an OK on wording before any are touched.
 - **CSV descriptions outside 120–155 characters**: used as-is per instruction (list above) — not rewritten; flag if any should be tightened later.
+
+## "24/7" body-copy removal (2026-11-23)
+
+Per hard rule #1, removed only the "24/7" claim words (no rewriting, no added words) from items 1, 3, 9, 10, 11, 16 of the Phase 2 list above:
+1. `src/content/home.ts` hero subtitle — *"...delivering M20 to M40 grade high-strength concrete directly to your construction site — 24×7 delivery, zero compromise on quality."* → *"...delivering high-strength concrete directly to your construction site, zero compromise on quality."*
+2. `src/content/home.ts` `contactBlock` + `src/app/page.tsx` — removed the "Working Hours" / "24*7 Hours Open" heading+value pair entirely (both the JSX block and the `hoursHeading`/`hours` fields); no empty box left.
+3. `src/content/pages/our-work.json` + `src/components/work/WorkTabs.tsx` — "24/7 Quality Service" → "Quality Service" (icon mapping key updated to match, icon still shows).
+4. `src/content/pages/legal.json` — "24/7 On Time Support" → "On Time Support". `src/content/pages/rmc-services-in-raipur.json` — "24x7 On-Time Concrete Delivery" → "On-Time Concrete Delivery". `src/content/pages/trusted-concrete-supplier-in-raipur.json` — "24/7 On-Time Support" → "On-Time Support".
+5. `src/app/rmc-gallery-in-raipur/page.tsx` image alt — *"Night-time ready mix concrete delivery by SolidMix RMC — 24x7 availability"* → *"Night-time ready mix concrete delivery by SolidMix RMC"*.
+
+Not touched, as instructed: the grade sentences (list items 2, 5, 12, 13, 14) and the raw/dead JSON copies (items 4, 6, 15 — `home.json`'s duplicate scrape text and the dead Book Us "We Are Open 24*7" line).
+
+- **Waiting for client — grade sentences**: Home FAQ (`home.ts:148`), About FAQ (`trusted-concrete-supplier-in-raipur.json:314`) and the Standard Concrete product page (`ready-mix-concrete-in-raipur.json:212`) still say M15/M20–M40, while Ma'am confirmed M5–M80 for the Book Us form (2026-11-21) — needs a decision on which grade list the site states.
+- **Waiting for client — ranking claim**: the Home hero subtitle's "Raipur's #1 ready mix concrete plant" is a ranking claim; needs Ma'am's confirmation like any other unconfirmed claim.

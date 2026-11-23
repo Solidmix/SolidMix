@@ -14,7 +14,7 @@ export const hero = {
   // different, shorter string — they're not meant to match.
   h1: "Ready Mix Concrete in Raipur",
   subtitle:
-    "Raipur’s #1 ready mix concrete plant delivering M20 to M40 grade high-strength concrete directly to your construction site — 24×7 delivery, zero compromise on quality.",
+    "Raipur’s #1 ready mix concrete plant delivering high-strength concrete directly to your construction site, zero compromise on quality.",
   tabs: [
     { label: "About Us", key: "about" },
     { label: "Our Mission", key: "mission" },
@@ -178,8 +178,6 @@ export const contactBlock = {
     "Address : Office no.418, 4th floor, Lalganga Business Park Pachpedi naka Raipur C.G Pin code 492001",
   number: "Number : +91 9893111201",
   emailLine: "Email : info@solidmixrmc.com support@solidmixrmc.com",
-  hoursHeading: "Working Hours",
-  hours: "24*7 Hours Open",
   form: {
     fields: {
       name: "Name",

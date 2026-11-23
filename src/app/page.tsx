@@ -232,12 +232,6 @@ export default function HomePage() {
               <p className="text-[20px] font-medium text-[#292929]">{contactBlock.number}</p>
               <p className="text-[20px] font-medium text-[#292929]">{contactBlock.emailLine}</p>
             </div>
-            <h2 className="mt-8 flex items-center gap-2 text-[16px] font-normal text-ink">
-              {contactBlock.hoursHeading}
-            </h2>
-            <p className="mt-4 border-l-2 border-primary pl-5 text-[20px] font-medium text-[#292929]">
-              {contactBlock.hours}
-            </p>
           </div>
           <HomeContactForm />
         </div>

@@ -32,7 +32,7 @@ const FALLBACK_IMAGES: LightboxImage[] = [
   { src: "/images/gallery/rmc-gallery-09-whatsapp-image-2025-03-20-at-10.41.11-1.webp", alt: "Transit mixer unloading ready mix concrete at building site, Chhattisgarh", width: 1280, height: 1600 },
   { src: "/images/gallery/rmc-gallery-10-whatsapp-image-2025-03-20-at-10.41.12.webp", alt: "Concrete pump placement for multi-storey construction — SolidMix RMC", width: 1280, height: 1600 },
   { src: "/images/gallery/rmc-gallery-11-whatsapp-image-2025-03-26-at-13.17.10.webp", alt: "SolidMix RMC concrete delivery — M30 grade pour for structural construction Raipur", width: 1236, height: 1600 },
-  { src: "/images/gallery/rmc-gallery-12-whatsapp-image-2025-03-24-at-23.13.56-e1744134405682.webp", alt: "Night-time ready mix concrete delivery by SolidMix RMC — 24x7 availability", width: 1236, height: 1250 },
+  { src: "/images/gallery/rmc-gallery-12-whatsapp-image-2025-03-24-at-23.13.56-e1744134405682.webp", alt: "Night-time ready mix concrete delivery by SolidMix RMC", width: 1236, height: 1250 },
   { src: "/images/gallery/rmc-gallery-13-whatsapp-image-2025-03-20-at-10.49.14.webp", alt: "SolidMix RMC transit mixer fleet — on-time concrete delivery across Raipur", width: 2048, height: 2560 },
   { src: "/images/gallery/rmc-gallery-14-whatsapp-image-2025-03-24-at-19.07.10-1.webp", alt: "Concrete slab construction using ready mix concrete supplied by SolidMix RMC Raipur", width: 1236, height: 1600 },
   { src: "/images/gallery/rmc-gallery-15-whatsapp-image-2025-03-24-at-19.25.29-1.webp", alt: "Ready mix concrete for foundation work — SolidMix RMC project Raipur", width: 1236, height: 1600 },
