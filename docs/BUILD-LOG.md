@@ -2,6 +2,8 @@
 
 Branch `seo-build`. Design: `docs/superpowers/specs/2026-11-21-book-us-page-design.md` (Build 1 backend, Build 2 frontend).
 
+Removed Purnendu Poddar per client request (2026-11-23); old URLs redirect to /our-team/.
+
 ## Build 1 (backend/data layer)
 
 - `src/data/plants.ts`, `src/data/bookingOptions.ts`, `src/lib/leadId.ts`, `src/lib/validateBooking.ts` copied from `seo-kit/contact-form/src/` unchanged (plants.ts adds optional `mapLink`/`mapQuery` per plant, from Ma'am's confirmed map links and the resolved Plant 2 coordinate pair; no plant/area data changed).

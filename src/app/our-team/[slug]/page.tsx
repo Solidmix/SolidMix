@@ -10,7 +10,6 @@ const MEMBER_SLUGS = [
   "anand-sharma",
   "pitabas-sahoo",
   "pratham-bafna",
-  "purnendu-poddar",
   "samrat-gupta",
   "vinit-tiwari",
 ];

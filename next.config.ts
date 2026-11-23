@@ -55,6 +55,11 @@ const nextConfig: NextConfig = {
       { source: "/appointment/", destination: "/ready-mix-concrete-contact-in-raipur/", statusCode: 301 },
       { source: "/book-appointment/", destination: "/ready-mix-concrete-contact-in-raipur/", statusCode: 301 },
 
+      // Purnendu Poddar removed (client request, 2026-11-23) — single hop,
+      // must precede the generic /about-us/:member rule below.
+      { source: "/our-team/purnendu-poddar/", destination: "/our-team/", statusCode: 301 },
+      { source: "/about-us/purnendu-poddar/", destination: "/our-team/", statusCode: 301 },
+
       // About-us member pages -> our-team member pages
       { source: "/about-us/:member", destination: "/our-team/:member/", statusCode: 301 },
 
