@@ -272,6 +272,7 @@ Waiting for client: GTM container ID (`NEXT_PUBLIC_GTM_ID`, Vercel Production on
 - Bhilai number 98271-22406 — is this a real, confirmed SolidMix number to publish (Ma'am)?
 - Whether the Book Us grade list should really step by 5 from M5 to M80 (Ma'am) — currently unconfirmed free text only, per Phase 5C.
 - GTM ID / GA4 / Search Console / Meta pixel access (Ma'am) — duplicate of the brief section 8 item above, listed because Ma'am raised it separately.
+- Date-archive URLs (`/YYYY/MM/DD/`) redirect to Home in `next.config.ts` — the brief says no redirect to home as a catch-all. Needs a decision: point to `/concrete-blog-in-raipur/` or let them 404. Not changed.
 
 ### Risks
 - The audit script's crawl is bounded by what's reachable from the sitemap plus same-origin `<a href>` links found on crawled pages; a page that's unreachable by any link (an orphan) and also missing from the sitemap would not be checked. No such page is currently known.
