@@ -148,3 +148,56 @@ Source: `seo-kit/CHANGES-2026-11-23.md` (v2) and `seo-kit/MENU-AND-CONTACT-FORM-
 - Plants 2 and 3 need full addresses and map coordinates; check the Plant 3 map pin is not the forbidden Plus Code `5PJ6+FHJ`.
 - Page email address and working hours still not confirmed.
 - The Bhilai order number 98271-22406 is not matched to any plant in `plants.ts`.
+
+## Phase 5 — product page template (2026-11-23)
+
+Template A applied to all 12 product pages (`src/app/ready-mix-concrete-in-raipur/[slug]/page.tsx`, one shared template; content JSON untouched). New data file `src/data/productAnswers.ts` holds the per-slug definition/typical-uses facts, each checked against that page's own body copy — nothing invented.
+
+**Answer-first paragraph** (`"<Product> is <definition>. SolidMix RMC supplies it in Raipur."`) — `<definition>` is the predicate of each page's own first sentence, quoted here:
+- Standard Concrete: *"Standard Concrete is one of the most widely used construction materials in modern residential, commercial, and infrastructure development projects."*
+- High Strength Concrete: *"High Strength Concrete is specially designed to handle much higher loads than standard concrete."*
+- Self Compacting Concrete: *"Self Compacting Concrete (SCC) is a highly flowable concrete mix that spreads easily into formwork and around reinforcement without the need for vibration."*
+- Lightweight Concrete: *"Lightweight Concrete is a specially designed concrete mix made using lightweight aggregates that reduce the overall weight of the structure without sacrificing essential strength and durability."*
+- Steel Fiber Concrete: *"Steel Fiber Concrete is a modern high-performance concrete specially designed by adding small steel fibers uniformly throughout the concrete mix."*
+- PP Fiber Concrete: *"PP Fiber Concrete is a modern reinforced concrete solution manufactured by adding polypropylene (PP) fibers uniformly throughout the concrete mix."*
+- Waterproof Concrete: *"Waterproof Concrete is a modern high-performance concrete specially developed to prevent water penetration, leakage, and moisture-related damage in structures exposed to wet or humid conditions."*
+- Heat Resistant Concrete: *"Heat Resistant Concrete is a specially engineered concrete designed to withstand extremely high temperatures, thermal shock, and continuous heat exposure without losing its structural integrity."*
+- Permeable Concrete: *"Permeable Concrete is a specially designed concrete mix that allows water to pass through its surface and drain into the ground below."*
+- Eco Friendly Concrete: *"Eco Friendly Concrete is a sustainable construction material designed to reduce environmental impact while maintaining strength and durability."*
+- Stamped Concrete: *"Stamped Concrete is an advanced decorative concrete solution that enhances the appearance of outdoor and indoor spaces while maintaining the strength and durability of traditional concrete."*
+- Bagged Concrete: *"Bagged Concrete is a ready-to-use dry concrete mix packed in bags for convenience and easy handling."*
+
+No grade range is published on any product page (Ma'am, 2026-11-23).
+
+**Product name source bug found and avoided**: the new sections use a clean `productName` derived from the CSV-based `displayH1` (minus " in Raipur"), not the raw scrape `h1`. The raw `h1` field is garbled for `permeable-concrete-in-kotni-raipur` (literally `"Permeable-concrete-in-kotni-raipur"`, a slugified string) and still carries the slug's place name for `self-compacting-concrete-in-bhanpuri-raipur` ("... in Bhanpuri, Raipur"), `lightweight-concrete-in-sejbahar-raipur` ("... in Sejbahar, Raipur"), `eco-friendly-concrete-in-saddu-raipur` ("... in Saddu Raipur") and `bagged-concrete-in-farfaud-raipur` ("... in Farfaud Raipur") — all of which the brief forbids in new copy. `h1` itself is untouched and still feeds the existing JSON-LD/breadcrumbs exactly as before; only the new Phase 5 sections use the clean name.
+
+**Facts box**: Product / Supplied in: Raipur / How to order (call/WhatsApp/Book Us form, linked) / Contact — on every page. **Typical uses** row added only where the page's own body already lists uses as a real bullet list (reused verbatim, not rewritten):
+- Standard Concrete — body paragraph "This type of concrete is commonly used in:" + its list (9 items).
+- Steel Fiber Concrete, PP Fiber Concrete, Waterproof Concrete, Heat Resistant Concrete — each has a body paragraph "Modern X is widely used in:" + its list.
+- High Strength, Self Compacting, Lightweight, Permeable, Eco Friendly, Bagged Concrete — each has an "Applications" heading immediately followed by a bullet list (6 items each).
+- **Stamped Concrete has no "Typical uses" row**: its applications section is written as prose H3 subheadings (Driveways, Patios and Courtyards, Walkways and Pathways, Pool Surrounds, Garden Landscapes, Commercial Entrances and Outdoor Areas) with sentences, not a bullet list — there is no single set of exact words to quote, so the row is left out per the brief's "leave the line out" rule rather than paraphrasing the subheadings into a list.
+
+**"How do I order" H2 + buttons**: added on every product page with only Call / WhatsApp / Book Us form links (no invented process steps), plus "Book Us" (→ `/ready-mix-concrete-contact-in-raipur/`) and "Use the Concrete Calculator" (→ `/calculator/`) buttons styled like the site's existing CTA buttons.
+
+**Related products**: 3 links read from `src/data/navigation.ts`'s "Ready Mix Concrete" groups (Structural / Fiber Reinforced / Special Purpose / Decorative & Bagged), same group first, falling back to the next groups in nav order for the two 2-item groups (Fiber Reinforced, Decorative & Bagged), plus an "All Ready Mix Concrete Products" link. Read-only use of `navigation.ts` — the file itself was not edited.
+
+All existing page content, FAQs, Product/BreadcrumbList/FAQPage JSON-LD and the breadcrumb/JSON-LD `h1` were kept exactly as they were. `tsc --noEmit` clean, lint clean (only the pre-existing `leadStore.ts` stub warnings), `npm run build`: 84 routes, all 12 product pages still static (`●`), verified the other 11 pages render byte-identical to before until their data was added.
+
+**Products overview** (`/ready-mix-concrete-in-raipur/`, template B): already has an intro paragraph above the card grid and a real card (name, link, one-sentence description) for every one of the 12 product pages — confirmed all 12 hrefs present in the built HTML. Meets template B as-is; no changes made.
+
+**Home template F gap list** (read-only audit, no changes made — `src/app/page.tsx`):
+1. No Book Us / Call / WhatsApp buttons directly under the H1 — the hero section has only the H1 + subtitle (sitewide header/mobile bar has these buttons, but not next to the H1 itself as template F specifies).
+2. No dedicated "4 product group cards" section — the Services carousel covers RMC services, not a product-category grid linking into Products.
+3. "Why Raipur's Contractors Choose" section exists but has no proof elements (plant photo, certificates) — would need client-supplied images/documents.
+4. No "Projects strip" (3 real projects) section.
+5. No dedicated "How ordering works" (3 steps) section on Home (the new per-product "How do I order" section only exists on product pages).
+6. No Google reviews section — needs the client's Google Business Profile link (already tracked in section 8 of the brief as a client-confirm item).
+7. FAQ section (4–6 items) with JSON-LD already present — meets template F.
+8. Contact block has NAP text (address/number/email) but no map embed.
+
+## Waiting for client (added 2026-11-23, Phase 5)
+
+- Stamped Concrete "Typical uses": no bullet list exists on the page to quote; needs either a client-approved uses list or confirmation to leave the facts box without that row permanently.
+- Ordering process steps: kept to "Call, WhatsApp, or the Book Us form" only on every product page, per the brief's hard rule #1 — no numbered process (advance notice, confirmation steps, etc.) is published anywhere.
+- Product-page FAQs: not added or changed — the brief's instruction was to keep existing FAQs only and not add generic ones to product pages.
+- Home template F gaps (list above): product-group cards, projects strip, "how ordering works", Google reviews link, proof elements for "Why SolidMix", and a contact-block map all need client input or an explicit decision before building.

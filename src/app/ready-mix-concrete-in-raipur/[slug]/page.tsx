@@ -21,7 +21,32 @@ import { BlockRenderer } from "@/components/BlockRenderer";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, breadcrumbLd, faqPageLd, productLd, metaDescriptionFrom, resolveDisplayH1 } from "@/lib/seo";
-import { PRODUCTS_BASE, menu } from "@/content/site";
+import { PRODUCTS_BASE, menu, site } from "@/content/site";
+import { productAnswers } from "@/data/productAnswers";
+import { nav as navData, cta as bookUsCta } from "@/data/navigation";
+
+// seo-kit Phase 5 template A "Related products": 3 links from the same
+// navigation.ts group as this slug, excluding itself. Groups with fewer
+// than 3 other links (Fiber Reinforced, Decorative & Bagged) fall back to
+// the next groups in the same order until 3 are collected.
+function getRelatedProducts(slug: string): { overview: { label: string; href: string }; related: { label: string; href: string }[] } {
+  const productsNavItem = navData.find((item) => item.href === `${PRODUCTS_BASE}/`);
+  const groups = productsNavItem?.groups ?? [];
+  const selfHref = `${PRODUCTS_BASE}/${slug}/`;
+  const ownGroupIndex = groups.findIndex((g) => g.links.some((l) => l.href === selfHref));
+  // Same group first (brief: "3 links from the same group"), then the
+  // nearest other groups in nav order (wrapping) when a group has fewer
+  // than 3 other members (Fiber Reinforced, Decorative & Bagged).
+  const orderedGroups =
+    ownGroupIndex === -1
+      ? groups
+      : [groups[ownGroupIndex], ...groups.slice(ownGroupIndex + 1), ...groups.slice(0, ownGroupIndex)];
+  const related = orderedGroups
+    .flatMap((g) => g.links)
+    .filter((l) => l.href !== selfHref)
+    .slice(0, 3);
+  return { overview: productsNavItem?.overview ?? { label: "All products", href: `${PRODUCTS_BASE}/` }, related };
+}
 
 const PRODUCT_SLUGS =
   menu.find((item) => item.label === "Products")?.children?.map((c) => c.href.split("/").filter(Boolean).pop()!) ??
@@ -61,6 +86,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const h1 = resolvePageH1(content);
   const displayH1 = resolveDisplayH1(`${PRODUCTS_BASE}/${slug}/`, h1);
+  // Phase 5 new sections use the clean CSV product name (displayH1 minus
+  // " in Raipur"), not the raw scrape h1: a few scrape h1 fields are
+  // garbled (e.g. permeable-concrete-in-kotni-raipur) or still carry the
+  // slug's place name (e.g. "... in Bhanpuri, Raipur"), which the brief
+  // says must never appear in new copy. h1 itself is untouched and still
+  // feeds the existing JSON-LD/breadcrumbs exactly as before.
+  const productName = displayH1.replace(/ in Raipur$/, "");
   const blocks = stripChrome(content.blocks, h1);
   const faqs = getFaqItems(blocks);
   const image = findFirstImage(content.blocks);
@@ -135,6 +167,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     });
   });
 
+  const answer = productAnswers[slug];
+  const { overview: relatedOverview, related: relatedProducts } = getRelatedProducts(slug);
+
   return (
     <>
       <JsonLd
@@ -160,6 +195,61 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           { label: h1 },
         ]}
       />
+      {answer && (
+        <section className="py-10">
+          <div className="container-content max-w-3xl">
+            <p className="text-lg text-ink">
+              {productName} is {answer.definition}. SolidMix RMC supplies it in Raipur.
+            </p>
+            <div className="mt-6 overflow-hidden rounded-lg border border-grey-line">
+              <table className="w-full border-collapse text-left text-base">
+                <tbody>
+                  <tr className="odd:bg-tint-cyan-2/50">
+                    <th scope="row" className="w-40 border-b border-grey-line px-4 py-2.5 font-semibold text-ink">
+                      Product
+                    </th>
+                    <td className="border-b border-grey-line px-4 py-2.5 text-grey">{productName}</td>
+                  </tr>
+                  {answer.typicalUses && (
+                    <tr className="odd:bg-tint-cyan-2/50">
+                      <th scope="row" className="w-40 border-b border-grey-line px-4 py-2.5 align-top font-semibold text-ink">
+                        Typical uses
+                      </th>
+                      <td className="border-b border-grey-line px-4 py-2.5 text-grey">{answer.typicalUses.join(", ")}</td>
+                    </tr>
+                  )}
+                  <tr className="odd:bg-tint-cyan-2/50">
+                    <th scope="row" className="w-40 border-b border-grey-line px-4 py-2.5 font-semibold text-ink">
+                      Supplied in
+                    </th>
+                    <td className="border-b border-grey-line px-4 py-2.5 text-grey">Raipur</td>
+                  </tr>
+                  <tr className="odd:bg-tint-cyan-2/50">
+                    <th scope="row" className="w-40 border-b border-grey-line px-4 py-2.5 font-semibold text-ink">
+                      How to order
+                    </th>
+                    <td className="border-b border-grey-line px-4 py-2.5 text-grey">
+                      Call <a href={site.phoneHref} className="text-primary hover:underline">{site.phoneDisplay}</a>,{" "}
+                      <a href={site.whatsappHref} className="text-primary hover:underline">WhatsApp</a>, or the{" "}
+                      <Link href={bookUsCta.href} className="text-primary hover:underline">
+                        Book Us form
+                      </Link>
+                    </td>
+                  </tr>
+                  <tr className="odd:bg-tint-cyan-2/50">
+                    <th scope="row" className="w-40 px-4 py-2.5 font-semibold text-ink">
+                      Contact
+                    </th>
+                    <td className="px-4 py-2.5 text-grey">
+                      SolidMix RMC, {site.phoneDisplay}, info@solidmixrmc.com
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      )}
       <section className="py-12 md:py-16">
         <div className="container-content max-w-3xl">
           {mainPhoto && (
@@ -200,6 +290,32 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           )}
         </div>
       </section>
+      {answer && (
+        <section className="py-6">
+          <div className="container-content max-w-3xl text-center">
+            <h2 className="text-[28px] font-semibold text-ink">How do I order {productName} from SolidMix RMC?</h2>
+            <p className="mt-3 text-lg text-grey">
+              Call <a href={site.phoneHref} className="text-primary hover:underline">{site.phoneDisplay}</a>,{" "}
+              <a href={site.whatsappHref} className="text-primary hover:underline">WhatsApp</a>, or use the{" "}
+              <Link href={bookUsCta.href} className="text-primary hover:underline">Book Us form</Link>.
+            </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <Link
+                href={bookUsCta.href}
+                className="inline-block rounded-md bg-primary px-8 py-4 text-xl font-medium text-white transition-colors hover:bg-primary/90"
+              >
+                Book Us
+              </Link>
+              <Link
+                href="/calculator/"
+                className="inline-block rounded-md bg-secondary px-8 py-4 text-xl font-medium text-white transition-colors hover:bg-secondary/90"
+              >
+                Use the Concrete Calculator
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
       {faqHeading && (
         <section className="bg-[#292929] p-[100px]">
           <div className="mx-auto flex w-full max-w-[1140px] flex-col items-center gap-8 md:flex-row md:items-start md:gap-10">
@@ -225,6 +341,27 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <div className="w-full md:w-[60%]">
               <FaqAccordion items={faqAccordionItems} variant="filled" />
             </div>
+          </div>
+        </section>
+      )}
+      {answer && (
+        <section className="py-12">
+          <div className="container-content max-w-3xl">
+            <h2 className="text-[22px] font-semibold text-ink">Related products</h2>
+            <ul className="mt-4 flex flex-wrap gap-4">
+              {relatedProducts.map((p) => (
+                <li key={p.href}>
+                  <Link href={p.href} className="text-primary hover:underline">
+                    {p.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4">
+              <Link href={relatedOverview.href} className="text-primary hover:underline">
+                {relatedOverview.label}
+              </Link>
+            </p>
           </div>
         </section>
       )}
