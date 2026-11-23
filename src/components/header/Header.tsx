@@ -149,7 +149,25 @@ export default function Header() {
                       : undefined
                   }
                 >
-                  <div className="flex items-center">
+                  {/* Ma'am 2026-11-23: a top-level item with a submenu is not a
+                      link — only the submenu's own links navigate. The label
+                      becomes the toggle button (click/Enter/hover open it,
+                      Esc closes via onDesktopKey on the parent <nav>). Home
+                      has no submenu, so it stays a real <Link>. */}
+                  {hasSub ? (
+                    <button
+                      type="button"
+                      aria-expanded={open}
+                      aria-controls={panelId}
+                      onClick={() => setOpenDesktop(open ? null : i)}
+                      className="flex items-center whitespace-nowrap rounded px-[20px] py-[13px] text-[16px] font-semibold text-primary transition-colors hover:text-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary"
+                    >
+                      {item.label}
+                      <span className="ml-1.5 flex items-center">
+                        <Chevron open={open} size={14} />
+                      </span>
+                    </button>
+                  ) : (
                     <Link
                       href={item.href}
                       aria-current={linkActive(pathname, item.href) ? 'page' : undefined}
@@ -157,19 +175,7 @@ export default function Header() {
                     >
                       {item.label}
                     </Link>
-                    {hasSub && (
-                      <button
-                        type="button"
-                        aria-expanded={open}
-                        aria-controls={panelId}
-                        aria-label={`${open ? 'Close' : 'Open'} ${item.label} submenu`}
-                        onClick={() => setOpenDesktop(open ? null : i)}
-                        className="flex h-[44px] w-7 items-center justify-center rounded text-primary hover:text-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary"
-                      >
-                        <Chevron open={open} size={14} />
-                      </button>
-                    )}
-                  </div>
+                  )}
 
                   {hasSub && (
                     <div
@@ -292,7 +298,24 @@ export default function Header() {
               const isOpen = expanded === i;
               return (
                 <li key={item.href}>
-                  <div className="flex items-stretch">
+                  {/* Ma'am 2026-11-23: same rule as desktop — a row with a
+                      submenu is one button that only expands/collapses it,
+                      no navigation. A row with no submenu (Home) stays a
+                      real <Link>. */}
+                  {hasSub ? (
+                    <button
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={`m-sub-${i}`}
+                      onClick={() => setExpanded(isOpen ? null : i)}
+                      className="flex min-h-[48px] w-full items-center justify-between px-4 text-[15px] font-medium text-ink"
+                    >
+                      {item.label}
+                      <span className="flex h-11 w-12 flex-shrink-0 items-center justify-center text-primary">
+                        <Chevron open={isOpen} />
+                      </span>
+                    </button>
+                  ) : (
                     <Link
                       href={item.href}
                       aria-current={linkActive(pathname, item.href) ? 'page' : undefined}
@@ -300,19 +323,7 @@ export default function Header() {
                     >
                       {item.label}
                     </Link>
-                    {hasSub && (
-                      <button
-                        type="button"
-                        aria-expanded={isOpen}
-                        aria-controls={`m-sub-${i}`}
-                        aria-label={`${isOpen ? 'Collapse' : 'Expand'} ${item.label} submenu`}
-                        onClick={() => setExpanded(isOpen ? null : i)}
-                        className="flex min-h-[48px] w-12 items-center justify-center text-primary"
-                      >
-                        <Chevron open={isOpen} />
-                      </button>
-                    )}
-                  </div>
+                  )}
                   {hasSub && (
                     <div id={`m-sub-${i}`} hidden={!isOpen} className="bg-tint-cyan-2/60 pb-2">
                       {item.overview && (
