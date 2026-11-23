@@ -3,7 +3,7 @@ import { getPageContent, stripChrome, resolvePageH1 } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd, resolveDisplayH1 } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, webApplicationLd, resolveDisplayH1 } from "@/lib/seo";
 import { Calculator } from "@/components/forms/Calculator";
 
 const content = getPageContent("calculator");
@@ -18,7 +18,9 @@ export const metadata: Metadata = pageMetadata(content, "/calculator/");
 export default function CalculatorPage() {
   return (
     <>
-      <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Calculator" }])]} />
+      <JsonLd
+        data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Calculator" }]), webApplicationLd()]}
+      />
       <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Calculator" }]} />
       <section className="py-12 md:py-16">
         <div className="container-content grid gap-10 lg:grid-cols-2">

@@ -51,7 +51,11 @@ export function resolveDisplayH1(pagePath: string, originalH1: string): string {
   return seoMetaOverrides[pagePath]?.h1 ?? originalH1;
 }
 
-// Service areas (from docs/reference/service-areas.md) for LocalBusiness areaServed.
+// Service areas for LocalBusiness areaServed — kept to names that are
+// actually present in src/data/plants.ts's client-confirmed areaGroups
+// (seo-kit Phase 3: "keep only areas confirmed ... remove the rest").
+// "Pachpedi Naka" was removed here (2026-11-23): not in plants.ts; it stays
+// in the office-address body copy, which is untouched.
 const areaServed = [
   "Raipur",
   "Naya Raipur",
@@ -63,7 +67,6 @@ const areaServed = [
   "Mandir Hasaud",
   "Tatibandh",
   "Telibandha",
-  "Pachpedi Naka",
   "Shankar Nagar",
   "Mowa",
   "Pandri",
@@ -71,66 +74,70 @@ const areaServed = [
   "Chhattisgarh",
 ];
 
+// Single Organization+LocalBusiness entity (stable @id) plus a WebSite
+// entity that references it — seo-kit Phase 3: "ONE Organization +
+// LocalBusiness (+ WebSite) with a stable @id https://solidmixrmc.com/#organization",
+// never a second Organization block anywhere else on the site.
 export function organizationLd() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: site.name,
-    url: SITE_URL,
-    logo: absUrl("/images/solidmix-logo.webp"),
-    email: "info@solidmixrmc.com",
-    telephone: "+919893111201",
-    sameAs: site.socials.map((s) => s.href),
-  };
-}
-
-export function localBusinessLd() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": `${SITE_URL}/#localbusiness`,
-    name: site.name,
-    url: SITE_URL,
-    image: absUrl("/images/solidmix-logo.webp"),
-    telephone: "+919893111201",
-    email: "info@solidmixrmc.com",
-    priceRange: "₹₹",
-    address: [
-      {
-        "@type": "PostalAddress",
-        name: "Office",
-        streetAddress: "Office no. 418, 4th floor, Lalganga Business Park, Pachpedi Naka",
-        addressLocality: "Raipur",
-        addressRegion: "Chhattisgarh",
-        postalCode: "492001",
-        addressCountry: "IN",
-      },
-      {
-        "@type": "PostalAddress",
-        name: "Plant",
-        streetAddress: "PH No. 77, Khasra No. 365/5, Serikhedi",
-        addressLocality: "Raipur",
-        addressRegion: "Chhattisgarh",
-        postalCode: "492101",
-        addressCountry: "IN",
-      },
-    ],
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
+  const orgId = `${SITE_URL}/#organization`;
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": ["Organization", "LocalBusiness"],
+      "@id": orgId,
+      name: site.name,
+      url: SITE_URL,
+      logo: absUrl("/images/solidmix-logo.webp"),
+      image: absUrl("/images/solidmix-logo.webp"),
+      email: "info@solidmixrmc.com",
+      telephone: "+919893111201",
+      priceRange: "₹₹",
+      sameAs: site.socials.map((s) => s.href),
+      address: [
+        {
+          "@type": "PostalAddress",
+          name: "Office",
+          streetAddress: "Office no. 418, 4th floor, Lalganga Business Park, Pachpedi Naka",
+          addressLocality: "Raipur",
+          addressRegion: "Chhattisgarh",
+          postalCode: "492001",
+          addressCountry: "IN",
+        },
+        {
+          "@type": "PostalAddress",
+          name: "Plant",
+          streetAddress: "PH No. 77, Khasra No. 365/5, Serikhedi",
+          addressLocality: "Raipur",
+          addressRegion: "Chhattisgarh",
+          postalCode: "492101",
+          addressCountry: "IN",
+        },
       ],
-      opens: "00:00",
-      closes: "23:59",
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "00:00",
+        closes: "23:59",
+      },
+      areaServed: areaServed.map((name) => ({ "@type": "Place", name })),
     },
-    areaServed: areaServed.map((name) => ({ "@type": "Place", name })),
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: site.name,
+      publisher: { "@id": orgId },
+    },
+  ];
 }
 
 export function faqPageLd(items: { q: string; a: string }[]) {
@@ -205,5 +212,21 @@ export function productLd({
     image: absUrl(image),
     brand: { "@type": "Brand", name: "SolidMix" },
     manufacturer: { "@type": "Organization", name: "SolidMix RMC" },
+  };
+}
+
+// seo-kit/schema/article-and-webapp.json's "webapplication" block — the
+// calculator is a free on-site tool, so price 0 INR is not an unconfirmed
+// fact (hard rule #1), just a description of the free tool itself.
+export function webApplicationLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "SolidMix Concrete Volume Calculator",
+    url: absUrl("/calculator/"),
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Any",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+    publisher: { "@id": `${SITE_URL}/#organization` },
   };
 }

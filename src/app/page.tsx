@@ -20,7 +20,7 @@ import { HomeContactForm } from "@/components/home/HomeContactForm";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { InlineText } from "@/components/InlineText";
 import { JsonLd } from "@/components/JsonLd";
-import { SITE_URL, organizationLd, localBusinessLd, faqPageLd } from "@/lib/seo";
+import { SITE_URL, organizationLd, faqPageLd } from "@/lib/seo";
 
 // Title/description from seo-kit/01-seo-meta.csv (Phase 2, 2026-11-21) — base
 // title only, no template suffix (the CSV's own note for this row), and the
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <JsonLd data={[organizationLd(), localBusinessLd(), faqPageLd(faq.items)]} />
+      <JsonLd data={[...organizationLd(), faqPageLd(faq.items)]} />
 
       {/* Hero slider — 3 original promotional slides */}
       <HeroSlider />

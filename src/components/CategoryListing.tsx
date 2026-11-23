@@ -2,9 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/PageHero";
 import { PostGrid } from "@/components/PostGrid";
+import { JsonLd } from "@/components/JsonLd";
 import { getCategoryDefs, getCategoryPageCount, getCategoryPagePosts } from "@/lib/categories";
 import type { PostSummary } from "@/lib/posts";
-import { resolveDisplayH1 } from "@/lib/seo";
+import { breadcrumbLd, resolveDisplayH1 } from "@/lib/seo";
 
 function categoryPageHref(cat: string, page: number) {
   return page <= 1 ? `/category/${cat}/` : `/category/${cat}/page/${page}/`;
@@ -33,6 +34,15 @@ export function CategoryListing({
 
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbLd([
+            { name: "Home", url: "/" },
+            { name: "Blog", url: "/concrete-blog-in-raipur/" },
+            { name: def.label },
+          ]),
+        ]}
+      />
       <PageHero
         title={displayH1}
         crumbs={[
