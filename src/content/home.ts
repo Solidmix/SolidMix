@@ -14,7 +14,7 @@ export const hero = {
   // different, shorter string — they're not meant to match.
   h1: "Ready Mix Concrete in Raipur",
   subtitle:
-    "Raipur’s #1 ready mix concrete plant delivering high-strength concrete directly to your construction site, zero compromise on quality.",
+    "Raipur’s ready mix concrete plant delivering high-strength concrete directly to your construction site, zero compromise on quality.",
   tabs: [
     { label: "About Us", key: "about" },
     { label: "Our Mission", key: "mission" },

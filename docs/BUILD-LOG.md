@@ -80,7 +80,6 @@ Not a publishing concern: `src/data/bookingOptions.ts:13` is a code comment ("..
 
 - **Grade list wording**: this form offers M5–M80 (per Ma'am's 2026-11-21 answer and the kit); other existing pages on the site still say "M20 to M40". Not changed elsewhere in this build — flagged as a site-wide inconsistency for a future pass. See the full body-copy list in Phase 2 above — items 1, 2, 5, 12, 13, 14 are the M20–M40 claims specifically.
 - **Browser pin check**: Plant 1 (Serikhedi) and Plant 3 (Mana) map links are `share.google` short links that only resolve via a real browser (confirmed not resolvable with `curl` during the audit). Saidul checks all 3 pins before launch, per the kit's own README-PLACEMENT.md step 6 — confirm Plant 3 is not the forbidden Plus Code `5PJ6+FHJ`.
-- **Kept office/video section**: confirm the retained Phone Number / Office Email / Office Address cards, office map, and CEO video section (below the new Book Us form and plant cards) are wanted in that position, or should be reordered/removed once the new sections are reviewed.
 - **CSV descriptions outside 120–155 characters**: used as-is per instruction (list above) — not rewritten; flag if any should be tightened later.
 
 ## "24/7" body-copy removal (2026-11-23)
@@ -95,7 +94,6 @@ Per hard rule #1, removed only the "24/7" claim words (no rewriting, no added wo
 Not touched, as instructed: the grade sentences (list items 2, 5, 12, 13, 14) and the raw/dead JSON copies (items 4, 6, 15 — `home.json`'s duplicate scrape text and the dead Book Us "We Are Open 24*7" line).
 
 - **Waiting for client — grade sentences**: Home FAQ (`home.ts:148`), About FAQ (`trusted-concrete-supplier-in-raipur.json:314`) and the Standard Concrete product page (`ready-mix-concrete-in-raipur.json:212`) still say M15/M20–M40, while Ma'am confirmed M5–M80 for the Book Us form (2026-11-21) — needs a decision on which grade list the site states.
-- **Waiting for client — ranking claim**: the Home hero subtitle's "Raipur's #1 ready mix concrete plant" is a ranking claim; needs Ma'am's confirmation like any other unconfirmed claim.
 
 ## Remaining "24×7" claims removed (2026-11-23)
 
@@ -129,10 +127,24 @@ Source: `seo-kit/CHANGES-2026-11-23.md` section 3 ("Book Us form in detail") plu
 - `src/data/bookingOptions.ts` and `src/lib/validateBooking.ts` copied byte-for-byte from the updated kit (adds `organisation`/`designation` to `BookingInput`, updates the grade/pump confirmation comments). No validation rule changed.
 - Convex (dev `small-squid-55` only): added optional `organisation` (max 120) and `designation` (max 80) to the `leads` table in `convex/schema.ts`, the `saveLead` mutation args/insert in `convex/leads.ts` (trimmed to the same limits), and passed through in `src/lib/leadStore.ts`. Pushed with `npx convex dev --once`.
 - `src/components/book-us/BookUsForm.tsx` rearranged into the doc's four blocks, each with its own `<h3>` heading and exact field labels: **About you** (Your name *, Mobile number *, Email, Organisation name, Designation); **What you need** (What is this about? as two real radio-input buttons — Ready Mix Concrete / Others, with "Tell us what you expect" for Others; I am a; Grade, concrete only; Pump needed? as four real radio-input buttons); **Your site** (Nearest plant, Your area, Site location + Use my location, with the feasibility status line shown once plant+area are picked); **When and how much (optional)** (How much (m³), Pour date and time, Anything else?). The two button groups are `<fieldset>`/`<legend>` with native `<input type="radio">` (visually hidden) wrapped by a label styled with the site's `primary` token when selected and `grey-line` border when not — real radios give native keyboard/arrow-key and screen-reader semantics for free, so no manual `aria-checked` was added (would be redundant on a real `<input type="radio">`, only needed on custom `role="radio"` widgets). Every option list, helper text, status line, validation message, honeypot and the `generate_lead` dataLayer push (still no `organisation`/`designation`, no name/phone/email) are unchanged from the kit. Added a Call button (`tel:+919893111201`, from `plants.ts`'s `mainPhoneHref`) next to the Lead ID on the confirmation state, per the doc's "shows a Lead ID and a Call button".
-- Field labels follow the doc literally: only "Your name *", "Mobile number *" and "What is this about? *" carry an asterisk in the doc's own field table, so only those three show one. "I am a", "Grade", "Pump needed?" and "Nearest plant" have no asterisk in the doc even though the kit's `validateBooking.ts`/the `<select>`/`required` attributes still hard-require them server- and client-side — nothing about validation was relaxed, only the visual label text matches the doc (see Waiting for client below).
+- Field labels at the time followed the doc literally (only name/mobile/topic starred) — **superseded the same evening**, see "Ma'am decisions 2026-11-23 (evening)" below.
 - No other page, the menu/header/footer, `plants.ts`, or any other form changed.
 
-**Waiting for client:**
-- The doc marks only name, mobile and "what is this about" as required (*); the kit code (unchanged) also hard-requires customer category, grade (for Ready Mix Concrete), pump and plant. We kept the kit's validation and only matched the doc's literal label text — please confirm whether category/grade/pump/plant should also show a required marker, or whether they should become genuinely optional.
-- Email notification is still off; the lead is saved to Convex only. A CRM/email will be connected later (per Ma'am, 2026-11-21).
-- Grade list steps of 5 (M5–M80) are still an assumption, not yet confirmed (unchanged from the existing open item).
+## Ma'am decisions 2026-11-23 (evening)
+
+Source: `seo-kit/CHANGES-2026-11-23.md` (v2) and `seo-kit/MENU-AND-CONTACT-FORM-2026-11-23.md`, plus the updated kit's `README-PLACEMENT.md`/`BookUsForm.tsx`/`leadStore.ts`.
+
+- **Seven required fields, marked \*** on `src/components/book-us/BookUsForm.tsx`: Your name, Mobile number, What is this about?, I am a, Grade, Pump needed?, Nearest plant. Also starred when they apply: Your area (once a plant is chosen), Tell us what you expect (Others), Write the grade you need (Other grade) — validation itself is unchanged, these are label changes only. The "Pump needed?" button group's native radio inputs now also carry the HTML `required` attribute (one required radio in the group is enough) so the browser blocks submit until a pump is chosen; "What is this about?" already defaults to "Ready Mix Concrete" so no `required` attribute was needed there.
+- **CEO video stays, below the FAQ, with nothing in between**: removed the Phone Number / Office Email / Office Address cards section and the separate office map iframe section from `src/app/ready-mix-concrete-contact-in-raipur/page.tsx` entirely (Ma'am's doc flagged 4 maps on the live preview where 3 plant cards were specified — `PlantCards` already carries each plant's map). The intro heading/paragraph + CEO video `BgSection` now sits directly after the FAQ section. Removed the now-unused `site`, `PhoneIcon`/`MailIcon`/`MapIcon` imports and the `officeMapSrc`/`OFFICE_MAP_LINK` constants.
+- **Footer "Book Us"**: `src/content/site.ts`'s `footerUsefulLinks` label "Contact" → "Book Us" (same `/ready-mix-concrete-contact-in-raipur/` href) — Ma'am's doc flagged the preview footer still said "Contact".
+- **Removed "#1"**: `src/content/home.ts` hero subtitle — "Raipur's #1 ready mix concrete plant..." → "Raipur's ready mix concrete plant..." (kit hard rule #1, no unconfirmed ranking claim).
+- **Leads go to the CRM via our Convex leads table**: confirmed decision is that enquiries are saved to the `leads` table already built in Convex (`convex/leads.ts`, dev `small-squid-55`), which the CRM being built will read from — no new service invented. `src/lib/leadStore.ts` already targets this table unchanged; `notifyTeam` remains the documented no-op (the `Lead ID | Plant | Topic | Pump` email subject stays built but unused until email/CRM wiring is confirmed).
+
+**Resolved (removed from Waiting for client above):** which fields should be marked required; where the office cards/map/CEO video section should sit.
+
+**Still open:**
+- Who are Sales 1, 2 and 3 (one per plant)? Who gets "Not sure"/"Other area" leads? — needed for the CRM's auto-assign step.
+- Grade list steps of 5 (M5, M10, M15 ... M80) still assumed, not yet confirmed; website product pages still say M20–M40.
+- Plants 2 and 3 need full addresses and map coordinates; check the Plant 3 map pin is not the forbidden Plus Code `5PJ6+FHJ`.
+- Page email address and working hours still not confirmed.
+- The Bhilai order number 98271-22406 is not matched to any plant in `plants.ts`.

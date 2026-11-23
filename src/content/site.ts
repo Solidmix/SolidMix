@@ -111,7 +111,7 @@ export const footerUsefulLinks = [
   { label: "Guides & Blog", href: "/concrete-blog-in-raipur/" },
   { label: "Safety", href: "/safety/" },
   { label: "Careers", href: "/careers/" },
-  { label: "Contact", href: "/ready-mix-concrete-contact-in-raipur/" },
+  { label: "Book Us", href: "/ready-mix-concrete-contact-in-raipur/" },
   { label: "Download Brochure", href: "/brochure/solidmix-brochure.pdf" },
   { label: "Privacy Policy", href: "/privacy-policy/" },
   { label: "Legal Information", href: "/legal/" },

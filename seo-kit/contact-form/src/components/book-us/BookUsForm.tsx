@@ -160,7 +160,7 @@ export default function BookUsForm() {
       </div>
 
       <div>
-        <label className={label} htmlFor="topic">What is this about?</label>
+        <label className={label} htmlFor="topic">What is this about? *</label>
         <select id="topic" className={field} value={topic} onChange={(e) => setTopic(e.target.value)} required>
           {topics.map((t) => (
             <option key={t}>{t}</option>
@@ -184,7 +184,7 @@ export default function BookUsForm() {
       )}
 
       <div>
-        <label className={label} htmlFor="category">Customer category</label>
+        <label className={label} htmlFor="category">I am a *</label>
         <select id="category" className={field} value={category} onChange={(e) => setCategory(e.target.value)} required>
           <option value="">Select</option>
           {customerCategories.map((c) => (
@@ -195,7 +195,7 @@ export default function BookUsForm() {
 
       {isConcrete && (
         <div>
-          <label className={label} htmlFor="grade">Grade</label>
+          <label className={label} htmlFor="grade">Grade *</label>
           <select id="grade" className={field} value={grade} onChange={(e) => setGrade(e.target.value)} required>
             <option value="">Select grade</option>
             {grades.map((g) => (
@@ -216,7 +216,7 @@ export default function BookUsForm() {
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label className={label} htmlFor="plant">Nearest plant</label>
+          <label className={label} htmlFor="plant">Nearest plant *</label>
           <select
             id="plant"
             className={field}
@@ -284,7 +284,7 @@ export default function BookUsForm() {
       </div>
 
       <div>
-        <label className={label} htmlFor="pump">Pump requirement</label>
+        <label className={label} htmlFor="pump">Pump needed? *</label>
         <select id="pump" className={field} value={pump} onChange={(e) => setPump(e.target.value)} required>
           <option value="">Select</option>
           {pumpOptions.map((p) => (
@@ -310,11 +310,11 @@ export default function BookUsForm() {
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label className={label} htmlFor="name">Name</label>
+          <label className={label} htmlFor="name">Your name *</label>
           <input id="name" className={field} autoComplete="name" required value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div>
-          <label className={label} htmlFor="phone">Mobile number</label>
+          <label className={label} htmlFor="phone">Mobile number *</label>
           <input id="phone" className={field} type="tel" inputMode="tel" autoComplete="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} />
         </div>
       </div>

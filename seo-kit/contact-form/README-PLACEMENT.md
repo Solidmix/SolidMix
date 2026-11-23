@@ -25,15 +25,21 @@ The `@/` import alias must point at `src/`. If the repo has no `src/` folder, ad
 4. Small FAQ (visible text equals the JSON-LD).
 5. JSON-LD: ContactPage, BreadcrumbList, FAQPage, one LocalBusiness per plant.
 
+Client decisions (2026-11-23):
+- The CEO video section STAYS on the Book Us page. Do not remove it. Keep it below the FAQ.
+- Required fields (marked * on the form): Your name, Mobile number, What is this about?, I am a, Grade, Pump needed?, Nearest plant. Also required when they apply: Delivery area (once a plant is chosen), Site location (plant "Not sure" or area "Other"), "Tell us what you expect" (Others), "Write the grade you need" (Other grade). Everything else is optional.
+- Field labels: "I am a" (not "Customer category") and "Pump needed?" (not "Pump requirement").
+
 ## 3. Menu and links
 - Contact Us dropdown: "Book Us" (this page) and "Careers" (`/careers/`). The header button and the mobile bar say "Book Us" and link here.
 - Add the redirects in `03-redirects.md`: `/appointments/`, `/appointment/`, `/book-appointment/` go to this page with a 301.
 - Add the page to `sitemap.ts`. The title and description come from `01-seo-meta.csv`.
 
-## 4. STOP: the lead store (needs a decision)
+## 4. The lead store (decided 2026-11-23)
 `src/lib/leadStore.ts` has two empty functions, `saveLead` and `notifyTeam`. The form will not work until they are filled.
-- Look in the repo for an existing database, Google Sheet connection or email service and use that.
-- If none exists, STOP and ask the human which to use. Do not invent a new service.
+- Client decision: enquiries go to the CRM being built, and into the database the developer has already built. Write each lead to that database (the CRM reads from it). Do not add a new service.
+- Send every field the form collects, including Lead ID, plant, area, pump, grade, category, organisation and designation.
+- If the CRM needs a different shape or an API call, ask the human before inventing one.
 - `saveLead` must return `false` (not throw) if the Lead ID already exists. The route retries with a new ID.
 - The email subject is already built as `Lead ID | Plant | Topic | Pump`. Put keys in environment variables only.
 

@@ -1,12 +1,11 @@
 import type { BookingInput } from './validateBooking';
 
 // ============================================================================
-// STOP POINT FOR THE DEVELOPER
-// The site needs ONE place to keep leads. Implement `saveLead` and `notifyTeam`
-// with what the project ALREADY uses (database table, Google Sheet API, or the
-// existing email service) and keep these signatures.
-// If the repo has no lead store or email service, STOP and ask the human.
-// Do not invent a new service, and keep keys in environment variables only.
+// Client decision 2026-11-23: leads go to the CRM being built, through the
+// database the developer has already built. Implement `saveLead` and `notifyTeam`
+// against that database and keep these signatures.
+// If the CRM needs an API call or a different shape, ask the human first.
+// Keep keys in environment variables only.
 // ============================================================================
 
 export type StoredLead = BookingInput & { leadId: string; createdAt: string; sourcePage: string };

@@ -36,6 +36,7 @@ function RadioButtonGroup({
   value,
   onChange,
   columns,
+  required,
 }: {
   legendText: string;
   name: string;
@@ -43,6 +44,7 @@ function RadioButtonGroup({
   value: string;
   onChange: (v: string) => void;
   columns: string;
+  required?: boolean;
 }) {
   return (
     <fieldset>
@@ -66,6 +68,7 @@ function RadioButtonGroup({
                 value={opt}
                 checked={checked}
                 onChange={() => onChange(opt)}
+                required={required}
                 className="sr-only"
               />
               {opt}
@@ -252,7 +255,7 @@ export default function BookUsForm() {
         <h3 className={blockHeading}>What you need</h3>
 
         <RadioButtonGroup
-          legendText="What is this about?"
+          legendText="What is this about? *"
           name="topic"
           options={topics}
           value={topic}
@@ -262,7 +265,7 @@ export default function BookUsForm() {
 
         {topic === 'Others' && (
           <div>
-            <label className={label} htmlFor="others">Tell us what you expect</label>
+            <label className={label} htmlFor="others">Tell us what you expect *</label>
             <textarea
               id="others"
               className={field}
@@ -276,7 +279,7 @@ export default function BookUsForm() {
         )}
 
         <div>
-          <label className={label} htmlFor="category">I am a</label>
+          <label className={label} htmlFor="category">I am a *</label>
           <select id="category" className={field} value={category} onChange={(e) => setCategory(e.target.value)} required>
             <option value="">Select</option>
             {customerCategories.map((c) => (
@@ -287,7 +290,7 @@ export default function BookUsForm() {
 
         {isConcrete && (
           <div>
-            <label className={label} htmlFor="grade">Grade</label>
+            <label className={label} htmlFor="grade">Grade *</label>
             <select id="grade" className={field} value={grade} onChange={(e) => setGrade(e.target.value)} required>
               <option value="">Select grade</option>
               {grades.map((g) => (
@@ -299,7 +302,7 @@ export default function BookUsForm() {
             <p className="mt-1 text-sm text-grey-2">Our team will confirm the grade and mix for your project.</p>
             {grade === GRADE_OTHER && (
               <div className="mt-3">
-                <label className={label} htmlFor="gradeText">Write the grade you need</label>
+                <label className={label} htmlFor="gradeText">Write the grade you need *</label>
                 <input id="gradeText" className={field} required value={gradeText} onChange={(e) => setGradeText(e.target.value)} />
               </div>
             )}
@@ -307,12 +310,13 @@ export default function BookUsForm() {
         )}
 
         <RadioButtonGroup
-          legendText="Pump needed?"
+          legendText="Pump needed? *"
           name="pump"
           options={pumpOptions}
           value={pump}
           onChange={setPump}
           columns="grid-cols-2 sm:grid-cols-4"
+          required
         />
       </div>
 
@@ -322,7 +326,7 @@ export default function BookUsForm() {
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className={label} htmlFor="plant">Nearest plant</label>
+            <label className={label} htmlFor="plant">Nearest plant *</label>
             <select
               id="plant"
               className={field}
@@ -344,7 +348,7 @@ export default function BookUsForm() {
 
           {plant && (
             <div>
-              <label className={label} htmlFor="area">Your area</label>
+              <label className={label} htmlFor="area">Your area *</label>
               <select id="area" className={field} value={area} onChange={(e) => setArea(e.target.value)} required>
                 <option value="">Your area</option>
                 {plant.areaGroups.map((g) => (

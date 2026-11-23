@@ -3,9 +3,7 @@ import { getPageContent } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { JsonLd } from "@/components/JsonLd";
 import { absUrl, SITE_URL } from "@/lib/seo";
-import { site } from "@/content/site";
 import { InlineText } from "@/components/InlineText";
-import { PhoneIcon, MailIcon, MapIcon } from "@/components/icons";
 import { BgSection } from "@/components/sections/BgSection";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import BookUsForm from "@/components/book-us/BookUsForm";
@@ -15,22 +13,17 @@ import { plants, mainPhone, mainPhoneHref, whatsappHref } from "@/data/plants";
 const PATH = "/ready-mix-concrete-contact-in-raipur/";
 const H1 = "Contact SolidMix RMC in Raipur";
 
-// Content JSON is kept only for the office map iframe src and the intro
-// heading/paragraph next to the CEO video (merge rule: those stay exactly
-// as they are now). Title/description/H1 come from seo-kit/01-seo-meta.csv
-// instead of this JSON, which fixes the pre-existing duplicated-brand title.
+// Content JSON is kept only for the intro heading/paragraph next to the CEO
+// video (merge rule: those stay exactly as they are now). Title/description/H1
+// come from seo-kit/01-seo-meta.csv instead of this JSON, which fixes the
+// pre-existing duplicated-brand title.
 const content = getPageContent("ready-mix-concrete-contact-in-raipur");
-const [, officeMapSrc] = content.blocks
-  .filter((b) => b.type === "embed")
-  .map((b) => (b as { src: string }).src);
 const introHeading = content.blocks.find(
   (b) => b.type === "heading" && b.text === "Ready Mix Concrete Contact in Raipur",
 ) as { text: string } | undefined;
 const introPara = content.blocks.find(
   (b) => b.type === "p" && b.text.startsWith("Looking for reliable"),
 ) as { text: string } | undefined;
-
-const OFFICE_MAP_LINK = "https://maps.app.goo.gl/yo8k21fiZhfwBQpt7";
 
 // Title/description: 01-seo-meta.csv contact row (base title only; the root
 // layout's "%s | SolidMix RMC" template adds the single brand suffix).
@@ -155,61 +148,15 @@ export default function BookUsPage() {
         </div>
       </section>
 
-      <section className="pb-10 md:pb-14">
-        <div className="container-content grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
-            <PhoneIcon className="mx-auto h-9 w-9 text-primary" />
-            <h3 className="mt-4 text-[28px] font-semibold text-primary">Phone Number</h3>
-            <p className="mt-3 space-x-1 text-[20px]">
-              <a href={site.phoneHref} className="text-ink hover:text-primary">
-                {site.phoneDisplay}
-              </a>
-              <span className="text-grey-2">·</span>
-              <a href="tel:+919111109642" className="text-ink hover:text-primary">
-                +91 9111109642
-              </a>
-            </p>
-          </div>
-          <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
-            <MailIcon className="mx-auto h-9 w-9 text-primary" />
-            <h3 className="mt-4 text-[28px] font-semibold text-primary">Office Email</h3>
-            <p className="mt-3 text-[20px]">
-              <a href={site.emails[0].href} className="text-ink hover:text-primary">
-                {site.emails[0].display}
-              </a>
-            </p>
-          </div>
-          <div className="rounded-xl border border-secondary p-8 text-center shadow-sm">
-            <MapIcon className="mx-auto h-9 w-9 text-primary" />
-            <h3 className="mt-4 text-[28px] font-semibold text-primary">
-              <a href={OFFICE_MAP_LINK} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                Office Address
-              </a>
-            </h3>
-            <p className="mt-3 text-ink">{site.officeAddress.lines.join(", ")}</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="pb-10 md:pb-14">
-        <div className="container-content">
-          <div className="overflow-hidden rounded-lg border border-grey-line">
-            <iframe
-              title="SolidMix RMC office location"
-              src={officeMapSrc}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="h-96 w-full"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Plain light-grey section on the original — no photo background at
           all here (confirmed against the screenshot), unlike Home's
           contact-details block. ContactForm removed (replaced by the
-          booking form above); intro heading/paragraph and the CEO video
-          stay exactly as they were (merge rule). */}
+          booking form above); Phone/Office Email/Office Address cards and
+          the separate office map iframe removed per Ma'am's decision
+          2026-11-23 (evening) — the live preview showed 4 maps where 3 plant
+          cards were specified, and the CEO video now sits right after the
+          FAQ with no section in between. Intro heading/paragraph and the
+          CEO video stay exactly as they were (merge rule). */}
       <BgSection image="/images/bg/contact-details.webp" overlayOpacity={0} className="py-12 md:py-16">
         <div className="container-content grid gap-10 lg:grid-cols-2">
           <div>
