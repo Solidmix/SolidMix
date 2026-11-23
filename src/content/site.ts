@@ -101,14 +101,20 @@ export const menu: MenuItem[] = [
 ];
 
 // Footer "Useful Links" column (live targets; brochure is a static PDF).
+// Labels/hrefs for Our Team, Calculator, Our Projects and Guides & Blog
+// match src/data/navigation.ts exactly (seo-kit brief Phase 1 footer list).
 export const footerUsefulLinks = [
   { label: "About Us", href: "/trusted-concrete-supplier-in-raipur/" },
-  { label: "Careers", href: "/careers/" },
+  { label: "Our Team", href: "/our-team/" },
+  { label: "Concrete Calculator", href: "/calculator/" },
+  { label: "Our Projects", href: "/our-work/" },
+  { label: "Guides & Blog", href: "/concrete-blog-in-raipur/" },
   { label: "Safety", href: "/safety/" },
+  { label: "Careers", href: "/careers/" },
   { label: "Contact", href: "/ready-mix-concrete-contact-in-raipur/" },
   { label: "Download Brochure", href: "/brochure/solidmix-brochure.pdf" },
-  { label: "Terms & Policy", href: "/privacy-policy/" },
-  { label: "Blogs", href: "/concrete-blog-in-raipur/" },
+  { label: "Privacy Policy", href: "/privacy-policy/" },
+  { label: "Legal Information", href: "/legal/" },
 ];
 
 export const footer = {
@@ -116,6 +122,5 @@ export const footer = {
     "SolidMix RMC is your trusted ready mix concrete partner in Raipur, delivering quality concrete solutions with strength, durability and dependable service for every project.",
   tagline:
     "Serving Raipur with quality ready mix concrete for residential, commercial and infrastructure projects.",
-  copyright: "Copyright © 2025, All rights reserved",
-  poweredBy: { label: "DigitalWingzz", href: "https://www.digitalwingzz.com/" },
+  copyright: "Copyright ©",
 };

@@ -4,7 +4,9 @@ import "./globals.css";
 import { site } from "@/content/site";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { TopBar } from "@/components/TopBar";
-import { Header } from "@/components/Header";
+import Header from "@/components/header/Header";
+import MobileActionBar from "@/components/header/MobileActionBar";
+import NavSchema from "@/components/header/NavSchema";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CallButton } from "@/components/CallButton";
@@ -42,7 +44,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body>
+      <body className="pb-16 lg:pb-0">
         <SmoothScroll />
         <a
           href="#main"
@@ -56,6 +58,8 @@ export default function RootLayout({
         <Footer />
         <WhatsAppButton />
         <CallButton />
+        <MobileActionBar />
+        <NavSchema />
       </body>
     </html>
   );
