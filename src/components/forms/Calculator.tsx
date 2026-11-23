@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { pushEvent } from "@/lib/track";
 
 const UNITS = ["Meter", "Feet", "Inches"] as const;
 type Unit = (typeof UNITS)[number];
@@ -12,6 +13,11 @@ const METERS_PER_UNIT: Record<Unit, number> = {
 };
 
 const CUBIC_FEET_PER_CUBIC_METER = 35.3147;
+
+// This calculator only computes one shape (length x width x height); there
+// is no shape selector in its state, so calc_shape is this fixed value
+// (seo-kit/05-tracking.md calculator_used event).
+const CALC_SHAPE = "cuboid";
 
 const field =
   "w-full rounded-md border border-grey-line bg-white px-4 py-3.5 text-ink placeholder:text-grey-2 focus:border-primary focus:outline-none";
@@ -47,6 +53,7 @@ export function Calculator() {
     const metersPerUnit = METERS_PER_UNIT[unit];
     const m3 = l * metersPerUnit * (w * metersPerUnit) * (h * metersPerUnit);
     setResult({ m3, ft3: m3 * CUBIC_FEET_PER_CUBIC_METER });
+    pushEvent("calculator_used", { calc_shape: CALC_SHAPE });
   };
 
   return (

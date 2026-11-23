@@ -13,12 +13,7 @@ import {
   AREA_OTHER,
 } from '@/data/bookingOptions';
 import { mainPhone, mainPhoneHref } from '@/data/plants';
-
-declare global {
-  interface Window {
-    dataLayer?: Record<string, unknown>[];
-  }
-}
+import { pushEvent } from '@/lib/track';
 
 const field =
   'w-full min-h-[44px] rounded-md border border-grey-line bg-white px-4 py-3.5 text-ink placeholder:text-grey-2 focus:border-primary focus:outline-none';
@@ -173,16 +168,16 @@ export default function BookUsForm() {
       }
       setLeadId(json.leadId);
       // No personal data in the dataLayer. Lead ID and plain choices only.
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: 'generate_lead',
+      const eventParams = {
         form_name: 'book_us',
         lead_id: json.leadId,
         customer_category: category,
         pump_requirement: pump,
         plant: plantId || PLANT_NOT_SURE,
         delivery_area: area || '',
-      });
+      };
+      pushEvent('generate_lead', eventParams);
+      pushEvent('contact_form_submit', eventParams);
     } catch {
       setError('Network problem. Please try again or call us.');
     } finally {

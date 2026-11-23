@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { site } from "@/content/site";
 import { SmoothScroll } from "@/components/SmoothScroll";
@@ -10,6 +11,14 @@ import NavSchema from "@/components/header/NavSchema";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CallButton } from "@/components/CallButton";
+import { TrackingEvents } from "@/components/TrackingEvents";
+
+// seo-kit/00-CLAUDE-BUILD-BRIEF.md Phase 7 + seo-kit/05-tracking.md: only
+// loads if the client's GTM container ID is set (Vercel Production env var).
+const GTM = process.env.NEXT_PUBLIC_GTM_ID;
+if (!GTM) {
+  console.info("GTM: NEXT_PUBLIC_GTM_ID not set, tracking skipped");
+}
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -50,6 +59,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.variable}>
       <body className="pb-16 lg:pb-0">
+        {GTM && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+        )}
         <SmoothScroll />
         <a
           href="#main"
@@ -65,6 +84,12 @@ export default function RootLayout({
         <CallButton />
         <MobileActionBar />
         <NavSchema />
+        <TrackingEvents />
+        {GTM && (
+          <Script id="gtm" strategy="afterInteractive">
+            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM}');`}
+          </Script>
+        )}
       </body>
     </html>
   );

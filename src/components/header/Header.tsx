@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { cta, nav, site } from '@/data/navigation';
+import { pushEvent } from '@/lib/track';
 
 /*
  * SolidMix RMC header: desktop menu (with a wide menu for products) + mobile drawer.
@@ -114,7 +115,7 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-30 border-b border-grey-line bg-white">
+    <header data-track-location="header" className="sticky top-0 z-30 border-b border-grey-line bg-white">
       <div className="relative mx-auto flex h-[72px] w-full max-w-[1360px] items-center justify-between gap-4 px-4 lg:h-[76px] lg:max-w-none lg:justify-start lg:gap-[64px] lg:px-[60px]">
         <Link href="/" aria-label="SolidMix RMC home" className="flex-shrink-0">
           <Image
@@ -235,6 +236,7 @@ export default function Header() {
 
         <Link
           href={cta.href}
+          onClick={() => pushEvent('book_us_click', { location: 'header' })}
           className="ml-auto hidden flex-shrink-0 whitespace-nowrap rounded-md bg-primary px-4 py-2.5 text-[14px] font-semibold text-white transition-colors hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary lg:block xl:px-6 xl:text-[15px]"
         >
           {cta.label}
@@ -360,7 +362,11 @@ export default function Header() {
         </nav>
 
         <div className="border-t border-grey-line p-4">
-          <Link href={cta.href} className="mb-3 flex min-h-[48px] items-center justify-center rounded-md bg-primary text-[15px] font-semibold text-white">
+          <Link
+            href={cta.href}
+            onClick={() => pushEvent('book_us_click', { location: 'header' })}
+            className="mb-3 flex min-h-[48px] items-center justify-center rounded-md bg-primary text-[15px] font-semibold text-white"
+          >
             {cta.label}
           </Link>
           <div className="grid grid-cols-2 gap-3">
