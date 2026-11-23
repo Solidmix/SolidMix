@@ -90,7 +90,7 @@ export const whyChoose = {
     {
       title: "2. On-Time Delivery — No Idle Time on Site",
       body:
-        "A late concrete delivery means your entire crew sits idle. Our fleet of transit mixers delivers to any corner of Raipur within 60–90 minutes. Available 24×7, including weekends and public holidays.",
+        "A late concrete delivery means your entire crew sits idle. Our fleet of transit mixers delivers to any corner of Raipur within 60–90 minutes. Available, including weekends and public holidays.",
     },
     {
       title: "3. IS 456:2000 Certified Quality",
@@ -156,7 +156,7 @@ export const faq = {
     },
     {
       q: "Does SolidMix RMC deliver on Sundays and public holidays?",
-      a: "Yes. We operate 24×7, 365 days a year — including Sundays, Diwali, and all public holidays. Construction doesn’t stop, and neither do we.",
+      a: "Yes. We operate 365 days a year — including Sundays, Diwali, and all public holidays. Construction doesn’t stop, and neither do we.",
     },
   ],
 };

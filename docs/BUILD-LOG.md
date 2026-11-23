@@ -96,3 +96,13 @@ Not touched, as instructed: the grade sentences (list items 2, 5, 12, 13, 14) an
 
 - **Waiting for client — grade sentences**: Home FAQ (`home.ts:148`), About FAQ (`trusted-concrete-supplier-in-raipur.json:314`) and the Standard Concrete product page (`ready-mix-concrete-in-raipur.json:212`) still say M15/M20–M40, while Ma'am confirmed M5–M80 for the Book Us form (2026-11-21) — needs a decision on which grade list the site states.
 - **Waiting for client — ranking claim**: the Home hero subtitle's "Raipur's #1 ready mix concrete plant" is a ranking claim; needs Ma'am's confirmation like any other unconfirmed claim.
+
+## Remaining "24×7" claims removed (2026-11-23)
+
+The verification grep's original regex (`24/7|24\*7|24x7`) missed the "×" multiplication-sign character, so these 4 were found only on re-check with `24\s*[*/x×]\s*7`. Fixed the same way — claim words only, nothing else changed:
+1. `src/content/home.ts:93` (FAQ answer) — *"...within 60–90 minutes. Available 24×7, including weekends and public holidays."* → *"...within 60–90 minutes. Available, including weekends and public holidays."*
+2. `src/content/home.ts:159` (FAQ answer) — *"Yes. We operate 24×7, 365 days a year — including Sundays, Diwali, and all public holidays..."* → *"Yes. We operate 365 days a year — including Sundays, Diwali, and all public holidays..."* ("365 days a year" is a separate claim, not "24×7"-shaped, left untouched per scope)
+3. `public/llms.txt:13` — *"- Hours: Open 24×7, every day"* — whole line removed (it was only an hours claim).
+4. `src/content/pages/ready-mix-concrete-in-raipur.json:222` — *"...Precision batching, guaranteed grades, and 24×7 delivery support."* → *"...Precision batching, guaranteed grades, and delivery support."* (the M-grade sentence on the same page, line 212, left untouched).
+
+Re-ran `grep -rniE "24\s*[*/x×]\s*7|M20 to M40" src public` after this round: only code comments and the already-flagged raw/dead copies remain (`home.json:6,16,177,319,363` — the scrape duplicate of content now fixed in `home.ts`/the "Working Hours" box that no longer renders — and `ready-mix-concrete-contact-in-raipur.json:49`, the dead Book Us line). Nothing live and unaddressed remains.
