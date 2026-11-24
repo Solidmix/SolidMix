@@ -283,3 +283,7 @@ Waiting for client: GTM container ID (`NEXT_PUBLIC_GTM_ID`, Vercel Production on
 - The GitHub repo is not yet private; `docs/LAUNCH.md` now calls for this at launch, but it must be done by a human with repo admin access.
 
 2026-11-23 pushed seo-build to 31a8d3b (Phase 5 + breadcrumb + productLd + menu parents). Frontend done; backend pending.
+
+## Production Convex deploy — leads table (2026-11-24)
+
+`npx convex deploy` run against the production deployment `mild-kingfisher-300` (confirmed target in the CLI output: `[Production] solidmix-rmc:solidmix-website:production`), from `seo-build` at `c7ebaf5` with only `crm-kit/` untracked. Dry run first, then the real deploy — both produced the identical schema diff: added indexes `leads.by_leadId` (`leadId`, `_creationTime`) and `leads.by_phone_createdAt` (`phone`, `createdAt`, `_creationTime`); no indexes removed. Functions pushed: `authData`, `gallery`, `history`, `leads`, `posts`, `seedGallery`, `seedPosts`, `submissions` (Convex runtime) + `auth` (Node.js runtime). Deploy key used only as the `CONVEX_DEPLOY_KEY` env var, never printed or committed. This resolves the Phase 8 risk noted above ("production Convex deployment does not yet have the leads table deployed") — the leads table is now live in production. `docs/LAUNCH.md`'s pre-merge Convex-deploy step is now done; the repo-private step is still outstanding.
