@@ -53,3 +53,7 @@ IMPORTANT: the replica does NOT replace the original site. It is deployed on its
 
 ## Stack
 - See memory-bank/techContext.md (PROPOSED until the design doc is approved).
+
+## Ma'am's SEO build brief (authoritative for SEO and Book Us work)
+@seo-kit/00-CLAUDE-BUILD-BRIEF.md
+For SEO/contact work follow this brief exactly; where it conflicts with the rules above, STOP and ask Saidul.

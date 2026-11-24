@@ -3,10 +3,11 @@ import { getPageContent, stripChrome, resolvePageH1, getFaqItems } from "@/lib/c
 import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd, faqPageLd } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, faqPageLd, resolveDisplayH1 } from "@/lib/seo";
 
 const content = getPageContent("safety");
 const h1 = resolvePageH1(content);
+const displayH1 = resolveDisplayH1("/safety/", h1);
 const blocks = stripChrome(content.blocks, h1);
 const faqs = getFaqItems(blocks);
 
@@ -21,7 +22,7 @@ export default function SafetyPage() {
           ...(faqs.length ? [faqPageLd(faqs)] : []),
         ]}
       />
-      <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "Safety" }]} />
+      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Safety" }]} />
       <section className="py-12 md:py-16">
         <div className="container-content max-w-3xl">
           {/* These two level-2 headings are plain inline <h2> in the

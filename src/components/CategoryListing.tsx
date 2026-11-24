@@ -2,8 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/PageHero";
 import { PostGrid } from "@/components/PostGrid";
+import { JsonLd } from "@/components/JsonLd";
 import { getCategoryDefs, getCategoryPageCount, getCategoryPagePosts } from "@/lib/categories";
 import type { PostSummary } from "@/lib/posts";
+import { breadcrumbLd, resolveDisplayH1 } from "@/lib/seo";
 
 function categoryPageHref(cat: string, page: number) {
   return page <= 1 ? `/category/${cat}/` : `/category/${cat}/page/${page}/`;
@@ -26,11 +28,23 @@ export function CategoryListing({
   if (!def || page < 1 || page > totalPages) notFound();
 
   const posts = postsOverride ?? getCategoryPagePosts(cat, page);
+  // seo-kit/01-seo-meta.csv Phase 2: the H1 is the plain category name, no
+  // "Category: " prefix (that prefix was never in the CSV's h1 column).
+  const displayH1 = resolveDisplayH1(`/category/${cat}/`, def.label);
 
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbLd([
+            { name: "Home", url: "/" },
+            { name: "Blog", url: "/concrete-blog-in-raipur/" },
+            { name: def.label },
+          ]),
+        ]}
+      />
       <PageHero
-        title={`Category: ${def.label}`}
+        title={displayH1}
         crumbs={[
           { label: "Home", href: "/" },
           { label: "Blog", href: "/concrete-blog-in-raipur/" },

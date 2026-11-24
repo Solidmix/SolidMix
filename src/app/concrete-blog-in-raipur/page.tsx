@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { getPageContent, resolvePageH1 } from "@/lib/content";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, resolveDisplayH1 } from "@/lib/seo";
 import { getAllPostsSorted } from "@/lib/blogData";
 import { BlogSearch } from "@/components/BlogSearch";
 
 const content = getPageContent("concrete-blog-in-raipur");
-const h1 = resolvePageH1(content);
+const h1 = resolveDisplayH1("/concrete-blog-in-raipur/", resolvePageH1(content));
 
 export const metadata: Metadata = pageMetadata(content, "/concrete-blog-in-raipur/");
 

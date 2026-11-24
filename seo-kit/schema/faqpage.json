@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "REPLACE_QUESTION_1 (must match the visible question word for word)",
+      "acceptedAnswer": { "@type": "Answer", "text": "REPLACE_ANSWER_1 (must match the visible answer)" }
+    },
+    {
+      "@type": "Question",
+      "name": "REPLACE_QUESTION_2",
+      "acceptedAnswer": { "@type": "Answer", "text": "REPLACE_ANSWER_2" }
+    }
+  ]
+}

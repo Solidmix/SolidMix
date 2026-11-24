@@ -23,7 +23,6 @@ const TEAM_SLUGS = [
   "anand-sharma",
   "pitabas-sahoo",
   "pratham-bafna",
-  "purnendu-poddar",
   "samrat-gupta",
   "vinit-tiwari",
 ];
@@ -45,7 +44,6 @@ const routes = [
   "/privacy-policy/",
   "/concrete-blog-in-raipur/",
   "/ready-mix-concrete-contact-in-raipur/",
-  "/appointments/",
   "/careers/",
   "/calculator/",
   ...getCategoryDefs().flatMap((def) =>

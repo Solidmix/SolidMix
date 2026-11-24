@@ -127,4 +127,37 @@ export default defineSchema({
     to: v.string(),
     at: v.number(),
   }).index("by_from", ["from"]),
+
+  // --- Book Us (seo-kit Phase 5B/5C) ---
+  // All BookingInput fields (seo-kit/contact-form/src/lib/validateBooking.ts)
+  // plus the leadId/createdAt/sourcePage the kit's route adds to make a
+  // StoredLead. `website` (the honeypot) is never stored: leadStore.saveLead
+  // only forwards the fields listed here.
+  leads: defineTable({
+    topic: v.string(),
+    othersText: v.optional(v.string()),
+    category: v.string(),
+    grade: v.optional(v.string()),
+    gradeText: v.optional(v.string()),
+    plantId: v.string(),
+    area: v.string(),
+    siteLocation: v.optional(v.string()),
+    lat: v.optional(v.number()),
+    lng: v.optional(v.number()),
+    pump: v.string(),
+    quantity: v.optional(v.string()),
+    pourDate: v.optional(v.string()),
+    pourTime: v.optional(v.string()),
+    name: v.string(),
+    phone: v.string(),
+    email: v.optional(v.string()),
+    organisation: v.optional(v.string()),
+    designation: v.optional(v.string()),
+    message: v.optional(v.string()),
+    leadId: v.string(),
+    createdAt: v.string(),
+    sourcePage: v.string(),
+  })
+    .index("by_leadId", ["leadId"])
+    .index("by_phone_createdAt", ["phone", "createdAt"]),
 });

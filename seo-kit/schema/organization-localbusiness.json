@@ -1,0 +1,52 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "LocalBusiness"],
+      "@id": "https://REPLACE_DOMAIN/#organization",
+      "name": "SolidMix RMC",
+      "url": "https://REPLACE_DOMAIN/",
+      "logo": "https://REPLACE_DOMAIN/images/REPLACE_original-logo.png",
+      "image": "https://REPLACE_DOMAIN/images/REPLACE_plant-photo.webp",
+      "description": "SolidMix RMC is a ready mix concrete supplier in Raipur, Chhattisgarh.",
+      "telephone": "REPLACE_+91XXXXXXXXXX",
+      "email": "REPLACE_EMAIL",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "REPLACE_STREET",
+        "addressLocality": "Raipur",
+        "addressRegion": "Chhattisgarh",
+        "postalCode": "REPLACE_PIN",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "REPLACE_LAT",
+        "longitude": "REPLACE_LNG"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "REPLACE_09:00",
+          "closes": "REPLACE_18:00"
+        }
+      ],
+      "areaServed": [{ "@type": "City", "name": "Raipur" }],
+      "sameAs": [
+        "REPLACE_GOOGLE_BUSINESS_PROFILE_URL",
+        "REPLACE_FACEBOOK_URL",
+        "REPLACE_INSTAGRAM_URL",
+        "REPLACE_YOUTUBE_URL",
+        "REPLACE_LINKEDIN_URL"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://REPLACE_DOMAIN/#website",
+      "url": "https://REPLACE_DOMAIN/",
+      "name": "SolidMix RMC",
+      "publisher": { "@id": "https://REPLACE_DOMAIN/#organization" }
+    }
+  ]
+}

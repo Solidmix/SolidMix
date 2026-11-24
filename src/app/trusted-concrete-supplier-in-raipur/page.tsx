@@ -17,7 +17,7 @@ import { PageHero } from "@/components/PageHero";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { InlineText } from "@/components/InlineText";
 import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, breadcrumbLd, faqPageLd } from "@/lib/seo";
+import { pageMetadata, breadcrumbLd, faqPageLd, resolveDisplayH1 } from "@/lib/seo";
 import { TeamGrid, type TeamMember } from "@/components/sections/TeamGrid";
 import { ServiceIconCards } from "@/components/sections/ServiceIconCards";
 import { ProgressBars } from "@/components/sections/ProgressBars";
@@ -30,6 +30,7 @@ import { UsersIcon } from "@/components/icons";
 
 const content = getPageContent("trusted-concrete-supplier-in-raipur");
 const h1 = resolvePageH1(content);
+const displayH1 = resolveDisplayH1("/trusted-concrete-supplier-in-raipur/", h1);
 const blocks = stripChrome(content.blocks, h1);
 
 const collageImages = blocks.slice(0, 2) as ImageBlock[];
@@ -113,7 +114,7 @@ export default function AboutPage() {
           ...(faqs.length ? [faqPageLd(faqs)] : []),
         ]}
       />
-      <PageHero title={h1} crumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]} />
+      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]} />
 
       {/* Intro: image collage + teal text column (one joined card, 33/66 split) */}
       <section className="py-14">

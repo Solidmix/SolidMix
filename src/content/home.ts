@@ -9,9 +9,12 @@ export const ABOUT_URL = "/trusted-concrete-supplier-in-raipur/";
 export const SAFETY_URL = "/safety/";
 
 export const hero = {
-  h1: "RMC Plant in Raipur | Ready Mix Concrete Supplier — SolidMix",
+  // H1 from seo-kit/01-seo-meta.csv (Phase 2, 2026-11-21). The <title> tag
+  // (src/app/page.tsx) uses the CSV's title_base instead, which is a
+  // different, shorter string — they're not meant to match.
+  h1: "Ready Mix Concrete in Raipur",
   subtitle:
-    "Raipur’s #1 ready mix concrete plant delivering M20 to M40 grade high-strength concrete directly to your construction site — 24×7 delivery, zero compromise on quality.",
+    "Raipur’s ready mix concrete plant delivering high-strength concrete directly to your construction site, zero compromise on quality.",
   tabs: [
     { label: "About Us", key: "about" },
     { label: "Our Mission", key: "mission" },
@@ -87,7 +90,7 @@ export const whyChoose = {
     {
       title: "2. On-Time Delivery — No Idle Time on Site",
       body:
-        "A late concrete delivery means your entire crew sits idle. Our fleet of transit mixers delivers to any corner of Raipur within 60–90 minutes. Available 24×7, including weekends and public holidays.",
+        "A late concrete delivery means your entire crew sits idle. Our fleet of transit mixers delivers to any corner of Raipur within 60–90 minutes. Available, including weekends and public holidays.",
     },
     {
       title: "3. IS 456:2000 Certified Quality",
@@ -153,7 +156,7 @@ export const faq = {
     },
     {
       q: "Does SolidMix RMC deliver on Sundays and public holidays?",
-      a: "Yes. We operate 24×7, 365 days a year — including Sundays, Diwali, and all public holidays. Construction doesn’t stop, and neither do we.",
+      a: "Yes. We operate 365 days a year — including Sundays, Diwali, and all public holidays. Construction doesn’t stop, and neither do we.",
     },
   ],
 };
@@ -175,8 +178,6 @@ export const contactBlock = {
     "Address : Office no.418, 4th floor, Lalganga Business Park Pachpedi naka Raipur C.G Pin code 492001",
   number: "Number : +91 9893111201",
   emailLine: "Email : info@solidmixrmc.com support@solidmixrmc.com",
-  hoursHeading: "Working Hours",
-  hours: "24*7 Hours Open",
   form: {
     fields: {
       name: "Name",

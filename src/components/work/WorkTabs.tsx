@@ -24,7 +24,7 @@ export type WorkPanel = {
 // Maps a stat title to a representative icon; falls back to a generic badge.
 const STAT_ICONS: Record<string, typeof BagIcon> = {
   "Instant Business Growth": BagIcon,
-  "24/7 Quality Service": ClockIcon,
+  "Quality Service": ClockIcon,
   "Easy Customer Service": UsersIcon,
   "Cost Effective Mixes": DollarIcon,
   "High Durability": ShieldIcon,

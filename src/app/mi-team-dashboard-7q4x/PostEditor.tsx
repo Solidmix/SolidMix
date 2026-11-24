@@ -21,7 +21,7 @@ type PreviewBlock =
   | { type: "table"; rows: string[][] };
 
 function postRevalidatePaths(row: { slug: string; category: string }): string[] {
-  return [`/${row.slug}/`, `/category/${row.category}/`, "/concrete-blog-in-raipur/", "/appointments/", "/sitemap.xml"];
+  return [`/${row.slug}/`, `/category/${row.category}/`, "/concrete-blog-in-raipur/", "/sitemap.xml"];
 }
 
 type EditorBlock =
