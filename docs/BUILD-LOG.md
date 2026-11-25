@@ -328,3 +328,5 @@ Display-only trade-off: `object-cover` crops each photo to fill the fixed 4:5 bo
 Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Saidul). No server/build run here — Saidul verifies visually on all three pages.
 
 2026-11-25 pushed feat/photos-frontend to f97a0da (team photo grey strip fix)
+
+2026-11-25 merged feat/photos-frontend into main (--no-ff) at 21c70ce; pushed main
