@@ -316,3 +316,13 @@ Waiting for client:
 - Alt text left empty (`""`) for all 4, same as the existing members; the page's image rendering falls back to the member's name for the `alt` attribute.
 
 2026-11-25 pushed feat/photos-frontend to 9aa4474 (Samrat Gupta removed, footer lists 3 plants, 4 new team members)
+
+## Team photo frame: remove grey strip (2026-11-25)
+
+Fixed a grey strip showing under each team photo on `/our-team/`, `/legal/` and `/trusted-concrete-supplier-in-raipur/` (all three render their team section through the shared `TeamGrid` component). Cause: the `<Image>` had a fixed `width={400} height={500}` and `h-full w-full`, but `h-full`/`w-full` on an `<img>` without `position: relative` on an ancestor and `fill` just keeps the image at its own natural aspect ratio inside the `aspect-[4/5]` frame — any photo not already exactly 4:5 left a gap (grey `bg-grey-line` background) below it.
+
+Changed only `src/components/sections/TeamGrid.tsx`: added `relative` to the frame `div` (kept every other existing class — `hover-bob`, `mx-auto`, `aspect-[4/5]`, `w-[89%]`, `max-w-full`, `overflow-hidden`, `rounded-md`, `bg-grey-line`, `sm:mx-0`, `sm:w-auto`); replaced the `width`/`height` props on `<Image>` with `fill`, added `sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 89vw"`, and changed the className to `object-cover object-top`. `src` and the `alt` fallback logic are unchanged. No other component, the `our-team.json` content, or any photo file was touched.
+
+Display-only trade-off: `object-cover` crops each photo to fill the fixed 4:5 box (cropping from the sides/bottom, anchored to the top via `object-top`) — this only affects on-screen framing, the source WebP files in `public/images/content/` are untouched and still have their original, un-cropped pixel dimensions.
+
+Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Saidul). No server/build run here — Saidul verifies visually on all three pages.
