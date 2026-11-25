@@ -345,3 +345,5 @@ Waiting for client:
 2026-11-25 committed feat/home-banner (No. 1 banner as first slide); tests: banner 28 PASS, run-all ALL PASS; not pushed
 
 2026-11-25 pushed feat/home-banner to ded4ab4; Vercel preview check pending; not merged
+
+2026-11-25 merged feat/home-banner into main (--no-ff) at 0b96474; pushed main; Vercel production check pending
