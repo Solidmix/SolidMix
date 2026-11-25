@@ -341,3 +341,5 @@ Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Said
 
 Waiting for client:
 - Written approval needed from Ma'am for the claims now live in this slide's alt text — "Raipur's No. 1 R.M.C. player", "3,600 m³ despatch capacity per day", and "3 plants" — per the kit's no-unconfirmed-ranking-claims rule. Note the "#1" claim was previously removed from the Home subtitle for the same reason; it is now reintroduced here via Ma'am's own supplied banner image/alt text and needs her explicit sign-off before this is treated as confirmed.
+
+2026-11-25 committed feat/home-banner (No. 1 banner as first slide); tests: banner 28 PASS, run-all ALL PASS; not pushed
