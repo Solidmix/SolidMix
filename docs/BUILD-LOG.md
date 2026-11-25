@@ -287,3 +287,16 @@ Waiting for client: GTM container ID (`NEXT_PUBLIC_GTM_ID`, Vercel Production on
 ## Production Convex deploy — leads table (2026-11-24)
 
 `npx convex deploy` run against the production deployment `mild-kingfisher-300` (confirmed target in the CLI output: `[Production] solidmix-rmc:solidmix-website:production`), from `seo-build` at `c7ebaf5` with only `crm-kit/` untracked. Dry run first, then the real deploy — both produced the identical schema diff: added indexes `leads.by_leadId` (`leadId`, `_creationTime`) and `leads.by_phone_createdAt` (`phone`, `createdAt`, `_creationTime`); no indexes removed. Functions pushed: `authData`, `gallery`, `history`, `leads`, `posts`, `seedGallery`, `seedPosts`, `submissions` (Convex runtime) + `auth` (Node.js runtime). Deploy key used only as the `CONVEX_DEPLOY_KEY` env var, never printed or committed. This resolves the Phase 8 risk noted above ("production Convex deployment does not yet have the leads table deployed") — the leads table is now live in production. `docs/LAUNCH.md`'s pre-merge Convex-deploy step is now done; the repo-private step is still outstanding.
+
+## Remove Samrat Gupta + footer plant addresses (2026-11-25)
+
+Removed Samrat Gupta per client request, same pattern as Purnendu Poddar (`855e7ba`): deleted `src/content/pages/our-team-samrat-gupta.json` and `public/images/content/samratgupta.webp`; removed his image/heading/paragraph block from `src/content/pages/our-team.json` and his entry from `src/content/index.json`; removed `"samrat-gupta"` from `MEMBER_SLUGS` in `src/app/our-team/[slug]/page.tsx` and from the team slugs in `src/app/sitemap.ts`; added two 301 redirects in `next.config.ts` (`/our-team/samrat-gupta/` and `/about-us/samrat-gupta/`, both to `/our-team/`), placed before the generic `/about-us/:member` rule, single hop. Verified with `grep -rni "samrat" src/ public/ scripts/ next.config.ts` — only the two new redirect lines (and their comment) remain.
+
+Footer plant addresses: `src/components/Footer.tsx` now imports `plants` from `src/data/plants.ts` and renders all 3 plants under the same "Plant Address" heading, one `<p>` per plant as "Plant 1 – <address>", "Plant 2 – <address>", "Plant 3 – <address>", using each plant's `address` field exactly as written (no new colours/fonts/layout). The old single-address `plantAddress` block in `src/content/site.ts` was removed after confirming by grep it had no other callers.
+
+Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Saidul). `npm run build` was not run here — Saidul runs that.
+
+Waiting for client:
+- Plants 2 and 3 full street addresses (`plants.ts` still only has the short/locality versions for those two).
+- The old single Plant 1 (Serikhedi) address wording still appears, unchanged, in `src/lib/seo.ts` (Organization/LocalBusiness JSON-LD), `public/llms.txt`, and `src/content/home.ts` (Home FAQ answer, ~line 139) — out of scope for this change, left as-is.
+- Sitemap is now 72 URLs (was 73; one team-member page removed). `.local-tools/regress.sh`'s `EXPECT_URLS` default should be updated to 72 — not touched here since `.local-tools/` is off-limits.

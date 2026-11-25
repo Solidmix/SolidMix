@@ -16,16 +16,14 @@ export const site = {
     { display: "info@solidmixrmc.com", href: "mailto:info@solidmixrmc.com" },
     { display: "support@solidmixrmc.com", href: "mailto:support@solidmixrmc.com" },
   ],
-  // Both addresses exactly as in the design doc (section 10).
+  // Office address exactly as in the design doc (section 10). Plant
+  // addresses are not here: the footer renders all 3 plants straight from
+  // src/data/plants.ts so this file never has to duplicate that data.
   officeAddress: {
     label: "Office Address",
     lines: [
       "Office no. 418, 4th floor, Lalganga Business Park, Pachpedi Naka, Raipur, C.G. 492001",
     ],
-  },
-  plantAddress: {
-    label: "Plant Address",
-    lines: ["PH No. 77, Khasra No. 365/5, Serikhedi, Raipur, Chhattisgarh – 492101"],
   },
   socials: [
     { label: "Facebook", href: "https://www.facebook.com/share/15mzWCbLrx/", icon: "facebook" },
