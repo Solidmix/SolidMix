@@ -326,3 +326,5 @@ Changed only `src/components/sections/TeamGrid.tsx`: added `relative` to the fra
 Display-only trade-off: `object-cover` crops each photo to fill the fixed 4:5 box (cropping from the sides/bottom, anchored to the top via `object-top`) — this only affects on-screen framing, the source WebP files in `public/images/content/` are untouched and still have their original, un-cropped pixel dimensions.
 
 Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Saidul). No server/build run here — Saidul verifies visually on all three pages.
+
+2026-11-25 pushed feat/photos-frontend to f97a0da (team photo grey strip fix)
