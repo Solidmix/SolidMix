@@ -3,9 +3,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-// Order matches the original site: Boom Pump Service slide shows first.
+// Order matches the original site: the "No. 1" banner shows first.
 const SLIDES = [
-  { src: "/images/hero/slide-3.webp", alt: "SolidMix RMC — Raipur's 1st Boom Pump Service for faster concrete placement" },
+  { src: "/images/hero/slide-no1.webp", alt: "SolidMix Ready Mix Concrete. Raipur's No. 1 R.M.C. player. 3,600 cubic metres despatch capacity per day, 3 plants in Raipur. Call 9893111201." },
   { src: "/images/hero/slide-1.webp", alt: "SolidMix RMC — Raipur's complete concrete solution: RMC, transit mixers and boom pump services" },
   { src: "/images/hero/slide-2.webp", alt: "SolidMix RMC ready mix concrete transit mixer fleet, on-time every time" },
 ];
