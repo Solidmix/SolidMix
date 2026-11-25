@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { site, footer, footerUsefulLinks } from "@/content/site";
 import { nav } from "@/data/navigation";
+import { plants } from "@/data/plants";
 import { SocialIcons } from "./SocialIcons";
 
 // "Main product links" (seo-kit brief Phase 1): every Ready Mix Concrete
@@ -110,10 +111,10 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="mb-4 text-[20px] font-semibold">{site.plantAddress.label}</h2>
-            {site.plantAddress.lines.map((line) => (
-              <p key={line} className="text-sm leading-relaxed text-white/90">
-                {line}
+            <h2 className="mb-4 text-[20px] font-semibold">Plant Address</h2>
+            {plants.map((plant, i) => (
+              <p key={plant.id} className="text-sm leading-relaxed text-white/90">
+                Plant {i + 1} – {plant.address}
               </p>
             ))}
           </div>

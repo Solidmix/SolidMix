@@ -287,3 +287,44 @@ Waiting for client: GTM container ID (`NEXT_PUBLIC_GTM_ID`, Vercel Production on
 ## Production Convex deploy — leads table (2026-11-24)
 
 `npx convex deploy` run against the production deployment `mild-kingfisher-300` (confirmed target in the CLI output: `[Production] solidmix-rmc:solidmix-website:production`), from `seo-build` at `c7ebaf5` with only `crm-kit/` untracked. Dry run first, then the real deploy — both produced the identical schema diff: added indexes `leads.by_leadId` (`leadId`, `_creationTime`) and `leads.by_phone_createdAt` (`phone`, `createdAt`, `_creationTime`); no indexes removed. Functions pushed: `authData`, `gallery`, `history`, `leads`, `posts`, `seedGallery`, `seedPosts`, `submissions` (Convex runtime) + `auth` (Node.js runtime). Deploy key used only as the `CONVEX_DEPLOY_KEY` env var, never printed or committed. This resolves the Phase 8 risk noted above ("production Convex deployment does not yet have the leads table deployed") — the leads table is now live in production. `docs/LAUNCH.md`'s pre-merge Convex-deploy step is now done; the repo-private step is still outstanding.
+
+## Remove Samrat Gupta + footer plant addresses (2026-11-25)
+
+Removed Samrat Gupta per client request, same pattern as Purnendu Poddar (`855e7ba`): deleted `src/content/pages/our-team-samrat-gupta.json` and `public/images/content/samratgupta.webp`; removed his image/heading/paragraph block from `src/content/pages/our-team.json` and his entry from `src/content/index.json`; removed `"samrat-gupta"` from `MEMBER_SLUGS` in `src/app/our-team/[slug]/page.tsx` and from the team slugs in `src/app/sitemap.ts`; added two 301 redirects in `next.config.ts` (`/our-team/samrat-gupta/` and `/about-us/samrat-gupta/`, both to `/our-team/`), placed before the generic `/about-us/:member` rule, single hop. Verified with `grep -rni "samrat" src/ public/ scripts/ next.config.ts` — only the two new redirect lines (and their comment) remain.
+
+Footer plant addresses: `src/components/Footer.tsx` now imports `plants` from `src/data/plants.ts` and renders all 3 plants under the same "Plant Address" heading, one `<p>` per plant as "Plant 1 – <address>", "Plant 2 – <address>", "Plant 3 – <address>", using each plant's `address` field exactly as written (no new colours/fonts/layout). The old single-address `plantAddress` block in `src/content/site.ts` was removed after confirming by grep it had no other callers.
+
+Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Saidul). `npm run build` was not run here — Saidul runs that.
+
+Waiting for client:
+- Plants 2 and 3 full street addresses (`plants.ts` still only has the short/locality versions for those two).
+- The old single Plant 1 (Serikhedi) address wording still appears, unchanged, in `src/lib/seo.ts` (Organization/LocalBusiness JSON-LD), `public/llms.txt`, and `src/content/home.ts` (Home FAQ answer, ~line 139) — out of scope for this change, left as-is.
+- Sitemap is now 72 URLs (was 73; one team-member page removed). `.local-tools/regress.sh`'s `EXPECT_URLS` default should be updated to 72 — not touched here since `.local-tools/` is off-limits.
+
+## Team page: 4 new members (2026-11-25)
+
+Added 4 new team-member cards to `/our-team/`: Ramkrishna Mishra (Sales Head), Brijesh Choubey (Project & Corporate Affairs), Akula Laxman Rao (Finance & Account), Jainarayan Tiwari (Plant Manager) — appended after the Pitabas Sahoo card in `src/content/pages/our-team.json`, same image+heading(level 3, plain text, no link)+paragraph block shape as his, no bio text.
+
+Photos: the 4 originals Saidul placed in `.local-tools/incoming/` (`ramkrishna-mishra.jpg`, `brijesh-choubey.png`, `akula-laxman-rao.png`, `jainarayan-tiwari.png`) were converted 1:1 to WebP (sharp, quality 90, no resize/crop/retouch) into `public/images/content/<slug>.webp`. Verified output pixel dimensions equal the source for all 4 (1278x1231, 1241x1268, 1524x1600, 1254x1254).
+
+No code change: `src/app/our-team/page.tsx` and `src/components/sections/TeamGrid.tsx` already build cards generically from any image+heading+paragraph triple via `extractCards()`/`TeamGrid`, and already render a plain (unlinked) name when no markdown link is present in the heading — confirmed by reading both files, so neither was touched. No new page, route, redirect, sitemap entry or `index.json` entry was added for these 4 members (card only, same as Pitabas Sahoo).
+
+Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Saidul). `npm run build` was not run here — Saidul runs that.
+
+Waiting for client:
+- Bios/individual pages for the 4 new members were not requested — card only, as instructed.
+- Alt text left empty (`""`) for all 4, same as the existing members; the page's image rendering falls back to the member's name for the `alt` attribute.
+
+2026-11-25 pushed feat/photos-frontend to 9aa4474 (Samrat Gupta removed, footer lists 3 plants, 4 new team members)
+
+## Team photo frame: remove grey strip (2026-11-25)
+
+Fixed a grey strip showing under each team photo on `/our-team/`, `/legal/` and `/trusted-concrete-supplier-in-raipur/` (all three render their team section through the shared `TeamGrid` component). Cause: the `<Image>` had a fixed `width={400} height={500}` and `h-full w-full`, but `h-full`/`w-full` on an `<img>` without `position: relative` on an ancestor and `fill` just keeps the image at its own natural aspect ratio inside the `aspect-[4/5]` frame — any photo not already exactly 4:5 left a gap (grey `bg-grey-line` background) below it.
+
+Changed only `src/components/sections/TeamGrid.tsx`: added `relative` to the frame `div` (kept every other existing class — `hover-bob`, `mx-auto`, `aspect-[4/5]`, `w-[89%]`, `max-w-full`, `overflow-hidden`, `rounded-md`, `bg-grey-line`, `sm:mx-0`, `sm:w-auto`); replaced the `width`/`height` props on `<Image>` with `fill`, added `sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 89vw"`, and changed the className to `object-cover object-top`. `src` and the `alt` fallback logic are unchanged. No other component, the `our-team.json` content, or any photo file was touched.
+
+Display-only trade-off: `object-cover` crops each photo to fill the fixed 4:5 box (cropping from the sides/bottom, anchored to the top via `object-top`) — this only affects on-screen framing, the source WebP files in `public/images/content/` are untouched and still have their original, un-cropped pixel dimensions.
+
+Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Saidul). No server/build run here — Saidul verifies visually on all three pages.
+
+2026-11-25 pushed feat/photos-frontend to f97a0da (team photo grey strip fix)
