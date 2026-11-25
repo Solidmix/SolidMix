@@ -330,3 +330,18 @@ Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Said
 2026-11-25 pushed feat/photos-frontend to f97a0da (team photo grey strip fix)
 
 2026-11-25 merged feat/photos-frontend into main (--no-ff) at 21c70ce; pushed main
+
+## Home slider: first slide replaced with "No. 1" banner (2026-11-25)
+
+Replaced only the first slide of the home hero slider (previously the Boom Pump slide, `slide-3.webp`) with Ma'am's new banner, `public/images/hero/slide-no1.webp` (1600x749, already in the repo, not created/edited/resized here). Changed only `src/components/home/HeroSlider.tsx`: the first `SLIDES` entry and its alt text, and the comment above `SLIDES`. The other two slides (`slide-1.webp`, `slide-2.webp`) and their order after the new first slide are unchanged. `grep -rn "slide-3"` confirmed the only reference was `HeroSlider.tsx` itself, so `public/images/hero/slide-3.webp` was removed with `git rm`.
+
+Alt text used exactly as given: "SolidMix Ready Mix Concrete. Raipur's No. 1 R.M.C. player. 3,600 cubic metres despatch capacity per day, 3 plants in Raipur. Call 9893111201."
+
+Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Saidul). No server/build run here — Saidul verifies visually.
+
+Waiting for client:
+- Written approval needed from Ma'am for the claims now live in this slide's alt text — "Raipur's No. 1 R.M.C. player", "3,600 m³ despatch capacity per day", and "3 plants" — per the kit's no-unconfirmed-ranking-claims rule. Note the "#1" claim was previously removed from the Home subtitle for the same reason; it is now reintroduced here via Ma'am's own supplied banner image/alt text and needs her explicit sign-off before this is treated as confirmed.
+
+2026-11-25 committed feat/home-banner (No. 1 banner as first slide); tests: banner 28 PASS, run-all ALL PASS; not pushed
+
+2026-11-25 pushed feat/home-banner to ded4ab4; Vercel preview check pending; not merged
