@@ -314,3 +314,5 @@ Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Said
 Waiting for client:
 - Bios/individual pages for the 4 new members were not requested — card only, as instructed.
 - Alt text left empty (`""`) for all 4, same as the existing members; the page's image rendering falls back to the member's name for the `alt` attribute.
+
+2026-11-25 pushed feat/photos-frontend to 9aa4474 (Samrat Gupta removed, footer lists 3 plants, 4 new team members)
