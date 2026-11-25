@@ -80,6 +80,66 @@
     {
       "type": "p",
       "text": "Quality Head"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/ramkrishna-mishra.webp",
+      "source": "ramkrishna-mishra.jpg",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Ramkrishna Mishra"
+    },
+    {
+      "type": "p",
+      "text": "Sales Head"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/brijesh-choubey.webp",
+      "source": "brijesh-choubey.png",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Brijesh Choubey"
+    },
+    {
+      "type": "p",
+      "text": "Project & Corporate Affairs"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/akula-laxman-rao.webp",
+      "source": "akula-laxman-rao.png",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Akula Laxman Rao"
+    },
+    {
+      "type": "p",
+      "text": "Finance & Account"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/jainarayan-tiwari.webp",
+      "source": "jainarayan-tiwari.png",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Jainarayan Tiwari"
+    },
+    {
+      "type": "p",
+      "text": "Plant Manager"
     }
   ],
   "h1": "Our Team"

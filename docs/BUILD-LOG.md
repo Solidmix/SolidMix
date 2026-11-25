@@ -300,3 +300,17 @@ Waiting for client:
 - Plants 2 and 3 full street addresses (`plants.ts` still only has the short/locality versions for those two).
 - The old single Plant 1 (Serikhedi) address wording still appears, unchanged, in `src/lib/seo.ts` (Organization/LocalBusiness JSON-LD), `public/llms.txt`, and `src/content/home.ts` (Home FAQ answer, ~line 139) — out of scope for this change, left as-is.
 - Sitemap is now 72 URLs (was 73; one team-member page removed). `.local-tools/regress.sh`'s `EXPECT_URLS` default should be updated to 72 — not touched here since `.local-tools/` is off-limits.
+
+## Team page: 4 new members (2026-11-25)
+
+Added 4 new team-member cards to `/our-team/`: Ramkrishna Mishra (Sales Head), Brijesh Choubey (Project & Corporate Affairs), Akula Laxman Rao (Finance & Account), Jainarayan Tiwari (Plant Manager) — appended after the Pitabas Sahoo card in `src/content/pages/our-team.json`, same image+heading(level 3, plain text, no link)+paragraph block shape as his, no bio text.
+
+Photos: the 4 originals Saidul placed in `.local-tools/incoming/` (`ramkrishna-mishra.jpg`, `brijesh-choubey.png`, `akula-laxman-rao.png`, `jainarayan-tiwari.png`) were converted 1:1 to WebP (sharp, quality 90, no resize/crop/retouch) into `public/images/content/<slug>.webp`. Verified output pixel dimensions equal the source for all 4 (1278x1231, 1241x1268, 1524x1600, 1254x1254).
+
+No code change: `src/app/our-team/page.tsx` and `src/components/sections/TeamGrid.tsx` already build cards generically from any image+heading+paragraph triple via `extractCards()`/`TeamGrid`, and already render a plain (unlinked) name when no markdown link is present in the heading — confirmed by reading both files, so neither was touched. No new page, route, redirect, sitemap entry or `index.json` entry was added for these 4 members (card only, same as Pitabas Sahoo).
+
+Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Saidul). `npm run build` was not run here — Saidul runs that.
+
+Waiting for client:
+- Bios/individual pages for the 4 new members were not requested — card only, as instructed.
+- Alt text left empty (`""`) for all 4, same as the existing members; the page's image rendering falls back to the member's name for the `alt` attribute.
