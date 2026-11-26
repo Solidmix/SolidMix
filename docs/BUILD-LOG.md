@@ -358,3 +358,5 @@ Waiting for client:
 - The contact-link/copy lines "Vinit Tiwari & Pratham Bafna" (legal.json, trusted-concrete-supplier-in-raipur.json) and "Led by founders Vinit Tiwari and Pratham Bafna" (trusted-concrete-supplier-in-raipur.json) still use the short name — decision needed from Ma'am on whether these should also become "Vinit Kumar Tiwari".
 
 2026-11-26 committed and pushed feat/team-order at 90059ce; tests: team 49 PASS, run-all ALL PASS; Vercel preview check pending; not merged
+
+2026-11-26 merged feat/team-order into main (--no-ff) at b555cf0; pushed main; Vercel production check pending
