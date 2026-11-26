@@ -45,7 +45,7 @@
     {
       "type": "heading",
       "level": 3,
-      "text": "[Vinit Tiwari](/our-team/vinit-tiwari/)"
+      "text": "[Vinit Kumar Tiwari](/our-team/vinit-tiwari/)"
     },
     {
       "type": "p",
@@ -68,21 +68,6 @@
     },
     {
       "type": "image",
-      "src": "/images/content/whatsapp-image-2025-12-13-at-2-37-23-pm.webp",
-      "source": "WhatsApp-Image-2025-12-13-at-2.37.23-PM.webp",
-      "alt": ""
-    },
-    {
-      "type": "heading",
-      "level": 3,
-      "text": "Pitabas Sahoo"
-    },
-    {
-      "type": "p",
-      "text": "Quality Head"
-    },
-    {
-      "type": "image",
       "src": "/images/content/ramkrishna-mishra.webp",
       "source": "ramkrishna-mishra.jpg",
       "alt": ""
@@ -98,18 +83,18 @@
     },
     {
       "type": "image",
-      "src": "/images/content/brijesh-choubey.webp",
-      "source": "brijesh-choubey.png",
+      "src": "/images/content/jainarayan-tiwari.webp",
+      "source": "jainarayan-tiwari.png",
       "alt": ""
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "Brijesh Choubey"
+      "text": "Jainarayan Tiwari"
     },
     {
       "type": "p",
-      "text": "Project & Corporate Affairs"
+      "text": "Plant Manager"
     },
     {
       "type": "image",
@@ -128,18 +113,33 @@
     },
     {
       "type": "image",
-      "src": "/images/content/jainarayan-tiwari.webp",
-      "source": "jainarayan-tiwari.png",
+      "src": "/images/content/whatsapp-image-2025-12-13-at-2-37-23-pm.webp",
+      "source": "WhatsApp-Image-2025-12-13-at-2.37.23-PM.webp",
       "alt": ""
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "Jainarayan Tiwari"
+      "text": "Pitabas Sahoo"
     },
     {
       "type": "p",
-      "text": "Plant Manager"
+      "text": "Quality Head"
+    },
+    {
+      "type": "image",
+      "src": "/images/content/brijesh-choubey.webp",
+      "source": "brijesh-choubey.png",
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Brijesh Choubey"
+    },
+    {
+      "type": "p",
+      "text": "Project & Corporate Affairs"
     }
   ],
   "h1": "Our Team"

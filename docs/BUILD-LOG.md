@@ -347,3 +347,12 @@ Waiting for client:
 2026-11-25 pushed feat/home-banner to ded4ab4; Vercel preview check pending; not merged
 
 2026-11-25 merged feat/home-banner into main (--no-ff) at 0b96474; pushed main; Vercel production check pending
+
+## Team: Vinit Kumar Tiwari name + member order (2026-11-26)
+
+Display name changed from "Vinit Tiwari" to "Vinit Kumar Tiwari" (display text only; URL `/our-team/vinit-tiwari/` unchanged, no redirect needed). Updated: the team-listing link text in `src/content/pages/our-team.json`; the title, h1 and heading on his own page `src/content/pages/our-team-vinit-tiwari.json` (description and body text already said "Vinit Kumar Tiwari", left as-is); the title and h1 in his `src/content/index.json` entry; and the team-card heading (plain text, no link) in `src/content/pages/legal.json` and `src/content/pages/trusted-concrete-supplier-in-raipur.json`.
+
+New team order on `/our-team/` (whole image+heading+p groups moved, content untouched): Vinit Kumar Tiwari, Pratham Bafna, Ramkrishna Mishra (Sales Head), Jainarayan Tiwari (Plant Manager), Akula Laxman Rao (Finance & Account), Pitabas Sahoo (Quality Head), Brijesh Choubey (Project & Corporate Affairs).
+
+Waiting for client:
+- The contact-link/copy lines "Vinit Tiwari & Pratham Bafna" (legal.json, trusted-concrete-supplier-in-raipur.json) and "Led by founders Vinit Tiwari and Pratham Bafna" (trusted-concrete-supplier-in-raipur.json) still use the short name — decision needed from Ma'am on whether these should also become "Vinit Kumar Tiwari".
