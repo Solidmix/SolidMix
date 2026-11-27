@@ -360,3 +360,7 @@ Waiting for client:
 2026-11-26 committed and pushed feat/team-order at 90059ce; tests: team 49 PASS, run-all ALL PASS; Vercel preview check pending; not merged
 
 2026-11-26 merged feat/team-order into main (--no-ff) at b555cf0; pushed main; Vercel production check pending
+
+## Akula Laxman Rao photo replaced (2026-11-27)
+
+2026-11-27 Akula Laxman Rao photo replaced with the new photo from the team (1224x1285 WebP q90, same file name akula-laxman-rao.webp, no code change, 4:5 frame fill unchanged); tests: team 49 PASS, team-visual 114 PASS, run-all ALL PASS; pushed feat/akula-photo at 8253183; Vercel preview check pending; not merged
