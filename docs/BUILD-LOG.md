@@ -364,3 +364,5 @@ Waiting for client:
 ## Akula Laxman Rao photo replaced (2026-11-27)
 
 2026-11-27 Akula Laxman Rao photo replaced with the new photo from the team (1224x1285 WebP q90, same file name akula-laxman-rao.webp, no code change, 4:5 frame fill unchanged); tests: team 49 PASS, team-visual 114 PASS, run-all ALL PASS; pushed feat/akula-photo at 8253183; Vercel preview check pending; not merged
+
+2026-11-27 merged feat/akula-photo into main (--no-ff) at 305e220; pushed main; Vercel production check pending
