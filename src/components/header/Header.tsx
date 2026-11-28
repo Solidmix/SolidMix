@@ -116,7 +116,7 @@ export default function Header() {
 
   return (
     <header data-track-location="header" className="sticky top-0 z-30 border-b border-grey-line bg-white">
-      <div className="relative mx-auto flex h-[72px] w-full max-w-[1360px] items-center justify-between gap-4 px-4 lg:h-[76px] lg:max-w-none lg:justify-start lg:gap-[64px] lg:px-[60px]">
+      <div className="relative mx-auto flex h-[72px] w-full max-w-[1360px] items-center justify-between gap-4 px-4 min-[1440px]:h-[76px] min-[1440px]:max-w-none min-[1440px]:justify-start min-[1440px]:gap-[24px] min-[1440px]:px-[24px] min-[1600px]:gap-[40px] min-[1600px]:px-[40px] min-[1720px]:gap-[64px] min-[1720px]:px-[60px]">
         <Link href="/" aria-label="SolidMix RMC home" className="flex-shrink-0">
           <Image
             src="/images/solidmix-logo-v2-header.webp"
@@ -130,7 +130,7 @@ export default function Header() {
         </Link>
 
         {/* ---------- Desktop ---------- */}
-        <nav aria-label="Primary" className="hidden lg:block" onKeyDown={onDesktopKey}>
+        <nav aria-label="Primary" className="hidden min-[1440px]:block" onKeyDown={onDesktopKey}>
           <ul className="flex items-center">
             {nav.map((item, i) => {
               const hasSub = !!item.groups?.length;
@@ -162,7 +162,7 @@ export default function Header() {
                       aria-expanded={open}
                       aria-controls={panelId}
                       onClick={() => setOpenDesktop(open ? null : i)}
-                      className="flex items-center whitespace-nowrap rounded px-[20px] py-[13px] text-[16px] font-semibold text-primary transition-colors hover:text-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary"
+                      className="flex items-center whitespace-nowrap rounded py-[13px] text-[16px] font-semibold text-primary transition-colors hover:text-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary min-[1440px]:px-[8px] min-[1600px]:px-[14px] min-[1720px]:px-[20px]"
                     >
                       {item.label}
                       <span className="ml-1.5 flex items-center">
@@ -173,7 +173,7 @@ export default function Header() {
                     <Link
                       href={item.href}
                       aria-current={linkActive(pathname, item.href) ? 'page' : undefined}
-                      className="flex items-center whitespace-nowrap rounded px-[20px] py-[13px] text-[16px] font-semibold text-primary transition-colors hover:text-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary"
+                      className="flex items-center whitespace-nowrap rounded py-[13px] text-[16px] font-semibold text-primary transition-colors hover:text-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary min-[1440px]:px-[8px] min-[1600px]:px-[14px] min-[1720px]:px-[20px]"
                     >
                       {item.label}
                     </Link>
@@ -238,7 +238,7 @@ export default function Header() {
         <Link
           href={cta.href}
           onClick={() => pushEvent('book_us_click', { location: 'header' })}
-          className="ml-auto hidden flex-shrink-0 whitespace-nowrap rounded-md bg-primary px-4 py-2.5 text-[14px] font-semibold text-white transition-colors hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary lg:block xl:px-6 xl:text-[15px]"
+          className="ml-auto hidden flex-shrink-0 whitespace-nowrap rounded-md bg-primary px-4 py-2.5 text-[14px] font-semibold text-white transition-colors hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary min-[1440px]:block xl:px-6 xl:text-[15px]"
         >
           {cta.label}
         </Link>
@@ -251,7 +251,7 @@ export default function Header() {
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
           onClick={() => setMobileOpen(true)}
-          className="flex h-11 w-11 items-center justify-center rounded border border-grey-line text-ink lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded border border-grey-line text-ink min-[1440px]:hidden"
         >
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
             <path d="M3 6h18M3 12h18M3 18h18" strokeLinecap="round" />
@@ -260,7 +260,7 @@ export default function Header() {
       </div>
 
       <div
-        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 min-[1440px]:hidden ${
           mobileOpen ? 'visible opacity-100' : 'pointer-events-none invisible opacity-0'
         }`}
         onClick={() => setMobileOpen(false)}
@@ -272,7 +272,7 @@ export default function Header() {
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
-        className={`fixed right-0 top-0 z-50 flex h-full w-[85%] max-w-sm flex-col bg-white shadow-xl transition-transform duration-300 lg:hidden ${
+        className={`fixed right-0 top-0 z-50 flex h-full w-[85%] max-w-sm flex-col bg-white shadow-xl transition-transform duration-300 min-[1440px]:hidden ${
           mobileOpen ? 'visible translate-x-0' : 'pointer-events-none invisible translate-x-full'
         }`}
       >
