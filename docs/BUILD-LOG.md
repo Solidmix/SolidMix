@@ -387,3 +387,6 @@ Waiting for client:
 - Confirm the new office address with Ma'am in writing.
 - Check whether the Google Business listing and any outside listings still show the old office address.
 - The contact page map (`ready-mix-concrete-contact-in-raipur.json`) was pointed to the new address text without coordinates — check the pin visually.
+- Edit the office line in the two Convex posts site-mix-concrete and solidmix-readymix-concrete through the Team Dashboard, first on the Preview (dev Convex), then on production after merge; then re-run .local-tools/office-test.js (also with BASE=https://solidmix-omega.vercel.app)
+
+2026-11-28 committed and pushed feat/office-address at f62a5fa; tests: run-all all PASS except office-test 19 PASS 1 FAIL (the old office address is still inside the Convex content of the two posts /site-mix-concrete/ and /solidmix-readymix-concrete/); not merged.
