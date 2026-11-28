@@ -87,8 +87,8 @@ export function organizationLd() {
       "@id": orgId,
       name: site.name,
       url: SITE_URL,
-      logo: absUrl("/images/solidmix-logo.webp"),
-      image: absUrl("/images/solidmix-logo.webp"),
+      logo: absUrl("/images/solidmix-logo-v2-master.webp"),
+      image: absUrl("/images/solidmix-logo-v2-master.webp"),
       email: "info@solidmixrmc.com",
       telephone: "+919893111201",
       priceRange: "₹₹",
@@ -190,7 +190,7 @@ export function articleLd({
     publisher: {
       "@type": "Organization",
       name: site.name,
-      logo: { "@type": "ImageObject", url: absUrl("/images/solidmix-logo.webp") },
+      logo: { "@type": "ImageObject", url: absUrl("/images/solidmix-logo-v2-master.webp") },
     },
   };
 }

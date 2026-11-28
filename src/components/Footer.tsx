@@ -19,10 +19,11 @@ export function Footer() {
           <div className="lg:col-span-1">
             <span className="inline-flex w-full max-w-[260px] items-center justify-center rounded-md bg-white p-8">
               <Image
-                src="/images/solidmix-logo-footer.webp"
+                src="/images/solidmix-logo-v2-footer.webp"
                 alt="SolidMix RMC logo"
-                width={200}
-                height={107}
+                width={360}
+                height={192}
+                unoptimized
                 className="h-auto w-[180px]"
               />
             </span>

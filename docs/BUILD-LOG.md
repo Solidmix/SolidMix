@@ -415,3 +415,22 @@ Waiting for client:
 - The Convex post `/solidmix-rmc-supplier/` still links to `/our-work/` (works through the 301, but should be edited in the Team Dashboard to `/project-gallery/`).
 
 2026-11-28 committed and pushed calculator/rename/About changes on feat/office-address at c5c7be9; tests: run-all all PASS except office-test 19 PASS 1 FAIL (2 Convex posts still have the old office address) and restructure-test 43 PASS 1 FAIL (Convex post /solidmix-rmc-supplier/ still links to /our-work/); both need a Team Dashboard edit; not merged
+
+## New transparent logos (feat/office-address)
+
+Switched the site to Ma'am's new transparent-background logo files (`public/images/solidmix-logo-v2-header.webp`, `solidmix-logo-v2-footer.webp`, `solidmix-logo-v2-master.webp` — added to the repo by Saidul before this task, not created here):
+- `src/components/header/Header.tsx`: logo `src` → `/images/solidmix-logo-v2-header.webp`, intrinsic `width`/`height` → 388/128, added `unoptimized`, kept `priority` and the same `className="h-[52px] w-auto lg:h-[64px]"` and alt text — displayed size unchanged (52px tall on phone, 64px on laptop).
+- `src/components/Footer.tsx`: logo `src` → `/images/solidmix-logo-v2-footer.webp`, intrinsic `width`/`height` → 360/192, added `unoptimized`, kept `className="h-auto w-[180px]"` and the white rounded box `<span>` exactly as it was.
+- `src/lib/seo.ts`: the 3 `absUrl("/images/solidmix-logo.webp")` calls (Organization `logo`, Organization `image`, blog-post `publisher.logo`) → `absUrl("/images/solidmix-logo-v2-master.webp")`.
+- `src/app/ready-mix-concrete-in-raipur/[slug]/page.tsx`: the Product JSON-LD fallback `image` (used only when a product page has no image block) → `/images/solidmix-logo-v2-master.webp`.
+- Grepped all of `src`, `public/llms.txt`, `next.config.ts` and `src/content` for `solidmix-logo.webp`/`solidmix-logo-footer.webp` before editing: the only 6 matches were the 4 files above (3 in `seo.ts`) — no other code or content reference existed, so nothing else needed changing.
+- Old files `public/images/solidmix-logo.webp` and `public/images/solidmix-logo-footer.webp` were kept on disk, unreferenced by code now, not deleted.
+- Not touched: favicons (`icon.png`, `apple-icon.png`) — not part of this logo set; ask Ma'am later whether she wants transparent favicons too. Also not touched: the 4 unused PNG/phone logo variants, `convex/`, `src/content/pages/our-team*.json`, `next.config.ts` redirects, `src/app/project-gallery/`, `src/app/plant-gallery/`, `public/images/hero/`, `package.json`, `.local-tools/`, `crm-kit/`.
+
+Waiting for client:
+- Confirm the new transparent logos look right at the kept display sizes (52px/64px header, 180px-wide footer) — `unoptimized` is used because these are already-optimized static assets served as-is.
+- Decide whether favicons should also move to a transparent version later.
+
+The `globals.css` `img, video { max-width: 100%; height: auto; }` rule (unlayered) was overriding `h-[52px]`/`lg:h-[64px]` on the header logo, so it never actually rendered at those sizes. Fixed with the Tailwind v4 important modifier on the header logo only — className is now `h-[52px]! w-auto lg:h-[64px]!`. The header logo is now 52px tall on phone and 64px tall on laptop (Ma'am's intended sizes); before this fix it rendered at about 56px tall on both because the sizing class never applied.
+
+2026-11-28 new transparent logos wired on feat/office-address (header 52px/64px tall via ! modifier, footer unchanged size, JSON-LD and product fallback use master); tests: run-all all PASS (logo-test 33 PASS) except office-test 19 PASS 1 FAIL and restructure-test 43 PASS 1 FAIL, both waiting for Team Dashboard edits of Convex posts; not merged
