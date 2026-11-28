@@ -504,3 +504,5 @@ Grid change (unchanged by this update): `src/components/Footer.tsx`'s footer gri
 Not changed in this task: the TM mark on the logo artwork is about 3% of the logo's width — small at this display size. Enlarging it is a separate proposal still waiting for Ma'am's approval; not done here.
 
 Verified: `rm -rf .next && npx tsc --noEmit` clean; `npm run build` succeeded (83 pages, same as previous entries).
+
+Merged feat/team-photos-2 into main on 2026-11-28: team photos, header fluid spacing, footer tight 180x96 logo box.
