@@ -14,11 +14,9 @@ import {
   type LinkBlock,
 } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
-import { BlockRenderer } from "@/components/BlockRenderer";
 import { InlineText } from "@/components/InlineText";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, breadcrumbLd, faqPageLd, resolveDisplayH1 } from "@/lib/seo";
-import { TeamGrid, type TeamMember } from "@/components/sections/TeamGrid";
 import { ServiceIconCards } from "@/components/sections/ServiceIconCards";
 import { ProgressBars } from "@/components/sections/ProgressBars";
 import { CtaBanner } from "@/components/sections/CtaBanner";
@@ -47,8 +45,8 @@ const foundersRole = blocks[8] as ParaBlock;
 const foundersCta = blocks[9] as LinkBlock;
 // Dropped during content extraction, but present on the live original right
 // after the two collage images (page.html elementor-element-066d383, links to
-// /our-work/) — same button already rendered on the Legal page.
-const elevateProfileCta: LinkBlock = { type: "link", text: "Elevate Profile", href: "/our-work/" };
+// the Project Gallery) — same button already rendered on the Legal page.
+const elevateProfileCta: LinkBlock = { type: "link", text: "Elevate Profile", href: "/project-gallery/" };
 
 const strongSection = blocks.slice(10, 13);
 // Rendered directly below (not via BlockRenderer): the heading ends with "?"
@@ -56,20 +54,6 @@ const strongSection = blocks.slice(10, 13);
 // single-item accordion instead of a plain heading + paragraph.
 const whyChooseHeading = blocks[13] as HeadingBlock;
 const whyChoosePara = blocks[14] as ParaBlock;
-
-const teamIntroAll = blocks.slice(15, 20);
-// "Meet the SolidMix Team" (teal eyebrow) and "Solidmix Concrete Team" (the
-// real H2, measured at 40px) have page-specific styling that differs from
-// BlockRenderer's generic h3/h2 defaults, so pulled out and rendered directly.
-const teamEyebrow = teamIntroAll.find((b): b is HeadingBlock => b.type === "heading" && b.level === 3);
-const teamH2 = teamIntroAll.find((b): b is HeadingBlock => b.type === "heading" && b.level === 2);
-const teamIntro = teamIntroAll.filter((b) => b !== teamEyebrow && b !== teamH2);
-const teamCards = extractCards(blocks.slice(20, 35));
-const teamMembers: TeamMember[] = teamCards.map((c) => ({
-  image: { src: c.image?.src ?? "", alt: c.image?.alt || c.title },
-  name: c.title,
-  role: c.body ?? "",
-}));
 
 const servicesHeading = blocks[35] as HeadingBlock;
 const servicesIntro = blocks[36] as ParaBlock;
@@ -199,20 +183,6 @@ export default function AboutPage() {
         </div>
         <div className="container-content mt-10 max-w-3xl">
           <ProgressBars items={whyChooseStats} />
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="bg-tint-cyan-2/40 pb-14 pt-20">
-        <div className="container-content max-w-3xl text-center">
-          {teamEyebrow && <p className="font-semibold text-secondary">{teamEyebrow.text}</p>}
-          {teamH2 && (
-            <h2 className="mt-2 text-[28px] font-semibold text-primary md:text-[40px]">{teamH2.text}</h2>
-          )}
-          <BlockRenderer blocks={teamIntro} />
-        </div>
-        <div className="container-content mt-10">
-          <TeamGrid members={teamMembers} />
         </div>
       </section>
 

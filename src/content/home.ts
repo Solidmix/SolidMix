@@ -4,7 +4,7 @@
 
 export const CONTACT_URL = "/ready-mix-concrete-contact-in-raipur/";
 export const APPOINTMENTS_URL = "/appointments/";
-export const OUR_WORK_URL = "/our-work/";
+export const OUR_WORK_URL = "/project-gallery/";
 export const ABOUT_URL = "/trusted-concrete-supplier-in-raipur/";
 export const SAFETY_URL = "/safety/";
 
@@ -26,7 +26,7 @@ export const intro = {
   heading: "Raipur's Most Trusted Ready Mix Concrete Supplier",
   // Paragraph kept verbatim (including the literal ** markers as on the original).
   bodyHtml:
-    "Whether you’re building a home, a commercial complex, or an infrastructure project — SolidMix RMC is Raipur’s <a href=\"/trusted-concrete-supplier-in-raipur/\">trusted ready mix concrete plant</a> that has been supplying precision-mixed concrete to <a href=\"/our-work/\">hundreds of projects</a> across Chhattisgarh since 2023. Our advanced concrete batching plant uses computer-controlled mixing technology, ensuring every batch delivers the same quality, strength, and workability. Unlike manually mixed concrete on-site, ready mix concrete eliminates inconsistency — which is why modern contractors and builders across Raipur prefer SolidMix RMC. We deliver concrete across **Raipur, Naya Raipur, Tatibandh, Telibandha, Pachpedi Naka, Ring Road area, Shankar Nagar, Mowa, Pandri, Tikrapara** and all of Chhattisgarh.",
+    "Whether you’re building a home, a commercial complex, or an infrastructure project — SolidMix RMC is Raipur’s <a href=\"/trusted-concrete-supplier-in-raipur/\">trusted ready mix concrete plant</a> that has been supplying precision-mixed concrete to <a href=\"/project-gallery/\">hundreds of projects</a> across Chhattisgarh since 2023. Our advanced concrete batching plant uses computer-controlled mixing technology, ensuring every batch delivers the same quality, strength, and workability. Unlike manually mixed concrete on-site, ready mix concrete eliminates inconsistency — which is why modern contractors and builders across Raipur prefer SolidMix RMC. We deliver concrete across **Raipur, Naya Raipur, Tatibandh, Telibandha, Pachpedi Naka, Ring Road area, Shankar Nagar, Mowa, Pandri, Tikrapara** and all of Chhattisgarh.",
   cta: { label: "Get Instant Quote for Ready Mix Concrete", href: CONTACT_URL },
   mission:
     "To be the leading ready-mix concrete manufacturer in Chhattisgarh by 2027 and the preferred brand among our customers through exceptional quality, innovative solutions, and uncompromising commitment to customer satisfaction.",

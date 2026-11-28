@@ -29,13 +29,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, reason: "not_authenticated" }, { status: 401 });
   }
 
-  revalidatePath("/rmc-gallery-in-raipur/");
+  revalidatePath("/plant-gallery/");
 
   // Without this, the page only regenerates on the NEXT visitor's request,
   // so the team sees stale content for 1-2 refreshes after a save. Fetching
   // it once here forces that regeneration immediately.
   try {
-    await fetch(new URL("/rmc-gallery-in-raipur/", request.url), { cache: "no-store" });
+    await fetch(new URL("/plant-gallery/", request.url), { cache: "no-store" });
   } catch {
     // Ignore — the page will still regenerate on the next real visit.
   }

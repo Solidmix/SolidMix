@@ -50,6 +50,11 @@ const nextConfig: NextConfig = {
       { source: "/our-services/", destination: "/rmc-services-in-raipur/", statusCode: 301 },
       { source: "/products/", destination: `${PRODUCTS_BASE}/`, statusCode: 301 },
 
+      // Completed Projects -> Project Gallery, Project Gallery -> Plant Gallery
+      // (renamed 2026-11-28); single hop, must precede any generic rule.
+      { source: "/our-work/", destination: "/project-gallery/", statusCode: 301 },
+      { source: "/rmc-gallery-in-raipur/", destination: "/plant-gallery/", statusCode: 301 },
+
       // Common-guess old URLs (seo-kit/03-redirects.md Phase 6)
       { source: "/blogs/", destination: "/concrete-blog-in-raipur/", statusCode: 301 },
       { source: "/blog/", destination: "/concrete-blog-in-raipur/", statusCode: 301 },

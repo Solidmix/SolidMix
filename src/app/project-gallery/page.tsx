@@ -16,7 +16,7 @@ import { PdfIcon } from "@/components/icons";
 
 const content = getPageContent("our-work");
 const h1 = resolvePageH1(content);
-const displayH1 = resolveDisplayH1("/our-work/", h1);
+const displayH1 = resolveDisplayH1("/project-gallery/", h1);
 const blocks = stripChrome(content.blocks, h1);
 
 const intro = blocks.slice(0, 2);
@@ -49,7 +49,7 @@ const panels: WorkPanel[] = [
   buildPanel("roads", "Road & Infrastructure Projects", roads),
 ];
 
-export const metadata: Metadata = pageMetadata(content, "/our-work/", panels[0]?.image.src);
+export const metadata: Metadata = pageMetadata(content, "/project-gallery/", panels[0]?.image.src);
 
 const brochureHeading = tail.find((b) => b.type === "heading") as HeadingBlock | undefined;
 const brochureLink = tail.find((b) => b.type === "link") as { text: string; href: string } | undefined;
@@ -57,8 +57,8 @@ const brochureLink = tail.find((b) => b.type === "link") as { text: string; href
 export default function OurWorkPage() {
   return (
     <>
-      <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Our Work" }])]} />
-      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Our Work" }]} />
+      <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Project Gallery" }])]} />
+      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Project Gallery" }]} />
       <section className="py-12 md:py-16">
         <div className="container-content max-w-2xl text-center [&_p]:text-[20px]">
           <BlockRenderer blocks={intro} />

@@ -77,9 +77,9 @@ export const nav: NavItem[] = [
   },
   {
     label: 'Our Projects',
-    href: '/our-work/',
-    overview: { label: 'Completed Projects', href: '/our-work/' },
-    groups: [{ links: [{ label: 'Project Gallery', href: '/rmc-gallery-in-raipur/' }] }],
+    href: '/project-gallery/',
+    overview: { label: 'Project Gallery', href: '/project-gallery/' },
+    groups: [{ links: [{ label: 'Plant Gallery', href: '/plant-gallery/' }] }],
   },
   {
     label: 'Guides & Blog',

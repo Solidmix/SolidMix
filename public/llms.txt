@@ -40,7 +40,7 @@ All products: /ready-mix-concrete-in-raipur/
 ## Services
 
 - [Our Services](/rmc-services-in-raipur/)
-- [Our Work](/our-work/)
+- [Project Gallery](/project-gallery/)
 - [Calculator](/calculator/) — RMC volume calculator
 - [Safety](/safety/)
 
@@ -69,9 +69,9 @@ Additional areas: Bemetara, Tilda, Tarpongi, Berla.
 - [Our Team](/our-team/)
 - [Products](/ready-mix-concrete-in-raipur/)
 - [Our Services](/rmc-services-in-raipur/)
-- [Our Work](/our-work/)
+- [Project Gallery](/project-gallery/)
 - [Safety](/safety/)
-- [Gallery](/rmc-gallery-in-raipur/)
+- [Plant Gallery](/plant-gallery/)
 - [Blog](/concrete-blog-in-raipur/)
 - [Contact Us](/ready-mix-concrete-contact-in-raipur/)
 - [Careers](/careers/)
