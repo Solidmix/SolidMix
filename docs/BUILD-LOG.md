@@ -506,3 +506,7 @@ Not changed in this task: the TM mark on the logo artwork is about 3% of the log
 Verified: `rm -rf .next && npx tsc --noEmit` clean; `npm run build` succeeded (83 pages, same as previous entries).
 
 Merged feat/team-photos-2 into main on 2026-11-28: team photos, header fluid spacing, footer tight 180x96 logo box.
+
+Home page: Working hours table removed on 2026-11-28 at Ma'am's request; heading 'Working hours' and the line '24x7x365 days' stay. Data in home.ts untouched.
+
+Home page: Working hours heading and 24x7x365 line are vertically centered next to the left text on desktop (lg+), 2026-11-28.
