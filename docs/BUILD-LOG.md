@@ -462,3 +462,5 @@ Minor note, not changed: `src/content/index.json`'s `"blocks": 75` count for the
 Verified: `rm -rf .next && npx tsc --noEmit` clean; `npm run build` succeeded (83 pages, same as above).
 
 2026-11-28 Our Team page split into Our Directors and Our Team, and 24x7x365 days line added above the Working hours table on home, on feat/office-address; code build and tsc clean; Playwright run-all pending at commit time; not merged
+
+2026-11-28 merged feat/office-address into main (7eaf073), pushed; live Vercel deploy follows; still waiting: Team Dashboard edits of 3 Convex posts on LIVE (site-mix-concrete and solidmix-readymix-concrete office line, solidmix-rmc-supplier link to /project-gallery/), Ma'am's written confirmation of the office address, Search Console re-index of /project-gallery/ and /plant-gallery/, Google Business Profile address, RESERVED_SLUGS update (backend, not done)
