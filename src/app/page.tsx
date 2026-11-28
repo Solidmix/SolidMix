@@ -107,7 +107,7 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-          <div>
+          <div className="lg:flex lg:flex-col lg:justify-center">
             <h2 className="text-center text-[28px] font-semibold text-primary md:text-[40px]">
               {workingHours.heading}
             </h2>
