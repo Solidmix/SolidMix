@@ -17,14 +17,14 @@ export function Footer() {
       <div className="bg-primary text-white">
         <div className="container-content grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-6 xl:grid-cols-[260px_repeat(5,minmax(0,1fr))]">
           <div className="lg:col-span-1">
-            <span className="flex h-[160px] w-full max-w-[260px] items-center justify-center rounded-md bg-white">
+            <span className="flex h-[96px] w-full max-w-[180px] items-center justify-center rounded-md bg-white">
               <Image
                 src="/images/solidmix-logo-v2-header.webp"
                 alt="SolidMix RMC logo"
                 width={388}
                 height={128}
                 unoptimized
-                className="h-[52px]! w-auto lg:h-[64px]! max-w-full object-contain"
+                className="h-auto w-full"
               />
             </span>
             <p className="mt-5 text-sm leading-relaxed text-white/90">{footer.blurb}</p>
