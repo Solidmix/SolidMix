@@ -464,3 +464,7 @@ Verified: `rm -rf .next && npx tsc --noEmit` clean; `npm run build` succeeded (8
 2026-11-28 Our Team page split into Our Directors and Our Team, and 24x7x365 days line added above the Working hours table on home, on feat/office-address; code build and tsc clean; Playwright run-all pending at commit time; not merged
 
 2026-11-28 merged feat/office-address into main (7eaf073), pushed; live Vercel deploy follows; still waiting: Team Dashboard edits of 3 Convex posts on LIVE (site-mix-concrete and solidmix-readymix-concrete office line, solidmix-rmc-supplier link to /project-gallery/), Ma'am's written confirmation of the office address, Search Console re-index of /project-gallery/ and /plant-gallery/, Google Business Profile address, RESERVED_SLUGS update (backend, not done)
+
+## Team photos replaced: Brijesh Choubey and Pitabas Sahoo (feat/team-photos-2)
+
+Replaced `public/images/content/brijesh-choubey.webp` and `public/images/content/whatsapp-image-2025-12-13-at-2-37-23-pm.webp` (Pitabas Sahoo's card photo in `src/content/pages/our-team.json`) in place with the photos Ma'am sent — lossless WebP and pixel-identical to the originals (verified by pixel fingerprint), about 1.2 MB and 0.6 MB (`next/image` serves resized versions, not these full files, to visitors). The card frame on `/our-team/` is 4:5 with `object-top`, so Brijesh's photo (now 1144x1375, a taller-than-4:5 ratio) loses about 4% off each side when cropped into the frame. No code change, no JSON change — same file names, same path. Not merged.
