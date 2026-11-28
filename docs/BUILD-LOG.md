@@ -487,4 +487,18 @@ Checked the wide dropdown panels (`inset-x-0`, `mx-auto max-w-[1100px]`) for cli
 
 Verified: `rm -rf .next && npx tsc --noEmit` clean; `npm run build` succeeded (83 pages, same as previous entries).
 
+**Follow-up (2026-11-28, same day): stepped spacing replaced with fluid spacing.** The stepped 1440–1599px tier made the menu look congested for no reason — nav item padding stayed flat at 8px (16px text gap) across the whole tier while 221px of space sat unused next to Book Us at 1534px. Replaced the three stepped triples (nav item `px-[8px]/[14px]/[20px]`, container `gap-[24px]/[40px]/[64px]`, container `px-[24px]/[40px]/[60px]`) with one `clamp()` class each, so spacing now grows smoothly with viewport width: nav item padding 8px at 1440px growing to 20px at 1600px, container gap and padding 24px growing to 64px and 60px between 1600px and 1720px. The worst-case spare space (unused gap next to Book Us) is about 41px at 1720px. 1720px and wider is unchanged — all three `clamp()`s reach their fixed maximum by exactly 1720px, matching the original design.
+
 2026-11-28 header fit fix committed on feat/team-photos-2: desktop header now fits at every width (1440 and up), hamburger menu below 1440px; real-browser header-fit-test measured Book Us fully inside the screen at 1440, 1536, 1600, 1680, 1728, 1920, 2560 and hamburger button inside at 1025-1366 and phone widths; phase7 test viewport changed from 1366 to 1440 because the desktop header now starts at 1440; MobileActionBar/layout.tsx still switch at lg (1024px), open item; not merged
+
+## Footer logo box (feat/team-photos-2)
+
+Measured cause (real browser, not re-derived here): the footer's first column, inside the `lg:grid-cols-6` grid, is only 188px wide at 1440px. The old logo box (`inline-flex ... p-8`) ate 64px of that (32px padding each side), leaving the logo only 124x66px to sit in — much smaller than the header logo's 194x64 (laptop) / 158x52 (phone).
+
+New box, per Ma'am's white-background artwork set (Footer White Box 260x160): `src/components/Footer.tsx`'s `<span>` is now a fixed `w-full max-w-[260px] h-[160px]` white box (`flex items-center justify-center rounded-md bg-white`, no padding). The footer logo is now the exact same file and size classes as the header logo (`/images/solidmix-logo-v2-header.webp`, `h-[52px]! w-auto lg:h-[64px]! max-w-full` — same 194x64 laptop / 158x52 phone display size as the header; the `!` is required because of the unlayered `img { height: auto }` rule in `globals.css`, which was not touched). `public/images/solidmix-logo-v2-footer.webp` stays in the repo, now unreferenced by code — not deleted.
+
+Grid change: `src/components/Footer.tsx`'s footer grid keeps `lg:grid-cols-6` for 1024–1279px (first column stays fluid, `w-full max-w-[260px]`, logo may shrink via `max-w-full` in that range — accepted) and adds `xl:grid-cols-[260px_repeat(5,minmax(0,1fr))]` from 1280px up, so the fixed 260px first column actually has room for the 260x160 box without changing the other 5 columns, their content, the grid's gaps, or padding.
+
+Not changed in this task: the TM mark on the logo artwork is about 3% of the logo's width — small at this display size. Enlarging it is a separate proposal still waiting for Ma'am's approval; not done here.
+
+Verified: `rm -rf .next && npx tsc --noEmit` clean; `npm run build` succeeded (83 pages, same as previous entries).

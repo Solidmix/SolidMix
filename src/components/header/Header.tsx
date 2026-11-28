@@ -116,7 +116,7 @@ export default function Header() {
 
   return (
     <header data-track-location="header" className="sticky top-0 z-30 border-b border-grey-line bg-white">
-      <div className="relative mx-auto flex h-[72px] w-full max-w-[1360px] items-center justify-between gap-4 px-4 min-[1440px]:h-[76px] min-[1440px]:max-w-none min-[1440px]:justify-start min-[1440px]:gap-[24px] min-[1440px]:px-[24px] min-[1600px]:gap-[40px] min-[1600px]:px-[40px] min-[1720px]:gap-[64px] min-[1720px]:px-[60px]">
+      <div className="relative mx-auto flex h-[72px] w-full max-w-[1360px] items-center justify-between gap-4 px-4 min-[1440px]:h-[76px] min-[1440px]:max-w-none min-[1440px]:justify-start min-[1440px]:gap-[clamp(24px,calc(24px_+_(100vw_-_1600px)_*_0.3333),64px)] min-[1440px]:px-[clamp(24px,calc(24px_+_(100vw_-_1600px)_*_0.3),60px)]">
         <Link href="/" aria-label="SolidMix RMC home" className="flex-shrink-0">
           <Image
             src="/images/solidmix-logo-v2-header.webp"
@@ -162,7 +162,7 @@ export default function Header() {
                       aria-expanded={open}
                       aria-controls={panelId}
                       onClick={() => setOpenDesktop(open ? null : i)}
-                      className="flex items-center whitespace-nowrap rounded py-[13px] text-[16px] font-semibold text-primary transition-colors hover:text-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary min-[1440px]:px-[8px] min-[1600px]:px-[14px] min-[1720px]:px-[20px]"
+                      className="flex items-center whitespace-nowrap rounded py-[13px] text-[16px] font-semibold text-primary transition-colors hover:text-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary min-[1440px]:px-[clamp(8px,calc(8px_+_(100vw_-_1440px)_*_0.075),20px)]"
                     >
                       {item.label}
                       <span className="ml-1.5 flex items-center">
@@ -173,7 +173,7 @@ export default function Header() {
                     <Link
                       href={item.href}
                       aria-current={linkActive(pathname, item.href) ? 'page' : undefined}
-                      className="flex items-center whitespace-nowrap rounded py-[13px] text-[16px] font-semibold text-primary transition-colors hover:text-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary min-[1440px]:px-[8px] min-[1600px]:px-[14px] min-[1720px]:px-[20px]"
+                      className="flex items-center whitespace-nowrap rounded py-[13px] text-[16px] font-semibold text-primary transition-colors hover:text-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary min-[1440px]:px-[clamp(8px,calc(8px_+_(100vw_-_1440px)_*_0.075),20px)]"
                     >
                       {item.label}
                     </Link>
