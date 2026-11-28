@@ -111,10 +111,13 @@ export default function HomePage() {
             <h2 className="text-center text-[28px] font-semibold text-primary md:text-[40px]">
               {workingHours.heading}
             </h2>
+            <p className="mt-4 mb-4 text-center text-xl font-bold text-primary md:mb-6 md:text-2xl">
+              24x7x365 days
+            </p>
             {/* Plain white table on the original — no zebra striping (a
                 round-4 fix wrongly added a grey wash here; re-measured as
                 solid white rows). Border stays the grey-at-50%-opacity. */}
-            <table className="mt-8 w-full border-collapse overflow-hidden rounded-lg border border-[rgba(128,128,128,0.5)] bg-white text-left">
+            <table className="w-full border-collapse overflow-hidden rounded-lg border border-[rgba(128,128,128,0.5)] bg-white text-left">
               <thead>
                 <tr>
                   {workingHours.columns.map((col) => (

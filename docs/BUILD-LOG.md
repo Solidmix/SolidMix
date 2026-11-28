@@ -434,3 +434,31 @@ Waiting for client:
 The `globals.css` `img, video { max-width: 100%; height: auto; }` rule (unlayered) was overriding `h-[52px]`/`lg:h-[64px]` on the header logo, so it never actually rendered at those sizes. Fixed with the Tailwind v4 important modifier on the header logo only — className is now `h-[52px]! w-auto lg:h-[64px]!`. The header logo is now 52px tall on phone and 64px tall on laptop (Ma'am's intended sizes); before this fix it rendered at about 56px tall on both because the sizing class never applied.
 
 2026-11-28 new transparent logos wired on feat/office-address (header 52px/64px tall via ! modifier, footer unchanged size, JSON-LD and product fallback use master); tests: run-all all PASS (logo-test 33 PASS) except office-test 19 PASS 1 FAIL and restructure-test 43 PASS 1 FAIL, both waiting for Team Dashboard edits of Convex posts; not merged
+
+## Our Team page split (feat/office-address)
+
+`src/app/our-team/page.tsx` only — no change to `src/content/pages/our-team.json` or any member's name/photo/role/bio. The page already builds a flat `members` array (in JSON order) via `extractCards()`; `our-team.json`'s existing order is already "2 Founder & Director entries, then 5 team roles" in the exact required order, so the split is done by array position (`members.slice(0, 2)` for directors, `members.slice(2)` for team) rather than adding a `group` field — no JSON edits or reordering needed either way.
+
+New page structure: the existing intro block (eyebrow, "Solidmix Concrete Team" H2, intro paragraph) is unchanged, h1/breadcrumb/metadata unchanged. Below it: H2 "Our Directors" → Vinit Kumar Tiwari, then Pratham Bafna, rendered in a centered flex row (same per-card width formula as `TeamGrid`'s `sm:grid-cols-2`/`lg:grid-cols-3` breakpoints — `calc((100%-2rem)/2)` at `sm`, `calc((100%-4rem)/3)` at `lg`, matching its `gap-x-8` — but wrapped in `flex flex-wrap justify-center` instead of `grid-cols-3`, since a 3-column grid with only 2 items would sit left instead of centering); stacked full-width on mobile (`flex-col`). Then H2 "Our Team" → Ramkrishna Mishra (Sales Head), Jainarayan Tiwari (Plant Manager), Akula Laxman Rao (Finance & Account), Pitabas Sahoo (Quality Head), Brijesh Choubey (Project & Corporate Affairs), through the unchanged `TeamGrid` component (same grid, same card markup, same photo sizes).
+
+`TeamGrid.tsx` itself was deliberately NOT touched: `src/app/legal/page.tsx` also renders its own, separate, smaller team list (from `legal.json`, 3 names) through the same shared component, which is out of scope for this task.
+
+Other places that read team-related data, checked and left alone (none needed a change): `src/app/our-team/[slug]/page.tsx` and `src/app/sitemap.ts`'s `TEAM_SLUGS` (individual member detail pages/routes — unaffected, they read their own per-member JSON files, not the grid order); `src/content/index.json` (catalog metadata only, no grouping); `src/content/seoMeta.ts` / `src/content/site.ts` (title/nav, no member list); `src/content/pages/trusted-concrete-supplier-in-raipur.json` (a text mention of "Vinit Tiwari and Pratham Bafna" as founders — just copy, not a rendered grid). No home-page team strip exists. No Person/Employee structured data references team members anywhere.
+
+Verified: `rm -rf .next && npx tsc --noEmit` clean; `npm run build` succeeded (83 pages).
+
+## Working hours line (feat/office-address)
+
+Found exactly one live place the Day/Working-Hours table (Sunday–Saturday, "24 hours") renders: the Home page (`src/app/page.tsx`), next to "Why Raipur's Contractors Choose SolidMix RMC", driven by `workingHours` in `src/content/home.ts`. Checked every service/contact/product page's content JSON and `src/components` — no other page or component has this table. `src/content/pages/home.json` has an identical but dead-code copy of the same table (confirmed in an earlier entry: not imported by any route) — updated for consistency only, no visual effect.
+
+Added the exact text "24x7x365 days" as one centered line between the "Working hours" heading and the table, in both places:
+- `src/app/page.tsx`: `<p className="mt-4 mb-4 text-center text-xl font-bold text-primary md:mb-6 md:text-2xl">24x7x365 days</p>` — reuses `text-primary` (already the heading color on this page), and core Tailwind size/weight utilities already used elsewhere in the codebase; no new colors, fonts or dependencies. Removed the table's own `mt-8` since the new line's `mb-4`/`md:mb-6` now supplies that spacing — table rows, columns and the heading text are untouched.
+- `src/content/pages/home.json`: added a matching `{ "type": "p", "text": "24x7x365 days" }` block between the "Working hours" heading block and the table block (dead code, kept in sync with `home.ts` only).
+
+Convex blog posts: I have no way to read Convex-stored post bodies from this repo (no Convex access, `convex/` is protected, no Convex commands run) — I cannot confirm or rule out whether any blog post duplicates this table. None of the previously-known Convex posts (site-mix-concrete, solidmix-readymix-concrete, solidmix-rmc-supplier) were mentioned as having a working-hours table in earlier BUILD-LOG entries, but please check the Team Dashboard directly if this needs confirming.
+
+Minor note, not changed: `src/content/index.json`'s `"blocks": 75` count for the `home` entry is now off by one (home.json gained a block) — this field is pure documentation, not read by any code (`src/lib/posts.ts` imports `index.json` but never reads `.blocks`), so left as-is rather than making an unrequested edit.
+
+Verified: `rm -rf .next && npx tsc --noEmit` clean; `npm run build` succeeded (83 pages, same as above).
+
+2026-11-28 Our Team page split into Our Directors and Our Team, and 24x7x365 days line added above the Working hours table on home, on feat/office-address; code build and tsc clean; Playwright run-all pending at commit time; not merged
