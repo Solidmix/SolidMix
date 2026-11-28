@@ -22,7 +22,7 @@ export const site = {
   officeAddress: {
     label: "Office Address",
     lines: [
-      "Office no. 418, 4th floor, Lalganga Business Park, Pachpedi Naka, Raipur, C.G. 492001",
+      "PH. NO. 77, KH. NO. 365/5, Serikhedi, Raipur, Chhattisgarh 492101",
     ],
   },
   socials: [
@@ -73,7 +73,7 @@ export const menu: MenuItem[] = [
     label: "Our Services",
     href: "/rmc-services-in-raipur/",
     children: [
-      { label: "Our Work", href: "/our-work/" },
+      { label: "Project Gallery", href: "/project-gallery/" },
       { label: "Calculator", href: "/calculator/" },
       { label: "Safety", href: "/safety/" },
     ],
@@ -81,7 +81,7 @@ export const menu: MenuItem[] = [
   {
     label: "Blogs",
     href: "/concrete-blog-in-raipur/",
-    children: [{ label: "Gallery", href: "/rmc-gallery-in-raipur/" }],
+    children: [{ label: "Plant Gallery", href: "/plant-gallery/" }],
   },
   {
     label: "Contact Us",
@@ -105,7 +105,7 @@ export const footerUsefulLinks = [
   { label: "About Us", href: "/trusted-concrete-supplier-in-raipur/" },
   { label: "Our Team", href: "/our-team/" },
   { label: "Concrete Calculator", href: "/calculator/" },
-  { label: "Our Projects", href: "/our-work/" },
+  { label: "Our Projects", href: "/project-gallery/" },
   { label: "Guides & Blog", href: "/concrete-blog-in-raipur/" },
   { label: "Safety", href: "/safety/" },
   { label: "Careers", href: "/careers/" },

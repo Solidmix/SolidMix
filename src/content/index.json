@@ -129,7 +129,7 @@
   },
   {
     "slug": "our-work",
-    "path": "/our-work/",
+    "path": "/project-gallery/",
     "kind": "page",
     "title": "RMC Projects in Raipur | Our Concrete Work Portfolio",
     "h1": "Our Work",
@@ -161,7 +161,7 @@
   },
   {
     "slug": "rmc-gallery-in-raipur",
-    "path": "/rmc-gallery-in-raipur/",
+    "path": "/plant-gallery/",
     "kind": "page",
     "title": "RMC Gallery in Raipur | SolidMix RMC",
     "h1": "Gallery",

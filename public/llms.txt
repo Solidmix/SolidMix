@@ -7,7 +7,7 @@
 SolidMix RMC operates a modern RMC plant and concrete batching plant using computer-controlled mixing technology, delivering consistent, high-strength ready mix concrete for residential, commercial and infrastructure projects.
 
 - Plant address: PH No. 77, Khasra No. 365/5, Serikhedi, Raipur, Chhattisgarh – 492101
-- Office address: Office no. 418, 4th floor, Lalganga Business Park, Pachpedi Naka, Raipur, C.G. 492001
+- Office address: PH. NO. 77, KH. NO. 365/5, Serikhedi, Raipur, Chhattisgarh 492101
 - Phone: +91 9893111201, +91 9111109642
 - Email: info@solidmixrmc.com, support@solidmixrmc.com
 
@@ -40,7 +40,7 @@ All products: /ready-mix-concrete-in-raipur/
 ## Services
 
 - [Our Services](/rmc-services-in-raipur/)
-- [Our Work](/our-work/)
+- [Project Gallery](/project-gallery/)
 - [Calculator](/calculator/) — RMC volume calculator
 - [Safety](/safety/)
 
@@ -69,9 +69,9 @@ Additional areas: Bemetara, Tilda, Tarpongi, Berla.
 - [Our Team](/our-team/)
 - [Products](/ready-mix-concrete-in-raipur/)
 - [Our Services](/rmc-services-in-raipur/)
-- [Our Work](/our-work/)
+- [Project Gallery](/project-gallery/)
 - [Safety](/safety/)
-- [Gallery](/rmc-gallery-in-raipur/)
+- [Plant Gallery](/plant-gallery/)
 - [Blog](/concrete-blog-in-raipur/)
 - [Contact Us](/ready-mix-concrete-contact-in-raipur/)
 - [Careers](/careers/)

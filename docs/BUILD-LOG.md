@@ -366,3 +366,99 @@ Waiting for client:
 2026-11-27 Akula Laxman Rao photo replaced with the new photo from the team (1224x1285 WebP q90, same file name akula-laxman-rao.webp, no code change, 4:5 frame fill unchanged); tests: team 49 PASS, team-visual 114 PASS, run-all ALL PASS; pushed feat/akula-photo at 8253183; Vercel preview check pending; not merged
 
 2026-11-27 merged feat/akula-photo into main (--no-ff) at 305e220; pushed main; Vercel production check pending
+
+## Office address replaced site-wide (2026-11-28)
+
+Old office address "Office no. 418, 4th floor, Lalganga Business Park, Pachpedi Naka, Raipur, C.G. 492001" (also written "Office no.418 ... Pin code 492001") replaced everywhere with the new address: "PH. NO. 77, KH. NO. 365/5, Serikhedi, Raipur, Chhattisgarh 492101". Files changed:
+- `src/content/site.ts` — footer office address line.
+- `src/content/home.ts` and `src/content/pages/home.json` — contact details block address line and the Home FAQ "Where is the SolidMix RMC concrete plant located" answer. `src/app/page.tsx` imports `src/content/home.ts` for the live Home page; `src/content/pages/home.json` is not imported anywhere in `src/app`, `src/lib`, or `src/components` (checked), so it is currently unused by the site, but both were kept in sync per instruction.
+- FAQ answer before: "Our plant is located at Ph.no.77, Kh.no.365/5, Serikhedi, Raipur, Chhattisgarh 492101. Our office is at Lalganga Business Park, Pachpedi Naka, Raipur. Both locations are available on Google Maps." After: "Our plant and office are located at PH. NO. 77, KH. NO. 365/5, Serikhedi, Raipur, Chhattisgarh 492101. This location is available on Google Maps." (the first two sentences were merged into the one required sentence; "Both locations are" was changed to "This location is" — the smallest wording fix so the remaining sentence stays true now that plant and office are the same place; no new claim added).
+- `src/content/pages/site-mix-concrete.json` and `src/content/pages/solidmix-readymix-concrete.json` — replaced only the text after "Office:" (kept `[[b]]Office:[[/b]]` and the surrounding contact-email/phone text unchanged).
+- `src/lib/seo.ts` — the "Office" `PostalAddress`: `streetAddress` now "PH. NO. 77, KH. NO. 365/5, Serikhedi", `postalCode` now "492101" (`addressLocality`/`addressRegion` unchanged). The existing comment about the removed "Pachpedi Naka" `areaServed` entry was left as-is.
+- `public/llms.txt` — "Office address:" line updated.
+- `src/content/pages/ready-mix-concrete-contact-in-raipur.json` — the Google Maps embed `q=` parameter changed from the old Lalganga Business Park search text to the URL-encoded new address text; no other query parameter touched; no coordinates or Plus Code added. Before: `q=Lalganga%20Business%20Park%20Raipur%20-%20Abhanpur%20Rd%2C%20Navjeevan%20Society%2C%20Pachpedi%20Naka%2C%20Tikrapara%2C%20Mathpurena%2C%20Chhattisgarh%20492001`. After: `q=PH.%20NO.%2077%2C%20KH.%20NO.%20365%2F5%2C%20Serikhedi%2C%20Raipur%2C%20Chhattisgarh%20492101`.
+- Not touched: the "Pachpedi Naka" mentions in the delivery-areas list in `src/content/home.ts`/`home.json` (service-area copy, not the office address) and everything under `src/data/plants.ts`, `seo-kit/`, `crm-kit/`, `convex/`, `docs/reference/`.
+
+Footer `Plant Address` column (`src/components/Footer.tsx`): added `mt-3` spacing between the three plant paragraphs (none above the first), and made only the "Plant N" label bold with `<strong className="font-bold">Plant {i + 1}</strong>` followed by " – " and the address in normal weight. Same `plants.map`, same text and colours; nothing else in the footer changed.
+
+Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Saidul; lint shows only a pre-existing unrelated warning in `src/lib/leadStore.ts`). `npm run build` was not run here.
+
+Waiting for client:
+- Confirm the new office address with Ma'am in writing.
+- Check whether the Google Business listing and any outside listings still show the old office address.
+- The contact page map (`ready-mix-concrete-contact-in-raipur.json`) was pointed to the new address text without coordinates — check the pin visually.
+- Edit the office line in the two Convex posts site-mix-concrete and solidmix-readymix-concrete through the Team Dashboard, first on the Preview (dev Convex), then on production after merge; then re-run .local-tools/office-test.js (also with BASE=https://solidmix-omega.vercel.app)
+
+2026-11-28 committed and pushed feat/office-address at f62a5fa; tests: run-all all PASS except office-test 19 PASS 1 FAIL (the old office address is still inside the Convex content of the two posts /site-mix-concrete/ and /solidmix-readymix-concrete/); not merged.
+
+## Calculator "Coming Soon"; Completed Projects -> Project Gallery, Project Gallery -> Plant Gallery; About team section removed (2026-11-28)
+
+**Calculator page** (`src/app/calculator/page.tsx`): PageHero (title + breadcrumb) kept exactly as-is. The whole body — intro text, `<Calculator />`, the cuboid video — was replaced with one centered "Coming Soon" section (`py-16 md:py-24`, heading styled `text-[28px] font-semibold text-primary md:text-[40px]`, same look as other section headings site-wide). Removed the `WebApplication` JSON-LD (kept the breadcrumb JSON-LD) and the now-unused imports (`stripChrome`, `BlockRenderer`, `webApplicationLd`, `Calculator`). `src/components/forms/Calculator.tsx` and the video/poster files were not touched, and the menu/footer Calculator links are unchanged.
+
+**Page rename**: "Completed Projects" (`/our-work/`) is now "Project Gallery" at `/project-gallery/`; "Project Gallery" (`/rmc-gallery-in-raipur/`) is now "Plant Gallery" at `/plant-gallery/`. `git mv src/app/our-work src/app/project-gallery` and `git mv src/app/rmc-gallery-in-raipur src/app/plant-gallery`; both pages still call `getPageContent("our-work")`/`getPageContent("rmc-gallery-in-raipur")` and the JSON file names are unchanged, per instruction. Updated in both `page.tsx` files: `resolveDisplayH1`, `pageMetadata` path, and the visible breadcrumb/JSON-LD names ("Project Gallery", "Plant Gallery"). Also updated: `src/content/seoMeta.ts` (keys renamed, titles/h1s now "Project Gallery"/"Plant Gallery", descriptions unchanged — this drops "in Raipur" from both, see Waiting for client); `src/data/navigation.ts` ("Our Projects" parent label kept, href now `/project-gallery/`, overview label now "Project Gallery", child link now "Plant Gallery" → `/plant-gallery/`); `src/content/site.ts` (header "Our Work" → "Project Gallery", "Gallery" → "Plant Gallery", footer "Our Projects" label kept with new href); `src/app/sitemap.ts`; `src/content/home.ts` (`OUR_WORK_URL` only — the unused `intro.bodyHtml` export's own embedded `<a href="/our-work/">` was left as-is: it is not imported by `src/app/page.tsx`, same dead-code situation as `home.json` noted in the office-address entry above); `src/content/index.json` (the two `path` fields only, slugs/titles/h1s kept); `src/app/trusted-concrete-supplier-in-raipur/page.tsx` (Elevate Profile href); `src/app/api/revalidate-gallery/route.ts` (`revalidatePath` and the fetch path, both now `/plant-gallery/`); `public/llms.txt` (labels + new URLs); and the href-only link targets in `src/content/pages/legal.json` (3 links), `trusted-concrete-supplier-in-raipur.json` (2 links/1 image href), `solidmix-rmc-supplier.json` and `home.json` (markdown-link hrefs only, visible link text unchanged). `our-work.json`/`rmc-gallery-in-raipur.json` have no internal hrefs to themselves or each other — their own `path`/`canonicalOriginal` fields were left as the original WordPress URLs, since `canonicalOriginal` documents history and neither field is read by any code path.
+
+**Correction (2026-11-28, later same day):** the line above calling `src/content/home.ts`'s `intro.bodyHtml` "unused"/"dead code" was wrong — it IS rendered by the live Home page. Its "hundreds of projects" link has been fixed and now points to `/project-gallery/`.
+
+Visible text mentioning "Gallery"/"Project Gallery" as a name found but NOT changed (not a menu/page name, so left per instruction): `src/content/pages/legal.json` heading "Meet Our Gallery" (a Legal-page section label, unrelated feature — rendered via `src/app/legal/page.tsx`'s `findHeading("Meet Our Gallery")`); the content fields inside `our-work.json`/`rmc-gallery-in-raipur.json` themselves (`title`, `h1: "Gallery"`, breadcrumb text `"[Home / Gallery](/)"`) — these are superseded at render time by the `seoMeta.ts` overrides and stripped as chrome, so not user-visible, and were left alone since item scope only asked for href changes in these two files.
+
+`next.config.ts`: added `/our-work/` → `/project-gallery/` and `/rmc-gallery-in-raipur/` → `/plant-gallery/` (301, single hop), placed right after the other "Section / menu page moves" and before every generic/parameterised rule. No existing redirect pointed at either old URL, so no chain existed to fix.
+
+**About page** (`src/app/trusted-concrete-supplier-in-raipur/page.tsx`): removed the whole "Meet the SolidMix Team" section (eyebrow, "Solidmix Concrete Team" heading, intro paragraphs, team cards) from the rendered page. The JSON content file was deliberately left untouched (its blocks are picked by absolute index; removing blocks there would shift every later section), so only the parsing variables (`teamIntroAll`, `teamEyebrow`, `teamH2`, `teamIntro`, `teamCards`, `teamMembers`) and the JSX section were deleted, along with the now-unused `TeamGrid`/`TeamMember` and `BlockRenderer` imports. "Why Choose" (`py-14`) now sits directly above "Our Services" (`py-14`) — the same two-`py-14`-sections-adjoining pattern already used elsewhere on this page (e.g. "Services" directly above the FAQ section via the intervening `BlocksCta`), so no double padding and no gap.
+
+Verified: `npx tsc --noEmit` — clean in `src/`; 6 errors only in the gitignored `.next/types/` cache (stale references to the pre-rename `our-work`/`rmc-gallery-in-raipur` directories, left over from a build run before this change — self-resolves on the next `npm run build`/`next dev`, not run here). `npm run lint` passes (same pre-existing unrelated warning in `src/lib/leadStore.ts`).
+
+Waiting for client:
+- Page titles lost the words "in Raipur" for SEO on these two renamed pages ("Project Gallery" / "Plant Gallery" instead of the old "RMC Projects in Raipur" / "RMC Gallery in Raipur") — confirm this is acceptable, or ask for the longer titles back.
+- Request re-indexing of the two new URLs (`/project-gallery/`, `/plant-gallery/`) in Google Search Console after deploy.
+- The Convex `RESERVED_SLUGS` list in `convex/posts.ts` does not yet contain `project-gallery` and `plant-gallery` — backend change, not done here (`convex/` was not touched per instruction).
+- The earlier office-address text in the two Convex posts (site-mix-concrete, solidmix-readymix-concrete) still needs the dashboard edit (carried over from the previous entry).
+- The Convex post `/solidmix-rmc-supplier/` still links to `/our-work/` (works through the 301, but should be edited in the Team Dashboard to `/project-gallery/`).
+
+2026-11-28 committed and pushed calculator/rename/About changes on feat/office-address at c5c7be9; tests: run-all all PASS except office-test 19 PASS 1 FAIL (2 Convex posts still have the old office address) and restructure-test 43 PASS 1 FAIL (Convex post /solidmix-rmc-supplier/ still links to /our-work/); both need a Team Dashboard edit; not merged
+
+## New transparent logos (feat/office-address)
+
+Switched the site to Ma'am's new transparent-background logo files (`public/images/solidmix-logo-v2-header.webp`, `solidmix-logo-v2-footer.webp`, `solidmix-logo-v2-master.webp` — added to the repo by Saidul before this task, not created here):
+- `src/components/header/Header.tsx`: logo `src` → `/images/solidmix-logo-v2-header.webp`, intrinsic `width`/`height` → 388/128, added `unoptimized`, kept `priority` and the same `className="h-[52px] w-auto lg:h-[64px]"` and alt text — displayed size unchanged (52px tall on phone, 64px on laptop).
+- `src/components/Footer.tsx`: logo `src` → `/images/solidmix-logo-v2-footer.webp`, intrinsic `width`/`height` → 360/192, added `unoptimized`, kept `className="h-auto w-[180px]"` and the white rounded box `<span>` exactly as it was.
+- `src/lib/seo.ts`: the 3 `absUrl("/images/solidmix-logo.webp")` calls (Organization `logo`, Organization `image`, blog-post `publisher.logo`) → `absUrl("/images/solidmix-logo-v2-master.webp")`.
+- `src/app/ready-mix-concrete-in-raipur/[slug]/page.tsx`: the Product JSON-LD fallback `image` (used only when a product page has no image block) → `/images/solidmix-logo-v2-master.webp`.
+- Grepped all of `src`, `public/llms.txt`, `next.config.ts` and `src/content` for `solidmix-logo.webp`/`solidmix-logo-footer.webp` before editing: the only 6 matches were the 4 files above (3 in `seo.ts`) — no other code or content reference existed, so nothing else needed changing.
+- Old files `public/images/solidmix-logo.webp` and `public/images/solidmix-logo-footer.webp` were kept on disk, unreferenced by code now, not deleted.
+- Not touched: favicons (`icon.png`, `apple-icon.png`) — not part of this logo set; ask Ma'am later whether she wants transparent favicons too. Also not touched: the 4 unused PNG/phone logo variants, `convex/`, `src/content/pages/our-team*.json`, `next.config.ts` redirects, `src/app/project-gallery/`, `src/app/plant-gallery/`, `public/images/hero/`, `package.json`, `.local-tools/`, `crm-kit/`.
+
+Waiting for client:
+- Confirm the new transparent logos look right at the kept display sizes (52px/64px header, 180px-wide footer) — `unoptimized` is used because these are already-optimized static assets served as-is.
+- Decide whether favicons should also move to a transparent version later.
+
+The `globals.css` `img, video { max-width: 100%; height: auto; }` rule (unlayered) was overriding `h-[52px]`/`lg:h-[64px]` on the header logo, so it never actually rendered at those sizes. Fixed with the Tailwind v4 important modifier on the header logo only — className is now `h-[52px]! w-auto lg:h-[64px]!`. The header logo is now 52px tall on phone and 64px tall on laptop (Ma'am's intended sizes); before this fix it rendered at about 56px tall on both because the sizing class never applied.
+
+2026-11-28 new transparent logos wired on feat/office-address (header 52px/64px tall via ! modifier, footer unchanged size, JSON-LD and product fallback use master); tests: run-all all PASS (logo-test 33 PASS) except office-test 19 PASS 1 FAIL and restructure-test 43 PASS 1 FAIL, both waiting for Team Dashboard edits of Convex posts; not merged
+
+## Our Team page split (feat/office-address)
+
+`src/app/our-team/page.tsx` only — no change to `src/content/pages/our-team.json` or any member's name/photo/role/bio. The page already builds a flat `members` array (in JSON order) via `extractCards()`; `our-team.json`'s existing order is already "2 Founder & Director entries, then 5 team roles" in the exact required order, so the split is done by array position (`members.slice(0, 2)` for directors, `members.slice(2)` for team) rather than adding a `group` field — no JSON edits or reordering needed either way.
+
+New page structure: the existing intro block (eyebrow, "Solidmix Concrete Team" H2, intro paragraph) is unchanged, h1/breadcrumb/metadata unchanged. Below it: H2 "Our Directors" → Vinit Kumar Tiwari, then Pratham Bafna, rendered in a centered flex row (same per-card width formula as `TeamGrid`'s `sm:grid-cols-2`/`lg:grid-cols-3` breakpoints — `calc((100%-2rem)/2)` at `sm`, `calc((100%-4rem)/3)` at `lg`, matching its `gap-x-8` — but wrapped in `flex flex-wrap justify-center` instead of `grid-cols-3`, since a 3-column grid with only 2 items would sit left instead of centering); stacked full-width on mobile (`flex-col`). Then H2 "Our Team" → Ramkrishna Mishra (Sales Head), Jainarayan Tiwari (Plant Manager), Akula Laxman Rao (Finance & Account), Pitabas Sahoo (Quality Head), Brijesh Choubey (Project & Corporate Affairs), through the unchanged `TeamGrid` component (same grid, same card markup, same photo sizes).
+
+`TeamGrid.tsx` itself was deliberately NOT touched: `src/app/legal/page.tsx` also renders its own, separate, smaller team list (from `legal.json`, 3 names) through the same shared component, which is out of scope for this task.
+
+Other places that read team-related data, checked and left alone (none needed a change): `src/app/our-team/[slug]/page.tsx` and `src/app/sitemap.ts`'s `TEAM_SLUGS` (individual member detail pages/routes — unaffected, they read their own per-member JSON files, not the grid order); `src/content/index.json` (catalog metadata only, no grouping); `src/content/seoMeta.ts` / `src/content/site.ts` (title/nav, no member list); `src/content/pages/trusted-concrete-supplier-in-raipur.json` (a text mention of "Vinit Tiwari and Pratham Bafna" as founders — just copy, not a rendered grid). No home-page team strip exists. No Person/Employee structured data references team members anywhere.
+
+Verified: `rm -rf .next && npx tsc --noEmit` clean; `npm run build` succeeded (83 pages).
+
+## Working hours line (feat/office-address)
+
+Found exactly one live place the Day/Working-Hours table (Sunday–Saturday, "24 hours") renders: the Home page (`src/app/page.tsx`), next to "Why Raipur's Contractors Choose SolidMix RMC", driven by `workingHours` in `src/content/home.ts`. Checked every service/contact/product page's content JSON and `src/components` — no other page or component has this table. `src/content/pages/home.json` has an identical but dead-code copy of the same table (confirmed in an earlier entry: not imported by any route) — updated for consistency only, no visual effect.
+
+Added the exact text "24x7x365 days" as one centered line between the "Working hours" heading and the table, in both places:
+- `src/app/page.tsx`: `<p className="mt-4 mb-4 text-center text-xl font-bold text-primary md:mb-6 md:text-2xl">24x7x365 days</p>` — reuses `text-primary` (already the heading color on this page), and core Tailwind size/weight utilities already used elsewhere in the codebase; no new colors, fonts or dependencies. Removed the table's own `mt-8` since the new line's `mb-4`/`md:mb-6` now supplies that spacing — table rows, columns and the heading text are untouched.
+- `src/content/pages/home.json`: added a matching `{ "type": "p", "text": "24x7x365 days" }` block between the "Working hours" heading block and the table block (dead code, kept in sync with `home.ts` only).
+
+Convex blog posts: I have no way to read Convex-stored post bodies from this repo (no Convex access, `convex/` is protected, no Convex commands run) — I cannot confirm or rule out whether any blog post duplicates this table. None of the previously-known Convex posts (site-mix-concrete, solidmix-readymix-concrete, solidmix-rmc-supplier) were mentioned as having a working-hours table in earlier BUILD-LOG entries, but please check the Team Dashboard directly if this needs confirming.
+
+Minor note, not changed: `src/content/index.json`'s `"blocks": 75` count for the `home` entry is now off by one (home.json gained a block) — this field is pure documentation, not read by any code (`src/lib/posts.ts` imports `index.json` but never reads `.blocks`), so left as-is rather than making an unrequested edit.
+
+Verified: `rm -rf .next && npx tsc --noEmit` clean; `npm run build` succeeded (83 pages, same as above).
+
+2026-11-28 Our Team page split into Our Directors and Our Team, and 24x7x365 days line added above the Working hours table on home, on feat/office-address; code build and tsc clean; Playwright run-all pending at commit time; not merged

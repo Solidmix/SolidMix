@@ -112,14 +112,14 @@ export const seoMetaOverrides: Record<string, SeoMetaOverride> = {
     h1: "Quality & Safety at SolidMix RMC",
     // description intentionally omitted: CSV text has "[CLIENT TO CONFIRM practices]"
   },
-  "/our-work/": {
-    title: "RMC Projects in Raipur",
-    h1: "Completed RMC Projects in Raipur",
+  "/project-gallery/": {
+    title: "Project Gallery",
+    h1: "Project Gallery",
     description: "See completed concrete projects supplied by SolidMix RMC in and around Raipur.",
   },
-  "/rmc-gallery-in-raipur/": {
-    title: "RMC Gallery in Raipur",
-    h1: "RMC Project Gallery in Raipur",
+  "/plant-gallery/": {
+    title: "Plant Gallery",
+    h1: "Plant Gallery",
     description: "Photos of SolidMix RMC concrete, our plant and project sites in Raipur.",
   },
   "/concrete-blog-in-raipur/": {

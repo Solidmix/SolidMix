@@ -183,7 +183,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           productLd({
             name: displayH1,
             description: metaDescriptionFrom(content),
-            image: image?.src ?? "/images/solidmix-logo.webp",
+            image: image?.src ?? "/images/solidmix-logo-v2-master.webp",
           }),
           ...(faqs.length ? [faqPageLd(faqs)] : []),
         ]}

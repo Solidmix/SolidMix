@@ -10,7 +10,7 @@ import { pageMetadata, breadcrumbLd, resolveDisplayH1 } from "@/lib/seo";
 
 const content = getPageContent("rmc-gallery-in-raipur");
 const h1 = resolvePageH1(content);
-const displayH1 = resolveDisplayH1("/rmc-gallery-in-raipur/", h1);
+const displayH1 = resolveDisplayH1("/plant-gallery/", h1);
 const blocks = stripChrome(content.blocks, h1);
 
 // The live original (rmc-gallery-in-raipur, gallery widget e9e9ec7) shows
@@ -58,15 +58,15 @@ async function getGalleryImages(): Promise<LightboxImage[]> {
 
 export async function generateMetadata(): Promise<Metadata> {
   const images = await getGalleryImages();
-  return pageMetadata(content, "/rmc-gallery-in-raipur/", images[0]?.src);
+  return pageMetadata(content, "/plant-gallery/", images[0]?.src);
 }
 
 export default async function GalleryPage() {
   const images = await getGalleryImages();
   return (
     <>
-      <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Gallery" }])]} />
-      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Gallery" }]} />
+      <JsonLd data={[breadcrumbLd([{ name: "Home", url: "/" }, { name: "Plant Gallery" }])]} />
+      <PageHero title={displayH1} crumbs={[{ label: "Home", href: "/" }, { label: "Plant Gallery" }]} />
       <section className="py-12 md:py-16">
         <div className="container-content max-w-2xl text-center">
           <BlockRenderer blocks={blocks} />

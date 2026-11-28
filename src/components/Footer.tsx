@@ -19,10 +19,11 @@ export function Footer() {
           <div className="lg:col-span-1">
             <span className="inline-flex w-full max-w-[260px] items-center justify-center rounded-md bg-white p-8">
               <Image
-                src="/images/solidmix-logo-footer.webp"
+                src="/images/solidmix-logo-v2-footer.webp"
                 alt="SolidMix RMC logo"
-                width={200}
-                height={107}
+                width={360}
+                height={192}
+                unoptimized
                 className="h-auto w-[180px]"
               />
             </span>
@@ -113,8 +114,11 @@ export function Footer() {
           <div>
             <h2 className="mb-4 text-[20px] font-semibold">Plant Address</h2>
             {plants.map((plant, i) => (
-              <p key={plant.id} className="text-sm leading-relaxed text-white/90">
-                Plant {i + 1} – {plant.address}
+              <p
+                key={plant.id}
+                className={`text-sm leading-relaxed text-white/90 ${i === 0 ? "" : "mt-3"}`}
+              >
+                <strong className="font-bold">Plant {i + 1}</strong> – {plant.address}
               </p>
             ))}
           </div>

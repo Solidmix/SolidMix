@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import {
   getPageContent,
   stripChrome,
@@ -34,6 +36,12 @@ const members: TeamMember[] = cards.map((c) => ({
   href: c.titleHref,
 }));
 
+// our-team.json already lists the 2 Founder & Director entries first,
+// followed by the 5 team roles in the required order, so splitting by
+// array position needs no `group` field and no JSON reordering.
+const directors = members.slice(0, 2);
+const team = members.slice(2);
+
 export const metadata: Metadata = pageMetadata(content, "/our-team/", cards[0]?.image?.src);
 
 export default function OurTeamPage() {
@@ -53,8 +61,42 @@ export default function OurTeamPage() {
             </p>
           )}
         </div>
-        <div className="container-content mt-10 text-left">
-          <TeamGrid members={members} />
+        <div className="container-content mt-10">
+          <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">Our Directors</h2>
+          {/* Same card width formula as TeamGrid's sm:grid-cols-2/lg:grid-cols-3
+              (gap-x-8 = 2rem), but wrapped in a centered flex row since a
+              3-column grid with only 2 items would sit left instead of centering. */}
+          <div className="mt-8 flex flex-col items-center gap-x-8 gap-y-10 text-left sm:flex-row sm:flex-wrap sm:justify-center">
+            {directors.map((m) => (
+              <div key={m.name} className="w-full sm:w-[calc((100%-2rem)/2)] lg:w-[calc((100%-4rem)/3)]">
+                <div className="hover-bob relative mx-auto aspect-[4/5] w-[89%] max-w-full overflow-hidden rounded-md bg-grey-line sm:mx-0 sm:w-full">
+                  <Image
+                    src={m.image.src}
+                    alt={m.image.alt || m.name}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 89vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <h3 className="mt-4 text-[32px] font-semibold text-primary">
+                  {m.href ? (
+                    <Link href={m.href} className="hover:underline">
+                      {m.name}
+                    </Link>
+                  ) : (
+                    m.name
+                  )}
+                </h3>
+                <p className="mt-1 text-[20px] font-normal text-secondary">{m.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="container-content mt-16">
+          <h2 className="text-[28px] font-semibold text-primary md:text-[40px]">Our Team</h2>
+          <div className="mt-8 text-left">
+            <TeamGrid members={team} />
+          </div>
         </div>
       </section>
     </>

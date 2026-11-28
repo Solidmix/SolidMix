@@ -119,12 +119,13 @@ export default function Header() {
       <div className="relative mx-auto flex h-[72px] w-full max-w-[1360px] items-center justify-between gap-4 px-4 lg:h-[76px] lg:max-w-none lg:justify-start lg:gap-[64px] lg:px-[60px]">
         <Link href="/" aria-label="SolidMix RMC home" className="flex-shrink-0">
           <Image
-            src="/images/solidmix-logo.webp"
+            src="/images/solidmix-logo-v2-header.webp"
             alt="SolidMix RMC — Ready Mix Concrete logo"
-            width={180}
-            height={72}
+            width={388}
+            height={128}
             priority
-            className="h-[52px] w-auto lg:h-[64px]"
+            unoptimized
+            className="h-[52px]! w-auto lg:h-[64px]!"
           />
         </Link>
 
