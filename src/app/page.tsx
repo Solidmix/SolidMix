@@ -114,35 +114,6 @@ export default function HomePage() {
             <p className="mt-4 mb-4 text-center text-xl font-bold text-primary md:mb-6 md:text-2xl">
               24x7x365 days
             </p>
-            {/* Plain white table on the original — no zebra striping (a
-                round-4 fix wrongly added a grey wash here; re-measured as
-                solid white rows). Border stays the grey-at-50%-opacity. */}
-            <table className="w-full border-collapse overflow-hidden rounded-lg border border-[rgba(128,128,128,0.5)] bg-white text-left">
-              <thead>
-                <tr>
-                  {workingHours.columns.map((col) => (
-                    <th
-                      key={col}
-                      className="border-b border-[rgba(128,128,128,0.5)] px-6 py-4 text-center font-semibold text-ink"
-                    >
-                      {col}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {workingHours.rows.map(([day, hours], i) => (
-                  <tr key={day} className={i % 2 === 1 ? "bg-[#f5f5f5]" : ""}>
-                    <td className="border-b border-[rgba(128,128,128,0.5)] px-6 py-4 text-[14.4px] text-grey">
-                      {day}
-                    </td>
-                    <td className="border-b border-[rgba(128,128,128,0.5)] px-6 py-4 text-[14.4px] text-grey">
-                      {hours}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
           </div>
         </div>
       </section>
