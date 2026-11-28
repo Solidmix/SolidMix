@@ -413,3 +413,5 @@ Waiting for client:
 - The Convex `RESERVED_SLUGS` list in `convex/posts.ts` does not yet contain `project-gallery` and `plant-gallery` — backend change, not done here (`convex/` was not touched per instruction).
 - The earlier office-address text in the two Convex posts (site-mix-concrete, solidmix-readymix-concrete) still needs the dashboard edit (carried over from the previous entry).
 - The Convex post `/solidmix-rmc-supplier/` still links to `/our-work/` (works through the 301, but should be edited in the Team Dashboard to `/project-gallery/`).
+
+2026-11-28 committed and pushed calculator/rename/About changes on feat/office-address at c5c7be9; tests: run-all all PASS except office-test 19 PASS 1 FAIL (2 Convex posts still have the old office address) and restructure-test 43 PASS 1 FAIL (Convex post /solidmix-rmc-supplier/ still links to /our-work/); both need a Team Dashboard edit; not merged
