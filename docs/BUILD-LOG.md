@@ -366,3 +366,24 @@ Waiting for client:
 2026-11-27 Akula Laxman Rao photo replaced with the new photo from the team (1224x1285 WebP q90, same file name akula-laxman-rao.webp, no code change, 4:5 frame fill unchanged); tests: team 49 PASS, team-visual 114 PASS, run-all ALL PASS; pushed feat/akula-photo at 8253183; Vercel preview check pending; not merged
 
 2026-11-27 merged feat/akula-photo into main (--no-ff) at 305e220; pushed main; Vercel production check pending
+
+## Office address replaced site-wide (2026-11-28)
+
+Old office address "Office no. 418, 4th floor, Lalganga Business Park, Pachpedi Naka, Raipur, C.G. 492001" (also written "Office no.418 ... Pin code 492001") replaced everywhere with the new address: "PH. NO. 77, KH. NO. 365/5, Serikhedi, Raipur, Chhattisgarh 492101". Files changed:
+- `src/content/site.ts` — footer office address line.
+- `src/content/home.ts` and `src/content/pages/home.json` — contact details block address line and the Home FAQ "Where is the SolidMix RMC concrete plant located" answer. `src/app/page.tsx` imports `src/content/home.ts` for the live Home page; `src/content/pages/home.json` is not imported anywhere in `src/app`, `src/lib`, or `src/components` (checked), so it is currently unused by the site, but both were kept in sync per instruction.
+- FAQ answer before: "Our plant is located at Ph.no.77, Kh.no.365/5, Serikhedi, Raipur, Chhattisgarh 492101. Our office is at Lalganga Business Park, Pachpedi Naka, Raipur. Both locations are available on Google Maps." After: "Our plant and office are located at PH. NO. 77, KH. NO. 365/5, Serikhedi, Raipur, Chhattisgarh 492101. This location is available on Google Maps." (the first two sentences were merged into the one required sentence; "Both locations are" was changed to "This location is" — the smallest wording fix so the remaining sentence stays true now that plant and office are the same place; no new claim added).
+- `src/content/pages/site-mix-concrete.json` and `src/content/pages/solidmix-readymix-concrete.json` — replaced only the text after "Office:" (kept `[[b]]Office:[[/b]]` and the surrounding contact-email/phone text unchanged).
+- `src/lib/seo.ts` — the "Office" `PostalAddress`: `streetAddress` now "PH. NO. 77, KH. NO. 365/5, Serikhedi", `postalCode` now "492101" (`addressLocality`/`addressRegion` unchanged). The existing comment about the removed "Pachpedi Naka" `areaServed` entry was left as-is.
+- `public/llms.txt` — "Office address:" line updated.
+- `src/content/pages/ready-mix-concrete-contact-in-raipur.json` — the Google Maps embed `q=` parameter changed from the old Lalganga Business Park search text to the URL-encoded new address text; no other query parameter touched; no coordinates or Plus Code added. Before: `q=Lalganga%20Business%20Park%20Raipur%20-%20Abhanpur%20Rd%2C%20Navjeevan%20Society%2C%20Pachpedi%20Naka%2C%20Tikrapara%2C%20Mathpurena%2C%20Chhattisgarh%20492001`. After: `q=PH.%20NO.%2077%2C%20KH.%20NO.%20365%2F5%2C%20Serikhedi%2C%20Raipur%2C%20Chhattisgarh%20492101`.
+- Not touched: the "Pachpedi Naka" mentions in the delivery-areas list in `src/content/home.ts`/`home.json` (service-area copy, not the office address) and everything under `src/data/plants.ts`, `seo-kit/`, `crm-kit/`, `convex/`, `docs/reference/`.
+
+Footer `Plant Address` column (`src/components/Footer.tsx`): added `mt-3` spacing between the three plant paragraphs (none above the first), and made only the "Plant N" label bold with `<strong className="font-bold">Plant {i + 1}</strong>` followed by " – " and the address in normal weight. Same `plants.map`, same text and colours; nothing else in the footer changed.
+
+Verified: `npx tsc --noEmit` and `npm run lint` both pass (output pasted to Saidul; lint shows only a pre-existing unrelated warning in `src/lib/leadStore.ts`). `npm run build` was not run here.
+
+Waiting for client:
+- Confirm the new office address with Ma'am in writing.
+- Check whether the Google Business listing and any outside listings still show the old office address.
+- The contact page map (`ready-mix-concrete-contact-in-raipur.json`) was pointed to the new address text without coordinates — check the pin visually.

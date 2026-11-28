@@ -97,10 +97,10 @@ export function organizationLd() {
         {
           "@type": "PostalAddress",
           name: "Office",
-          streetAddress: "Office no. 418, 4th floor, Lalganga Business Park, Pachpedi Naka",
+          streetAddress: "PH. NO. 77, KH. NO. 365/5, Serikhedi",
           addressLocality: "Raipur",
           addressRegion: "Chhattisgarh",
-          postalCode: "492001",
+          postalCode: "492101",
           addressCountry: "IN",
         },
         {

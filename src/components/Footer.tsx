@@ -113,8 +113,11 @@ export function Footer() {
           <div>
             <h2 className="mb-4 text-[20px] font-semibold">Plant Address</h2>
             {plants.map((plant, i) => (
-              <p key={plant.id} className="text-sm leading-relaxed text-white/90">
-                Plant {i + 1} – {plant.address}
+              <p
+                key={plant.id}
+                className={`text-sm leading-relaxed text-white/90 ${i === 0 ? "" : "mt-3"}`}
+              >
+                <strong className="font-bold">Plant {i + 1}</strong> – {plant.address}
               </p>
             ))}
           </div>

@@ -136,7 +136,7 @@ export const faq = {
   items: [
     {
       q: "Where is the SolidMix RMC concrete plant located in Raipur?",
-      a: "Our plant is located at Ph.no.77, Kh.no.365/5, Serikhedi, Raipur, Chhattisgarh 492101. Our office is at Lalganga Business Park, Pachpedi Naka, Raipur. Both locations are available on Google Maps.",
+      a: "Our plant and office are located at PH. NO. 77, KH. NO. 365/5, Serikhedi, Raipur, Chhattisgarh 492101. This location is available on Google Maps.",
     },
     {
       q: "What is the minimum order quantity for ready mix concrete?",
@@ -175,7 +175,7 @@ export const coreSkills = {
 export const contactBlock = {
   detailsHeading: "Contact Details",
   address:
-    "Address : Office no.418, 4th floor, Lalganga Business Park Pachpedi naka Raipur C.G Pin code 492001",
+    "Address : PH. NO. 77, KH. NO. 365/5, Serikhedi, Raipur, Chhattisgarh 492101",
   number: "Number : +91 9893111201",
   emailLine: "Email : info@solidmixrmc.com support@solidmixrmc.com",
   form: {

@@ -22,7 +22,7 @@ export const site = {
   officeAddress: {
     label: "Office Address",
     lines: [
-      "Office no. 418, 4th floor, Lalganga Business Park, Pachpedi Naka, Raipur, C.G. 492001",
+      "PH. NO. 77, KH. NO. 365/5, Serikhedi, Raipur, Chhattisgarh 492101",
     ],
   },
   socials: [
